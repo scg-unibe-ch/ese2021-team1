@@ -21,3 +21,4 @@ The image below gives you an overview on the different technologies used. You ca
 ![image overview](./scaffolding/backend/src/public/images/tech_overview.png)
 
 Test
+Test2
