@@ -19,3 +19,5 @@ Then you can follow the README in the frontend folder and backend folder respect
 The image below gives you an overview on the different technologies used. You can find more details about them by consulting the reading list on Ilias. It shows a request the frontend makes to the backend.
 
 ![image overview](./scaffolding/backend/src/public/images/tech_overview.png)
+
+Test
