@@ -3,6 +3,7 @@ import { User } from '../models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { UserService } from '../services/user.service';
+import { UserRegister } from '../models/userRegister.mode';
 
 @Component({
   selector: 'app-user',
@@ -15,8 +16,8 @@ export class UserComponent {
 
   user: User | undefined;
 
-  userToRegister: User = new User(0, '', '');
-
+  // ADDED NEW ARGS FOR THE UDPATED USER MODEL
+  userToRegister: UserRegister = new UserRegister('', '', '', '', 0, 0, '', '', 0);
   userToLogin: User = new User(0, '', '');
 
   endpointMsgUser: string = '';
@@ -36,9 +37,19 @@ export class UserComponent {
   }
 
   registerUser(): void {
+    console.log('Submitting Register Data:', this.userToRegister)
     this.httpClient.post(environment.endpointURL + "user/register", {
       userName: this.userToRegister.username,
-      password: this.userToRegister.password
+      password: this.userToRegister.password,
+      firstName: this.userToRegister.firstName,
+      lastName: this.userToRegister.lastName,
+      email: this.userToRegister.email,
+      homeAddress: this.userToRegister.homeAddress,
+      streetNumber: this.userToRegister.streetNumber,
+      zipCode: this.userToRegister.zipCode,
+      city: this.userToRegister.city,
+      birthday: this.userToRegister.birthday,
+      phoneNumber: this.userToRegister.phoneNumber,
     }).subscribe(() => {
       this.userToRegister.username = this.userToRegister.password = '';
     });
@@ -55,7 +66,10 @@ export class UserComponent {
       localStorage.setItem('userToken', res.token);
 
       this.userService.setLoggedIn(true);
-      this.userService.setUser(new User(res.user.userId, res.user.userName, res.user.password));
+      this.userService.setUser(new User(
+        res.user.userId,
+        res.user.userName,
+        res.user.password));
     });
   }
 

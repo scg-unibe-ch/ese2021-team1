@@ -1,15 +1,49 @@
+<!-- REGISTER STUFF -->
 <mat-card>
+
   <h3>Register</h3>
+  
   <mat-form-field>
     <input matInput type="text" placeholder="User Name" name="name" [(ngModel)]="userToRegister.username">
   </mat-form-field>
   <mat-form-field>
     <input matInput type="password" placeholder="Password" name="password" [(ngModel)]="userToRegister.password">
   </mat-form-field>
+  <!-- NEW -->
+    <mat-form-field>
+      <input matInput type="text" placeholder="First name" name="firstName" [(ngModel)]="userToRegister.firstName">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Last name" name="lastName" [(ngModel)]="userToRegister.lastName">
+    </mat-form-field>
+      <mat-form-field>
+        <input matInput type="email" placeholder="Email address" name="email" [(ngModel)]="userToRegister.email">
+      </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Home address" name="homeAddress" [(ngModel)]="userToRegister.homeAddress">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="number" placeholder="Street number" name="streetNumber" [(ngModel)]="userToRegister.streetNumber">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="number" placeholder="Zip code" name="zipCode" [(ngModel)]="userToRegister.zipCode">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" placeholder="City" name="city" [(ngModel)]="userToRegister.city">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="date" placeholder="Birthday" name="birthday" [(ngModel)]="userToRegister.birthday">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="number" placeholder="Phone number" name="phoneNumber" [(ngModel)]="userToRegister.phoneNumber">
+    </mat-form-field>
+    <!-- NEW -->
   <button mat-flat-button color="primary" (click)="registerUser()">Register</button>
 </mat-card>
 
 <mat-card>
+<!-- END REGISTER STUFF -->
+<!-- LOGIN STUFF -->
   <h3>Login</h3>
 
   <div *ngIf="!loggedIn">
@@ -28,6 +62,7 @@
 </mat-card>
 
 <mat-card>
+  <!-- END LOGIN STUFF -->
   <h3>Secure Endpoints</h3>
   <button mat-flat-button color="primary" (click)="accessUserEndpoint()">User Endpoint</button>
   {{ endpointMsgUser }}
