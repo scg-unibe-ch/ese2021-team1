@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+
+.passReqModal {
+  position: absolute;
+  width: auto;
+  height: auto;
+  background-color: white;
+  z-index: 1;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  border: 0px;
+  border-radius: 8px;
+  transform: translate(0, 15px);
+  padding: 5px;
+  margin: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  white-space: nowrap;
+  font-size: small;
+  font-family: "Montserrat", sans-serif;
+  transition: all 0.1s ease-in-out;
+}
+.passReqModal:hover {
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.reqText {
+  margin: 0;
+  padding: 0;
+  margin-top: 3px;
+  margin-bottom: 7px;
+  color: rgb(128, 128, 128);
+  margin-left: 4px;
+  margin-right: 4px;
+  user-select: none;
+}
+
+.reqStatus {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}

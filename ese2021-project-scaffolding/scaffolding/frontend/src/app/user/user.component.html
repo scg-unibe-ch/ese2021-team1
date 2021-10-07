@@ -7,9 +7,28 @@
     <input matInput type="text" placeholder="User Name" name="name" [(ngModel)]="userToRegister.username">
   </mat-form-field>
   <mat-form-field>
-    <input matInput type="password" placeholder="Password" name="password" [(ngModel)]="userToRegister.password">
-  </mat-form-field>
-  <!-- NEW -->
+    <input (input)="checkPassword()" (focus)="showPasswordReqs(true)" (focusout)="showPasswordReqs(false)" [(ngModel)]="passwordInput" matInput type="password" placeholder="Password" name="password" [(ngModel)]="userToRegister.password">
+  <div *ngIf="showPassReqs" [hidden]="!showPassReqs" class="passReqModal">
+    <h4 [ngStyle]="{color: 'gray', 'margin': '8px'}" class="reqText">Password must include:</h4>
+    <div class="reqText">
+      <p class="reqStatus" *ngIf="passwordReqs[0]" [ngStyle]="{color: 'green'}">✔</p>
+      <p class="reqStatus" *ngIf="!passwordReqs[0]" [ngStyle]="{color: 'red'}">✖</p>
+      a minimum of 8 characters
+    </div>
+    <div class="reqText">
+      <p class="reqStatus" *ngIf="passwordReqs[1]" [ngStyle]="{color: 'green'}">✔</p>
+      <p class="reqStatus" *ngIf="!passwordReqs[1]" [ngStyle]="{color: 'red'}">✖</p>
+      capital and small letters</div>
+    <div class="reqText">
+      <p class="reqStatus" *ngIf="passwordReqs[2]" [ngStyle]="{color: 'green'}">✔</p>
+      <p class="reqStatus" *ngIf="!passwordReqs[2]" [ngStyle]="{color: 'red'}">✖</p>
+      a number</div>
+    <div class="reqText">
+      <p class="reqStatus" *ngIf="passwordReqs[3]" [ngStyle]="{color: 'green'}">✔</p>
+      <p class="reqStatus" *ngIf="!passwordReqs[3]" [ngStyle]="{color: 'red'}">✖</p>
+      a special character</div>
+  </div>
+</mat-form-field>
     <mat-form-field>
       <input matInput type="text" placeholder="First name" name="firstName" [(ngModel)]="userToRegister.firstName">
     </mat-form-field>
@@ -35,9 +54,8 @@
       <input matInput type="date" placeholder="Birthday" name="birthday" [(ngModel)]="userToRegister.birthday">
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="number" placeholder="Phone number" name="phoneNumber" [(ngModel)]="userToRegister.phoneNumber">
+      <input matInput type="tel" placeholder="Phone number" name="phoneNumber" [(ngModel)]="userToRegister.phoneNumber">
     </mat-form-field>
-    <!-- NEW -->
   <button mat-flat-button color="primary" (click)="registerUser()">Register</button>
 </mat-card>
 

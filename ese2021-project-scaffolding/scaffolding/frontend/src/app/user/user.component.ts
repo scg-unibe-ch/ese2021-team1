@@ -12,6 +12,13 @@ import { UserRegister } from '../models/userRegister.mode';
 })
 export class UserComponent {
 
+  // CHECK FEATURE START
+  passwordInput: string = ''
+  showPassReqs: boolean = false;
+  // passwordReqs[min 8 char, capital & small letters, a number, a special char]
+  passwordReqs: boolean[] = [false, false, false, false];
+  // CHECK FEATURE END
+
   loggedIn: boolean | undefined;
 
   user: User | undefined;
@@ -38,21 +45,28 @@ export class UserComponent {
 
   registerUser(): void {
     console.log('Submitting Register Data:', this.userToRegister)
-    this.httpClient.post(environment.endpointURL + "user/register", {
-      userName: this.userToRegister.username,
-      password: this.userToRegister.password,
-      firstName: this.userToRegister.firstName,
-      lastName: this.userToRegister.lastName,
-      email: this.userToRegister.email,
-      homeAddress: this.userToRegister.homeAddress,
-      streetNumber: this.userToRegister.streetNumber,
-      zipCode: this.userToRegister.zipCode,
-      city: this.userToRegister.city,
-      birthday: this.userToRegister.birthday,
-      phoneNumber: this.userToRegister.phoneNumber,
-    }).subscribe(() => {
-      this.userToRegister.username = this.userToRegister.password = '';
-    });
+    if (this.passwordReqs.includes(false)) {
+      this.showPassReqs = true;
+    } else { // ADD OTHER CONDITIONS TOO!!!
+      this.httpClient.post(environment.endpointURL + "user/register", {
+        userName: this.userToRegister.username,
+        password: this.userToRegister.password,
+        firstName: this.userToRegister.firstName,
+        lastName: this.userToRegister.lastName,
+        email: this.userToRegister.email,
+        homeAddress: this.userToRegister.homeAddress,
+        streetNumber: this.userToRegister.streetNumber,
+        zipCode: this.userToRegister.zipCode,
+        city: this.userToRegister.city,
+        birthday: this.userToRegister.birthday,
+        phoneNumber: this.userToRegister.phoneNumber,
+      }).subscribe(() => {
+        this.userToRegister.username = this.userToRegister.password = '';
+      });
+
+      // reset the password validation array
+      this.passwordReqs = [false, false, false, false];
+    }
   }
 
   loginUser(): void {
@@ -96,4 +110,37 @@ export class UserComponent {
       this.endpointMsgAdmin = "Unauthorized";
     });
   }
+
+  checkPassword(): void {
+    // passwordReqs[min 8 char, capital & small letters, a number, a special char]
+    if (this.passwordInput.length >= 8) {
+      this.passwordReqs[0] = true
+    } else {
+      this.passwordReqs[0] = false
+    }
+    if ((/[a-z]/.test(this.passwordInput)) && (/[A-Z]/.test(this.passwordInput))) {
+      this.passwordReqs[1] = true
+    } else {
+      this.passwordReqs[1] = false
+    }
+    if (/\d/.test(this.passwordInput)) {
+      this.passwordReqs[2] = true
+    } else {
+      this.passwordReqs[2] = false
+    }
+    let specChars = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/
+    if (specChars.test(this.passwordInput)) {
+      this.passwordReqs[3] = true
+    } else {
+      this.passwordReqs[3] = false
+    }
+  }
+  showPasswordReqs(show: boolean) {
+    if (show) {
+      this.showPassReqs = true;
+    } else {
+      this.showPassReqs = false;
+    }
+  }
+ 
 }

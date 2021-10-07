@@ -4,10 +4,11 @@ body {
 
 .mat-card {
   margin: 20px 0;
-  background-color: #EEE;
+  background-color: #eee;
 }
 
-button, input {
+button,
+input {
   margin-left: 15px !important;
   margin-right: 15px !important;
 }
