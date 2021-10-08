@@ -2,11 +2,13 @@ import { UserAttributes, User } from '../models/user.model';
 import { LoginResponse, LoginRequest } from '../models/login.model';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import {ifError} from "assert";
+import {ifError} from 'assert';
 
 export class UserService {
 
     public register(user: UserAttributes): Promise<UserAttributes> {
+        console.log('User:');
+        console.log(user);
         const saltRounds = 12;
         switch (this.passwordCheck(user.password)) {
             case 1 : return Promise.reject({message: 'Doesnt contain capital/small letter'});
