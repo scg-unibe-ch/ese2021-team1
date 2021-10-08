@@ -44,7 +44,7 @@ export class UserComponent {
   }
 
   registerUser(): void {
-    console.log('Submitting Register Data:', this.userToRegister)
+    // console.log('Submitting Register Data:', this.userToRegister)
     if (this.passwordReqs.includes(false)) {
       this.showPassReqs = true;
     } else { // ADD OTHER CONDITIONS TOO!!!
@@ -60,7 +60,8 @@ export class UserComponent {
         city: this.userToRegister.city,
         birthday: this.userToRegister.birthday,
         phoneNumber: this.userToRegister.phoneNumber,
-      }).subscribe(() => {
+      }).subscribe((data) => {
+        console.log(data)
         this.userToRegister.username = this.userToRegister.password = '';
       });
 

@@ -4,10 +4,10 @@
   <h3>Register</h3>
   
   <mat-form-field>
-    <input matInput type="text" placeholder="User Name" name="name" [(ngModel)]="userToRegister.username">
+    <input matInput type="text" placeholder="User Name" name="name" [(ngModel)]="userToRegister.username" required>
   </mat-form-field>
   <mat-form-field>
-    <input (input)="checkPassword()" (focus)="showPasswordReqs(true)" (focusout)="showPasswordReqs(false)" [(ngModel)]="passwordInput" matInput type="password" placeholder="Password" name="password" [(ngModel)]="userToRegister.password">
+    <input (input)="checkPassword()" (focus)="showPasswordReqs(true)" (focusout)="showPasswordReqs(false)" [(ngModel)]="passwordInput" matInput type="password" placeholder="Password" name="password" [(ngModel)]="userToRegister.password" required>
   <div *ngIf="showPassReqs" [hidden]="!showPassReqs" class="passReqModal">
     <h4 [ngStyle]="{color: 'gray', 'margin': '8px'}" class="reqText">Password must include:</h4>
     <div class="reqText">
@@ -30,31 +30,31 @@
   </div>
 </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" placeholder="First name" name="firstName" [(ngModel)]="userToRegister.firstName">
+      <input matInput type="text" placeholder="First name" name="firstName" [(ngModel)]="userToRegister.firstName" required>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" placeholder="Last name" name="lastName" [(ngModel)]="userToRegister.lastName">
+      <input matInput type="text" placeholder="Last name" name="lastName" [(ngModel)]="userToRegister.lastName" required>
     </mat-form-field>
       <mat-form-field>
-        <input matInput type="email" placeholder="Email address" name="email" [(ngModel)]="userToRegister.email">
+        <input matInput type="email" placeholder="Email address" name="email" [(ngModel)]="userToRegister.email" required>
       </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" placeholder="Home address" name="homeAddress" [(ngModel)]="userToRegister.homeAddress">
+      <input matInput type="text" placeholder="Home address" name="homeAddress" [(ngModel)]="userToRegister.homeAddress" required>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="number" placeholder="Street number" name="streetNumber" [(ngModel)]="userToRegister.streetNumber">
+      <input matInput type="number" placeholder="Street number" name="streetNumber" [(ngModel)]="userToRegister.streetNumber" required>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="number" placeholder="Zip code" name="zipCode" [(ngModel)]="userToRegister.zipCode">
+      <input matInput type="number" placeholder="Zip code" name="zipCode" [(ngModel)]="userToRegister.zipCode" required>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" placeholder="City" name="city" [(ngModel)]="userToRegister.city">
+      <input matInput type="text" placeholder="City" name="city" [(ngModel)]="userToRegister.city" required>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="date" placeholder="Birthday" name="birthday" [(ngModel)]="userToRegister.birthday">
+      <input matInput type="date" placeholder="Birthday" name="birthday" [(ngModel)]="userToRegister.birthday" required>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="tel" placeholder="Phone number" name="phoneNumber" [(ngModel)]="userToRegister.phoneNumber">
+      <input matInput type="tel" placeholder="Phone number" name="phoneNumber" [(ngModel)]="userToRegister.phoneNumber" required>
     </mat-form-field>
   <button mat-flat-button color="primary" (click)="registerUser()">Register</button>
 </mat-card>
@@ -66,10 +66,10 @@
 
   <div *ngIf="!loggedIn">
     <mat-form-field>
-      <input matInput type="text" placeholder="User Name" name="name" [(ngModel)]="userToLogin.username">
+      <input matInput type="text" placeholder="User Name" name="name" [(ngModel)]="userToLogin.username" required>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="password" placeholder="Password" name="password" [(ngModel)]="userToLogin.password">
+      <input matInput type="password" placeholder="Password" name="password" [(ngModel)]="userToLogin.password" required>
     </mat-form-field>
     <button mat-flat-button color="primary" (click)="loginUser()">Login</button>
   </div>
