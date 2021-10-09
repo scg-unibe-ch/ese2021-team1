@@ -15,15 +15,25 @@ export class UserComponent {
   // CHECK FEATURE START
   passwordInput: string = ''
   showPassReqs: boolean = false;
+  showEmptyFieldError: boolean = false;
   // passwordReqs[min 8 char, capital & small letters, a number, a special char]
   passwordReqs: boolean[] = [false, false, false, false];
+  //[firstName, lastName, email, address, street number, city, zipcode, phoneNumber]
+  isEmptyField: boolean[] = [true, true, true, true, true, true, true, true]
+  showEmailError: boolean = false;
+  isValidEmail: boolean = false;
+  isValidBirthday: boolean = false;
+  showBirthdayError: boolean = false;
+  isValidPhoneNumber: boolean = false;
+  showPhoneNumberError: boolean= false;
+
   // CHECK FEATURE END
 
   loggedIn: boolean | undefined;
 
   user: User | undefined;
 
-  // ADDED NEW ARGS FOR THE UDPATED USER MODEL
+  // ADDED NEW ARGS FOR THE UPDATED USER MODEL
   userToRegister: UserRegister = new UserRegister('', '', '', '', 0, 0, '', '', 0);
   userToLogin: User = new User(0, '', '');
 
@@ -31,8 +41,8 @@ export class UserComponent {
   endpointMsgAdmin: string = '';
 
   constructor(
-    public httpClient: HttpClient,
-    public userService: UserService
+      public httpClient: HttpClient,
+      public userService: UserService
   ) {
     // Listen for changes
     userService.loggedIn$.subscribe(res => this.loggedIn = res);
@@ -45,9 +55,16 @@ export class UserComponent {
 
   registerUser(): void {
     // console.log('Submitting Register Data:', this.userToRegister)
+    this.showEmailError = !this.isValidEmail;
+    this.showBirthdayError = !this.isValidBirthday;
+    this.showPhoneNumberError = !this.isValidPhoneNumber;
     if (this.passwordReqs.includes(false)) {
       this.showPassReqs = true;
-    } else { // ADD OTHER CONDITIONS TOO!!!
+    }
+    if (this.isEmptyField.includes(true)) {
+      this.showEmptyFieldError = true;
+    }
+    else { // ADD OTHER CONDITIONS TOO!!!
       this.httpClient.post(environment.endpointURL + "user/register", {
         userName: this.userToRegister.username,
         password: this.userToRegister.password,
@@ -67,6 +84,8 @@ export class UserComponent {
 
       // reset the password validation array
       this.passwordReqs = [false, false, false, false];
+      // reset the Error Messages
+      this.showEmptyFieldError = false;
     }
   }
 
@@ -82,9 +101,9 @@ export class UserComponent {
 
       this.userService.setLoggedIn(true);
       this.userService.setUser(new User(
-        res.user.userId,
-        res.user.userName,
-        res.user.password));
+          res.user.userId,
+          res.user.userName,
+          res.user.password));
     });
   }
 
@@ -114,34 +133,49 @@ export class UserComponent {
 
   checkPassword(): void {
     // passwordReqs[min 8 char, capital & small letters, a number, a special char]
-    if (this.passwordInput.length >= 8) {
-      this.passwordReqs[0] = true
-    } else {
-      this.passwordReqs[0] = false
-    }
-    if ((/[a-z]/.test(this.passwordInput)) && (/[A-Z]/.test(this.passwordInput))) {
-      this.passwordReqs[1] = true
-    } else {
-      this.passwordReqs[1] = false
-    }
-    if (/\d/.test(this.passwordInput)) {
-      this.passwordReqs[2] = true
-    } else {
-      this.passwordReqs[2] = false
-    }
+    this.passwordReqs[0] = this.passwordInput.length >= 8;
+    this.passwordReqs[1] = (/[a-z]/.test(this.passwordInput)) && (/[A-Z]/.test(this.passwordInput));
+    this.passwordReqs[2] = /\d/.test(this.passwordInput);
     let specChars = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/
-    if (specChars.test(this.passwordInput)) {
-      this.passwordReqs[3] = true
-    } else {
-      this.passwordReqs[3] = false
-    }
+    this.passwordReqs[3] = specChars.test(this.passwordInput);
   }
+
   showPasswordReqs(show: boolean) {
-    if (show) {
-      this.showPassReqs = true;
-    } else {
-      this.showPassReqs = false;
-    }
+    this.showPassReqs = show;
   }
- 
+
+  checkFirstName(): void {
+    this.isEmptyField[0] = this.userToRegister.firstName === '';
+  }
+  checkLastName(): void {
+    this.isEmptyField[1] = this.userToRegister.lastName === '';
+  }
+  checkEmail(): void {
+    this.isEmptyField[2] = this.userToRegister.email === '';
+    let regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    this.isValidEmail = regex.test(this.userToRegister.email);
+  }
+  checkAddress(): void {
+    this.isEmptyField[3] = this.userToRegister.homeAddress === '';
+  }
+  checkStreetNumber(): void {
+    this.isEmptyField[4] = this.userToRegister.streetNumber === 0 || this.userToRegister.streetNumber.toString() === '';
+  }
+  checkZipCode(): void {
+    this.isEmptyField[5] = this.userToRegister.zipCode === 0 || this.userToRegister.zipCode.toString() === '';
+  }
+  checkCity(): void {
+    this.isEmptyField[6] = this.userToRegister.city === '';
+  }
+  checkPhoneNumber(): void {
+    this.isEmptyField[7] = this.userToRegister.phoneNumber === 0 || this.userToRegister.phoneNumber.toString() === '';
+    let regex = /(\b(0041|0)|\B\+41)(\s?\(0\))?(\s)?[1-9]{2}(\s)?[0-9]{3}(\s)?[0-9]{2}(\s)?[0-9]{2}\b/ //for swiss numbers
+    this.isValidPhoneNumber = regex.test(this.userToRegister.phoneNumber.toString());
+  }
+  checkBirthday(): void {
+    this.isValidBirthday = Date.now() > Date.parse(this.userToRegister.birthday.toString());
+  }
+
+
+
 }
