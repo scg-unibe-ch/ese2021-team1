@@ -2,33 +2,33 @@ import { TodoItem, TodoItemAttributes, TodoItemCreationAttributes } from './todo
 import { Optional, Model, Sequelize, DataTypes } from 'sequelize';
 
 export interface UserAttributes {
-    userId: number;
-    userName: string;
-    password: string;
-    admin: boolean;
-    firstName: string;
-    lastName: string;
-    email: string;
-    address: string;
-    streetAndHousNmbr: number;
-    zip: string;
-    city: string;
-    birthday: number; // ddmmyyyy
-    phone: string;
+     firstName: string;
+     lastName: string;
+     email: string;
+     homeAddress: string;
+     streetNumber: number;
+     zipCode: number;
+     city: string;
+     birthday: String;
+     phoneNumber: number;
+     userId: number;
+     userName: string;
+     password: string;
+     admin: boolean;
 }
 
 export interface UserCreationAttributes extends Optional<UserAttributes, 'userId'> { }
 
 export class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
-          firstName: string;
-          lastName: string;
-          email: string;
-          address: string;
-          streetAndHousNmbr: number;
-          zip: string;
-          city: string;
-          birthday: number;
-          phone: string;
+        firstName: string;
+        lastName: string;
+        email: string;
+        homeAddress: string;
+        streetNumber: number;
+        zipCode: number;
+        city: string;
+        birthday: String;
+        phoneNumber: number;
         userId!: number;
         userName!: string;
         password!: string;
@@ -65,15 +65,15 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
                 type: DataTypes.STRING,
                 unique: true
             },
-            address: {
+            homeAddress: {
                 type: DataTypes.STRING,
                 allowNull: false
             },
-            streetAndHousNmbr: {
+            streetNumber: {
                 type: DataTypes.STRING,
                 allowNull: false
             },
-            zip: {
+            zipCode: {
                 type: DataTypes.STRING,
                 allowNull: false
             },
@@ -85,7 +85,7 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
                 type: DataTypes.INTEGER,
                 allowNull: false
             },
-            phone: {
+            phoneNumber: {
                 type: DataTypes.STRING,
                 allowNull: false
             }
