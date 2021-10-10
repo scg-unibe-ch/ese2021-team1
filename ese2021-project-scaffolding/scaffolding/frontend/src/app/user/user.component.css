@@ -11,10 +11,8 @@
   border: 0px;
   border-radius: 8px;
   transform: translate(0, 15px);
-  padding: 5px;
   margin: 0px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 5px 10px;
   white-space: nowrap;
   font-size: small;
   font-family: "Montserrat", sans-serif;
@@ -25,20 +23,24 @@
 }
 
 .reqText {
-  margin: 0;
   padding: 0;
-  margin-top: 3px;
-  margin-bottom: 7px;
   color: rgb(128, 128, 128);
-  margin-left: 4px;
-  margin-right: 4px;
+  margin: 3px 4px 7px;
   user-select: none;
 }
 
 .reqStatus {
   display: inline-block;
-  margin: 0;
   padding: 0;
-  margin-top: 3px;
-  margin-bottom: 3px;
+  margin: 3px 0;
+}
+
+.emptyField {
+  color: #D82903;
+  font-size: 15px;
+}
+
+.inlineValidation {
+  font-size: 11px;
+  color: #D82903;
 }

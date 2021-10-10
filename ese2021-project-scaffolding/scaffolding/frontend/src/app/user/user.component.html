@@ -35,9 +35,10 @@
     <mat-form-field>
       <input (input)="checkLastName()"matInput type="text" placeholder="Last name" name="lastName" [(ngModel)]="userToRegister.lastName" required>
     </mat-form-field>
-      <mat-form-field>
-        <input (input)="checkEmail()"matInput type="email" placeholder="Email address" name="email" [(ngModel)]="userToRegister.email" required>
-      </mat-form-field>
+    <mat-form-field>
+      <input (input)="checkEmail()"matInput type="email" placeholder="Email address" name="email" [(ngModel)]="userToRegister.email" required>
+      <mat-hint *ngIf="showEmailError" [hidden]="!showEmailError" class="inlineValidation">Please enter a valid email.</mat-hint>
+    </mat-form-field>
     <mat-form-field>
       <input (input)="checkAddress()"matInput type="text" placeholder="Home address" name="homeAddress" [(ngModel)]="userToRegister.homeAddress" required>
     </mat-form-field>
@@ -52,14 +53,13 @@
     </mat-form-field>
     <mat-form-field>
       <input (input)="checkBirthday()"matInput type="date" placeholder="Birthday" name="birthday" [(ngModel)]="userToRegister.birthday" required>
+      <mat-hint *ngIf="showBirthdayError" [hidden]="!showBirthdayError" class="inlineValidation">Please enter a valid birthday.</mat-hint>
     </mat-form-field>
     <mat-form-field>
       <input (input)="checkPhoneNumber()"matInput type="tel" placeholder="Phone number" name="phoneNumber" [(ngModel)]="userToRegister.phoneNumber" required>
+      <mat-hint *ngIf="showPhoneNumberError" [hidden]="!showPhoneNumberError" class="inlineValidation">Please enter a valid phone number.</mat-hint>
     </mat-form-field>
-  <p *ngIf="showEmptyFieldError" [hidden]="!showEmptyFieldError">All required fields should not be empty.</p>
-  <p *ngIf="showEmailError" [hidden]="!showEmailError">Email is invalid.</p>
-  <p *ngIf="showBirthdayError" [hidden]="!showBirthdayError">Invalid Birthday.</p>
-  <p *ngIf="showPhoneNumberError" [hidden]="!showPhoneNumberError">Invalid Phone Number.</p>
+  <p *ngIf="showEmptyFieldError" [hidden]="!showEmptyFieldError" class="emptyField">All required fields should not be empty.</p>
   <button mat-flat-button color="primary" (click)="registerUser()">Register</button>
 </mat-card>
 
