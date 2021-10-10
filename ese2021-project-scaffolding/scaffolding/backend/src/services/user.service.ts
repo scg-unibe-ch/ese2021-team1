@@ -49,7 +49,7 @@ export class UserService {
         const capital_small = new RegExp('^(?=.*[a-z])(?=.*[A-Z])+$');
         const number = new RegExp('^(?=.*\\d)+$');
         const specialCharacter = new RegExp('^(?=.*[-+_!@#$%^&*.,?])+$');
-        const minimum = new RegExp('^(.{8,25})+$');
+        const minimum = new RegExp('^{8,25}$');
         if (capital_small.test(password)) {
             return 1;
         } else if (number.test(password)) {
