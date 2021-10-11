@@ -25,7 +25,8 @@ export class UserComponent {
   isValidBirthday: boolean = false;
   showBirthdayError: boolean = false;
   isValidPhoneNumber: boolean = false;
-  showPhoneNumberError: boolean= false;
+  showPhoneNumberError: boolean = false;
+  serverFeedback: string = '';
 
   // CHECK FEATURE END
 
@@ -54,6 +55,7 @@ export class UserComponent {
   }
 
   registerUser(): void {
+    this.serverFeedback = '';
     // console.log('Submitting Register Data:', this.userToRegister)
     this.showEmailError = !this.isValidEmail;
     this.showBirthdayError = !this.isValidBirthday;
@@ -78,7 +80,7 @@ export class UserComponent {
         birthday: this.userToRegister.birthday,
         phoneNumber: this.userToRegister.phoneNumber,
       }).subscribe((data) => {
-        console.log(data)
+        this.serverFeedback = data.toString()
         this.userToRegister.username = this.userToRegister.password = '';
       });
 

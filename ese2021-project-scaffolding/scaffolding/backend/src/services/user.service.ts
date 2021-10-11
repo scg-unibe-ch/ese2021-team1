@@ -14,11 +14,8 @@ export class UserService {
             case 4 : return Promise.reject({message: 'Minimum of 8 characters'});
         }
         user.password = bcrypt.hashSync(user.password, saltRounds); // hashes the password, never store passwords as plaintext
-        console.log('User:');
-        console.log(user);
         return User.create(user).then(inserted => Promise.resolve(inserted)).catch(err => {
-            console.log(err.message);
-            return Promise.reject(err);
+            return Promise.reject(err.errors[0].message); // returns the detailed message that caused the error
         });
     }
 

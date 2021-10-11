@@ -62,7 +62,7 @@
   <p *ngIf="showEmptyFieldError" [hidden]="!showEmptyFieldError" class="emptyField">All required fields should not be empty.</p>
   <button mat-flat-button color="primary" (click)="registerUser()">Register</button>
 </mat-card>
-
+<span *ngIf="serverFeedback">{{ serverFeedback }}</span>
 <mat-card>
 <!-- END REGISTER STUFF -->
 <!-- LOGIN STUFF -->
