@@ -98,6 +98,10 @@ export class UserComponent {
     }).subscribe((res: any) => {
       this.userToLogin.username = this.userToLogin.password = '';
 
+      if (!res.user) {
+        this.serverFeedback = res
+        return 
+      }
       localStorage.setItem('userName', res.user.userName);
       localStorage.setItem('userToken', res.token);
 

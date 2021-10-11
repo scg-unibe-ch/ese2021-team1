@@ -27,7 +27,7 @@ export class UserService {
             }
         })
         .then(user => {
-            if (user.userName === null) {
+            if (!user || !user.userName) {
                 return Promise.reject({message: 'Username/E-Mail not found '});
             }
             if (bcrypt.compareSync(loginRequestee.password, user.password)) {// compares the hash with the password from the login request
@@ -37,7 +37,9 @@ export class UserService {
                 return Promise.reject({ message: 'A wrong Password' });
             }
         })
-        .catch(err => Promise.reject({ message: err }));
+        .catch(err => {
+            return Promise.reject(err.message);
+        });
     }
 
     public getAll(): Promise<User[]> {

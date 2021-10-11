@@ -1,10 +1,10 @@
 <!-- REGISTER STUFF -->
+<form (ngSubmit)="registerUser()">
 <mat-card>
 
   <h3>Register</h3>
-
-  <mat-form-field>
-    <input matInput type="text" placeholder="User Name" name="name" [(ngModel)]="userToRegister.username" required>
+  <mat-form-field (ngSubmit)="registerUser()">
+    <input matInput ngNativeValidate type="text" placeholder="User Name" name="name" [(ngModel)]="userToRegister.username" required>
   </mat-form-field>
   <mat-form-field>
     <input (input)="checkPassword()" (focus)="showPasswordReqs(true)" (focusout)="showPasswordReqs(false)" [(ngModel)]="passwordInput" matInput type="password" placeholder="Password" name="password" [(ngModel)]="userToRegister.password" required>
@@ -60,9 +60,10 @@
       <mat-hint *ngIf="showPhoneNumberError" [hidden]="!showPhoneNumberError" class="inlineValidation">Please enter a valid phone number.</mat-hint>
     </mat-form-field>
   <p *ngIf="showEmptyFieldError" [hidden]="!showEmptyFieldError" class="emptyField">All required fields should not be empty.</p>
-  <button mat-flat-button color="primary" (click)="registerUser()">Register</button>
+  <button mat-flat-button color="primary" type="submit">Register</button>
 </mat-card>
 <span *ngIf="serverFeedback">{{ serverFeedback }}</span>
+</form>
 <mat-card>
 <!-- END REGISTER STUFF -->
 <!-- LOGIN STUFF -->
