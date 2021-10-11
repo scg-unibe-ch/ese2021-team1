@@ -79,8 +79,12 @@ export class UserComponent {
         city: this.userToRegister.city,
         birthday: this.userToRegister.birthday,
         phoneNumber: this.userToRegister.phoneNumber,
-      }).subscribe((data) => {
-        this.serverFeedback = data.toString()
+      }).subscribe((data: any) => {
+        if (typeof data === 'string') {
+          this.serverFeedback = data.toString()
+        } else if (typeof data === 'object' && data.userId) {
+          this.serverFeedback = "Successful registration."
+        }
         this.userToRegister.username = this.userToRegister.password = '';
       });
 
@@ -97,11 +101,13 @@ export class UserComponent {
       password: this.userToLogin.password
     }).subscribe((res: any) => {
       this.userToLogin.username = this.userToLogin.password = '';
-
       if (!res.user) {
         this.serverFeedback = res
         return 
+      } else if (res.user) {
+        this.serverFeedback = "Welcome back, " + res.user.userName
       }
+  
       localStorage.setItem('userName', res.user.userName);
       localStorage.setItem('userToken', res.token);
 
