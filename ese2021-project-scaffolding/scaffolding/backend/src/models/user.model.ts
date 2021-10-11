@@ -9,8 +9,8 @@ export interface UserAttributes {
      streetNumber: number;
      zipCode: number;
      city: string;
-     birthday: String;
-     phoneNumber: number;
+     birthday: string;
+     phoneNumber: string;
      userId: number;
      userName: string;
      password: string;
@@ -27,8 +27,8 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
         streetNumber: number;
         zipCode: number;
         city: string;
-        birthday: String;
-        phoneNumber: number;
+        birthday: string;
+        phoneNumber: string;
         userId!: number;
         userName!: string;
         password!: string;

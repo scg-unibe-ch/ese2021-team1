@@ -2,7 +2,6 @@ import { UserAttributes, User } from '../models/user.model';
 import { LoginResponse, LoginRequest } from '../models/login.model';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import {ifError} from 'assert';
 
 export class UserService {
 
@@ -49,14 +48,14 @@ export class UserService {
         const capital_small = new RegExp('^(?=.*[a-z])(?=.*[A-Z])+$');
         const number = new RegExp('^(?=.*\\d)+$');
         const specialCharacter = new RegExp('^(?=.*[-+_!@#$%^&*.,?])+$');
-        const minimum = new RegExp('^{8,25}$');
+        const minimum = password.length >= 8;
         if (capital_small.test(password)) {
             return 1;
         } else if (number.test(password)) {
             return 2;
         } else if (specialCharacter.test(password)) {
             return 3;
-        } else if (minimum.test(password)) {
+        } else if (!minimum) {
             return 4;
         }
         return 0;
