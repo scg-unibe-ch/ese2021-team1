@@ -6,8 +6,6 @@ import jwt from 'jsonwebtoken';
 export class UserService {
 
     public register(user: UserAttributes): Promise<UserAttributes> {
-        console.log('User:');
-        console.log(user);
         const saltRounds = 12;
         switch (this.passwordCheck(user.password)) {
             case 1 : return Promise.reject({message: 'Doesnt contain capital/small letter'});
@@ -16,7 +14,12 @@ export class UserService {
             case 4 : return Promise.reject({message: 'Minimum of 8 characters'});
         }
         user.password = bcrypt.hashSync(user.password, saltRounds); // hashes the password, never store passwords as plaintext
-        return User.create(user).then(inserted => Promise.resolve(inserted)).catch(err => Promise.reject(err));
+        console.log('User:');
+        console.log(user);
+        return User.create(user).then(inserted => Promise.resolve(inserted)).catch(err => {
+            console.log(err.message);
+            return Promise.reject(err);
+        });
     }
 
     public login(loginRequestee: LoginRequest): Promise<User | LoginResponse> {
