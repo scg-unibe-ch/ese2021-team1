@@ -70,6 +70,7 @@
   <h3>Login</h3>
 
   <div *ngIf="!loggedIn">
+    <form (ngSubmit)="loginUser()">
     <mat-form-field>
       <input matInput type="text" placeholder="User Name" name="name" [(ngModel)]="userToLogin.username" required>
     </mat-form-field>
@@ -77,6 +78,7 @@
       <input matInput type="password" placeholder="Password" name="password" [(ngModel)]="userToLogin.password" required>
     </mat-form-field>
     <button mat-flat-button color="primary" (click)="loginUser()">Login</button>
+    </form>
   </div>
 
   <div *ngIf="loggedIn">
