@@ -3,7 +3,7 @@
 <mat-card>
 
   <h3>Register</h3>
-  <mat-form-field (ngSubmit)="registerUser()">
+  <mat-form-field>
     <input matInput ngNativeValidate type="text" placeholder="User Name" name="name" [(ngModel)]="userToRegister.username" required>
   </mat-form-field>
   <mat-form-field>
