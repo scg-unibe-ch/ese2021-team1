@@ -1,0 +1,405 @@
+Index: frontend/src/app/app.component.spec.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { TestBed } from '@angular/core/testing';\r\nimport { AppComponent } from './app.component';\r\n\r\ndescribe('AppComponent', () => {\r\n  beforeEach(async () => {\r\n    await TestBed.configureTestingModule({\r\n      declarations: [\r\n        AppComponent\r\n      ],\r\n    }).compileComponents();\r\n  });\r\n\r\n  it('should create the app', () => {\r\n    const fixture = TestBed.createComponent(AppComponent);\r\n    const app = fixture.componentInstance;\r\n    expect(app).toBeTruthy();\r\n  });\r\n\r\n  it(`should have as title 'frontend'`, () => {\r\n    const fixture = TestBed.createComponent(AppComponent);\r\n    const app = fixture.componentInstance;\r\n    expect(app.title).toEqual('frontend');\r\n  });\r\n\r\n  it('should render title', () => {\r\n    const fixture = TestBed.createComponent(AppComponent);\r\n    fixture.detectChanges();\r\n    const compiled = fixture.nativeElement as HTMLElement;\r\n    expect(compiled.querySelector('.content span')?.textContent).toContain('frontend app is running!');\r\n  });\r\n});\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/src/app/app.component.spec.ts b/frontend/src/app/app.component.spec.ts
+--- a/frontend/src/app/app.component.spec.ts	(revision ac7a3060272248f3e29c2f47c27aac31ea243cf8)
++++ b/frontend/src/app/app.component.spec.ts	(date 1633966592780)
+@@ -1,4 +1,4 @@
+-import { TestBed } from '@angular/core/testing';
++fimport { TestBed } from '@angular/core/testing';
+ import { AppComponent } from './app.component';
+ 
+ describe('AppComponent', () => {
+Index: frontend/src/app/user/user.component.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!-- REGISTER STUFF -->\r\n<mat-card>\r\n\r\n  <h3>Register</h3>\r\n  \r\n  <mat-form-field>\r\n    <input matInput type=\"text\" placeholder=\"User Name\" name=\"name\" [(ngModel)]=\"userToRegister.username\" required>\r\n  </mat-form-field>\r\n  <mat-form-field>\r\n    <input (input)=\"checkPassword()\" (focus)=\"showPasswordReqs(true)\" (focusout)=\"showPasswordReqs(false)\" [(ngModel)]=\"passwordInput\" matInput type=\"password\" placeholder=\"Password\" name=\"password\" [(ngModel)]=\"userToRegister.password\" required>\r\n  <div *ngIf=\"showPassReqs\" [hidden]=\"!showPassReqs\" class=\"passReqModal\">\r\n    <h4 [ngStyle]=\"{color: 'gray', 'margin': '8px'}\" class=\"reqText\">Password must include:</h4>\r\n    <div class=\"reqText\">\r\n      <p class=\"reqStatus\" *ngIf=\"passwordReqs[0]\" [ngStyle]=\"{color: 'green'}\">✔</p>\r\n      <p class=\"reqStatus\" *ngIf=\"!passwordReqs[0]\" [ngStyle]=\"{color: 'red'}\">✖</p>\r\n      a minimum of 8 characters\r\n    </div>\r\n    <div class=\"reqText\">\r\n      <p class=\"reqStatus\" *ngIf=\"passwordReqs[1]\" [ngStyle]=\"{color: 'green'}\">✔</p>\r\n      <p class=\"reqStatus\" *ngIf=\"!passwordReqs[1]\" [ngStyle]=\"{color: 'red'}\">✖</p>\r\n      capital and small letters</div>\r\n    <div class=\"reqText\">\r\n      <p class=\"reqStatus\" *ngIf=\"passwordReqs[2]\" [ngStyle]=\"{color: 'green'}\">✔</p>\r\n      <p class=\"reqStatus\" *ngIf=\"!passwordReqs[2]\" [ngStyle]=\"{color: 'red'}\">✖</p>\r\n      a number</div>\r\n    <div class=\"reqText\">\r\n      <p class=\"reqStatus\" *ngIf=\"passwordReqs[3]\" [ngStyle]=\"{color: 'green'}\">✔</p>\r\n      <p class=\"reqStatus\" *ngIf=\"!passwordReqs[3]\" [ngStyle]=\"{color: 'red'}\">✖</p>\r\n      a special character</div>\r\n  </div>\r\n</mat-form-field>\r\n    <mat-form-field>\r\n      <input matInput type=\"text\" placeholder=\"First name\" name=\"firstName\" [(ngModel)]=\"userToRegister.firstName\" required>\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n      <input matInput type=\"text\" placeholder=\"Last name\" name=\"lastName\" [(ngModel)]=\"userToRegister.lastName\" required>\r\n    </mat-form-field>\r\n      <mat-form-field>\r\n        <input matInput type=\"email\" placeholder=\"Email address\" name=\"email\" [(ngModel)]=\"userToRegister.email\" required>\r\n      </mat-form-field>\r\n    <mat-form-field>\r\n      <input matInput type=\"text\" placeholder=\"Home address\" name=\"homeAddress\" [(ngModel)]=\"userToRegister.homeAddress\" required>\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n      <input matInput type=\"number\" placeholder=\"Street number\" name=\"streetNumber\" [(ngModel)]=\"userToRegister.streetNumber\" required>\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n      <input matInput type=\"number\" placeholder=\"Zip code\" name=\"zipCode\" [(ngModel)]=\"userToRegister.zipCode\" required>\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n      <input matInput type=\"text\" placeholder=\"City\" name=\"city\" [(ngModel)]=\"userToRegister.city\" required>\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n      <input matInput type=\"date\" placeholder=\"Birthday\" name=\"birthday\" [(ngModel)]=\"userToRegister.birthday\" required>\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n      <input matInput type=\"tel\" placeholder=\"Phone number\" name=\"phoneNumber\" [(ngModel)]=\"userToRegister.phoneNumber\" required>\r\n    </mat-form-field>\r\n  <button mat-flat-button color=\"primary\" (click)=\"registerUser()\">Register</button>\r\n</mat-card>\r\n\r\n<mat-card>\r\n<!-- END REGISTER STUFF -->\r\n<!-- LOGIN STUFF -->\r\n  <h3>Login</h3>\r\n\r\n  <div *ngIf=\"!loggedIn\">\r\n    <mat-form-field>\r\n      <input matInput type=\"text\" placeholder=\"User Name\" name=\"name\" [(ngModel)]=\"userToLogin.username\" required>\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n      <input matInput type=\"password\" placeholder=\"Password\" name=\"password\" [(ngModel)]=\"userToLogin.password\" required>\r\n    </mat-form-field>\r\n    <button mat-flat-button color=\"primary\" (click)=\"loginUser()\">Login</button>\r\n  </div>\r\n\r\n  <div *ngIf=\"loggedIn\">\r\n    <button mat-flat-button color=\"warn\" (click)=\"logoutUser()\">Logout</button>\r\n  </div>\r\n</mat-card>\r\n\r\n<mat-card>\r\n  <!-- END LOGIN STUFF -->\r\n  <h3>Secure Endpoints</h3>\r\n  <button mat-flat-button color=\"primary\" (click)=\"accessUserEndpoint()\">User Endpoint</button>\r\n  {{ endpointMsgUser }}\r\n  <hr>\r\n  <button mat-flat-button color=\"primary\" (click)=\"accessAdminEndpoint()\">Admin Endpoint</button>\r\n  {{ endpointMsgAdmin }}\r\n</mat-card>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/src/app/user/user.component.html b/frontend/src/app/user/user.component.html
+--- a/frontend/src/app/user/user.component.html	(revision ac7a3060272248f3e29c2f47c27aac31ea243cf8)
++++ b/frontend/src/app/user/user.component.html	(date 1633971215997)
+@@ -2,7 +2,7 @@
+ <mat-card>
+ 
+   <h3>Register</h3>
+-  
++
+   <mat-form-field>
+     <input matInput type="text" placeholder="User Name" name="name" [(ngModel)]="userToRegister.username" required>
+   </mat-form-field>
+@@ -67,6 +67,12 @@
+   <div *ngIf="!loggedIn">
+     <mat-form-field>
+       <input matInput type="text" placeholder="User Name" name="name" [(ngModel)]="userToLogin.username" required>
++      <h4 [ngStyle]="{color: 'gray', 'margin': '8px'}" class="reqText"></h4>
++      <div class="reqText">
++        <p class="reqStatus" *ngIf="passwordReqs[0]" [ngStyle]="{color: 'green'}">✔</p>
++        <p class="reqStatus" *ngIf="!passwordReqs[0]" [ngStyle]="{color: 'red'}">✖</p>
++        Empty
++      </div>
+     </mat-form-field>
+     <mat-form-field>
+       <input matInput type="password" placeholder="Password" name="password" [(ngModel)]="userToLogin.password" required>
+Index: frontend/package-lock.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/package-lock.json b/frontend/package-lock.json
+--- a/frontend/package-lock.json	(revision ac7a3060272248f3e29c2f47c27aac31ea243cf8)
++++ b/frontend/package-lock.json	(date 1634024532930)
+@@ -25,16 +25,16 @@
+       }
+     },
+     "@angular-devkit/build-angular": {
+-      "version": "12.2.6",
+-      "resolved": "https://registry.npmjs.org/@angular-devkit/build-angular/-/build-angular-12.2.6.tgz",
+-      "integrity": "sha512-FMmN7tuDtAqeCqUv65vzOSnwIG0MOLraZRUOXFqTN10jAE7DCqR97QSNNOhBPuqJcbv9IFxGMVbL1KLpsGwgcA==",
++      "version": "12.2.9",
++      "resolved": "https://registry.npmjs.org/@angular-devkit/build-angular/-/build-angular-12.2.9.tgz",
++      "integrity": "sha512-A8yddhGpUnrTcA4WCiUxwklFbfkNMfvlST5CT9VLVjz4MEwwOpdaNmIF39+NMr4XTgOBbP6Bq/t3ciIsB5+/Uw==",
+       "dev": true,
+       "requires": {
+         "@ampproject/remapping": "1.0.1",
+-        "@angular-devkit/architect": "0.1202.6",
+-        "@angular-devkit/build-optimizer": "0.1202.6",
+-        "@angular-devkit/build-webpack": "0.1202.6",
+-        "@angular-devkit/core": "12.2.6",
++        "@angular-devkit/architect": "0.1202.9",
++        "@angular-devkit/build-optimizer": "0.1202.9",
++        "@angular-devkit/build-webpack": "0.1202.9",
++        "@angular-devkit/core": "12.2.9",
+         "@babel/core": "7.14.8",
+         "@babel/generator": "7.14.8",
+         "@babel/helper-annotate-as-pure": "7.14.5",
+@@ -46,7 +46,7 @@
+         "@babel/template": "7.14.5",
+         "@discoveryjs/json-ext": "0.5.3",
+         "@jsdevtools/coverage-istanbul-loader": "3.0.5",
+-        "@ngtools/webpack": "12.2.6",
++        "@ngtools/webpack": "12.2.9",
+         "ansi-colors": "4.1.1",
+         "babel-loader": "8.2.2",
+         "browserslist": "^4.9.1",
+@@ -58,7 +58,8 @@
+         "critters": "0.0.10",
+         "css-loader": "6.2.0",
+         "css-minimizer-webpack-plugin": "3.0.2",
+-        "esbuild": "0.12.24",
++        "esbuild": "0.13.4",
++        "esbuild-wasm": "0.13.4",
+         "find-cache-dir": "3.3.1",
+         "glob": "7.1.7",
+         "https-proxy-agent": "5.0.0",
+@@ -101,6 +102,30 @@
+         "webpack-subresource-integrity": "1.5.2"
+       },
+       "dependencies": {
++        "@angular-devkit/architect": {
++          "version": "0.1202.9",
++          "resolved": "https://registry.npmjs.org/@angular-devkit/architect/-/architect-0.1202.9.tgz",
++          "integrity": "sha512-s2NcFqZjsdYoR0vhJWLCwykF6hG7F0C5fJJs49i6IJMKj5Ai58z7d2IFYvD8nA60paMvjFS14OQ+E/FEEEZ88Q==",
++          "dev": true,
++          "requires": {
++            "@angular-devkit/core": "12.2.9",
++            "rxjs": "6.6.7"
++          }
++        },
++        "@angular-devkit/core": {
++          "version": "12.2.9",
++          "resolved": "https://registry.npmjs.org/@angular-devkit/core/-/core-12.2.9.tgz",
++          "integrity": "sha512-iPHQiga08bbryiVq3QYzwpuq9sNb8CB/MVy65MHJ0fuW1z6RYDeUh1EziitBBUT2d81KWKPO1wQ2DuUoxOg4mg==",
++          "dev": true,
++          "requires": {
++            "ajv": "8.6.2",
++            "ajv-formats": "2.1.0",
++            "fast-json-stable-stringify": "2.1.0",
++            "magic-string": "0.25.7",
++            "rxjs": "6.6.7",
++            "source-map": "0.7.3"
++          }
++        },
+         "tslib": {
+           "version": "2.3.0",
+           "resolved": "https://registry.npmjs.org/tslib/-/tslib-2.3.0.tgz",
+@@ -110,9 +135,9 @@
+       }
+     },
+     "@angular-devkit/build-optimizer": {
+-      "version": "0.1202.6",
+-      "resolved": "https://registry.npmjs.org/@angular-devkit/build-optimizer/-/build-optimizer-0.1202.6.tgz",
+-      "integrity": "sha512-r9BZon2hriHVDoAcnYmsL9Rs84Nh7YUuioiDeJhk1qyuIVHL3akFTndl+ISQQIbNvb/kgZZ93DlYFw4D6DZ/NQ==",
++      "version": "0.1202.9",
++      "resolved": "https://registry.npmjs.org/@angular-devkit/build-optimizer/-/build-optimizer-0.1202.9.tgz",
++      "integrity": "sha512-yDR7f2fRWzJdqa7U0eIYu5fCRIae3tcSsYE18UPiV5ypGK3talMIpZ1ibkklr9Nm9SAB6Js1/EdVBGB5jo3R9A==",
+       "dev": true,
+       "requires": {
+         "source-map": "0.7.3",
+@@ -129,13 +154,39 @@
+       }
+     },
+     "@angular-devkit/build-webpack": {
+-      "version": "0.1202.6",
+-      "resolved": "https://registry.npmjs.org/@angular-devkit/build-webpack/-/build-webpack-0.1202.6.tgz",
+-      "integrity": "sha512-SEOIRmfv3KvoDqp9/n0d/99mDVRFxtkAOEkYlzylf4IUb6eP6Oux2+FcAGCIWXiWeedYImt+oK9q9l5iryfAOg==",
++      "version": "0.1202.9",
++      "resolved": "https://registry.npmjs.org/@angular-devkit/build-webpack/-/build-webpack-0.1202.9.tgz",
++      "integrity": "sha512-UKVxFTRSyDpQDxM1yk1OJiynhbryrbsy+WgZ/gFcnZcrRGtrpAWOq+uMXfq05zET6CNqpOKBnxy9LSHAwXR5Ig==",
+       "dev": true,
+       "requires": {
+-        "@angular-devkit/architect": "0.1202.6",
++        "@angular-devkit/architect": "0.1202.9",
+         "rxjs": "6.6.7"
++      },
++      "dependencies": {
++        "@angular-devkit/architect": {
++          "version": "0.1202.9",
++          "resolved": "https://registry.npmjs.org/@angular-devkit/architect/-/architect-0.1202.9.tgz",
++          "integrity": "sha512-s2NcFqZjsdYoR0vhJWLCwykF6hG7F0C5fJJs49i6IJMKj5Ai58z7d2IFYvD8nA60paMvjFS14OQ+E/FEEEZ88Q==",
++          "dev": true,
++          "requires": {
++            "@angular-devkit/core": "12.2.9",
++            "rxjs": "6.6.7"
++          }
++        },
++        "@angular-devkit/core": {
++          "version": "12.2.9",
++          "resolved": "https://registry.npmjs.org/@angular-devkit/core/-/core-12.2.9.tgz",
++          "integrity": "sha512-iPHQiga08bbryiVq3QYzwpuq9sNb8CB/MVy65MHJ0fuW1z6RYDeUh1EziitBBUT2d81KWKPO1wQ2DuUoxOg4mg==",
++          "dev": true,
++          "requires": {
++            "ajv": "8.6.2",
++            "ajv-formats": "2.1.0",
++            "fast-json-stable-stringify": "2.1.0",
++            "magic-string": "0.25.7",
++            "rxjs": "6.6.7",
++            "source-map": "0.7.3"
++          }
++        }
+       }
+     },
+     "@angular-devkit/core": {
+@@ -1593,9 +1644,9 @@
+       }
+     },
+     "@ngtools/webpack": {
+-      "version": "12.2.6",
+-      "resolved": "https://registry.npmjs.org/@ngtools/webpack/-/webpack-12.2.6.tgz",
+-      "integrity": "sha512-LuQXKVH0m85+GT8tldrSBmmgyHycxXkbLaJNtuYGK358dJ9tBdyOPXn7GZzHvpVL5Zdpu/ahuFN2PbFzN+qX/A==",
++      "version": "12.2.9",
++      "resolved": "https://registry.npmjs.org/@ngtools/webpack/-/webpack-12.2.9.tgz",
++      "integrity": "sha512-IQkzvompjLdWbZ+33crtyVF8huF53C36k1FNFdq3x2j4Kw4ssDd6K9fq3aZpRCK0J8O79HJ5j4QH6ZtWjwajLg==",
+       "dev": true
+     },
+     "@nodelib/fs.scandir": {
+@@ -4179,11 +4230,148 @@
+       "dev": true
+     },
+     "esbuild": {
+-      "version": "0.12.24",
+-      "resolved": "https://registry.npmjs.org/esbuild/-/esbuild-0.12.24.tgz",
+-      "integrity": "sha512-C0ibY+HsXzYB6L/pLWEiWjMpghKsIc58Q5yumARwBQsHl9DXPakW+5NI/Y9w4YXiz0PEP6XTGTT/OV4Nnsmb4A==",
++      "version": "0.13.4",
++      "resolved": "https://registry.npmjs.org/esbuild/-/esbuild-0.13.4.tgz",
++      "integrity": "sha512-wMA5eUwpavTBiNl+It6j8OQuKVh69l6z4DKDLzoTIqC+gChnPpcmqdA8WNHptUHRnfyML+mKEQPlW7Mybj8gHg==",
++      "dev": true,
++      "optional": true,
++      "requires": {
++        "esbuild-android-arm64": "0.13.4",
++        "esbuild-darwin-64": "0.13.4",
++        "esbuild-darwin-arm64": "0.13.4",
++        "esbuild-freebsd-64": "0.13.4",
++        "esbuild-freebsd-arm64": "0.13.4",
++        "esbuild-linux-32": "0.13.4",
++        "esbuild-linux-64": "0.13.4",
++        "esbuild-linux-arm": "0.13.4",
++        "esbuild-linux-arm64": "0.13.4",
++        "esbuild-linux-mips64le": "0.13.4",
++        "esbuild-linux-ppc64le": "0.13.4",
++        "esbuild-openbsd-64": "0.13.4",
++        "esbuild-sunos-64": "0.13.4",
++        "esbuild-windows-32": "0.13.4",
++        "esbuild-windows-64": "0.13.4",
++        "esbuild-windows-arm64": "0.13.4"
++      }
++    },
++    "esbuild-android-arm64": {
++      "version": "0.13.4",
++      "resolved": "https://registry.npmjs.org/esbuild-android-arm64/-/esbuild-android-arm64-0.13.4.tgz",
++      "integrity": "sha512-elDJt+jNyoHFId0/dKsuVYUPke3EcquIyUwzJCH17a3ERglN3A9aMBI5zbz+xNZ+FbaDNdpn0RaJHCFLbZX+fA==",
++      "dev": true,
++      "optional": true
++    },
++    "esbuild-darwin-64": {
++      "version": "0.13.4",
++      "resolved": "https://registry.npmjs.org/esbuild-darwin-64/-/esbuild-darwin-64-0.13.4.tgz",
++      "integrity": "sha512-zJQGyHRAdZUXlRzbN7W+7ykmEiGC+bq3Gc4GxKYjjWTgDRSEly98ym+vRNkDjXwXYD3gGzSwvH35+MiHAtWvLA==",
++      "dev": true,
++      "optional": true
++    },
++    "esbuild-darwin-arm64": {
++      "version": "0.13.4",
++      "resolved": "https://registry.npmjs.org/esbuild-darwin-arm64/-/esbuild-darwin-arm64-0.13.4.tgz",
++      "integrity": "sha512-r8oYvAtqSGq8HNTZCAx4TdLE7jZiGhX9ooGi5AQAey37MA6XNaP8ZNlw9OCpcgpx3ryU2WctXwIqPzkHO7a8dg==",
++      "dev": true,
++      "optional": true
++    },
++    "esbuild-freebsd-64": {
++      "version": "0.13.4",
++      "resolved": "https://registry.npmjs.org/esbuild-freebsd-64/-/esbuild-freebsd-64-0.13.4.tgz",
++      "integrity": "sha512-u9DRGkn09EN8+lCh6z7FKle7awi17PJRBuAKdRNgSo5ZrH/3m+mYaJK2PR2URHMpAfXiwJX341z231tSdVe3Yw==",
++      "dev": true,
++      "optional": true
++    },
++    "esbuild-freebsd-arm64": {
++      "version": "0.13.4",
++      "resolved": "https://registry.npmjs.org/esbuild-freebsd-arm64/-/esbuild-freebsd-arm64-0.13.4.tgz",
++      "integrity": "sha512-q3B2k68Uf6gfjATjcK16DqxvjqRQkHL8aPoOfj4op+lSqegdXvBacB1d8jw8PxbWJ8JHpdTLdAVUYU80kotQXA==",
++      "dev": true,
++      "optional": true
++    },
++    "esbuild-linux-32": {
++      "version": "0.13.4",
++      "resolved": "https://registry.npmjs.org/esbuild-linux-32/-/esbuild-linux-32-0.13.4.tgz",
++      "integrity": "sha512-UUYJPHSiKAO8KoN3Ls/iZtgDLZvK5HarES96aolDPWZnq9FLx4dIHM/x2z4Rxv9IYqQ/DxlPoE2Co1UPBIYYeA==",
++      "dev": true,
++      "optional": true
++    },
++    "esbuild-linux-64": {
++      "version": "0.13.4",
++      "resolved": "https://registry.npmjs.org/esbuild-linux-64/-/esbuild-linux-64-0.13.4.tgz",
++      "integrity": "sha512-+RnohAKiiUW4UHLGRkNR1AnENW1gCuDWuygEtd4jxTNPIoeC7lbXGor7rtgjj9AdUzFgOEvAXyNNX01kJ8NueQ==",
++      "dev": true,
++      "optional": true
++    },
++    "esbuild-linux-arm": {
++      "version": "0.13.4",
++      "resolved": "https://registry.npmjs.org/esbuild-linux-arm/-/esbuild-linux-arm-0.13.4.tgz",
++      "integrity": "sha512-BH5gKve4jglS7UPSsfwHSX79I5agC/lm4eKoRUEyo8lwQs89frQSRp2Xup+6SFQnxt3md5EsKcd2Dbkqeb3gPA==",
++      "dev": true,
++      "optional": true
++    },
++    "esbuild-linux-arm64": {
++      "version": "0.13.4",
++      "resolved": "https://registry.npmjs.org/esbuild-linux-arm64/-/esbuild-linux-arm64-0.13.4.tgz",
++      "integrity": "sha512-+A188cAdd6QuSRxMIwRrWLjgphQA0LDAQ/ECVlrPVJwnx+1i64NjDZivoqPYLOTkSPIKntiWwMhhf0U5/RrPHQ==",
++      "dev": true,
++      "optional": true
++    },
++    "esbuild-linux-mips64le": {
++      "version": "0.13.4",
++      "resolved": "https://registry.npmjs.org/esbuild-linux-mips64le/-/esbuild-linux-mips64le-0.13.4.tgz",
++      "integrity": "sha512-0xkwtPaUkG5xMTFGaQPe1AadSe5QAiQuD4Gix1O9k5Xo/U8xGIkw9UFUTvfEUeu71vFb6ZgsIacfP1NLoFjWNw==",
++      "dev": true,
++      "optional": true
++    },
++    "esbuild-linux-ppc64le": {
++      "version": "0.13.4",
++      "resolved": "https://registry.npmjs.org/esbuild-linux-ppc64le/-/esbuild-linux-ppc64le-0.13.4.tgz",
++      "integrity": "sha512-E1+oJPP7A+j23GPo3CEpBhGwG1bni4B8IbTA3/3rvzjURwUMZdcN3Fhrz24rnjzdLSHmULtOE4VsbT42h1Om4Q==",
++      "dev": true,
++      "optional": true
++    },
++    "esbuild-openbsd-64": {
++      "version": "0.13.4",
++      "resolved": "https://registry.npmjs.org/esbuild-openbsd-64/-/esbuild-openbsd-64-0.13.4.tgz",
++      "integrity": "sha512-xEkI1o5HYxDzbv9jSox0EsDxpwraG09SRiKKv0W8pH6O3bt+zPSlnoK7+I7Q69tkvONkpIq5n2o+c55uq0X7cw==",
++      "dev": true,
++      "optional": true
++    },
++    "esbuild-sunos-64": {
++      "version": "0.13.4",
++      "resolved": "https://registry.npmjs.org/esbuild-sunos-64/-/esbuild-sunos-64-0.13.4.tgz",
++      "integrity": "sha512-bjXUMcODMnB6hQicLBBmmnBl7OMDyVpFahKvHGXJfDChIi5udiIRKCmFUFIRn+AUAKVlfrofRKdyPC7kBsbvGQ==",
++      "dev": true,
++      "optional": true
++    },
++    "esbuild-wasm": {
++      "version": "0.13.4",
++      "resolved": "https://registry.npmjs.org/esbuild-wasm/-/esbuild-wasm-0.13.4.tgz",
++      "integrity": "sha512-2dN7njr9/2QzKLqbTEgXr73vDbSqffdJMv4EfaMQoy04cej0owbGHH5apPgED0wN9I5e7sBT0/Q81tVy3wQBlA==",
+       "dev": true
+     },
++    "esbuild-windows-32": {
++      "version": "0.13.4",
++      "resolved": "https://registry.npmjs.org/esbuild-windows-32/-/esbuild-windows-32-0.13.4.tgz",
++      "integrity": "sha512-z4CH07pfyVY0XF98TCsGmLxKCl0kyvshKDbdpTekW9f2d+dJqn5mmoUyWhpSVJ0SfYWJg86FoD9nMbbaMVyGdg==",
++      "dev": true,
++      "optional": true
++    },
++    "esbuild-windows-64": {
++      "version": "0.13.4",
++      "resolved": "https://registry.npmjs.org/esbuild-windows-64/-/esbuild-windows-64-0.13.4.tgz",
++      "integrity": "sha512-uVL11vORRPjocGLYam67rwFLd0LvkrHEs+JG+1oJN4UD9MQmNGZPa4gBHo6hDpF+kqRJ9kXgQSeDqUyRy0tj/Q==",
++      "dev": true,
++      "optional": true
++    },
++    "esbuild-windows-arm64": {
++      "version": "0.13.4",
++      "resolved": "https://registry.npmjs.org/esbuild-windows-arm64/-/esbuild-windows-arm64-0.13.4.tgz",
++      "integrity": "sha512-vA6GLvptgftRcDcWngD5cMlL4f4LbL8JjU2UMT9yJ0MT5ra6hdZNFWnOeOoEtY4GtJ6OjZ0i+81sTqhAB0fMkg==",
++      "dev": true,
++      "optional": true
++    },
+     "escalade": {
+       "version": "3.1.1",
+       "resolved": "https://registry.npmjs.org/escalade/-/escalade-3.1.1.tgz",
+Index: backend/package.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n  \"name\": \"backend-scaffolding-crud\",\r\n  \"version\": \"0.0.0\",\r\n  \"private\": true,\r\n  \"main\": \"build/server.js\",\r\n  \"scripts\": {\r\n    \"prebuild\": \"tslint -c tslint.json -p tsconfig.json --fix\",\r\n    \"build\": \"tsc\",\r\n    \"prestart\": \"npm run build\",\r\n    \"dev\": \"nodemon\",\r\n    \"start\": \"node .\",\r\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\r\n  },\r\n  \"dependencies\": {\r\n    \"@types/cors\": \"^2.8.7\",\r\n    \"bcrypt\": \"^5.0.0\",\r\n    \"cors\": \"^2.8.5\",\r\n    \"ejs\": \"^3.1.6\",\r\n    \"express\": \"~4.16.1\",\r\n    \"jsonwebtoken\": \"^8.5.1\",\r\n    \"morgan\": \"~1.9.1\",\r\n    \"multer\": \"^1.4.3\",\r\n    \"save\": \"^2.4.0\",\r\n    \"sequelize\": \"^6.3.5\",\r\n    \"sqlite3\": \"^5.0.0\"\r\n  },\r\n  \"devDependencies\": {\r\n    \"@types/bcrypt\": \"^3.0.0\",\r\n    \"@types/express\": \"^4.17.8\",\r\n    \"@types/jsonwebtoken\": \"^8.5.0\",\r\n    \"@types/morgan\": \"^1.9.1\",\r\n    \"@types/multer\": \"^1.4.7\",\r\n    \"@types/node\": \"^14.11.1\",\r\n    \"@types/sqlite3\": \"^3.1.6\",\r\n    \"@types/validator\": \"^13.1.0\",\r\n    \"nodemon\": \"^2.0.4\",\r\n    \"tslint\": \"^6.1.3\",\r\n    \"typescript\": \"^3.9.7\"\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/package.json b/backend/package.json
+--- a/backend/package.json	(revision ac7a3060272248f3e29c2f47c27aac31ea243cf8)
++++ b/backend/package.json	(date 1633966608261)
+@@ -14,6 +14,7 @@
+   "dependencies": {
+     "@types/cors": "^2.8.7",
+     "bcrypt": "^5.0.0",
++    "configstore": "^5.0.1",
+     "cors": "^2.8.5",
+     "ejs": "^3.1.6",
+     "express": "~4.16.1",
+@@ -22,7 +23,7 @@
+     "multer": "^1.4.3",
+     "save": "^2.4.0",
+     "sequelize": "^6.3.5",
+-    "sqlite3": "^5.0.0"
++    "sqlite3": "^4.2.0"
+   },
+   "devDependencies": {
+     "@types/bcrypt": "^3.0.0",
+Index: frontend/src/app/models/userRegister.mode.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { User } from \"./user.model\";\r\n\r\nexport class UserRegister extends User {\r\n\r\n    constructor(\r\n    public firstName: string,\r\n    public lastName: string,\r\n    public email: string,\r\n    public homeAddress: string,\r\n    public streetNumber: number,\r\n    public zipCode: number,\r\n    public city: string,\r\n    public birthday: String,\r\n    public phoneNumber: number\r\n  ) {\r\n        super(0, '', '');\r\n        this.userId = this.userId\r\n        this.username = this.username\r\n        this.password = this.password\r\n    }\r\n    \r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/src/app/models/userRegister.mode.ts b/frontend/src/app/models/userRegister.mode.ts
+--- a/frontend/src/app/models/userRegister.mode.ts	(revision ac7a3060272248f3e29c2f47c27aac31ea243cf8)
++++ b/frontend/src/app/models/userRegister.mode.ts	(date 1633969590101)
+@@ -14,9 +14,9 @@
+     public phoneNumber: number
+   ) {
+         super(0, '', '');
+-        this.userId = this.userId
+-        this.username = this.username
+-        this.password = this.password
++               this.userId = this.userId
++               this.username = this.username
++               this.password = this.password
+     }
+-    
+-}
+\ No newline at end of file
++
++}
