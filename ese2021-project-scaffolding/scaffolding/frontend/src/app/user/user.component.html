@@ -1,10 +1,10 @@
 <!-- REGISTER STUFF -->
+<form (ngSubmit)="registerUser()">
 <mat-card>
 
   <h3>Register</h3>
-  
   <mat-form-field>
-    <input matInput type="text" placeholder="User Name" name="name" [(ngModel)]="userToRegister.username" required>
+    <input matInput ngNativeValidate type="text" placeholder="User Name" name="name" [(ngModel)]="userToRegister.username" required>
   </mat-form-field>
   <mat-form-field>
     <input (input)="checkPassword()" (focus)="showPasswordReqs(true)" (focusout)="showPasswordReqs(false)" [(ngModel)]="passwordInput" matInput type="password" placeholder="Password" name="password" [(ngModel)]="userToRegister.password" required>
@@ -30,48 +30,55 @@
   </div>
 </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" placeholder="First name" name="firstName" [(ngModel)]="userToRegister.firstName" required>
+      <input (input)="checkFirstName()" matInput type="text" placeholder="First name" name="firstName" [(ngModel)]="userToRegister.firstName" required>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" placeholder="Last name" name="lastName" [(ngModel)]="userToRegister.lastName" required>
-    </mat-form-field>
-      <mat-form-field>
-        <input matInput type="email" placeholder="Email address" name="email" [(ngModel)]="userToRegister.email" required>
-      </mat-form-field>
-    <mat-form-field>
-      <input matInput type="text" placeholder="Home address" name="homeAddress" [(ngModel)]="userToRegister.homeAddress" required>
+      <input (input)="checkLastName()"matInput type="text" placeholder="Last name" name="lastName" [(ngModel)]="userToRegister.lastName" required>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="number" placeholder="Street number" name="streetNumber" [(ngModel)]="userToRegister.streetNumber" required>
+      <input (input)="checkEmail()"matInput type="email" placeholder="Email address" name="email" [(ngModel)]="userToRegister.email" required>
+      <mat-hint *ngIf="showEmailError" [hidden]="!showEmailError" class="inlineValidation">Please enter a valid email.</mat-hint>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="number" placeholder="Zip code" name="zipCode" [(ngModel)]="userToRegister.zipCode" required>
+      <input (input)="checkAddress()"matInput type="text" placeholder="Home address" name="homeAddress" [(ngModel)]="userToRegister.homeAddress" required>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" placeholder="City" name="city" [(ngModel)]="userToRegister.city" required>
+      <input (input)="checkStreetNumber()"matInput type="number" placeholder="Street number" name="streetNumber" [(ngModel)]="userToRegister.streetNumber" required>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="date" placeholder="Birthday" name="birthday" [(ngModel)]="userToRegister.birthday" required>
+      <input (input)="checkZipCode()"matInput type="number" placeholder="Zip code" name="zipCode" [(ngModel)]="userToRegister.zipCode" required>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="tel" placeholder="Phone number" name="phoneNumber" [(ngModel)]="userToRegister.phoneNumber" required>
+      <input (input)="checkCity()"matInput type="text" placeholder="City" name="city" [(ngModel)]="userToRegister.city" required>
     </mat-form-field>
-  <button mat-flat-button color="primary" (click)="registerUser()">Register</button>
+    <mat-form-field>
+      <input (input)="checkBirthday()"matInput type="date" placeholder="Birthday" name="birthday" [(ngModel)]="userToRegister.birthday" required>
+      <mat-hint *ngIf="showBirthdayError" [hidden]="!showBirthdayError" class="inlineValidation">Please enter a valid birthday.</mat-hint>
+    </mat-form-field>
+    <mat-form-field>
+      <input (input)="checkPhoneNumber()"matInput type="tel" placeholder="Phone number" name="phoneNumber" [(ngModel)]="userToRegister.phoneNumber" required>
+      <mat-hint *ngIf="showPhoneNumberError" [hidden]="!showPhoneNumberError" class="inlineValidation">Please enter a valid phone number.</mat-hint>
+    </mat-form-field>
+  <p *ngIf="showEmptyFieldError" [hidden]="!showEmptyFieldError" class="emptyField">All required fields should not be empty.</p>
+  <button mat-flat-button color="primary" type="submit">Register</button>
 </mat-card>
-
+<span *ngIf="serverFeedback">{{ serverFeedback }}</span>
+</form>
 <mat-card>
 <!-- END REGISTER STUFF -->
 <!-- LOGIN STUFF -->
   <h3>Login</h3>
 
   <div *ngIf="!loggedIn">
+    <form (ngSubmit)="loginUser()">
     <mat-form-field>
       <input matInput type="text" placeholder="User Name" name="name" [(ngModel)]="userToLogin.username" required>
     </mat-form-field>
     <mat-form-field>
       <input matInput type="password" placeholder="Password" name="password" [(ngModel)]="userToLogin.password" required>
     </mat-form-field>
-    <button mat-flat-button color="primary" (click)="loginUser()">Login</button>
+    <button mat-flat-button color="primary" type="submit">Login</button>
+    </form>
   </div>
 
   <div *ngIf="loggedIn">

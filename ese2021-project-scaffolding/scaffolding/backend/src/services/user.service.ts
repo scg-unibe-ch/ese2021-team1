@@ -2,13 +2,10 @@ import { UserAttributes, User } from '../models/user.model';
 import { LoginResponse, LoginRequest } from '../models/login.model';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import {ifError} from 'assert';
 
 export class UserService {
 
     public register(user: UserAttributes): Promise<UserAttributes> {
-        console.log('User:');
-        console.log(user);
         const saltRounds = 12;
         switch (this.passwordCheck(user.password)) {
             case 1 : return Promise.reject({message: 'Doesnt contain capital/small letter'});
@@ -17,7 +14,9 @@ export class UserService {
             case 4 : return Promise.reject({message: 'Minimum of 8 characters'});
         }
         user.password = bcrypt.hashSync(user.password, saltRounds); // hashes the password, never store passwords as plaintext
-        return User.create(user).then(inserted => Promise.resolve(inserted)).catch(err => Promise.reject(err));
+        return User.create(user).then(inserted => Promise.resolve(inserted)).catch(err => {
+            return Promise.reject(err.errors[0].message); // returns the detailed message that caused the error
+        });
     }
 
     public login(loginRequestee: LoginRequest): Promise<User | LoginResponse> {
@@ -28,7 +27,7 @@ export class UserService {
             }
         })
         .then(user => {
-            if (user.userName === null) {
+            if (!user || !user.userName) {
                 return Promise.reject({message: 'Username/E-Mail not found '});
             }
             if (bcrypt.compareSync(loginRequestee.password, user.password)) {// compares the hash with the password from the login request
@@ -38,7 +37,9 @@ export class UserService {
                 return Promise.reject({ message: 'A wrong Password' });
             }
         })
-        .catch(err => Promise.reject({ message: err }));
+        .catch(err => {
+            return Promise.reject(err.message);
+        });
     }
 
     public getAll(): Promise<User[]> {
@@ -49,14 +50,14 @@ export class UserService {
         const capital_small = new RegExp('^(?=.*[a-z])(?=.*[A-Z])+$');
         const number = new RegExp('^(?=.*\\d)+$');
         const specialCharacter = new RegExp('^(?=.*[-+_!@#$%^&*.,?])+$');
-        const minimum = new RegExp('^(.{8,25})+$');
+        const minimum = password.length >= 8;
         if (capital_small.test(password)) {
             return 1;
         } else if (number.test(password)) {
             return 2;
         } else if (specialCharacter.test(password)) {
             return 3;
-        } else if (minimum.test(password)) {
+        } else if (!minimum) {
             return 4;
         }
         return 0;
