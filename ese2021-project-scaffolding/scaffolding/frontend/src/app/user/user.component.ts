@@ -20,12 +20,9 @@ export class UserComponent {
   passwordReqs: boolean[] = [false, false, false, false];
   //[firstName, lastName, email, address, street number, city, zipcode, phoneNumber]
   isEmptyField: boolean[] = [true, true, true, true, true, true, true, true]
-  showEmailError: boolean = false;
-  isValidEmail: boolean = false;
-  isValidBirthday: boolean = false;
-  showBirthdayError: boolean = false;
-  isValidPhoneNumber: boolean = false;
-  showPhoneNumberError: boolean = false;
+  isValidEmail: boolean = true;
+  isValidBirthday: boolean = true;
+  isValidPhoneNumber: boolean = true;
   serverFeedback: string = '';
 
   // CHECK FEATURE END
@@ -57,42 +54,26 @@ export class UserComponent {
   registerUser(): void {
     this.serverFeedback = '';
     // console.log('Submitting Register Data:', this.userToRegister)
-    this.showEmailError = !this.isValidEmail;
-    this.showBirthdayError = !this.isValidBirthday;
-    this.showPhoneNumberError = !this.isValidPhoneNumber;
-    if (this.passwordReqs.includes(false)) {
-      this.showPassReqs = true;
-    }
-    if (this.isEmptyField.includes(true)) {
-      this.showEmptyFieldError = true;
-    }
-    else { // ADD OTHER CONDITIONS TOO!!!
-      this.httpClient.post(environment.endpointURL + "user/register", {
-        userName: this.userToRegister.username,
-        password: this.userToRegister.password,
-        firstName: this.userToRegister.firstName,
-        lastName: this.userToRegister.lastName,
-        email: this.userToRegister.email,
-        homeAddress: this.userToRegister.homeAddress,
-        streetNumber: this.userToRegister.streetNumber,
-        zipCode: this.userToRegister.zipCode,
-        city: this.userToRegister.city,
-        birthday: this.userToRegister.birthday,
-        phoneNumber: this.userToRegister.phoneNumber,
-      }).subscribe((data: any) => {
-        if (typeof data === 'string') {
-          this.serverFeedback = data.toString()
-        } else if (typeof data === 'object' && data.userId) {
-          this.serverFeedback = "Successful registration."
-        }
-        this.userToRegister.username = this.userToRegister.password = '';
+    this.httpClient.post(environment.endpointURL + "user/register", {
+      userName: this.userToRegister.username,
+      password: this.userToRegister.password,
+      firstName: this.userToRegister.firstName,
+      lastName: this.userToRegister.lastName,
+      email: this.userToRegister.email,
+      homeAddress: this.userToRegister.homeAddress,
+      streetNumber: this.userToRegister.streetNumber,
+      zipCode: this.userToRegister.zipCode,
+      city: this.userToRegister.city,
+      birthday: this.userToRegister.birthday,
+      phoneNumber: this.userToRegister.phoneNumber,
+    }).subscribe((data: any) => {
+      if (typeof data === 'string') {
+        this.serverFeedback = data.toString()
+      } else if (typeof data === 'object' && data.userId) {
+        this.serverFeedback = "Successful registration."
+      }
+      this.resetRegistrationForm();
       });
-
-      // reset the password validation array
-      this.passwordReqs = [false, false, false, false];
-      // reset the Error Messages
-      this.showEmptyFieldError = false;
-    }
   }
 
   loginUser(): void {
@@ -103,11 +84,11 @@ export class UserComponent {
       this.userToLogin.username = this.userToLogin.password = '';
       if (!res.user) {
         this.serverFeedback = res
-        return 
+        return
       } else if (res.user) {
         this.serverFeedback = "Welcome back, " + res.user.userName
       }
-  
+
       localStorage.setItem('userName', res.user.userName);
       localStorage.setItem('userToken', res.token);
 
@@ -186,6 +167,16 @@ export class UserComponent {
   }
   checkBirthday(): void {
     this.isValidBirthday = Date.now() > Date.parse(this.userToRegister.birthday.toString());
+  }
+  checkIsValid(): boolean {
+    return this.isValidPhoneNumber && this.isValidEmail && this.isValidBirthday && !this.isEmptyField.includes(true) && !this.passwordReqs.includes(false);
+  }
+
+  resetRegistrationForm(): void {
+    this.userToRegister.email = this.userToRegister.lastName = this.userToRegister.firstName = this.userToRegister.username =
+      this.userToRegister.password = this.userToRegister.homeAddress = this.userToRegister.city = '';
+    this.userToRegister.streetNumber = this.userToRegister.zipCode = this.userToRegister.phoneNumber = 0;
+    this.userToRegister.birthday = 'tt.mm.jjjj';
   }
 
 
