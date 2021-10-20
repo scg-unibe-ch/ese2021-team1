@@ -7,29 +7,29 @@ import {MulterRequest} from '../models/multerRequest.model';
 
 
 
-const posterController: Router = express.Router();
+const postController: Router = express.Router();
 const postService = new PostService();
 
 
-posterController.post('/', (req: Request, res: Response) => {
+postController.post('/', (req: Request, res: Response) => {
     Post.create(req.body)
         .then(inserted => res.send(inserted))
         .catch(err => res.status(500).send(err));
 });
 
-posterController.post('/:id/post', (req: MulterRequest, res: Response) => {
+postController.post('/:id/post', (req: MulterRequest, res: Response) => {
     postService.addImage(req)
         .then(created => res.send(created))
         .catch(err => res.status(500).send(err));
 });
 
-posterController.get('/', (req: Request, res: Response) => {
+postController.get('/', (req: Request, res: Response) => {
     postService.getAllPosts()
         .then(allPost => res.send(allPost))
         .catch(err => res.status(500).send(err));
 });
 
-posterController.put('/:id/post', (req: Request, res: Response) => {
+postController.put('/:id/post', (req: Request, res: Response) => {
         Post.findByPk(req.params.id)
             .then(found => {
                 if (found != null) {
@@ -43,7 +43,7 @@ posterController.put('/:id/post', (req: Request, res: Response) => {
             .catch(err => res.status(500).send(err));
 });
 
-posterController.delete('/:id', (req: Request, res: Response) => {
+postController.delete('/:id', (req: Request, res: Response) => {
     Post.findByPk(req.params.id)
         .then(found => {
             if (found != null) {
