@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +27,20 @@ export class UserService {
   // Observable Streams
   loggedIn$ = this.loggedInSource.asObservable();
   user$ = this.userSource.asObservable();
+
+  private showRegisterModalPrivate = new BehaviorSubject<boolean>(false);
+  showRegisterModal = this.showRegisterModalPrivate.asObservable()
+  
+  private showLoginModalPrivate = new BehaviorSubject<boolean>(false);
+  showLoginModal = this.showLoginModalPrivate.asObservable()
+  
+
+   setLoginModalShow(state: boolean) {
+    this.showLoginModalPrivate.next(state);
+  }
+   setRegisterModalShow(state: boolean) {
+    this.showRegisterModalPrivate.next(state);
+   }
 
 
   /*******************************************************************************************************************
