@@ -5,7 +5,7 @@
         <div class="postdate">Fr. 22.10.2021 19.51</div>
     </div>
     <div class="content">
-        <div class="contentTitle">A day in a marmot's life.</div>
+        <input placeholder="Post Title" class="contentTitle" [(ngModel)]="post.title" (ngModelChange)="updatePost()">
         <div class="material">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur rutrum ligula leo, a elementum risus suscipit ut.
         Maecenas dictum massa et dapibus eleifend. Nam id vehicula magna, vehicula fermentum ipsum. Donec felis elit, mollis vel
         sagittis vel, interdum id magna. Nam fermentum, ligula nec pulvinar pretium, lorem diam pretium arcu, egestas interdum
