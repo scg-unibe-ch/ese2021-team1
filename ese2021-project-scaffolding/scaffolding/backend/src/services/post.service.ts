@@ -24,6 +24,7 @@ export class PostService {
             .catch(() => Promise.reject('Could not upload image!'));
     }
 
+
     public getImageItem(imageId: number): Promise<ItemImage> {
         return ItemImage.findByPk(imageId)
             .then(image => {
@@ -35,10 +36,52 @@ export class PostService {
             })
             .catch(() => Promise.reject('could not fetch the image!'));
     }
-    public getAllPosts(): Promise<Post> {
-        return null;
+
+
+    public getAllPosts(): Promise<Post[]> {
+        return Post.findAll()
+            .then(post => {
+                if (post) {
+                    return Promise.resolve(posts); // TODO: is it post or the table posts from post.model.ts that we should return?
+                } else {
+                    return Promise.reject('posts not found');
+                }
+            })
+            .catch(() => Promise.reject('could not fetch the posts'));
+    }
+
+    // TODO: when createPost is called, call addImage to add the image too (or find a way to add it in here directly)
+    public createPost(title, text, category, userId): Promise<Post> {
+        return Post.create().then(post => {
+            if (title != null) {
+                if (category != null) {
+                    if (userId != null) {
+                        post.title = title;
+                        post.text = text;
+                        post.category = category;
+                        post.userId = userId;
+                        post.created_at = Date.now();
+                        return Promise.resolve(post);
+                    } else {
+                        return Promise.reject('userID of the user is missing');
+                    }
+                } else {
+                    return Promise.reject('category is missing');
+                }
+            } else {
+                return Promise.reject('post title is missing');
+            }
+        }).catch(() => Promise.reject('some fields may be empty'));
     }
 
 
+    public updatePost(): Promise<Post[]> {
+        return null;
+    }
 
+    public deletePost(postID): Promise {
+        return Post.findByPk(postID)
+            .then()
+            .catch();
+    }
 }
