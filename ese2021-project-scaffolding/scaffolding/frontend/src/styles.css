@@ -1,18 +1,4 @@
 body {
-  margin: 30px;
-}
-
-.mat-card {
-  margin: 20px 0;
-  background-color: #eee;
-}
-
-button,
-input {
-  margin-left: 15px !important;
-  margin-right: 15px !important;
-}
-
-.mat-form-field-wrapper {
-  margin-right: 25px !important;
+  background-color: rgb(83, 83, 83);
+  margin: 0;
 }

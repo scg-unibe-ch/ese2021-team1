@@ -17,13 +17,25 @@ import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { UserComponent } from './user/user.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { NavbarComponent } from './navbar/navbar.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { PasswordModalComponent } from './password-modal/password-modal.component';
+import { WallComponent } from './wall/wall.component';
+import { PostComponent } from './post/post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoListComponent,
     TodoItemComponent,
-    UserComponent
+    UserComponent,
+    NavbarComponent,
+    LoginComponent,
+    RegisterComponent,
+    PasswordModalComponent,
+    WallComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,

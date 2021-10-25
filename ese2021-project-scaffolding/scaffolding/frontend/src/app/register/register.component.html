@@ -1,0 +1,58 @@
+
+
+<form *ngIf="showRegisterModal" autocomplete="off" class="loginWrapper">
+
+  <div class="loginHeader">Register</div>
+
+
+    <input class="inputField"  type="text" placeholder="User Name" name="name" (focusout)="checkUsername()" [(ngModel)]="userToRegister.username" required>
+    <div class="feedback">{{formFeedback.username}}</div>
+    
+    <input (input)="checkPassword(passwordInput)" class="inputField" (focus)="showPasswordReqs(true)" (focusout)="showPasswordReqs(false)" [(ngModel)]="passwordInput"  type="password" placeholder="Password" name="password" [(ngModel)]="userToRegister.password" required>
+      <app-password-modal [showPassReqs]="showPassReqs"></app-password-modal>
+
+      <input class="inputField" (input)="checkFirstName()"  type="text" placeholder="First name" name="firstName" (focusout)="checkFirstName()" [(ngModel)]="userToRegister.firstName" required>
+      <div class="feedback">{{formFeedback.firstName}}</div>
+
+    <input class="inputField" (input)="checkLastName()" type="text" placeholder="Last name" name="lastName" (focusout)="checkLastName()" [(ngModel)]="userToRegister.lastName" required>
+      <div class="feedback">{{formFeedback.lastName}}</div>
+
+    <input class="inputField" (input)="checkEmail()" type="email" placeholder="Email address" name="email" (focusout)="checkEmail()" [(ngModel)]="userToRegister.email" required>
+      <div class="feedback">{{formFeedback.email}}</div>
+
+    <input class="inputField" (input)="checkAddress()" type="text" placeholder="Home address" name="homeAddress" (focusout)="checkAddress()" [(ngModel)]="userToRegister.homeAddress" required>
+      <div class="feedback">{{formFeedback.homeAddress}}</div>
+
+    <input class="inputField" (input)="checkStreetNumber()" type="text" placeholder="Street number" name="streetNumber" (focusout)="checkStreetNumber()" [(ngModel)]="userToRegister.streetNumber" required>
+      <div class="feedback">{{formFeedback.streetNumber}}</div>
+
+    <input class="inputField" (input)="checkZipCode()" type="number" placeholder="Zip code" name="zipCode" (focusout)="checkZipCode()" [(ngModel)]="userToRegister.zipCode" required>
+      <div class="feedback">{{formFeedback.zipCode}}</div>
+
+    <input class="inputField" (input)="checkCity()" type="text" placeholder="City" name="city" (focusout)="checkCity()" [(ngModel)]="userToRegister.city" required>
+      <div class="feedback">{{formFeedback.city}}</div>
+
+    <input class="inputField" (input)="checkBirthday()" type="date" placeholder="Birthday" name="birthday" (focusout)="checkBirthday()" [(ngModel)]="userToRegister.birthday" required>
+      <div class="feedback">{{formFeedback.birthday}}</div>
+
+    <input class="feedback" class="inputField" (input)="checkPhoneNumber()" type="tel" placeholder="Phone number" name="phoneNumber" (focusout)="checkPhoneNumber()" [(ngModel)]="userToRegister.phoneNumber" required>
+      <div class="feedback">{{formFeedback.phoneNumber}}</div>
+
+    <div class="feedback" *ngIf="serverFeedback">{{ serverFeedback }}</div>
+
+  <button (click)="registerUser()" class="registerButton">Register</button>
+</form>
+
+
+
+  <!-- <input (input)="updateformFeedback('username')" [(ngModel)]="user.username" class="inputField" type="text" name="text" id="username" placeholder="Enter a Username">
+  <div class="feedback">{{formFeedback.username}}</div>
+  <input (input)="updateformFeedback('password')" [(ngModel)]="user.password" autocomplete="on" class="inputField" type="password" name="text" id="password" placeholder="Enter a Password">
+  <div class="feedback">{{formFeedback.password}}</div>
+  <input (input)="updateformFeedback('email')" [(ngModel)]="user.email" class="inputField" type="email" name="text" id="email" placeholder="Enter Email">
+  <div class="feedback">{{formFeedback.email}}</div> -->
+
+
+
+
+

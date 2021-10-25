@@ -1,0 +1,15 @@
+<div class="nav">
+    <div class="navWrapper">
+    </div>
+        <button *ngIf="loggedInState" class="logoutButton" (click)="logoutUser()">Logout</button>
+        <button *ngIf="!loggedInState" class="registerButton" (click)="toggleRegisterModal()">Register</button>
+        <button *ngIf="!loggedInState" class="loginButton" (click)="toggleLoginModal()">Login</button>
+        <div *ngIf="loggedInState" class="userName">{{user.username}}
+    </div>
+    <!-- <app-login *ngIf="showLoginModal"></app-login>
+    <app-register *ngIf="showRegisterModal"></app-register> -->
+
+    <app-login *ngIf="showLoginModal"></app-login>
+    <app-register *ngIf="showRegisterModal"></app-register>
+
+</div>

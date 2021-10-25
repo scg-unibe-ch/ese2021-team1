@@ -1,0 +1,10 @@
+.wallWrapper {
+  position: absolute;
+  width: 60%;
+  height: auto;
+  bottom: 0px;
+  left: 50%;
+  transform: translate(-50%);
+
+  top: 10%;
+}
