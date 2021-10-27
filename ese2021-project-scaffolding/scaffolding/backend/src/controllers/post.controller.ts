@@ -4,12 +4,8 @@ import { Post } from '../models/post.model';
 import { PostService } from '../services/post.service';
 import {MulterRequest} from '../models/multerRequest.model';
 
-
-
-
 const postController: Router = express.Router();
 const postService = new PostService();
-
 
 postController.post('/', (req: Request, res: Response) => {
     Post.create(req.body)
@@ -54,3 +50,5 @@ postController.delete('/:id', (req: Request, res: Response) => {
         })
         .catch(err => res.status(500).send(err));
 });
+
+export const PostController: Router = postController;
