@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Post } from '../../models/post.model';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-post',
@@ -10,7 +11,7 @@ import { Post } from '../../models/post.model';
 })
 export class PostComponent implements OnInit {
 
-  @Input() post: Post = new Post('', '', new Blob(), '', 0, 0, '', '')
+  @Input() post: any = {}
 
   @Output()
   update = new EventEmitter<Post>();
@@ -19,7 +20,8 @@ export class PostComponent implements OnInit {
   delete = new EventEmitter<Post>();
 
   constructor(
-    public httpClient: HttpClient
+    public httpClient: HttpClient,
+    public userService: UserService
   ) {
   }
 

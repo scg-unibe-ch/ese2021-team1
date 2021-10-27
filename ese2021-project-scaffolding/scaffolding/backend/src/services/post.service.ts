@@ -67,17 +67,17 @@ export class PostService {
         // }
 
 
-        // public getAllPosts(): Promise<Post[]> {
-        //     return Post.findAll()
-        //         .then(post => {
-        //             if (post) {
-        //                 return Promise.resolve(posts); // TODO: is it post or the table posts from post.model.ts that we should return?
-        //             } else {
-        //                 return Promise.reject('posts not found');
-        //             }
-        //         })
-        //         .catch(() => Promise.reject('could not fetch the posts'));
-        // }
+        public async getAllPosts() {
+            return Post.findAll()
+                .then(posts => {
+                    if (posts) {
+                        return Promise.resolve(posts); // TODO: is it post or the table posts from post.model.ts that we should return?
+                    } else {
+                        return Promise.reject('No posts available.');
+                    }
+                })
+                .catch(() => Promise.reject('Could not fetch posts.'));
+        }
 
         // // TODO: when createPost is called, call addImage to add the image too (or find a way to add it in here directly)
         // public createPost(title, text, category, userId): Promise<Post> {

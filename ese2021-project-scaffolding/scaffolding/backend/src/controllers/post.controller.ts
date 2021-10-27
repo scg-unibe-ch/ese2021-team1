@@ -23,11 +23,11 @@ postController.post('/', (req: Request, res: Response) => {
 //         .catch(err => res.status(500).send(err));
 // });
 
-// postController.get('/', (req: Request, res: Response) => {
-//     postService.getAllPosts()
-//         .then(allPost => res.send(allPost))
-//         .catch(err => res.status(500).send(err));
-// });
+postController.get('/', (req: Request, res: Response) => {
+    postService.getAllPosts()
+        .then(posts => res.json(posts))
+        .catch(err => res.json(err));
+});
 
 // postController.put('/:id/post', (req: Request, res: Response) => {
 //         Post.findByPk(req.params.id)

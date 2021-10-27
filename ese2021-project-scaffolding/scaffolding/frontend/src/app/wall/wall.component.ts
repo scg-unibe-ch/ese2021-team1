@@ -35,6 +35,15 @@ export class WallComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // fetch all posts from server on start
+    this.httpClient.get(environment.endpointURL + "post")
+      .subscribe(res => {
+        if (typeof res === "object") {
+          Object.values(res).forEach(post => {
+            this.posts.push(post)
+          })
+        }
+      })
   }
   
   createPost() { // gets fired when the create post form is submitted
@@ -46,6 +55,7 @@ export class WallComponent implements OnInit {
     // with the code below we send the new post object to the server
     this.httpClient.post(environment.endpointURL + "post", this.newPost)
       .subscribe((res: any) => {
+        console.log(res)
         // here we get the response from the server
         // check if object is of type Post - should contain some property like title or text
         if (res.title) {
@@ -56,12 +66,6 @@ export class WallComponent implements OnInit {
         }
       })
     this.showNewPostForm = !this.showNewPostForm;
-    //this.httpClient.post(environment.endpointURL + "post", {
-      //title: this.newPost.title
-    //}).subscribe((list: any) => {
-    // this.posts.push(new Post(this.newPost.title, this.newPost.content, this.newPost.image, '', 0, 0, this.currentDate(), ''));
-    // this.newPost = new Post('', '', new Blob(), '', 0, 0, '', '');
-    //})
   }
 
   isPostsEmpty(): boolean {
