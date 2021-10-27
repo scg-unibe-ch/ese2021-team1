@@ -4,6 +4,8 @@ import {Post} from "../models/post.model";
 import {environment} from "../../environments/environment";
 import {TodoList} from "../models/todo-list.model";
 import {HttpClient} from "@angular/common/http";
+import { UserService } from '../services/user.service';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-wall',
@@ -15,17 +17,29 @@ export class WallComponent implements OnInit {
   showNewPostForm: boolean = false;
   newPost: Post = new Post('', '', new Blob(), '', 0, 0, '', '')
   posts: Post[] = [];
+  auth: boolean = false;
+  user: User | null = null;
 
   constructor(
     public httpClient: HttpClient,
-  ) { }
+    public userService: UserService
+  ) { 
+    // Listen for changes
+    userService.loggedIn$.subscribe(res => this.auth = res);
+    userService.user$.subscribe(res => this.user = res);
+  }
 
 
   ngOnInit(): void {
   }
 
-  createPost() {
+  createPost() { // gets fired when the create post form is submitted
+
     this.showNewPostForm = !this.showNewPostForm;
+    console.log(this.newPost)
+    this.httpClient.post(environment.endpointURL + "post", {
+
+    })
     //this.httpClient.post(environment.endpointURL + "post", {
       //title: this.newPost.title
     //}).subscribe((list: any) => {
