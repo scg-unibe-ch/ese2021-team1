@@ -43,9 +43,17 @@ export class WallComponent implements OnInit {
       alert("Only signed in users can create posts. This form should not be visible.")
       return
     }
+    // with the code below we send the new post object to the server
     this.httpClient.post(environment.endpointURL + "post", this.newPost)
       .subscribe((res: any) => {
-        console.log(res)
+        // here we get the response from the server
+        // check if object is of type Post - should contain some property like title or text
+        if (res.title) {
+          this.posts.push(res)
+        } else {
+          // else it may be a error message that we can somehow show to the user
+          alert(JSON.stringify(res))
+        }
       })
     this.showNewPostForm = !this.showNewPostForm;
     //this.httpClient.post(environment.endpointURL + "post", {

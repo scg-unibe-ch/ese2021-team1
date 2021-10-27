@@ -5,83 +5,31 @@ import {MulterRequest} from '../models/multerRequest.model';
 import {Post} from '../models/post.model';
 
 export class PostService {
-
-    public addImage(req: MulterRequest): Promise<ItemImageAttributes> {
-        return TodoItem.findByPk(req.params.id)
-            .then(found => {
-                if (!found) {
-                    return Promise.reject('Product not found!');
-                } else {
-                    return new Promise<ItemImageAttributes>((resolve, reject) => {
-                        upload.single('image')(req, null, (error: any) => {
-                            ItemImage.create({ fileName: req.file.filename, todoItemId: found.todoItemId })
-                                .then(created => resolve(created))
-                                .catch(() => reject('Could not upload image!'));
-                        });
-                    });
-                }
-            })
-            .catch(() => Promise.reject('Could not upload image!'));
+    // this function (aka service) is responsible for converting the received object (parameter)
+    // into the right Post format and store it in the database. It also has to give some
+    // feedback back to the controller which then will send it to the front
+    public async createPost(post: { title: string, content: string, labels: string[], userName: string }) {
+        // in the parameter signature we can define and "type" the parameters that we get
+        // whatever we do that is asynchronous, we can denote that with async
+        return Post.create({ // we use the model's inherited methods (here create) to store the new post in the db -
+            // prior to that we have to "convert" it to the correct format
+            title: post.title,
+            text: post.content,
+            image: null,
+            downvotes: 0,
+            upvotes: 0,
+            category: '',
+            userName: post.userName
+        })
+        // now we want to check whether the creation was successful
+        .then(inserted => {
+            // return the inserted row (Post) to the controller
+            return Promise.resolve(inserted);
+        })
+        .catch(err => {
+            // return the error message
+            return Promise.reject(err.message);
+        });
     }
 
-
-    public getImageItem(imageId: number): Promise<ItemImage> {
-        return ItemImage.findByPk(imageId)
-            .then(image => {
-                if (image) {
-                    return Promise.resolve(image);
-                } else {
-                    return Promise.reject('image not found!');
-                }
-            })
-            .catch(() => Promise.reject('could not fetch the image!'));
-    }
-
-
-    public getAllPosts(): Promise<Post[]> {
-        return Post.findAll()
-            .then(post => {
-                if (post) {
-                    return Promise.resolve(posts); // TODO: is it post or the table posts from post.model.ts that we should return?
-                } else {
-                    return Promise.reject('posts not found');
-                }
-            })
-            .catch(() => Promise.reject('could not fetch the posts'));
-    }
-
-    // TODO: when createPost is called, call addImage to add the image too (or find a way to add it in here directly)
-    public createPost(title, text, category, userId): Promise<Post> {
-        return Post.create().then(post => {
-            if (title != null) {
-                if (category != null) {
-                    if (userId != null) {
-                        post.title = title;
-                        post.text = text;
-                        post.category = category;
-                        post.userId = userId;
-                        post.created_at = Date.now();
-                        return Promise.resolve(post);
-                    } else {
-                        return Promise.reject('userID of the user is missing');
-                    }
-                } else {
-                    return Promise.reject('category is missing');
-                }
-            } else {
-                return Promise.reject('post title is missing');
-            }
-        }).catch(() => Promise.reject('some fields may be empty'));
-    }
-
-
-    public updatePost(): Promise<Post[]> {
-        return null;
-    }
-
-    public deletePost(postID): Promise {
-        return Post.findByPk(postID)
-            .then()
-            .catch();
-    }
 }

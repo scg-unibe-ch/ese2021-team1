@@ -4,12 +4,11 @@ import { Optional, Model, Sequelize, DataTypes } from 'sequelize';
 export interface PostAttributes {
     title: string;
     text: string;
-    image;
-    category: string;
+    image: Blob;
+    category: string; // will be a comma separated string containing labels
     upvotes: number;
-    downvote: number;
-    created_at;
-    userId: number;
+    downvotes: number;
+    userName: string;
 }
 
 export interface PostCreationAttributes extends Optional<PostAttributes, 'text'| 'image'> { }
@@ -18,13 +17,13 @@ export class Post extends Model<PostAttributes, PostCreationAttributes> implemen
 
     title: string;
     text: string;
-    image;
+    image: Blob;
     category: string;
     upvotes: number;
-    downvote: number;
-    created_at;
-    userId: number;
-    public static creatPost(sequelize: Sequelize) {
+    downvotes: number;
+    userName: string;
+
+    public static initialize(sequelize: Sequelize) {
         Post.init({
             title: {
                 type: DataTypes.STRING,
@@ -40,26 +39,20 @@ export class Post extends Model<PostAttributes, PostCreationAttributes> implemen
             },
             category: {
                 type: DataTypes.STRING,
-                allowNull: false
+                allowNull: true
             },
             upvotes: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
-                defaultValue: 0
+                allowNull: true,
             },
-            downvote: {
+            downvotes: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
-                defaultValue: 0
+                allowNull: true,
             },
-            created_at: {
-                type: DataTypes.DATE,
+            userName: {
+                type: DataTypes.STRING,
                 allowNull: false
-            },
-                userId: {
-                    type: DataTypes.INTEGER,
-                    primaryKey: true
-                }
+            }
             },
             {
                 sequelize,

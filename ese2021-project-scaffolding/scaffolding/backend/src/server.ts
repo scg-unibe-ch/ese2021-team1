@@ -8,6 +8,7 @@ import { Sequelize } from 'sequelize';
 import { TodoList } from './models/todolist.model';
 import { TodoItem } from './models/todoitem.model';
 import { User } from './models/user.model';
+import { Post } from './models/post.model';
 
 
 import cors from 'cors';
@@ -25,6 +26,7 @@ export class Server {
         this.server = this.configureServer();
         this.sequelize = this.configureSequelize();
 
+        Post.initialize(this.sequelize); // create the new table!
         TodoItem.initialize(this.sequelize); // creates the tables if they dont exist
         TodoList.initialize(this.sequelize);
         User.initialize(this.sequelize);
