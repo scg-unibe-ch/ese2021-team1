@@ -3,6 +3,7 @@ import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Post } from '../../models/post.model';
 import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-post',
@@ -19,10 +20,16 @@ export class PostComponent implements OnInit {
   @Output()
   delete = new EventEmitter<Post>();
 
+  auth: boolean = false
+  user: User | null = null
+
   constructor(
     public httpClient: HttpClient,
     public userService: UserService
   ) {
+    // Listen for changes
+    userService.loggedIn$.subscribe(res => this.auth = res);
+    userService.user$.subscribe(res => this.user = res);
   }
 
   ngOnInit(): void {

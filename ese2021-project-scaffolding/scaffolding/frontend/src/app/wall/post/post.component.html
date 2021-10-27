@@ -1,4 +1,5 @@
-<div class="postWrapper">
+<!-- the following is rendered for all users except the creator -->
+<div class="postWrapper" *ngIf="user === post.userName">
     <div class="metadata">
         <img src="../../../assets/marmot01.png" class="usericon">
         <div class="username">{{post.userName}}:</div>

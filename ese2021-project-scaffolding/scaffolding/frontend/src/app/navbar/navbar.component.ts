@@ -51,6 +51,8 @@ export class NavbarComponent implements OnInit {
   }
   logoutUser() {
     this.userService.setLoggedIn(false)
+    // remove data from localStorage
+    localStorage.clear()
     this.loggedInState = false
     this.user = {userId: 0, username: "", password: ""}
   }
