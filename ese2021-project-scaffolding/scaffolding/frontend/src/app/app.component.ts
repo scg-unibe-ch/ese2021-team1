@@ -80,12 +80,17 @@ export class AppComponent implements OnInit {
     });
   }
 
-  checkUserStatus(): void {
+  checkUserStatus() {
     // Get user data from local storage
     const userToken = localStorage.getItem('userToken');
-
+    const userName = localStorage.getItem('userName')
     // Set boolean whether a user is logged in or not
+    if (!userName || !userToken) return
     this.userService.setLoggedIn(!!userToken);
-
+    this.userService.setUser({
+      userId: 0,
+      username: userName,
+      password: ""
+    })
   }
 }

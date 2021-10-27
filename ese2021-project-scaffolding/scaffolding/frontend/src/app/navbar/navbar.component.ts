@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
     ) {
       // listen for changes
       userService.loggedIn$.subscribe(res => this.loggedInState = res)
-      userService.user$.subscribe(res => this.user)
+      userService.user$.subscribe(res => this.user = res)
   }
   
   ngOnInit(): void {
