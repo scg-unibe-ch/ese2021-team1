@@ -22,7 +22,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { PasswordModalComponent } from './password-modal/password-modal.component';
 import { WallComponent } from './wall/wall.component';
-import { PostComponent } from './post/post.component';
+import { PostComponent } from './wall/post/post.component';
+import {OverlayModule} from "@angular/cdk/overlay";
 
 @NgModule({
   declarations: [
@@ -37,20 +38,21 @@ import { PostComponent } from './post/post.component';
     WallComponent,
     PostComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    MatToolbarModule,
-    MatTabsModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatListModule,
-    FormsModule,
-    MatCheckboxModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        MatToolbarModule,
+        MatTabsModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatListModule,
+        FormsModule,
+        MatCheckboxModule,
+        OverlayModule
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

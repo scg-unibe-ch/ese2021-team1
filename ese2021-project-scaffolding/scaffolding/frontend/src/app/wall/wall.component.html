@@ -1,8 +1,16 @@
 <div class="wallWrapper">
-    <app-post></app-post>
-    <app-post></app-post>
-    <app-post></app-post>
-    <app-post></app-post>
-    <app-post></app-post>
-
+  <button (click)="showNewPostForm=!showNewPostForm" cdkOverlayOrigin #trigger="cdkOverlayOrigin">Create Post</button>
+  <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="showNewPostForm">
+    <form class="overlay" (ngSubmit)="createPost()">
+      <input [(ngModel)]="newPost.title" class="inputField" type="text" name="title" placeholder="Enter Title" /><br>
+      <textarea [(ngModel)]="newPost.content" class="inputField" name="text" placeholder="Enter text"></textarea><br>
+      <!-- ingore the image for now -->
+      <!-- <input [(ngModel)]="newPost.image" class="inputField" type="file" name="upload" accept="image/*" /><br> -->
+      <button type="submit" class="createButton">Create</button>
+    </form>
+  </ng-template>
+  <p *ngIf="isPostsEmpty()">There are currently no posts.</p>
+  <div *ngFor="let post of posts">
+    <app-post [post] = "post"></app-post>
+  </div>
 </div>
