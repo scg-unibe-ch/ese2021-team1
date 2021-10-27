@@ -43,6 +43,7 @@ export class WallComponent implements OnInit {
             this.posts.push(post)
           })
         }
+        console.log(this.posts)
       })
   }
   
