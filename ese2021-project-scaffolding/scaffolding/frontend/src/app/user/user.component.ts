@@ -46,10 +46,16 @@ export class UserComponent {
     userService.loggedIn$.subscribe(res => this.loggedIn = res);
     userService.user$.subscribe(res => this.user = res);
 
+    
     // Current value
     this.loggedIn = userService.getLoggedIn();
     this.user = userService.getUser();
-    console.log(this.user)
+  }
+  
+  ngInit() {
+    // set user service state
+    const userName = localStorage.getItem("userName")
+    if (userName) this.userService.setUser(new User(0, userName, ''))
   }
 
   registerUser(): void {

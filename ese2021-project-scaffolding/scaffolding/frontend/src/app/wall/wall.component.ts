@@ -35,10 +35,10 @@ export class WallComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.user) this.newPost.userName = this.user?.username // automatically set the user that creates the post
   }
-
+  
   createPost() { // gets fired when the create post form is submitted
+    if (this.user) this.newPost.userName = this.user?.username // automatically set the user that creates the post
     if (!this.auth || !this.user) {
       alert("Only signed in users can create posts. This form should not be visible.")
       return

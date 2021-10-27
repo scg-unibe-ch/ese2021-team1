@@ -15,22 +15,21 @@ export class NavbarComponent implements OnInit {
 
   loggedInState: boolean = false
 
-  user: User = {
-    userId: 0,
-    username: "",
-    password: "",
-  }
+  user: User | null = null
 
-  constructor(private userService: UserService) {
+  constructor(
+    private userService: UserService
+    ) {
+      // listen for changes
+      userService.loggedIn$.subscribe(res => this.loggedInState = res)
+      userService.user$.subscribe(res => this.user)
   }
   
   ngOnInit(): void {
     this.userService.loggedIn$.subscribe((loginState) => {
-      console.log(loginState)
       this.loggedInState = true
     })
     this.userService.user$.subscribe((user) => {
-      console.log(user)
       this.showLoginModal = false
       this.user = user
     })
