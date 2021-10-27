@@ -15,7 +15,12 @@ import { User } from '../models/user.model';
 export class WallComponent implements OnInit {
 
   showNewPostForm: boolean = false;
-  newPost: Post = new Post('', '', new Blob(), '', 0, 0, '', '')
+  newPost = {
+    title: "",
+    content: "",
+    labels: [],
+    userName: ""
+  }
   posts: Post[] = [];
   auth: boolean = false;
   user: User | null = null;
@@ -29,22 +34,25 @@ export class WallComponent implements OnInit {
     userService.user$.subscribe(res => this.user = res);
   }
 
-
   ngOnInit(): void {
+    if (this.user) this.newPost.userName = this.user?.username // automatically set the user that creates the post
   }
 
   createPost() { // gets fired when the create post form is submitted
-
+    if (!this.auth || !this.user) {
+      alert("Only signed in users can create posts. This form should not be visible.")
+      return
+    }
+    this.httpClient.post(environment.endpointURL + "post", this.newPost)
+      .subscribe((res: any) => {
+        console.log(res)
+      })
     this.showNewPostForm = !this.showNewPostForm;
-    console.log(this.newPost)
-    this.httpClient.post(environment.endpointURL + "post", {
-
-    })
     //this.httpClient.post(environment.endpointURL + "post", {
       //title: this.newPost.title
     //}).subscribe((list: any) => {
-    this.posts.push(new Post(this.newPost.title, this.newPost.text, this.newPost.image, '', 0, 0, this.currentDate(), ''));
-    this.newPost = new Post('', '', new Blob(), '', 0, 0, '', '');
+    // this.posts.push(new Post(this.newPost.title, this.newPost.content, this.newPost.image, '', 0, 0, this.currentDate(), ''));
+    // this.newPost = new Post('', '', new Blob(), '', 0, 0, '', '');
     //})
   }
 
