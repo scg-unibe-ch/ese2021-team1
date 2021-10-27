@@ -1,7 +1,7 @@
 <!-- the following is rendered for all users except the creator -->
-<div class="postWrapper" *ngIf="user === post.userName">
+<div class="postWrapper" *ngIf="user !== post.userName">
     <div class="metadata">
-        <img src="../../../assets/marmot01.png" class="usericon">
+        <!-- <img src="../../../assets/marmot01.png" class="usericon"> -->
         <div class="username">{{post.userName}}:</div>
         <div class="postdate">{{post.createdAt}}</div>
     </div>
@@ -27,4 +27,18 @@
             <div class="commentContent">Nam fermentum, ligula nec pulvinar pretium, lorem</div>
         </div>
     </div> -->
+</div>
+
+<!-- the following is rendered for the creator to enable crud operations -->
+<div class="postWrapper">
+    <div class="metadata">
+        <div class="username">{{post.userName}}</div>
+        <div class="postdate">{{post.createdAt}}</div>
+    </div>
+    <div class="content">
+        <input type="text" ng-model="newTitle" class="contentTitle" placeholder="{{post.title}}" />
+        <textarea ng-model="newText" class="material" value="{{post.text}}"></textarea>
+        <button (click)="updatePost()">Update</button>
+        <button (click)="deletePost()">Delete</button>
+    </div>
 </div>

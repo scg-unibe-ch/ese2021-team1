@@ -21,7 +21,9 @@ export class PostComponent implements OnInit {
   delete = new EventEmitter<Post>();
 
   auth: boolean = false
-  user: User | null = null
+  user: string = ""
+  newTitle: string = ""
+  newText: string = ""
 
   constructor(
     public httpClient: HttpClient,
@@ -29,11 +31,29 @@ export class PostComponent implements OnInit {
   ) {
     // Listen for changes
     userService.loggedIn$.subscribe(res => this.auth = res);
-    userService.user$.subscribe(res => this.user = res);
+    userService.user$.subscribe(res => this.user = res.username);
   }
 
   ngOnInit(): void {
+    
+  }
+  
+  // UPDATE - TodoItem
+  updatePost() {
+    this.httpClient.put(environment.endpointURL + "post/" + this.post.id, {
+      title: this.newTitle,
+      content: this.newText
+    }).subscribe(res => {
+      console.log(res)
+    })
   }
 
+  // DELETE - TodoItem
+  deletePost() {
+    this.httpClient.delete(environment.endpointURL + "post/" + this.post.id)
+    .subscribe(res => {
+      console.log(res)
+    });
+  }
 
 }

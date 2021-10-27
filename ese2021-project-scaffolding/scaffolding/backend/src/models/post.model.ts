@@ -2,6 +2,7 @@ import { TodoItem, TodoItemAttributes, TodoItemCreationAttributes } from './todo
 import { Optional, Model, Sequelize, DataTypes } from 'sequelize';
 
 export interface PostAttributes {
+    id: number;
     title: string;
     text: string;
     image: Blob;
@@ -14,7 +15,7 @@ export interface PostAttributes {
 export interface PostCreationAttributes extends Optional<PostAttributes, 'text'| 'image'> { }
 
 export class Post extends Model<PostAttributes, PostCreationAttributes> implements PostAttributes {
-
+    id: number;
     title: string;
     text: string;
     image: Blob;
@@ -25,6 +26,12 @@ export class Post extends Model<PostAttributes, PostCreationAttributes> implemen
 
     public static initialize(sequelize: Sequelize) {
         Post.init({
+            id: {
+                type: DataTypes.INTEGER,
+                autoIncrement: true,
+                primaryKey: true,
+                defaultValue: 0
+            },
             title: {
                 type: DataTypes.STRING,
                 allowNull: false

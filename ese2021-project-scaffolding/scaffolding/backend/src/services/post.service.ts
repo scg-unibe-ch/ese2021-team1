@@ -15,6 +15,7 @@ export class PostService {
         // in the parameter signature we can define and "type" the parameters that we get, for now I just made it as simple as possible
         return Post.create({ // we use the model's inherited methods (like create) to store the new post in the db
             // prior to that we have to "create" a valid post with the data we took from the front
+            id: 0,
             title: post.title, // these attributes come from the object that the front sent us
             text: post.content,
             image: null, // default for now...
@@ -104,14 +105,28 @@ export class PostService {
         // }
 
 
-        // public updatePost(): Promise<Post[]> {
-        //     return null;
-        // }
+        public async updatePost(props: any) {
+            return Post.update(
+                {title: props.data.title, text: props.data.content},
+                { where: { id: props.data.id }})
+            .then(updated => {
+                Promise.resolve(updated);
+            })
+            .catch(err => {
+                Promise.reject(err.message);
+            });
+        }
 
-        // public deletePost(postID): Promise {
-        //     return Post.findByPk(postID)
-        //         .then()
-        //         .catch();
-        // }
+        public async deletePost(id) {
+            return Post.destroy({
+                where: {id: id}
+            })
+            .then(res => {
+                Promise.resolve(res);
+            })
+            .catch(err => {
+                Promise.reject(err.message);
+            });
+        }
 
 }
