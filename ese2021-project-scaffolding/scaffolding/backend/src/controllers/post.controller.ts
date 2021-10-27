@@ -8,6 +8,7 @@ const postController: Router = express.Router();
 const postService = new PostService();
 
 postController.post('/', (req: Request, res: Response) => {
+    console.log(req.body)
     Post.create(req.body)
         .then(inserted => res.send(inserted))
         .catch(err => res.status(500).send(err));
@@ -51,4 +52,5 @@ postController.delete('/:id', (req: Request, res: Response) => {
         .catch(err => res.status(500).send(err));
 });
 
+// you have to export the controller to use it in the server
 export const PostController: Router = postController;
