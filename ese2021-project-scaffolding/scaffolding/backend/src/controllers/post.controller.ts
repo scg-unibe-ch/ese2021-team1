@@ -5,6 +5,7 @@ import { PostService } from '../services/post.service';
 const postController: Router = express.Router();
 const postService = new PostService();
 
+// this route is hit by the frontend when a user wants to create a new post
 postController.post('/', (req: Request, res: Response) => {
     console.log(req.body); // this object contains the new post that the frontend sent us
     // we pass this post object to the appropriate service that we also have to create
@@ -23,16 +24,17 @@ postController.post('/', (req: Request, res: Response) => {
 //         .catch(err => res.status(500).send(err));
 // });
 
+// this route is hit by the frontend on startup to fetch all posts from the database
 postController.get('/', (req: Request, res: Response) => {
     postService.getAllPosts()
         .then(posts => res.json(posts))
         .catch(err => res.json(err));
 });
 
-postController.put('/:id', (req: Request, res: Response) => {
-    postService.updatePost({id: req.params.id, data: req.body})
-        .then(post => res.json(post))
-        .catch(err => res.json(err));
+// postController.put('/:id', (req: Request, res: Response) => {
+//     postService.updatePost({id: req.params.id, data: req.body})
+//         .then(post => res.json(post))
+//         .catch(err => res.json(err));
         // Post.findByPk(req.params.id)
         //     .then(found => {
         //         if (found != null) {
@@ -44,12 +46,12 @@ postController.put('/:id', (req: Request, res: Response) => {
         //         }
         //     })
         //     .catch(err => res.status(500).send(err));
-});
+// });
 
-postController.delete('/:id', (req: Request, res: Response) => {
-    postService.deletePost(req.params.id)
-        .then(result => res.json(result))
-        .catch(err => res.json(err));
+// postController.delete('/:id', (req: Request, res: Response) => {
+//     postService.deletePost(req.params.id)
+//         .then(result => res.json(result))
+//         .catch(err => res.json(err));
     // Post.findByPk(req.params.id)
     //     .then(found => {
     //         if (found != null) {
@@ -59,7 +61,7 @@ postController.delete('/:id', (req: Request, res: Response) => {
     //         }
     //     })
     //     .catch(err => res.status(500).send(err));
-});
+// });
 
 // you have to export the controller to use it in the server
 export const PostController: Router = postController;

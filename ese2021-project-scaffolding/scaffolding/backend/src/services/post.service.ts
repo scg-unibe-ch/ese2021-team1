@@ -67,7 +67,7 @@ export class PostService {
         //         .catch(() => Promise.reject('could not fetch the image!'));
         // }
 
-
+        // this service returns all posts from the database
         public async getAllPosts() {
             return Post.findAll()
                 .then(posts => {
@@ -104,29 +104,30 @@ export class PostService {
         //     }).catch(() => Promise.reject('some fields may be empty'));
         // }
 
+        // this needs to be debugged
+        // public async updatePost(props: any) {
+        //     return Post.update(
+        //         {title: props.data.title, text: props.data.content},
+        //         { where: { id: props.data.id }})
+        //     .then(updated => {
+        //         Promise.resolve(updated);
+        //     })
+        //     .catch(err => {
+        //         Promise.reject(err.message);
+        //     });
+        // }
 
-        public async updatePost(props: any) {
-            return Post.update(
-                {title: props.data.title, text: props.data.content},
-                { where: { id: props.data.id }})
-            .then(updated => {
-                Promise.resolve(updated);
-            })
-            .catch(err => {
-                Promise.reject(err.message);
-            });
-        }
-
-        public async deletePost(id) {
-            return Post.destroy({
-                where: {id: id}
-            })
-            .then(res => {
-                Promise.resolve(res);
-            })
-            .catch(err => {
-                Promise.reject(err.message);
-            });
-        }
+        // this needs to be debugged
+        // public async deletePost(id: number) {
+        //     return Post.destroy({
+        //         where: {id: id}
+        //     })
+        //     .then(res => {
+        //         Promise.resolve(res);
+        //     })
+        //     .catch(err => {
+        //         Promise.reject(err.message);
+        //     });
+        // }
 
 }

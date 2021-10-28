@@ -38,21 +38,23 @@ export class PostComponent implements OnInit {
     
   }
   
-  // UPDATE - TodoItem
   updatePost() {
     this.httpClient.put(environment.endpointURL + "post/" + this.post.id, {
       title: this.newTitle,
       content: this.newText
     }).subscribe(res => {
       console.log(res)
+      // this has to be developed further
+      // replace the post in the list of posts that is located in the wall component with the new one
     })
   }
 
-  // DELETE - TodoItem
   deletePost() {
     this.httpClient.delete(environment.endpointURL + "post/" + this.post.id)
     .subscribe(res => {
       console.log(res)
+      // this has to be developed further
+      // remove the post from the list of posts that is located in the wall component
     });
   }
 
