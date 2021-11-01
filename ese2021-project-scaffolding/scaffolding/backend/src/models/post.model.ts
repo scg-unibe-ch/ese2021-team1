@@ -1,4 +1,3 @@
-import { TodoItem, TodoItemAttributes, TodoItemCreationAttributes } from './todoitem.model';
 import { Optional, Model, Sequelize, DataTypes } from 'sequelize';
 
 export interface PostAttributes {
@@ -30,7 +29,6 @@ export class Post extends Model<PostAttributes, PostCreationAttributes> implemen
                 type: DataTypes.INTEGER,
                 autoIncrement: true,
                 primaryKey: true,
-                defaultValue: 0
             },
             title: {
                 type: DataTypes.STRING,
