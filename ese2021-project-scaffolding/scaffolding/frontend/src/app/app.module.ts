@@ -24,6 +24,7 @@ import { PasswordModalComponent } from './password-modal/password-modal.componen
 import { WallComponent } from './wall/wall.component';
 import { PostComponent } from './wall/post/post.component';
 import {OverlayModule} from "@angular/cdk/overlay";
+import { AddPostComponent } from './add-post/add-post.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {OverlayModule} from "@angular/cdk/overlay";
     RegisterComponent,
     PasswordModalComponent,
     WallComponent,
-    PostComponent
+    PostComponent,
+    AddPostComponent
   ],
     imports: [
         BrowserModule,
