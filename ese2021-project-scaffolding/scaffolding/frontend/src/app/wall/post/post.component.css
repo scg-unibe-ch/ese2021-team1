@@ -1,7 +1,6 @@
 .postWrapper {
   position: relative;
   width: 65%;
-  height: 500px;
   left: 50%;
   transform: translate(-50%);
   background-color: rgb(83, 83, 83);
@@ -11,6 +10,7 @@
   padding: 10px;
   border-radius: 20px;
   display: block;
+  margin-bottom: 50px;
 }
 
 .metadata {
@@ -59,10 +59,8 @@
 
 .content {
   position: relative;
-  left: 10px;
   top: 10px;
-  right: 10px;
-  width: calc(100% - 20px);
+  width: 100%;
   background-color: rgb(182, 182, 182);
   border-radius: 20px;
 }
@@ -119,4 +117,17 @@
   color: rgb(255, 145, 56);
   font-weight: normal;
   font-size: normal;
+}
+
+.underPost {
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.upvoteButton, .downvoteButton, .commentsButton {
+  margin: 5px;
+}
+
+.upvoteButton:focus {
+  background-color: #3bb615;
 }

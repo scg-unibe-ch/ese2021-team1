@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {UserService} from "../services/user.service";
@@ -17,9 +17,8 @@ export class AddPostComponent implements OnInit {
     title: "",
     content: "",
     labels: [],
-    userName: ""
+    userName: "",
   }
-  showNewPostForm: boolean = false;
   user: User | null = null;
   auth: boolean = false;
   posts: Post[] = [];
@@ -45,16 +44,12 @@ export class AddPostComponent implements OnInit {
     this.httpClient.post(environment.endpointURL + "post", this.newPost)
       .subscribe((res: any) => {
         console.log(res)
-        // here we get the response from the server
-        // check if object is of type Post - should contain some property like title or text
-        if (res.title) {
-          this.posts.push(res)
-        } else {
-          // else it may be a error message that we can somehow show to the user
-          alert(JSON.stringify(res))
-        }
       })
-    this.showNewPostForm = !this.showNewPostForm;
   }
+
+  updateButtonStatus(): boolean {
+    return this.newPost.title == '';
+  }
+
 
 }

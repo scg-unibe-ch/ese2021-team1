@@ -24,6 +24,14 @@ export class WallComponent implements OnInit {
 
   ngOnInit(): void {
     // fetch all posts from server on start
+    this.getAllPosts();
+  }
+
+  isPostsEmpty(): boolean {
+    return this.posts.length == 0;
+  }
+
+  getAllPosts(): void {
     this.httpClient.get(environment.endpointURL + "post")
       .subscribe(res => {
         if (typeof res === "object") {
@@ -31,12 +39,9 @@ export class WallComponent implements OnInit {
             this.posts.push(post)
           })
         }
+        this.posts.reverse(); //so newest post is at the top
         console.log(this.posts)
       })
-  }
-
-  isPostsEmpty(): boolean {
-    return this.posts.length == 0;
   }
 
   convertImgToBlob(file: File): Blob|undefined {

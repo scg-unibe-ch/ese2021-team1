@@ -1,13 +1,18 @@
 <!-- the following is rendered for all users except the creator -->
 <div class="postWrapper" *ngIf="user !== post.userName">
     <div class="metadata">
-        <!-- <img src="../../../assets/marmot01.png" class="usericon"> -->
+        <img src="../../../assets/marmot01.png" class="usericon">
         <div class="username">{{post.userName}}:</div>
         <div class="postdate">{{post.createdAt}}</div>
     </div>
     <div class="content">
       <div class="contentTitle">{{post.title}}</div>
       <div class="material">{{post.text}}</div>
+    </div>
+    <div class="underPost">
+      <button (click)="updatePost()" class="upvoteButton">Upvotes: {{post.upvotes}}</button>
+      <button (click)="updatePost()" class="downvoteButton">Downvotes: {{post.downvotes}}</button>
+      <button class="commentsButton">Comments</button>
     </div>
     <!-- <div class="commentSection">
         <div class="comment">
