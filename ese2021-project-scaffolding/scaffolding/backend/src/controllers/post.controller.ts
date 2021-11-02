@@ -43,6 +43,18 @@ postController.delete('/:id', (req: Request, res: Response) => {
         .then(updated => res.send(updated))
         .catch(err => res.send(err));
 });
+
+postController.subscribe('/:id/post', (req: Request, res: Response) => {
+    postService.like(req.params.id)
+        .then(updated => res.send(updated))
+        .catch(err => res.send(err));
+});
+
+postController.unsubscribe('/:id/post', (req: Request, res: Response) => {
+    postService.dislike(req.params.id)
+        .then(updated => res.send(updated))
+        .catch(err => res.send(err));
+});
 // postController.put('/:id', (req: Request, res: Response) => {
 //     postService.updatePost({id: req.params.id, data: req.body})
 //         .then(post => res.json(post))

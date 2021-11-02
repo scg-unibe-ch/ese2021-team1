@@ -76,7 +76,35 @@ export class PostService {
             }));
     }
 
-            // public addImage(req: MulterRequest): Promise<ItemImageAttributes> {
+    public like(id) {
+        return Post.findByPk(id)
+            .then((found => {
+                if (found != null) {
+                    found.update( {upvotes: (found.upvotes++)})
+                        .then(liked => Promise.resolve(liked))
+                        .catch(() => Promise.reject('failed to like'));
+                } else {
+                    Promise.reject('Post not found');
+                }
+            }))
+            .catch(() => Promise.reject('failed to like'));
+    }
+
+    public dislike(id) {
+        return Post.findByPk(id)
+            .then((found => {
+                if (found != null) {
+                    found.update( {downvotes: (found.downvotes++)})
+                        .then(disliked => Promise.resolve(disliked))
+                        .catch(() => Promise.reject('failed to dislike'));
+                } else {
+                    Promise.reject('Post not found');
+                }
+            }))
+            .catch(() => Promise.reject('failed to dislike'));
+    }
+
+        // public addImage(req: MulterRequest): Promise<ItemImageAttributes> {
         //     return TodoItem.findByPk(req.params.id)
         //         .then(found => {
         //             if (!found) {
