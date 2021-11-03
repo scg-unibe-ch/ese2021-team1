@@ -3,6 +3,7 @@ import {TodoItem} from '../models/todoitem.model';
 import {ItemImage, ItemImageAttributes} from '../models/itemImage.model';
 import {MulterRequest} from '../models/multerRequest.model';
 import {Post} from '../models/post.model';
+import {rejects} from 'assert';
 
 export class PostService {
 
@@ -34,6 +35,45 @@ export class PostService {
             // return the error message
             return Promise.reject(err.message);
         });
+    }
+
+    public async updatePost(id, post) {
+        return Post.findByPk(id)
+            .then(found => {
+                if (found != null) {
+                    return this.updateBody(found, post)
+                        .then(updated => Promise.resolve(updated))
+                        .catch((err) => Promise.reject(err.message) );
+                } else {
+                    return Promise.reject(' Post not found');
+                }
+            });
+    }
+
+    private async updateBody(post: Post, newPost: { title: string, content: string, image: Blob, labels: string[] }) {
+        if (newPost.image != null) {
+            return post.update(
+                {title: newPost.title, text: newPost.content, image: newPost.image, category: newPost.labels.toString()})
+                .then(updated => Promise.resolve(updated))
+                .catch(() => Promise.reject('update failed') );
+        } else {
+            return post.update({title: newPost.title, text: newPost.content, category: newPost.labels.toString()})
+                .then(updated => Promise.resolve(updated))
+                .catch(() => Promise.reject('update failed') );
+        }
+    }
+
+    public async deletePost(id) {
+        return Post.findByPk(id)
+            .then((found => {
+                if (found != null) {
+                    found.destroy()
+                        .then(destroyed => Promise.reject(destroyed))
+                        .catch(() => Promise.reject('failed to destroy'));
+                } else {
+                    return Promise.reject('Post not found');
+                }
+            }));
     }
 
             // public addImage(req: MulterRequest): Promise<ItemImageAttributes> {
