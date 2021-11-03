@@ -51,5 +51,4 @@ export class AddPostComponent implements OnInit {
     return this.newPost.title == '';
   }
 
-
 }

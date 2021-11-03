@@ -1,23 +1,26 @@
-.form {
-  margin: auto;
+.addPost {
   width: 65%;
+  position: relative;
+  margin: auto auto 10px;
 }
 
 .inputField {
   width: 100%;
   padding: 12px 5px 10px;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   border-radius: 5px;
   border: none;
 }
 
 .createButton {
+  position: absolute;
   background-color: #ff9307;
+  right: 0;
+  bottom: 0;
   color: white;
   font-weight: bold;
   font-size: 15px;
   padding: 5px 10px;
-  margin-bottom: 10px;
   border-radius: 25px;
   border: none;
   transition-duration: 0.1s;
@@ -36,4 +39,18 @@
 
 .createButton:disabled {
   background-color: grey;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+#uploadImg {
+  cursor: pointer;
+}
+
+#buttUploadImg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }

@@ -3,7 +3,9 @@
       <input [(ngModel)]="newPost.title" class="inputField" type="text" name="title" placeholder="Enter Title" /><br>
       <textarea [(ngModel)]="newPost.content" class="inputField" name="text" placeholder="Enter text"></textarea><br>
       <!-- ingore the image for now -->
-      <!-- <input [(ngModel)]="newPost.image" class="inputField" type="file" name="upload" accept="image/*" /><br> -->
-      <button [disabled]="updateButtonStatus()" onClick="window.location.reload()" type="submit" class="createButton">Post</button> <!-- refreshes page -->
+      <input  id="files" type="file" name="upload" accept="image/*" class="hidden"/><br>
+      <button id="buttUploadImg"><label for="files" id="uploadImg">Datei auswählen</label></button>
+      <button [disabled]="updateButtonStatus()" onClick="window.location.reload()" type="submit" class="createButton">Post</button>
+      <!-- refreshes page -->
     </form>
 </div>
