@@ -18,7 +18,7 @@ export class RegisterComponent {
   showPassReqs: boolean = false;
 
   showRegisterModal: boolean = false
-
+  showRegistrSuccess: boolean = false
   //[firstName, lastName, email, address, street number, city, zipcode, phoneNumber]
   isValidPassword: boolean = false;
   serverFeedback: string = '';
@@ -89,6 +89,7 @@ export class RegisterComponent {
     if (!this.checkIsValid()) {
       // specific feedback on each input is shown based on formFeedback object
     } else {
+
       console.log('Submitting Register Data:', this.userToRegister)
       this.httpClient.post(environment.endpointURL + "user/register", {
         userName: this.userToRegister.username,
@@ -105,10 +106,14 @@ export class RegisterComponent {
       }).subscribe((data: any) => {
         if (typeof data === 'string') {
           this.serverFeedback = data.toString()
-          // BASED ON WHAT IT RETURNS, YOU SHOLD HIGHLIGHT THE INPUT
+          // BASED ON WHAT IT RETURNS, YOU SHOULD HIGHLIGHT THE INPUT
         } else if (typeof data === 'object' && data.userId) {
-          this.serverFeedback = "Successful registration."
-          this.resetRegistrationForm();
+          this.serverFeedback = "Registration completed succesfully"
+          this.showRegistrSuccess = true;
+          setTimeout(() => {
+            this.showRegistrSuccess = false;
+            this.resetRegistrationForm();
+            }, 2000)
         }
         });
     }
@@ -234,7 +239,6 @@ export class RegisterComponent {
     // AND SHOOT IT TO HELL - CLOSE IT AND OPEN THE LOGIN MODAL
     this.userService.setRegisterModalShow(false)
     this.userService.setLoginModalShow(true)
-
   }
-  
+
 }

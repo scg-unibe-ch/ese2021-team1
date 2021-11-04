@@ -1,12 +1,214 @@
-@import '~@angular/cdk/overlay-prebuilt.css';
-
 .wallWrapper {
   position: absolute;
+  padding: 0;
+  margin: 0;
   width: 60%;
   height: auto;
   bottom: 0px;
   left: 50%;
   transform: translate(-50%);
-
   top: 10%;
+}
+
+.postCreateWrapper {
+  width: 85%;
+  height: auto;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  border-radius: 10px;
+  background-color: #3f3f3f;
+}
+
+.createPostButton {
+  position: relative;
+  width: 85%;
+  height: 60px;
+  border-radius: 25px;
+  left: 50%;
+  border: 0px;
+  transform: translate(-50%);
+  margin-bottom: 20px;
+  color: rgb(204, 204, 204);
+  background-color: #1eff00;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: din-round, sans-serif;
+  font-size: 120%;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  line-height: 20px;
+  outline: none;
+  overflow: visible;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transition: filter 0.2s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  transition: all 80ms ease-in-out;
+}
+.createPostButton:hover {
+  background-color: #e7692f;
+  height: 75px;
+  cursor: pointer;
+}
+.createPostButton:after {
+  background-clip: padding-box;
+  background-color: #3f3f3f;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  bottom: -4px;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.createPostButton:focus {
+  user-select: auto;
+}
+
+.createPostButton:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
+.createPostButton:disabled {
+  cursor: auto;
+}
+
+.overlay {
+  width: 100% !important;
+}
+
+.inputField {
+  background-color: rgb(246, 246, 246);
+  position: relative;
+  height: 30px;
+  border-radius: 10px;
+  border: 0px;
+  outline: none;
+  margin-left: 0;
+  left: 15px;
+  padding: 15px;
+  width: calc(100% - 60px);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px 0px inset;
+  font-size: larger;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.textArea {
+  background-color: rgb(246, 246, 246);
+  position: relative;
+  min-height: 200px;
+  border-radius: 10px;
+  border: 0px;
+  outline: none;
+  margin-left: 0;
+  left: 15px;
+  padding: 15px;
+  width: calc(100% - 60px);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px 0px inset;
+  font-size: larger;
+  font-family: din-round, sans-serif;
+}
+
+.postButton {
+  position: relative;
+  width: 98%;
+  height: 50px;
+  border-radius: 25px;
+  left: 50%;
+  border: 0px;
+  transform: translate(-50%);
+  margin-bottom: 5px;
+  margin-top: 10px;
+  color: rgb(204, 204, 204);
+  background-color: #1eff00;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: din-round, sans-serif;
+  font-size: auto;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  line-height: 20px;
+  outline: none;
+  overflow: visible;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transition: filter 0.2s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  transition: all 80ms ease-in-out;
+  margin-left: 0;
+  margin-bottom: 10px;
+}
+.postButton:hover {
+  background-color: #e7692f;
+  cursor: pointer;
+}
+.postButton:after {
+  background-clip: padding-box;
+  background-color: #ff9307;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  bottom: -4px;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.postButton:focus {
+  user-select: auto;
+}
+
+.postButton:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
+.postButton:disabled {
+  cursor: auto;
+}
+
+.noPosts {
+  color: rgb(199, 199, 199);
+  font-family: din-round, sans-serif;
+  font-size: 120%;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.feedback {
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+  color: tomato;
+  left: 50%;
+  transform: translate(-50%);
+  text-align: center;
+  font-weight: bold;
+  background-color: rgb(255, 255, 255);
+  width: fit-content;
+  border-radius: 10px;
 }
