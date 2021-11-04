@@ -18,7 +18,7 @@ export class PostComponent implements OnInit {
   update = new EventEmitter<Post>();
 
   @Output()
-  delete = new EventEmitter<Post>();
+  deletePostEmit = new EventEmitter<Post>();
 
   auth: boolean = false
   user: string = ""
@@ -49,13 +49,17 @@ export class PostComponent implements OnInit {
     })
   }
 
-  deletePost() {
-    this.httpClient.delete(environment.endpointURL + "post/" + this.post.id)
-    .subscribe(res => {
-      console.log(res)
-      // this has to be developed further
-      // remove the post from the list of posts that is located in the wall component
-    });
+  // passes up the id of the post to the parent for deletion
+  deletePost($event: any) {
+    // DELETE IT IN THE FRONT BY PASSING IT UPWARDS TO THE PARENT (DELETES IT FROM THE ARRAY WITH POSTS)
+    this.deletePostEmit.emit(this.post.id)
+    // DELETE IT IN THE BACK
+    // this.httpClient.delete(environment.endpointURL + "post/" + this.post.id)
+    // .subscribe(res => {s
+    //   console.log(res)
+    //   // this has to be developed further
+    //   // remove the post from the list of posts that is located in the wall component
+    // });
   }
 
 }

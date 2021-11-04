@@ -64,11 +64,12 @@ export class WallComponent implements OnInit {
       // with the code below we send the new post object to the server
       this.httpClient.post(environment.endpointURL + "post", this.newPost)
         .subscribe((res: any) => {
-          console.log(res)
           // here we get the response from the server
           // check if object is of type Post - should contain some property like title or text
           if (res.title) {
             this.posts.push(res)
+            console.log(res)
+            console.log(this.posts)
           } else {
             // else it may be a error message that we can somehow show to the user
             alert(JSON.stringify(res))
@@ -82,6 +83,14 @@ export class WallComponent implements OnInit {
       userName: ""
       }
 
+    }
+  }
+
+  deletePostParent(postId: any) {
+    for (let i = 0; i < this.posts.length; i++) {
+      if (this.posts[i].id == postId) {
+        this.posts.splice(i, 1)
+      }
     }
   }
 

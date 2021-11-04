@@ -38,7 +38,7 @@
     <div class="content">
         <input type="text" ng-model="newTitle" class="contentTitle" placeholder="{{post.title}}" />
         <textarea ng-model="newText" class="material" value="{{post.text}}"></textarea>
-        <button (click)="updatePost()">Update</button>
-        <button (click)="deletePost()">Delete</button>
+        <button (click)="updatePost()" >Update</button>
+        <button (click)="deletePost(post.id)">Delete</button>
     </div>
 </div>

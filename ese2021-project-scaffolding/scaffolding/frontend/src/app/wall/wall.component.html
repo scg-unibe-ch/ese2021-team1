@@ -13,6 +13,6 @@
   </div>
   <p class="noPosts" *ngIf="isPostsEmpty()">There are currently no posts 😔</p>
   <div *ngFor="let post of posts">
-    <app-post [post] = "post"></app-post>
+    <app-post [post] = "post" (deletePostEmit)="deletePostParent($event)"></app-post>
   </div>
 </div>
