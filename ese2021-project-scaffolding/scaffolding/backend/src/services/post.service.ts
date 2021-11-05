@@ -4,6 +4,14 @@ import {ItemImage, ItemImageAttributes} from '../models/itemImage.model';
 import {MulterRequest} from '../models/multerRequest.model';
 import {Post} from '../models/post.model';
 
+new Promise(res => {
+    // lsjfjd
+}).then(res => {
+
+}).catch(err => {
+
+});
+
 export class PostService {
 
     // @jan, @alessio
