@@ -24,4 +24,11 @@ userController.get('/', verifyToken, // you can add middleware on specific reque
     }
 );
 
+userController.put('/', (req: Request, res: Response) => {
+    userService.changePassword(req.body)
+        .then( changed => res.send(changed))
+        .catch(err => res.send(err));
+    }
+);
+
 export const UserController: Router = userController;
