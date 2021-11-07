@@ -140,62 +140,12 @@ export class PostService {
             return Post.findAll()
                 .then(posts => {
                     if (posts) {
-                        return Promise.resolve(posts); // TODO: is it post or the table posts from post.model.ts that we should return?
+                        return Promise.resolve(posts);
                     } else {
                         return Promise.reject('No posts available.');
                     }
                 })
                 .catch(() => Promise.reject('Could not fetch posts.'));
         }
-
-        // // TODO: when createPost is called, call addImage to add the image too (or find a way to add it in here directly)
-        // public createPost(title, text, category, userId): Promise<Post> {
-        //     return Post.create().then(post => {
-        //         if (title != null) {
-        //             if (category != null) {
-        //                 if (userId != null) {
-        //                     post.title = title;
-        //                     post.text = text;
-        //                     post.category = category;
-        //                     post.userId = userId;
-        //                     post.created_at = Date.now();
-        //                     return Promise.resolve(post);
-        //                 } else {
-        //                     return Promise.reject('userID of the user is missing');
-        //                 }
-        //             } else {
-        //                 return Promise.reject('category is missing');
-        //             }
-        //         } else {
-        //             return Promise.reject('post title is missing');
-        //         }
-        //     }).catch(() => Promise.reject('some fields may be empty'));
-        // }
-
-        // this needs to be debugged
-        // public async updatePost(props: any) {
-        //     return Post.update(
-        //         {title: props.data.title, text: props.data.content},
-        //         { where: { id: props.data.id }})
-        //     .then(updated => {
-        //         Promise.resolve(updated);
-        //     })
-        //     .catch(err => {
-        //         Promise.reject(err.message);
-        //     });
-        // }
-
-        // this needs to be debugged
-        // public async deletePost(id: number) {
-        //     return Post.destroy({
-        //         where: {id: id}
-        //     })
-        //     .then(res => {
-        //         Promise.resolve(res);
-        //     })
-        //     .catch(err => {
-        //         Promise.reject(err.message);
-        //     });
-        // }
 
 }
