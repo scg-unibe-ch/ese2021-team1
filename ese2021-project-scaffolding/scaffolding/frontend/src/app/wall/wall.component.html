@@ -1,16 +1,18 @@
 <div class="wallWrapper">
-  <button (click)="showNewPostForm=!showNewPostForm" cdkOverlayOrigin #trigger="cdkOverlayOrigin">Create Post</button>
-  <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="showNewPostForm">
-    <form class="overlay" (ngSubmit)="createPost()">
-      <input [(ngModel)]="newPost.title" class="inputField" type="text" name="title" placeholder="Enter Title" /><br>
-      <textarea [(ngModel)]="newPost.content" class="inputField" name="text" placeholder="Enter text"></textarea><br>
-      <!-- ingore the image for now -->
-      <!-- <input [(ngModel)]="newPost.image" class="inputField" type="file" name="upload" accept="image/*" /><br> -->
-      <button type="submit" class="createButton">Create</button>
-    </form>
-  </ng-template>
-  <p *ngIf="isPostsEmpty()">There are currently no posts.</p>
+  <button *ngIf="auth" class="createPostButton" (click)="togglePostForm()" [innerHtml]="createPostButtonText"></button>
+  <div class="postCreateWrapper">
+    <div *ngIf="showNewPostForm">
+        <input [(ngModel)]="newPost.title" class="inputField" type="text" name="title" placeholder="Enter Title" />
+        <div class="feedback" >{{createPostFeedback.title}}</div>
+        <textarea [(ngModel)]="newPost.content" class="textArea" name="text" placeholder="Enter text"></textarea>
+        <div class="feedback">{{createPostFeedback.content}}</div>
+        <!-- ingore the image for now -->
+        <!-- <input [(ngModel)]="newPost.image" class="inputField" type="file" name="upload" accept="image/*" /><br> -->
+        <button type="submit" (click)="createPost()" class="postButton">SHARE NOW</button>
+    </div>
+  </div>
+  <p class="noPosts" *ngIf="isPostsEmpty()">There are currently no posts 😔</p>
   <div *ngFor="let post of posts">
-    <app-post [post] = "post"></app-post>
+    <app-post [post] = "post" (deletePostEmit)="deletePostParent($event)"></app-post>
   </div>
 </div>

@@ -1,5 +1,4 @@
 export class Post {
-
   constructor(
     public title: string,
     public text: string,
@@ -8,6 +7,7 @@ export class Post {
     public upvotes: number,
     public downvotes: number,
     public created_at: String,
-    public userId: string
+    public userId: string,
+    public id: number
   ) {}
 }

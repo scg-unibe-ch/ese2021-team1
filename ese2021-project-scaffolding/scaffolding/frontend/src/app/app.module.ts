@@ -24,6 +24,7 @@ import { PasswordModalComponent } from './password-modal/password-modal.componen
 import { WallComponent } from './wall/wall.component';
 import { PostComponent } from './wall/post/post.component';
 import {OverlayModule} from "@angular/cdk/overlay";
+import { AppRoutingModule, routingComponents } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {OverlayModule} from "@angular/cdk/overlay";
     RegisterComponent,
     PasswordModalComponent,
     WallComponent,
-    PostComponent
+    PostComponent,
+    routingComponents
   ],
     imports: [
         BrowserModule,
@@ -51,7 +53,8 @@ import {OverlayModule} from "@angular/cdk/overlay";
         MatListModule,
         FormsModule,
         MatCheckboxModule,
-        OverlayModule
+        OverlayModule,
+      AppRoutingModule
     ],
   providers: [
     {
