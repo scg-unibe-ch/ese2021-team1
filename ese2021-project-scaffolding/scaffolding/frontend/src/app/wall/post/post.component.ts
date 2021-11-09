@@ -35,15 +35,17 @@ export class PostComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+
   }
-  
+
   updatePost() {
     this.httpClient.put(environment.endpointURL + "post/" + this.post.id, {
       title: this.newTitle,
       content: this.newText
+
     }).subscribe(res => {
       console.log(res)
+
       // this has to be developed further
       // replace the post in the list of posts that is located in the wall component with the new one
     })
