@@ -8,7 +8,7 @@ export class UserService {
     public register(user: UserAttributes): Promise<UserAttributes> {
         const password = this.passwordGenerator(user.password);
         if (typeof password === 'string') {
-        user.password = password;
+            user.password = password;
         }
         return User.create(user).then(inserted => Promise.resolve(inserted)).catch(err => {
             return Promise.reject(err.errors[0].message); // returns the detailed message that caused the error
@@ -63,19 +63,24 @@ export class UserService {
         return User.findByPk(body.userId)
             .then(found => {
                 if (found != null) {
-                    return
+                    this.updatePassword(body.userId, body.password);
+                } else {
+                    return Promise.reject({ message: 'User not found.'});
                 }
-            })
+            }).catch(err => {
+                return Promise.reject(err.message);
+            });
     }
-    
-    private async updatePassword(user: User, password: string) {
-        switch (this.passwordCheck(user.password)) {
-            case 1 : return Promise.reject({message: 'Doesnt contain capital/small letter'});
-            case 2 : return Promise.reject({message: 'Doesnt contain number'});
-            case 3 : return Promise.reject({message: 'Doesnt contain special character'});
-            case 4 : return Promise.reject({message: 'Minimum of 8 characters'});
+
+    private async updatePassword(user: User, newUnhashedPassword: string) {
+        const hashedPW = this.passwordGenerator(newUnhashedPassword);
+        if (typeof hashedPW === 'string') {
+            return user.update({password: hashedPW})
+                .then(updated => Promise.resolve(updated))
+                .catch(() => Promise.reject('update failed'));
+        } else {
+            return Promise.reject(hashedPW); // errormessage from passwordGenerator
         }
-        
     }
 
     private passwordGenerator (password: string) {
