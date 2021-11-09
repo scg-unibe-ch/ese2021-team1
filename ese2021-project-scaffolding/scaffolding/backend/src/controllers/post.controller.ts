@@ -31,6 +31,18 @@ postController.get('/', (req: Request, res: Response) => {
         .catch(err => res.json(err));
 });
 
+
+postController.put('/:id', (req: Request, res: Response) => {
+   postService.updatePost(req.params.id, req.body)
+       .then(updated => res.send(updated))
+       .catch(err => res.send(err));
+});
+
+postController.delete('/:id', (req: Request, res: Response) => {
+    postService.deletePost(req.params.id)
+        .then(updated => res.send(updated))
+        .catch(err => res.send(err));
+});
 // postController.put('/:id', (req: Request, res: Response) => {
 //     postService.updatePost({id: req.params.id, data: req.body})
 //         .then(post => res.json(post))

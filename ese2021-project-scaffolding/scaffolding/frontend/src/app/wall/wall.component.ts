@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { OverlayModule} from "@angular/cdk/overlay";
 import {Post} from "../models/post.model";
 import {environment} from "../../environments/environment";
@@ -23,26 +23,35 @@ export class WallComponent implements OnInit {
     userName: ""
   }
   posts: Post[] = [];
-  auth: boolean = false;
-  user: User | null = null;
+
 
   createPostFeedback = {
     title: '',
     content: ''
   }
 
+  auth: boolean = false
+  user: string | null = null
+
 
   constructor(
     public httpClient: HttpClient,
     public userService: UserService
-  ) { 
-    // Listen for changes
+  ) {
     userService.loggedIn$.subscribe(res => this.auth = res);
-    userService.user$.subscribe(res => this.user = res);
+    userService.user$.subscribe(res => this.user = res.username);
   }
 
   ngOnInit(): void {
     // fetch all posts from server on start
+    this.getAllPosts();
+  }
+
+  isPostsEmpty(): boolean {
+    return this.posts.length == 0;
+  }
+
+  getAllPosts(): void {
     this.httpClient.get(environment.endpointURL + "post")
       .subscribe(res => {
         if (typeof res === "object") {
@@ -50,40 +59,9 @@ export class WallComponent implements OnInit {
             this.posts.push(post)
           })
         }
+        this.posts.reverse(); //so newest post is at the top
         console.log(this.posts)
       })
-  }
-  
-  createPost() { // gets fired when the create post form is submitted
-    if (this.user) this.newPost.userName = this.user?.username // automatically set the user that creates the post
-    if (!this.auth || !this.user) {
-      alert("Only signed in users can create posts. This form should not be visible.")
-      return
-    }
-    if (this.checkValidPost()) {
-      // with the code below we send the new post object to the server
-      this.httpClient.post(environment.endpointURL + "post", this.newPost)
-        .subscribe((res: any) => {
-          // here we get the response from the server
-          // check if object is of type Post - should contain some property like title or text
-          if (res.title) {
-            this.posts.push(res)
-            console.log(res)
-            console.log(this.posts)
-          } else {
-            // else it may be a error message that we can somehow show to the user
-            alert(JSON.stringify(res))
-          }
-        })
-      this.togglePostForm()
-      this.newPost = {
-      title: "",
-      content: "",
-      labels: [],
-      userName: ""
-      }
-
-    }
   }
 
   deletePostParent(postId: any) {
@@ -94,27 +72,10 @@ export class WallComponent implements OnInit {
     }
   }
 
-  checkValidPost(): boolean {
-    if (this.newPost.title == "" || this.newPost.content == "") {
-      if (this.newPost.title == "") {
-        this.createPostFeedback.title = "Please enter a title"
-      } else {
-        this.createPostFeedback.title = ""
-      }
-      if (this.newPost.content == "") {
-        this.createPostFeedback.content = "Content cannot be empty"
-      } else {
-        this.createPostFeedback.content = ""
-      }
-      return false;
-    } 
-    else {
-      return true
-    }
-  }
-
-  isPostsEmpty(): boolean {
-    return this.posts.length == 0;
+  addPostParent(post: any) {
+    console.log(post)
+    this.posts.push(post)
+    this.togglePostForm();
   }
 
   convertImgToBlob(file: File): Blob|undefined {

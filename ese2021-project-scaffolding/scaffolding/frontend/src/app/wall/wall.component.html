@@ -1,17 +1,11 @@
 <div class="wallWrapper">
+  <!-- toggles the add-post component -->
   <button *ngIf="auth" class="createPostButton" (click)="togglePostForm()" [innerHtml]="createPostButtonText"></button>
-  <div class="postCreateWrapper">
-    <div *ngIf="showNewPostForm">
-        <input [(ngModel)]="newPost.title" class="inputField" type="text" name="title" placeholder="Enter Title" />
-        <div class="feedback" >{{createPostFeedback.title}}</div>
-        <textarea [(ngModel)]="newPost.content" class="textArea" name="text" placeholder="Enter text"></textarea>
-        <div class="feedback">{{createPostFeedback.content}}</div>
-        <!-- ingore the image for now -->
-        <!-- <input [(ngModel)]="newPost.image" class="inputField" type="file" name="upload" accept="image/*" /><br> -->
-        <button type="submit" (click)="createPost()" class="postButton">SHARE NOW</button>
-    </div>
-  </div>
+  <app-add-post *ngIf="showNewPostForm" (addPostEmit)="addPostParent($event)"></app-add-post>
+  <!-- handles the no-posts case -->
   <p class="noPosts" *ngIf="isPostsEmpty()">There are currently no posts 😔</p>
+  <p *ngIf="isPostsEmpty()">There are currently no posts.</p>
+  <!-- renders all posts -->
   <div *ngFor="let post of posts">
     <app-post [post] = "post" (deletePostEmit)="deletePostParent($event)"></app-post>
   </div>

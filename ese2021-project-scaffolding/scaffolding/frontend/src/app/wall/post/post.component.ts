@@ -54,12 +54,12 @@ export class PostComponent implements OnInit {
     // DELETE IT IN THE FRONT BY PASSING IT UPWARDS TO THE PARENT (DELETES IT FROM THE ARRAY WITH POSTS)
     this.deletePostEmit.emit(this.post.id)
     // DELETE IT IN THE BACK
-    // this.httpClient.delete(environment.endpointURL + "post/" + this.post.id)
-    // .subscribe(res => {s
-    //   console.log(res)
-    //   // this has to be developed further
-    //   // remove the post from the list of posts that is located in the wall component
-    // });
+    this.httpClient.delete(environment.endpointURL + "post/" + this.post.id)
+    .subscribe(res => {
+      console.log('DELETE REQUEST', res)
+      // this has to be developed further
+      // remove the post from the list of posts that is located in the wall component
+    });
   }
 
 }
