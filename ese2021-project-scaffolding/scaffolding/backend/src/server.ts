@@ -15,6 +15,8 @@ import cors from 'cors';
 import {AdminController} from './controllers/admin.controller';
 import {ItemImage} from './models/itemImage.model';
 import { PostController } from './controllers/post.controller';
+import {Orders} from './models/orders.model';
+import {Product} from './models/product.model';
 
 
 export class Server {
@@ -31,6 +33,8 @@ export class Server {
         TodoList.initialize(this.sequelize);
         User.initialize(this.sequelize);
         ItemImage.initialize(this.sequelize);
+        Orders.initialize(this.sequelize);
+        Product.initialize(this.sequelize);
         TodoItem.createAssociations();
         TodoList.createAssociations();
         ItemImage.createAssociations();
