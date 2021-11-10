@@ -1,4 +1,4 @@
-import { Model, Sequelize, DataTypes } from 'sequelize';
+import {Model, Sequelize, DataTypes, Optional} from 'sequelize';
 
 export interface ProductProperties {
     id: number; // used for the database
@@ -11,9 +11,9 @@ export interface ProductProperties {
     discount: number;
 }
 
+export interface  ProductCreationProperties extends Optional<ProductProperties, 'discount'> {}
 
-
-export class Product extends Model<ProductProperties> implements ProductProperties {
+export class Product extends Model<ProductProperties, ProductCreationProperties> implements ProductProperties {
     id: number;
     title: string;
     image: Blob;
