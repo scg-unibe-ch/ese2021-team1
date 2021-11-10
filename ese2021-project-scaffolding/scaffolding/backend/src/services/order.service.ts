@@ -43,7 +43,29 @@ export class OrderService {
                 }
             });
     }
-    public async getAllOrders() {
-        return;
+    // TODO: isAdmin
+    // fetchs Order for admin to an user or an user for itself
+    public async getAllOrders(ids: {requestee: number, requested: number}) {
+        if (ids.requestee === ids.requested || isAdmin(ids.requestee)) {
+            Orders.findByPk(ids.requested)
+                .then(orders => {
+            if (orders) {
+                return Promise.resolve(orders);
+            } else {
+                return Promise.reject('orders not found');
+            }
+            }).catch((err) => Promise.reject(err));
+        }
+    }
+    public async getAllOrdersFrom(userID) {
+        if (userID.admin) {
+            Orders.findAll()
+                .then(orders => {if (orders) {
+                Promise.resolve(orders);
+            } else {
+                    Promise.reject('orders not found');
+                }
+            });
+        }
     }
 }

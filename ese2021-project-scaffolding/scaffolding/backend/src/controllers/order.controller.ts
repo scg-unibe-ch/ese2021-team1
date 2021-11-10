@@ -14,12 +14,19 @@ orderController.post('/', (req: Request, res: Response) => {
         .then(order => res.json(order))
         .catch(err => res.json(err));
 });
-// this route is hit by the frontend on startup to fetch all orders from the database
-orderController.get('/', (req: Request, res: Response) => {
-    orderService.getAllOrders()
-        .then(posts => res.json(posts))
+// gets all the posts (only for admins)
+orderController.get('/:id', (req: Request, res: Response) => {
+    orderService.getAllOrders(req.body)
+        .then(orders => res.json(orders))
         .catch(err => res.json(err));
 });
+// get all the posts for the requested User
+orderController.get('/:id', (req: Request, res: Response) => {
+    orderService.getAllOrdersFrom(req.body)
+        .then(orders => res.json(orders))
+        .catch(err => res.json(err));
+});
+
 
 
 orderController.put('/:id', (req: Request, res: Response) => {
