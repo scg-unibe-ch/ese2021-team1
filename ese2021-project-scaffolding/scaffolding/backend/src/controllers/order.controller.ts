@@ -1,6 +1,7 @@
 import express from 'express';
 import { Router, Request, Response } from 'express';
 import { PostService } from '../services/post.service';
+import {OrderService} from '../services/order.service';
 
 const orderController: Router = express.Router();
 
@@ -9,7 +10,7 @@ const orderService = new OrderService();
 
 orderController.post('/', (req: Request, res: Response) => {
     console.log(req.body);
-    orderService.createOrder()
+    orderService.createOrder(req.body)
         .then(order => res.json(order))
         .catch(err => res.json(err));
 });
