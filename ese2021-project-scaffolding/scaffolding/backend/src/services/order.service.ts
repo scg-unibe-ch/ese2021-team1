@@ -43,10 +43,10 @@ export class OrderService {
                 }
             });
     }
-    // TODO: isAdmin
+
     // fetchs Order for admin to an user or an user for itself
     public async getAllOrders(ids: {requestee: number, requested: number}) {
-        if (ids.requestee === ids.requested || isAdmin(ids.requestee)) {
+        if (ids.requestee === ids.requested || this.isAdmin(ids.requestee)) {
             Orders.findByPk(ids.requested)
                 .then(orders => {
             if (orders) {
@@ -67,5 +67,16 @@ export class OrderService {
                 }
             });
         }
+    }
+
+    private isAdmin(id) {
+        User.findByPk(id)
+            .then(found => {
+                if (found != null) {
+                    return found.admin;
+                } else {
+                    return Promise.reject('User not found');
+                }
+            });
     }
 }
