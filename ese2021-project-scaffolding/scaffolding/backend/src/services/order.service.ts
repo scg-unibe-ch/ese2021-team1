@@ -1,12 +1,13 @@
 import {Orders} from '../models/orders.model';
 import {User} from '../models/user.model';
+import {Product} from '../models/product.model';
 
 
 export class OrderService {
 // TODO: testing for admin inside of creatingORDEr
-    public async createOrder(order: {userID: number, products: number[], paymentMethod: string,
+    public async createOrder(order: {userID: number, products: Product[], paymentMethod: string,
         homeAddress: string, streetNumber: number, zipCode: number, city: string,
-        processingStatus: string, purchaseDate: number}) {
+        processingStatus: string, purchaseDate: string}) {
         if (order.zipCode === null && order.city === null && order.streetNumber === null && order.homeAddress === null) {
             User.findByPk(order.userID).then(found => {
                 if (found != null) {
@@ -29,7 +30,8 @@ export class OrderService {
             paymentMethod: order.paymentMethod,
             processingStatus: order.processingStatus,
             streetNumber: order.streetNumber,
-            zipCode: order.zipCode
+            zipCode: order.zipCode,
+            purchaseDate: order.purchaseDate
         });
     }
 
@@ -43,10 +45,10 @@ export class OrderService {
                 }
             });
     }
-    // TODO: isAdmin
+
     // fetchs Order for admin to an user or an user for itself
     public async getAllOrders(ids: {requestee: number, requested: number}) {
-        if (ids.requestee === ids.requested || isAdmin(ids.requestee)) {
+        if (ids.requestee === ids.requested || this.isAdmin(ids.requestee)) {
             Orders.findByPk(ids.requested)
                 .then(orders => {
             if (orders) {
@@ -67,5 +69,16 @@ export class OrderService {
                 }
             });
         }
+    }
+
+    private isAdmin(id) {
+        User.findByPk(id)
+            .then(found => {
+                if (found != null) {
+                    return found.admin;
+                } else {
+                    return Promise.reject('User not found');
+                }
+            });
     }
 }
