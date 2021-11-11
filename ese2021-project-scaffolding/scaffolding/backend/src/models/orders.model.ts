@@ -68,7 +68,7 @@ export class Orders extends Model<OrderAttributes> implements OrderAttributes {
                     defaultValue: 'Pending'
                 },
                 purchaseDate: {
-                    type: DataTypes.INTEGER,
+                    type: DataTypes.STRING,
                     allowNull: false
                 }
             },

@@ -1,12 +1,13 @@
 import {Orders} from '../models/orders.model';
 import {User} from '../models/user.model';
+import {Product} from '../models/product.model';
 
 
 export class OrderService {
 // TODO: testing for admin inside of creatingORDEr
-    public async createOrder(order: {userID: number, products: number[], paymentMethod: string,
+    public async createOrder(order: {userID: number, products: Product[], paymentMethod: string,
         homeAddress: string, streetNumber: number, zipCode: number, city: string,
-        processingStatus: string, purchaseDate: number}) {
+        processingStatus: string, purchaseDate: string}) {
         if (order.zipCode === null && order.city === null && order.streetNumber === null && order.homeAddress === null) {
             User.findByPk(order.userID).then(found => {
                 if (found != null) {
@@ -29,7 +30,8 @@ export class OrderService {
             paymentMethod: order.paymentMethod,
             processingStatus: order.processingStatus,
             streetNumber: order.streetNumber,
-            zipCode: order.zipCode
+            zipCode: order.zipCode,
+            purchaseDate: order.purchaseDate
         });
     }
 
