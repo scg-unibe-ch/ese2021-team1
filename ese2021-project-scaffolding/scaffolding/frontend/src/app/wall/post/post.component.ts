@@ -3,13 +3,16 @@ import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Post } from '../../models/post.model';
 import { UserService } from 'src/app/services/user.service';
+import {MatIconModule} from '@angular/material/icon';
 import { User } from 'src/app/models/user.model';
+
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
-  styleUrls: ['./post.component.css']
+  styleUrls: ['./post.component.css'],
 })
+
 export class PostComponent implements OnInit {
 
   @Input() post: any = {}
@@ -24,6 +27,10 @@ export class PostComponent implements OnInit {
   user: string = ""
   newTitle: string = ""
   newText: string = ""
+  image: Blob = new Blob()
+  labels: string[] = []
+  editable: boolean = false;
+
 
   constructor(
     public httpClient: HttpClient,
@@ -35,17 +42,19 @@ export class PostComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+
   }
-  
+
   updatePost() {
     this.httpClient.put(environment.endpointURL + "post/" + this.post.id, {
       title: this.newTitle,
-      content: this.newText
+      content: this.newText,
+      image: this.image,
+      labels: this.labels
     }).subscribe(res => {
       console.log(res)
-      // this has to be developed further
-      // replace the post in the list of posts that is located in the wall component with the new one
+      this.deletePostEmit.emit(this.post.id)
+      this.update.emit()
     })
   }
 
@@ -60,6 +69,19 @@ export class PostComponent implements OnInit {
       // this has to be developed further
       // remove the post from the list of posts that is located in the wall component
     });
+  }
+
+  changeEditability() {
+    this.editable = !this.editable;
+  }
+
+  canChange() {
+    if(!this.userService.getLoggedIn())
+      return false
+    else if(this.userService.getUser()?.username === this.post.userName)
+      return true
+    else
+      return false
   }
 
 }

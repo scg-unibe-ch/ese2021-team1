@@ -10,6 +10,7 @@
   border-radius: 20px;
   display: block;
   margin-bottom: 50px;
+  background: dimgrey;
 }
 
 .metadata {
@@ -130,3 +131,25 @@
 .upvoteButton:focus {
   background-color: #3bb615;
 }
+
+.verticalDots:after {
+  content: '\2807';
+  font-size: 30px;
+}
+
+.verticalDots {
+  background-color: transparent;
+  border: none;
+  position: relative;
+  float: right;
+  outline: none;
+  margin-top: 5px;
+}
+
+input {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+}
+

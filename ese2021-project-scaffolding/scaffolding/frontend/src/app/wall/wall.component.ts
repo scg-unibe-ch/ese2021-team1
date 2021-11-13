@@ -74,7 +74,7 @@ export class WallComponent implements OnInit {
 
   addPostParent(post: any) {
     console.log(post)
-    this.posts.push(post)
+    this.posts.unshift(post)
     this.togglePostForm();
   }
 

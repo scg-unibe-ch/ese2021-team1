@@ -26,6 +26,8 @@ import { PostComponent } from './wall/post/post.component';
 import {OverlayModule} from "@angular/cdk/overlay";
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AddPostComponent } from './add-post/add-post.component';
+import {MatMenuModule} from "@angular/material/menu";
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -40,24 +42,26 @@ import { AddPostComponent } from './add-post/add-post.component';
     WallComponent,
     PostComponent,
     routingComponents,
-    AddPostComponent
+    AddPostComponent,
   ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        HttpClientModule,
-        MatToolbarModule,
-        MatTabsModule,
-        MatCardModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatButtonModule,
-        MatListModule,
-        FormsModule,
-        MatCheckboxModule,
-        OverlayModule,
-        AppRoutingModule
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    MatToolbarModule,
+    MatTabsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatListModule,
+    FormsModule,
+    MatCheckboxModule,
+    OverlayModule,
+    AppRoutingModule,
+    MatMenuModule,
+    MatIconModule
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
