@@ -1,6 +1,5 @@
 import express from 'express';
 import { Router, Request, Response } from 'express';
-import { PostService } from '../services/post.service';
 import {OrderService} from '../services/order.service';
 
 const orderController: Router = express.Router();
@@ -14,6 +13,7 @@ orderController.post('/', (req: Request, res: Response) => {
         .then(order => res.json(order))
         .catch(err => res.json(err));
 });
+
 // gets all the posts (only for admins)
 orderController.get('/:id', (req: Request, res: Response) => {
     orderService.getAllOrders(req.body)
@@ -38,4 +38,4 @@ orderController.put('/:id', (req: Request, res: Response) => {
 
 
 // you have to export the controller to use it in the server
-export const PostController: Router = orderController;
+export const OrderController: Router = orderController;

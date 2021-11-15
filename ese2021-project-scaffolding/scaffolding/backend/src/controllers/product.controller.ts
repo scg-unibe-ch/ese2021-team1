@@ -21,3 +21,5 @@ productController.post('/', (req: Request, res: Response) => {
          .then(updated => res.json(updated))
          .catch(err => res.json(err));
  });
+
+export const ProductController: Router = productController;
