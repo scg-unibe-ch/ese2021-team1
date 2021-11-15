@@ -53,8 +53,8 @@ export class PostComponent implements OnInit {
       labels: this.labels
     }).subscribe(res => {
       console.log(res)
-      this.deletePostEmit.emit(this.post.id)
-      this.update.emit()
+      // @ts-ignore
+      this.update.emit([this.post, res])
     })
   }
 

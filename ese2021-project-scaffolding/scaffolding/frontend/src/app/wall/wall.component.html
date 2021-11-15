@@ -7,6 +7,6 @@
   <p class="noPosts" *ngIf="isPostsEmpty()">There are currently no posts 😔</p>
   <!-- renders all posts -->
   <div *ngFor="let post of posts">
-    <app-post [post] = "post" (deletePostEmit)="deletePostParent($event)" (update)="getAllPosts()"></app-post>
+    <app-post [post] = "post" (deletePostEmit)="deletePostParent($event)" (update)="updatePosts($event)"></app-post>
   </div>
 </div>
