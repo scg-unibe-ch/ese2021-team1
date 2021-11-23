@@ -27,7 +27,7 @@ export class PostComponent implements OnInit {
   user: string = ""
   newTitle: string = ""
   newText: string = ""
-  image: Blob = Blob
+  image: Blob = new Blob()
   labels: string[] = []
   editable: boolean = false;
 
