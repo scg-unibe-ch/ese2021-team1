@@ -17,6 +17,7 @@ import {Orders} from './models/orders.model';
 import {Product} from './models/product.model';
 import {ProductController} from './controllers/product.controller';
 import {OrderController} from './controllers/order.controller';
+import {Vote} from './models/vote.model';
 
 
 export class Server {
@@ -28,6 +29,7 @@ export class Server {
         this.server = this.configureServer();
         this.sequelize = this.configureSequelize();
 
+        Vote.initialize(this.sequelize);
         Post.initialize(this.sequelize); // create the new table!
         TodoItem.initialize(this.sequelize); // creates the tables if they dont exist
         TodoList.initialize(this.sequelize);
@@ -60,7 +62,7 @@ export class Server {
                 'X-Access-Token',
             ],
             credentials: true,
-            methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE, SEARCH',
+            methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE,SEARCH, SUBSCRIBE,UNSUBSCRIBE',
             origin: `http://localhost:${this.port}`,
             preflightContinue: false,
         };
