@@ -16,13 +16,14 @@ export class AddPostComponent implements OnInit {
   @Output()
   addPostEmit = new EventEmitter<any>();
 
+  fileToUpload: File | null = null;
   url: any;
   newPost = {
     title: "",
     content: "",
-    image: Blob,
     labels: [],
-    userName: ""
+    userName: "",
+    fileToUpload: File
   }
   user: User | null = null;
   auth: boolean = false;
@@ -53,7 +54,6 @@ export class AddPostComponent implements OnInit {
     this.newPost.userName = user
     if (this.checkValidPost()) {
       // with the code below we send the new post object to the server
-      console.log(this.newPost)
       this.httpClient.post(environment.endpointURL + "post", this.newPost)
         .subscribe((res: any) => {
           // here we get the response from the server
@@ -69,10 +69,11 @@ export class AddPostComponent implements OnInit {
       this.newPost = {
       title: "",
       content: "",
-      image: Blob,
       labels: [],
-      userName: ""
+      userName: "",
+      fileToUpload: File
       }
+
     }
   }
 
@@ -101,9 +102,8 @@ export class AddPostComponent implements OnInit {
 
   imageHandler(event: Event) {
     const target = event.target as HTMLInputElement;
-    let file: File = (target.files as FileList)[0];
-    this.newPost.image = file;
-    console.log(this.newPost.image);
+    const file: File = (target.files as FileList)[0];
+    this.fileToUpload = file;
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = (_event) => {
