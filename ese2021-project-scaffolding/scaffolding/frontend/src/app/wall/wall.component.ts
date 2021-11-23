@@ -78,14 +78,6 @@ export class WallComponent implements OnInit {
     this.togglePostForm();
   }
 
-  convertImgToBlob(file: File): Blob|undefined {
-    let blob;
-    file.arrayBuffer().then((arrayBuffer) => {
-      blob = new Blob([new Uint8Array(arrayBuffer)], {type: file.type});
-    })
-    return blob;
-  }
-
   currentDate(): string {
     let today = new Date();
     let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
