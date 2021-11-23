@@ -102,4 +102,11 @@ export class PostService {
 
     // TODO: search for category
 
+    public searchForCategorys (categorys: String []) {
+        let post;
+        for ( let i = 0; i < categorys.length; i++){
+            post = categorys[i];
+        }
+
+    }
 }
