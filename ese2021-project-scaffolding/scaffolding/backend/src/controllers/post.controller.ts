@@ -14,15 +14,8 @@ postController.post('/', (req: Request, res: Response) => {
         .then(post => res.json(post))
         // else if something went wrong we catch it and send the appropriate feedback to the front
         .catch(err => res.json(err));
-    //     .then(inserted => res.send(inserted))
-    //     .catch(err => res.status(500).send(err));
 });
 
-// postController.post('/:id/post', (req: MulterRequest, res: Response) => {
-//     postService.addImage(req)
-//         .then(created => res.send(created))
-//         .catch(err => res.status(500).send(err));
-// });
 
 // this route is hit by the frontend on startup to fetch all posts from the database
 postController.get('/', (req: Request, res: Response) => {
@@ -43,37 +36,9 @@ postController.delete('/:id', (req: Request, res: Response) => {
         .then(updated => res.send(updated))
         .catch(err => res.send(err));
 });
-// postController.put('/:id', (req: Request, res: Response) => {
-//     postService.updatePost({id: req.params.id, data: req.body})
-//         .then(post => res.json(post))
-//         .catch(err => res.json(err));
-        // Post.findByPk(req.params.id)
-        //     .then(found => {
-        //         if (found != null) {
-        //             found.update(req.body).then(updated => {
-        //                 res.status(200).send(updated);
-        //             });
-        //         } else {
-        //             res.sendStatus(404);
-        //         }
-        //     })
-        //     .catch(err => res.status(500).send(err));
-// });
 
-// postController.delete('/:id', (req: Request, res: Response) => {
-//     postService.deletePost(req.params.id)
-//         .then(result => res.json(result))
-//         .catch(err => res.json(err));
-    // Post.findByPk(req.params.id)
-    //     .then(found => {
-    //         if (found != null) {
-    //             found.destroy().then(() => res.status(200).send());
-    //         } else {
-    //             res.sendStatus(404);
-    //         }
-    //     })
-    //     .catch(err => res.status(500).send(err));
-// });
+// TODO: addImage controller
+// TODO: search for category
 
 // you have to export the controller to use it in the server
 export const PostController: Router = postController;

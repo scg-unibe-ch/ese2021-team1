@@ -9,6 +9,7 @@ export interface PostAttributes {
     upvotes: number;
     downvotes: number;
     userName: string;
+    // TODO: upvote/downvote
 }
 
 export interface PostCreationAttributes extends Optional<PostAttributes, 'text'| 'image'> { }

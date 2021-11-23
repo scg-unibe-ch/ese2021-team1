@@ -15,6 +15,7 @@ export interface UserAttributes {
      userName: string;
      password: string;
      admin: boolean;
+     // TODO: community score
 }
 
 export interface UserCreationAttributes extends Optional<UserAttributes, 'userId'> { }
