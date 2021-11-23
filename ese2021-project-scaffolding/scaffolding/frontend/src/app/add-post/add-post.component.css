@@ -49,12 +49,6 @@
   cursor: pointer;
 }
 
-#buttUploadImg {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
-
 /* copy of wall css */
 .wallWrapper {
   position: absolute;
@@ -269,4 +263,37 @@
   background-color: rgb(255, 255, 255);
   width: fit-content;
   border-radius: 10px;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+#buttUploadImg {
+  position: relative;
+  right: 0;
+  bottom: 0;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 5px 10px;
+  border-radius: 25px;
+  border: none;
+  left: 15px;
+  padding: 15px;
+  margin-top: 5px;
+}
+
+#uploadImg {
+  color: black;
+}
+
+#postImage {
+  max-width:100%;
+  max-height:300px;
+  height: auto;
+  width:auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
