@@ -74,7 +74,7 @@ export class WallComponent implements OnInit {
 
   addPostParent(post: any) {
     console.log(post)
-    this.posts.push(post)
+    this.posts.unshift(post)
     this.togglePostForm();
   }
 
@@ -97,4 +97,13 @@ export class WallComponent implements OnInit {
     this.showNewPostForm = !this.showNewPostForm;
     (this.showNewPostForm) ? this.createPostButtonText = '⬆' : this.createPostButtonText = 'CREATE POST'
   }
+
+  updatePosts(event: any): void {
+    for (let i = 0; i < this.posts.length; i++) {
+      if (this.posts[i].id == event[0].id) {
+        this.posts[i] = event[1]
+      }
+    }
+  }
+
 }

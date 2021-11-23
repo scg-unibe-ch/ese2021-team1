@@ -9,11 +9,14 @@
       <!-- refreshes page -->
     <!-- </form> -->
 <!-- </div> -->
-
+        <div><img id="postImage" [src]="url" *ngIf="url"></div>
         <input [(ngModel)]="newPost.title" class="inputField" type="text" name="title" placeholder="Enter Title" />
         <div class="feedback" >{{createPostFeedback.title}}</div>
         <textarea [(ngModel)]="newPost.content" class="textArea" name="text" placeholder="Enter text"></textarea>
         <div class="feedback">{{createPostFeedback.content}}</div>
-        <!-- ingore the image for now -->
-        <!-- <input [(ngModel)]="newPost.image" class="inputField" type="file" name="upload" accept="image/*" /><br> -->
+        <button id="buttUploadImg"><label for="files" id="uploadImg">Datei auswählen</label></button>
+        <input id="files" (change)="imageHandler($event)" class="inputField" type="file" name="upload" accept="image/*" class="hidden"/><br>
         <button type="submit" (click)="createPost()" class="postButton">SHARE NOW</button>
+
+
+

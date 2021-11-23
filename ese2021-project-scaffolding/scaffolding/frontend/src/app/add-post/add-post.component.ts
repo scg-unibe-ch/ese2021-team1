@@ -16,11 +16,14 @@ export class AddPostComponent implements OnInit {
   @Output()
   addPostEmit = new EventEmitter<any>();
 
+  fileToUpload: File | null = null;
+  url: any;
   newPost = {
     title: "",
     content: "",
     labels: [],
     userName: "",
+    fileToUpload: File
   }
   user: User | null = null;
   auth: boolean = false;
@@ -29,13 +32,13 @@ export class AddPostComponent implements OnInit {
   createPostFeedback = {
     title: '',
     content: ''
-  }  
+  }
 
   constructor(
     public httpClient: HttpClient,
     public userService: UserService
   ) {
-    
+
   }
 
   ngOnInit(): void {
@@ -56,7 +59,7 @@ export class AddPostComponent implements OnInit {
           // here we get the response from the server
           // check if object is of type Post - should contain some property like title or text
           if (res.title) {
-            // emit event 
+            // emit event
             this.addPostEmit.emit(res)
           } else {
             // else it may be a error message that we can somehow show to the user
@@ -67,7 +70,8 @@ export class AddPostComponent implements OnInit {
       title: "",
       content: "",
       labels: [],
-      userName: ""
+      userName: "",
+      fileToUpload: File
       }
 
     }
@@ -86,7 +90,7 @@ export class AddPostComponent implements OnInit {
         this.createPostFeedback.content = ""
       }
       return false;
-    } 
+    }
     else {
       return true
     }
@@ -96,4 +100,14 @@ export class AddPostComponent implements OnInit {
     return this.newPost.title == '';
   }
 
+  imageHandler(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const file: File = (target.files as FileList)[0];
+    this.fileToUpload = file;
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (_event) => {
+      this.url = reader.result;
+    }
+  }
 }
