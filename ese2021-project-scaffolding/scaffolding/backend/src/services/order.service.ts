@@ -8,7 +8,6 @@ export class OrderService {
     public async createOrder(order: { userID: number, products: string, paymentMethod: string,
         homeAddress: string, streetNumber: number, zipCode: number, city: string,
         processingStatus: string, purchaseDate: string}) {
-//        if (!this.isAdmin(order.userID)) {
             if (order.zipCode === null && order.city === null && order.streetNumber === null && order.homeAddress === null) {
                 User.findByPk(order.userID).then(found => {
                     if (found != null) {
@@ -19,7 +18,10 @@ export class OrderService {
                     } else {
                         return Promise.reject('UserId not found');
                     }
-                });
+                })
+                    .catch(err => {
+                        return Promise.reject(err.message);
+                    });
             }
             return Orders.create({
                 orderId: 0,
@@ -52,7 +54,8 @@ export class OrderService {
                 } else {
                     return Promise.reject(' Order not found');
                 }
-            });
+            })
+            .catch(() => Promise.reject('Couldnt update post'));
     }
 
     // fetchs Order for admin to an user or an user for itself
@@ -76,7 +79,8 @@ export class OrderService {
             } else {
                     Promise.reject('orders not found');
                 }
-            });
+            })
+                .catch( () => Promise.reject('orders not got'));
         }
     }
 
@@ -88,6 +92,7 @@ export class OrderService {
                 } else {
                     return Promise.reject('User not found');
                 }
-            });
+            })
+            .catch( (err) => Promise.reject(err));
     }
 }

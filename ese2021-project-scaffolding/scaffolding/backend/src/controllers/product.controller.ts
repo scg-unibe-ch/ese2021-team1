@@ -22,4 +22,7 @@ productController.post('/', (req: Request, res: Response) => {
          .catch(err => res.json(err));
  });
 
+ // TODO: filter for categorys
+// TODO: buy order
+
 export const ProductController: Router = productController;

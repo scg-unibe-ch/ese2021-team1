@@ -28,14 +28,14 @@ export class Orders extends Model<OrderAttributes> implements OrderAttributes {
 
     public static initialize(sequelize: Sequelize) {
         Orders.init({
-                userId: {
-                    type: DataTypes.INTEGER,
-                    primaryKey: true
-                },
                 orderId: {
                     type: DataTypes.INTEGER,
                     autoIncrement: true,
-                    primaryKey: true
+                    primaryKey: true,
+                },
+                userId: {
+                    type: DataTypes.INTEGER,
+                    allowNull: false
                 },
                 products: {
                     type: DataTypes.STRING,

@@ -14,15 +14,8 @@ postController.post('/', (req: Request, res: Response) => {
         .then(post => res.json(post))
         // else if something went wrong we catch it and send the appropriate feedback to the front
         .catch(err => res.json(err));
-    //     .then(inserted => res.send(inserted))
-    //     .catch(err => res.status(500).send(err));
 });
 
-// postController.post('/:id/post', (req: MulterRequest, res: Response) => {
-//     postService.addImage(req)
-//         .then(created => res.send(created))
-//         .catch(err => res.status(500).send(err));
-// });
 
 // this route is hit by the frontend on startup to fetch all posts from the database
 postController.get('/', (req: Request, res: Response) => {
@@ -44,6 +37,8 @@ postController.delete('/:id', (req: Request, res: Response) => {
         .catch(err => res.send(err));
 });
 
+// TODO: addImage controller
+// TODO: search for category
 
 // you have to export the controller to use it in the server
 export const PostController: Router = postController;

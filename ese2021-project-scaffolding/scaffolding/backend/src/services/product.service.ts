@@ -71,4 +71,6 @@ export class ProductService {
             .then(updated => Promise.reject(updated))
             .catch(() => Promise.reject('Product update failed'));
     }
+    // TODO: filter for categorys
+    // TODO: buy order
 }

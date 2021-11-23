@@ -77,37 +77,6 @@ export class PostService {
             }));
     }
 
-            // public addImage(req: MulterRequest): Promise<ItemImageAttributes> {
-        //     return TodoItem.findByPk(req.params.id)
-        //         .then(found => {
-        //             if (!found) {
-        //                 return Promise.reject('Product not found!');
-        //             } else {
-        //                 return new Promise<ItemImageAttributes>((resolve, reject) => {
-        //                     upload.single('image')(req, null, (error: any) => {
-        //                         ItemImage.create({ fileName: req.file.filename, todoItemId: found.todoItemId })
-        //                             .then(created => resolve(created))
-        //                             .catch(() => reject('Could not upload image!'));
-        //                     });
-        //                 });
-        //             }
-        //         })
-        //         .catch(() => Promise.reject('Could not upload image!'));
-        // }
-
-
-        // public getImageItem(imageId: number): Promise<ItemImage> {
-        //     return ItemImage.findByPk(imageId)
-        //         .then(image => {
-        //             if (image) {
-        //                 return Promise.resolve(image);
-        //             } else {
-        //                 return Promise.reject('image not found!');
-        //             }
-        //         })
-        //         .catch(() => Promise.reject('could not fetch the image!'));
-        // }
-
         // this service returns all posts from the database
         public async getAllPosts() {
             return Post.findAll()
@@ -120,5 +89,7 @@ export class PostService {
                 })
                 .catch(() => Promise.reject('Could not fetch posts.'));
         }
+        // TODO: post-images service
+    // TODO: search for category
 
 }

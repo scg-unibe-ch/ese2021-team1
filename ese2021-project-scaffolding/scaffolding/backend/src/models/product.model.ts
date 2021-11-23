@@ -9,6 +9,7 @@ export interface ProductProperties {
     available: boolean;
     price: number;
     discount: number;
+    // TODO: availability
 }
 
 export interface  ProductCreationProperties extends Optional<ProductProperties, 'discount'> {}
