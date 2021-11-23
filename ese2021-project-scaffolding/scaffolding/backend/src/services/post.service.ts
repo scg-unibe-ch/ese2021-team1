@@ -99,13 +99,25 @@ export class PostService {
             return stringArray;
         }
 
-    // TODO: search for category
+    // TODO: search for category -> done?
 
     public searchForCategorys (categorys: String []) {
-        let post;
-        for ( let i = 0; i < categorys.length; i++){
-            post = categorys[i];
-        }
-
+        const counter = 0;
+        let searchedForCategorys = null;
+        return Post.findAll().then(found => {
+            searchedForCategorys = new Array(found.length);
+            for (let arrayLength = 0; arrayLength < found.length; arrayLength++) {
+                for (let categoryLength = 0; categoryLength < categorys.length; categoryLength++) {
+                const search = new RegExp('$' + categorys[categoryLength] + '$');
+                if ( search.test(found[arrayLength].category)) {
+                    searchedForCategorys[counter] = found[arrayLength];
+                }
+                }
+            }
+            return Promise.resolve(searchedForCategorys);
+        })
+            .catch(err => {
+                return Promise.reject(err.message);
+            });
     }
 }

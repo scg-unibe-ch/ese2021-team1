@@ -37,8 +37,14 @@ postController.delete('/:id', (req: Request, res: Response) => {
         .catch(err => res.send(err));
 });
 
+postController.search('/', (req: Request, res: Response) => {
+    postService.searchForCategorys(req.body)
+        .then(updated => res.send(updated))
+        .catch(err => res.send(err));
+});
+
 // TODO: addImage controller
-// TODO: search for category
+// TODO: search for category -> done?
 
 // you have to export the controller to use it in the server
 export const PostController: Router = postController;
