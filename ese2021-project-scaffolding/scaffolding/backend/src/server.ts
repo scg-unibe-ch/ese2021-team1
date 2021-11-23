@@ -15,6 +15,7 @@ import cors from 'cors';
 import {AdminController} from './controllers/admin.controller';
 import {ItemImage} from './models/itemImage.model';
 import { PostController } from './controllers/post.controller';
+import {Vote} from './models/vote.model';
 
 
 export class Server {
@@ -26,6 +27,7 @@ export class Server {
         this.server = this.configureServer();
         this.sequelize = this.configureSequelize();
 
+        Vote.initialize(this.sequelize);
         Post.initialize(this.sequelize); // create the new table!
         TodoItem.initialize(this.sequelize); // creates the tables if they dont exist
         TodoList.initialize(this.sequelize);

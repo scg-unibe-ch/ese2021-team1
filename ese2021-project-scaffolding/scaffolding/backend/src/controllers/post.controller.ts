@@ -1,10 +1,11 @@
 import express from 'express';
 import { Router, Request, Response } from 'express';
 import { PostService } from '../services/post.service';
+import {VoteService} from '../services/vote.service';
 
 const postController: Router = express.Router();
 const postService = new PostService();
-
+const voteService = new VoteService();
 // this route is hit by the frontend when a user wants to create a new post
 postController.post('/', (req: Request, res: Response) => {
     console.log(req.body); // this object contains the new post that the frontend sent us
@@ -45,13 +46,13 @@ postController.delete('/:id', (req: Request, res: Response) => {
 });
 
 postController.subscribe('/:id/post', (req: Request, res: Response) => {
-    postService.like(req.params.id)
+    voteService.like(req.params.id)
         .then(updated => res.send(updated))
         .catch(err => res.send(err));
 });
 
 postController.unsubscribe('/:id/post', (req: Request, res: Response) => {
-    postService.dislike(req.params.id)
+    voteService.dislike(req.params.id)
         .then(updated => res.send(updated))
         .catch(err => res.send(err));
 });

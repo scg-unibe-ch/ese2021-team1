@@ -1,9 +1,6 @@
-import {upload} from '../middlewares/fileFilter';
-import {TodoItem} from '../models/todoitem.model';
-import {ItemImage, ItemImageAttributes} from '../models/itemImage.model';
-import {MulterRequest} from '../models/multerRequest.model';
 import {Post} from '../models/post.model';
-import {rejects} from 'assert';
+import {Vote} from '../models/vote.model';
+import {VoteService} from './vote.service';
 
 export class PostService {
 
@@ -20,18 +17,20 @@ export class PostService {
             title: post.title, // these attributes come from the object that the front sent us
             text: post.content,
             image: null, // default for now...
-            downvotes: 0,
-            upvotes: 0,
             category: '',
             userName: post.userName
         })
-        // now we want to check whether the creation was successful
-        .then(inserted => {
+            .then(inserted => {
+            VoteService.createVote(inserted.id);
+        })
+            // now we want to check whether the creation was successful
+            .then(
+            inserted => {
             // rif all ok, return the inserted row (Post) to the controller
             return Promise.resolve(inserted);
         })
         // else if an error occured
-        .catch(err => {
+            .catch(err => {
             // return the error message
             return Promise.reject(err.message);
         });
@@ -76,33 +75,6 @@ export class PostService {
             }));
     }
 
-    public like(id) {
-        return Post.findByPk(id)
-            .then((found => {
-                if (found != null) {
-                    found.update( {upvotes: (found.upvotes++)})
-                        .then(liked => Promise.resolve(liked))
-                        .catch(() => Promise.reject('failed to like'));
-                } else {
-                    Promise.reject('Post not found');
-                }
-            }))
-            .catch(() => Promise.reject('failed to like'));
-    }
-
-    public dislike(id) {
-        return Post.findByPk(id)
-            .then((found => {
-                if (found != null) {
-                    found.update( {downvotes: (found.downvotes++)})
-                        .then(disliked => Promise.resolve(disliked))
-                        .catch(() => Promise.reject('failed to dislike'));
-                } else {
-                    Promise.reject('Post not found');
-                }
-            }))
-            .catch(() => Promise.reject('failed to dislike'));
-    }
 
         // public addImage(req: MulterRequest): Promise<ItemImageAttributes> {
         //     return TodoItem.findByPk(req.params.id)
