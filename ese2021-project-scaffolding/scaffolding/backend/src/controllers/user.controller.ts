@@ -25,11 +25,18 @@ userController.get('/', verifyToken, // you can add middleware on specific reque
 );
 
 // change the password
-userController.put('/', (req: Request, res: Response) => {
+userController.put('/:id', (req: Request, res: Response) => {
     userService.changePassword(req.body)
         .then( changed => res.send(changed))
         .catch(err => res.send(err));
     }
 );
+
+// reset the password with the birthday
+userController.patch('/', (req: Request, res: Response) => {
+   userService.resetPassword(req.body.name, req.body.password, req.body.birthday)
+       .then( changed => res.json(changed))
+       .catch( err => res.json(err));
+});
 
 export const UserController: Router = userController;

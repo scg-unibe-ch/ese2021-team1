@@ -2,6 +2,8 @@ import { UserAttributes, User } from '../models/user.model';
 import { LoginResponse, LoginRequest } from '../models/login.model';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import validator from 'validator';
+import equals = validator.equals;
 
 export class UserService {
 
@@ -94,7 +96,20 @@ export class UserService {
          return bcrypt.hashSync(password, saltRounds);
      }
 
-     public resetPassword(name: string) {
-        return User.findAll({userID: name})
+     // resets the password if entered the birthday correctly
+     public resetPassword(name: string, password: string, birthdayTest: string) {
+        const hashedPW = this.passwordGenerator(password);
+        if (typeof  hashedPW === 'string') {
+            return User.findAll({where: {userName: name}})
+                .then(user => {
+                    if (equals(user[0].birthday, birthdayTest)) {
+                    user[0].update({password: hashedPW})
+                .then(updated => Promise.resolve(updated))
+                .catch(() => Promise.reject('Cant update password'));
+                    }
+                } );
+            } else {
+            return Promise.reject(hashedPW);
+        }
      }
 }
