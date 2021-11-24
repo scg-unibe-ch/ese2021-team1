@@ -11,22 +11,26 @@ import {WallComponent} from "../wall/wall.component";
   templateUrl: './add-post.component.html',
   styleUrls: ['./add-post.component.css']
 })
+
 export class AddPostComponent implements OnInit {
 
+  selectedFile: any;
+  
   @Output()
   addPostEmit = new EventEmitter<any>();
-
+  
   url: any;
-  newPost = {
+  newPost: any = {
     title: "",
     content: "",
-    image: Blob,
+    image: null,
     labels: [],
     userName: ""
   }
   user: User | null = null;
   auth: boolean = false;
   posts: Post[] = [];
+
 
   createPostFeedback = {
     title: '',
@@ -52,9 +56,11 @@ export class AddPostComponent implements OnInit {
     }
     this.newPost.userName = user
     if (this.checkValidPost()) {
+      const payload = new FormData()
+      payload.append("post", JSON.stringify(this.newPost))
+      payload.append("file", this.selectedFile)
       // with the code below we send the new post object to the server
-      console.log(this.newPost)
-      this.httpClient.post(environment.endpointURL + "post", this.newPost)
+      this.httpClient.post(environment.endpointURL + "post", payload)
         .subscribe((res: any) => {
           // here we get the response from the server
           // check if object is of type Post - should contain some property like title or text
@@ -63,13 +69,13 @@ export class AddPostComponent implements OnInit {
             this.addPostEmit.emit(res)
           } else {
             // else it may be a error message that we can somehow show to the user
-            alert(JSON.stringify(res))
+            console.log(res) // log the error message
           }
         })
       this.newPost = {
       title: "",
       content: "",
-      image: Blob,
+      image: null,
       labels: [],
       userName: ""
       }
@@ -99,15 +105,10 @@ export class AddPostComponent implements OnInit {
     return this.newPost.title == '';
   }
 
-  imageHandler(event: Event) {
-    const target = event.target as HTMLInputElement;
-    let file: File = (target.files as FileList)[0];
-    this.newPost.image = file;
-    console.log(this.newPost.image);
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = (_event) => {
-      this.url = reader.result;
+  imageHandler(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0]
+      this.selectedFile = file
     }
   }
 }

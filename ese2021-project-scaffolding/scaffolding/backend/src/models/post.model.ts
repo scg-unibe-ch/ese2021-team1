@@ -4,7 +4,7 @@ export interface PostAttributes {
     id: number;
     title: string;
     text: string;
-    image: Blob;
+    image: string; // just a reference to the place that the images is stored (in /uploads)
     category: string; // will be a comma separated string containing labels
     upvotes: number;
     downvotes: number;
@@ -18,7 +18,7 @@ export class Post extends Model<PostAttributes, PostCreationAttributes> implemen
     id: number;
     title: string;
     text: string;
-    image: Blob;
+    image: string;
     category: string;
     upvotes: number;
     downvotes: number;
@@ -40,7 +40,7 @@ export class Post extends Model<PostAttributes, PostCreationAttributes> implemen
                 allowNull: true
             },
             image: {
-                type: DataTypes.BLOB,
+                type: DataTypes.STRING,
                 allowNull: true
             },
             category: {

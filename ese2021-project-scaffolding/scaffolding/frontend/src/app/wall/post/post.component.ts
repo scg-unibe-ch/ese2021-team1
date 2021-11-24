@@ -27,7 +27,7 @@ export class PostComponent implements OnInit {
   user: string = ""
   newTitle: string = ""
   newText: string = ""
-  image: Blob = Blob
+  // image: Blob = Blob
   labels: string[] = []
   editable: boolean = false;
 
@@ -49,7 +49,7 @@ export class PostComponent implements OnInit {
     this.httpClient.put(environment.endpointURL + "post/" + this.post.id, {
       title: this.newTitle,
       content: this.newText,
-      image: this.image,
+      // image: this.image,
       labels: this.labels
     }).subscribe(res => {
       console.log(res)

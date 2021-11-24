@@ -15,7 +15,7 @@
         <textarea [(ngModel)]="newPost.content" class="textArea" name="text" placeholder="Enter text"></textarea>
         <div class="feedback">{{createPostFeedback.content}}</div>
         <button id="buttUploadImg"><label for="files" id="uploadImg">Datei auswählen</label></button>
-        <input id="files" (change)="imageHandler($event)" class="inputField" type="file" name="upload" accept="image/*" class="hidden"/><br>
+        <input id="files" #imageInput (change)="imageHandler($event)" class="inputField" type="file" name="uploaded_image" accept="image/*" class="hidden"/><br>
         <button type="submit" (click)="createPost()" class="postButton">SHARE NOW</button>
 
 
