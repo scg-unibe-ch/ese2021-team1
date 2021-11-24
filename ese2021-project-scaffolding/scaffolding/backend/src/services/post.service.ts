@@ -1,9 +1,5 @@
-import {upload} from '../middlewares/fileFilter';
-import {TodoItem} from '../models/todoitem.model';
-import {ItemImage, ItemImageAttributes} from '../models/itemImage.model';
-import {MulterRequest} from '../models/multerRequest.model';
 import {Post} from '../models/post.model';
-import {rejects} from 'assert';
+import {Vote} from '../models/vote.model';
 
 
 export class PostService {
@@ -21,14 +17,23 @@ export class PostService {
             title: post.title, // these attributes come from the object that the front sent us
             text: post.content,
             image: imagePath, // will not be set if no image was received
-            downvotes: 0,
-            upvotes: 0,
             category: this.arrayToString(post.labels),
             userName: post.userName
         })
         // now we want to check whether the creation was successful
         .then(inserted => {
             // rif all ok, return the inserted row (Post) to the controller
+            Vote.create({
+                postId: inserted.id,
+                userId: 0, // user ID!!!!!!!!!!! @jan TODO
+                dislike: 0,
+                like: 0,
+                communityScore: 0
+            }).then(insertForVote => {
+                return Promise.resolve(insertForVote);
+            }).catch(err => {
+                return Promise.reject(err);
+            });
             return Promise.resolve(inserted);
         })
         // else if an error occured

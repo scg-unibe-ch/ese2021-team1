@@ -18,7 +18,7 @@ import {Product} from './models/product.model';
 import {ProductController} from './controllers/product.controller';
 import {OrderController} from './controllers/order.controller';
 import {Vote} from './models/vote.model';
-
+import {VoteController} from './controllers/vote.controller';
 
 export class Server {
     private server: Application;
@@ -62,7 +62,7 @@ export class Server {
                 'X-Access-Token',
             ],
             credentials: true,
-            methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE,SEARCH, SUBSCRIBE,UNSUBSCRIBE',
+            methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE,SEARCH,SUBSCRIBE,UNSUBSCRIBE',
             origin: `http://localhost:${this.port}`,
             preflightContinue: false,
         };
@@ -81,10 +81,11 @@ export class Server {
             .use('/post', PostController)
             .use('/product', ProductController)
             .use('/orders', OrderController)
+            .use('/vote', VoteController)
             .options('*', cors(options))
             .use('/uploads', express.static(__dirname + '/uploads'))
             // this is the message you get if you open http://localhost:3000/ when the server is running
-            .get('/', (req, res) => res.send('<h1>Welcome to the ESE-2021 Backend Scaffolding <span style="font-size:50px">&#127881;</span></h1>'));
+            .get('/', (req, res) => res.send('<h1>Jan and Alessios sexy domain <span style="font-size:50px">&#127881;</span></h1>'));
     }
     private configureSequelize(): Sequelize {
         return new Sequelize({

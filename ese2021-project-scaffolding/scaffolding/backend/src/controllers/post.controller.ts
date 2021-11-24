@@ -51,20 +51,10 @@ postController.search('/', (req: Request, res: Response) => {
         .catch(err => res.send(err));
 });
 
-postController.subscribe('/:id/post', (req: Request, res: Response) => {
-    voteService.like(req.params.id)
-        .then(updated => res.send(updated))
-        .catch(err => res.send(err));
-});
 
 // TODO: addImage controller
 // TODO: search for category -> done?
 
-postController.unsubscribe('/:id/post', (req: Request, res: Response) => {
-    voteService.dislike(req.params.id)
-        .then(updated => res.send(updated))
-        .catch(err => res.send(err));
-});
 
 // you have to export the controller to use it in the server
 export const PostController: Router = postController;
