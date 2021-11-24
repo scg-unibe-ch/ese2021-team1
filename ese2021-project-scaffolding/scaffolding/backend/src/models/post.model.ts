@@ -8,6 +8,7 @@ export interface PostAttributes {
     category: string; // will be a comma separated string containing labels
     upvotes: number;
     downvotes: number;
+    // communityScore: number;
     userName: string;
     // TODO: upvote/downvote
 }
@@ -22,6 +23,7 @@ export class Post extends Model<PostAttributes, PostCreationAttributes> implemen
     category: string;
     upvotes: number;
     downvotes: number;
+    // communityScore: number;
     userName: string;
 
     public static initialize(sequelize: Sequelize) {
@@ -55,6 +57,10 @@ export class Post extends Model<PostAttributes, PostCreationAttributes> implemen
                 type: DataTypes.INTEGER,
                 allowNull: true,
             },
+            // communityScore: {
+            //     type: DataTypes.INTEGER,
+            //     allowNull: false,
+            // },
             userName: {
                 type: DataTypes.STRING,
                 allowNull: false

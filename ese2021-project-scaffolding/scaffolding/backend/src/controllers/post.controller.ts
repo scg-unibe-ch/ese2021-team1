@@ -2,10 +2,11 @@ import express from 'express';
 import { Router, Request, Response } from 'express';
 import { upload } from '../middlewares/fileFilter';
 import { PostService } from '../services/post.service';
+import {VoteService} from '../services/vote.service';
 
 const postController: Router = express.Router();
 const postService = new PostService();
-
+const voteService = new VoteService();
 // this route is hit by the frontend when a user wants to create a new post
 postController.post('/', upload.single('file'), (req: Request, res: Response) => {
     // console.log(req); // this object contains the new post that the frontend sent us
@@ -48,8 +49,20 @@ postController.search('/', (req: Request, res: Response) => {
         .catch(err => res.send(err));
 });
 
+postController.subscribe('/:id/post', (req: Request, res: Response) => {
+    voteService.like(req.params.id)
+        .then(updated => res.send(updated))
+        .catch(err => res.send(err));
+});
+
 // TODO: addImage controller
 // TODO: search for category -> done?
+
+postController.unsubscribe('/:id/post', (req: Request, res: Response) => {
+    voteService.dislike(req.params.id)
+        .then(updated => res.send(updated))
+        .catch(err => res.send(err));
+});
 
 // you have to export the controller to use it in the server
 export const PostController: Router = postController;
