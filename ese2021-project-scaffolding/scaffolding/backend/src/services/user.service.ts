@@ -93,4 +93,8 @@ export class UserService {
          }
          return bcrypt.hashSync(password, saltRounds);
      }
+
+     public resetPassword(name: string) {
+        return User.findAll({userID: name})
+     }
 }

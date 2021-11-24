@@ -69,7 +69,7 @@ export class PostService {
 
         // this service returns all posts from the database
         public async getAllPosts() {
-            return Post.findAll()
+            return Post.findAll({id})
                 .then(posts => {
                     if (posts) {
                         return Promise.resolve(posts); // TODO: is it post or the table posts from post.model.ts that we should return?

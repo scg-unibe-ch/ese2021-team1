@@ -24,6 +24,7 @@ userController.get('/', verifyToken, // you can add middleware on specific reque
     }
 );
 
+// change the password
 userController.put('/', (req: Request, res: Response) => {
     userService.changePassword(req.body)
         .then( changed => res.send(changed))
