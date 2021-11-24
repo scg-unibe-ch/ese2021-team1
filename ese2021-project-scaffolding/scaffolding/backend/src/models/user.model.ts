@@ -1,3 +1,4 @@
+import { TodoItem, TodoItemAttributes, TodoItemCreationAttributes } from './todoitem.model';
 import { Optional, Model, Sequelize, DataTypes } from 'sequelize';
 
 export interface UserAttributes {
@@ -14,8 +15,7 @@ export interface UserAttributes {
      userName: string;
      password: string;
      admin: boolean;
-     communityScore: number;
-
+     // TODO: community score
 }
 
 export interface UserCreationAttributes extends Optional<UserAttributes, 'userId'> { }
@@ -34,7 +34,6 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
         userName!: string;
         password!: string;
         admin!: boolean;
-        communityScore: number;
 
     public static initialize(sequelize: Sequelize) {
         User.init({
@@ -90,10 +89,6 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
             },
             phoneNumber: {
                 type: DataTypes.STRING,
-                allowNull: false
-            },
-            communityScore: {
-                type: DataTypes.INTEGER,
                 allowNull: false
             }
         },
