@@ -1,6 +1,9 @@
+import {upload} from '../middlewares/fileFilter';
+import {TodoItem} from '../models/todoitem.model';
+import {ItemImage, ItemImageAttributes} from '../models/itemImage.model';
+import {MulterRequest} from '../models/multerRequest.model';
 import {Post} from '../models/post.model';
-import {Vote} from '../models/vote.model';
-import {VoteService} from './vote.service';
+import {rejects} from 'assert';
 
 
 export class PostService {
@@ -23,17 +26,13 @@ export class PostService {
             category: this.arrayToString(post.labels),
             userName: post.userName
         })
-            .then(inserted => {
-            VoteService.createVote(inserted.id);
-        })
-            // now we want to check whether the creation was successful
-            .then(
-            inserted => {
+        // now we want to check whether the creation was successful
+        .then(inserted => {
             // rif all ok, return the inserted row (Post) to the controller
             return Promise.resolve(inserted);
         })
         // else if an error occured
-            .catch(err => {
+        .catch(err => {
             // return the error message
             return Promise.reject(err.message);
         });
@@ -78,38 +77,6 @@ export class PostService {
             }));
     }
 
-
-        // public addImage(req: MulterRequest): Promise<ItemImageAttributes> {
-        //     return TodoItem.findByPk(req.params.id)
-        //         .then(found => {
-        //             if (!found) {
-        //                 return Promise.reject('Product not found!');
-        //             } else {
-        //                 return new Promise<ItemImageAttributes>((resolve, reject) => {
-        //                     upload.single('image')(req, null, (error: any) => {
-        //                         ItemImage.create({ fileName: req.file.filename, todoItemId: found.todoItemId })
-        //                             .then(created => resolve(created))
-        //                             .catch(() => reject('Could not upload image!'));
-        //                     });
-        //                 });
-        //             }
-        //         })
-        //         .catch(() => Promise.reject('Could not upload image!'));
-        // }
-
-
-        // public getImageItem(imageId: number): Promise<ItemImage> {
-        //     return ItemImage.findByPk(imageId)
-        //         .then(image => {
-        //             if (image) {
-        //                 return Promise.resolve(image);
-        //             } else {
-        //                 return Promise.reject('image not found!');
-        //             }
-        //         })
-        //         .catch(() => Promise.reject('could not fetch the image!'));
-        // }
-
         // this service returns all posts from the database
         public async getAllPosts() {
             return Post.findAll()
@@ -153,5 +120,4 @@ export class PostService {
                 return Promise.reject(err.message);
             });
     }
-
 }
