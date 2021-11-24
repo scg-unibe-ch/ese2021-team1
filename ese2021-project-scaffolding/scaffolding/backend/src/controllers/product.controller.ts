@@ -22,6 +22,12 @@ productController.post('/', (req: Request, res: Response) => {
          .catch(err => res.json(err));
  });
 
+ productController.search('/', (req: Request, res: Response) => {
+     productService.searchForCategorysProduct(req.body)
+         .then(updated => res.json(updated))
+         .catch(err => res.json(err));
+ });
+
  // TODO: filter for categorys
 // TODO: buy order
 

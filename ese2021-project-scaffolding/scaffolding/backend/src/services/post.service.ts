@@ -106,8 +106,8 @@ export class PostService {
 
     // TODO: search for category -> done?
 
-    public searchForCategorys (categorys: String []) {
-        const counter = 0;
+    public searchForCategorysPost (categorys: String []) {
+        let counter = 0;
         let searchedForCategorys = null;
         return Post.findAll().then(found => {
             searchedForCategorys = new Array(found.length);
@@ -116,6 +116,7 @@ export class PostService {
                 const search = new RegExp('$' + categorys[categoryLength] + '$');
                 if ( search.test(found[arrayLength].category)) {
                     searchedForCategorys[counter] = found[arrayLength];
+                    counter++;
                 }
                 }
             }

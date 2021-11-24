@@ -1,4 +1,5 @@
 import {Product} from '../models/product.model';
+import {Post} from '../models/post.model';
 
 export class ProductService {
     public async createProduct(product: {title: string, image: Blob, description: string, category: string,
@@ -73,4 +74,25 @@ export class ProductService {
     }
     // TODO: filter for categorys
     // TODO: buy order
+
+    public searchForCategorysProduct (categorys: String []) {
+        let counter = 0;
+        let searchedForProducts = null;
+        return Product.findAll().then(found => {
+            searchedForProducts = new Array(found.length);
+            for (let arrayLength = 0; arrayLength < found.length; arrayLength++) {
+                for (let categoryLength = 0; categoryLength < categorys.length; categoryLength++) {
+                    const search = new RegExp('$' + categorys[categoryLength] + '$');
+                    if ( search.test(found[arrayLength].category)) {
+                        searchedForProducts[counter] = found[arrayLength];
+                        counter++;
+                    }
+                }
+            }
+            return Promise.resolve(searchedForProducts);
+        })
+            .catch(err => {
+                return Promise.reject(err.message);
+            });
+    }
 }

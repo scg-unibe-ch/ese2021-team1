@@ -46,13 +46,13 @@ postController.delete('/:id', (req: Request, res: Response) => {
 });
 
 postController.search('/', (req: Request, res: Response) => {
-    postService.searchForCategorys(req.body)
+    postService.searchForCategorysPost(req.body)
         .then(updated => res.send(updated))
         .catch(err => res.send(err));
 });
 
 
-// TODO: addImage controller
+
 // TODO: search for category -> done?
 
 

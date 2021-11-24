@@ -11,7 +11,7 @@ const voteService = new VoteService();
 // TODO: @jan i anderne Wort die zwe methodene müess no komplett ahpasst wärde (u im frontend ou)
 
 voteController.subscribe('/:id/post', (req: Request, res: Response) => {
-    voteService.updateVote(req.params.id, 1, user)
+    voteService.updateVote(Number(req.params.id), 1, 0)
         .then(updated => {
             console.log(updated);
             res.send(updated);
@@ -20,7 +20,7 @@ voteController.subscribe('/:id/post', (req: Request, res: Response) => {
 });
 
 
-voteController.unsubscribe('/:id/post', (req: Request, res: Response) => {
+/* voteController.unsubscribe('/:id/post', (req: Request, res: Response) => {
     PostService.updateVote(req.params.id, -1, user)
         .then(updated => {
             console.log(updated);
@@ -28,4 +28,5 @@ voteController.unsubscribe('/:id/post', (req: Request, res: Response) => {
         })
         .catch(err => res.send(err));
 });
+ */
 export const VoteController: Router = voteController;
