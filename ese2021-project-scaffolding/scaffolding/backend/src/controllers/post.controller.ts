@@ -11,7 +11,7 @@ const voteService = new VoteService();
 postController.post('/', upload.single('file'), (req: Request, res: Response) => {
     // console.log(req); // this object contains the new post that the frontend sent us
     // we pass this post object to the appropriate service that we also have to create
-    postService.createPost(JSON.parse(req.body.post), req.file?.filename)
+    postService.createPost(JSON.parse(req.body.post), req.file?.filename, JSON.parse(req.body.userId))
         // we await the creation of the new post and send it back to the front if everything went ok
         .then(post => {
             console.log(post);
