@@ -17,6 +17,9 @@ export class PostService {
             title: post.title, // these attributes come from the object that the front sent us
             text: post.content,
             image: imagePath, // will not be set if no image was received
+            dislike: 0,
+            like: 0,
+            communityScore: 0,
             category: this.arrayToString(post.labels),
             userName: post.userName
         })
@@ -25,10 +28,9 @@ export class PostService {
             // rif all ok, return the inserted row (Post) to the controller
             Vote.create({
                 postId: inserted.id,
-                userId: userID, // user ID!!!!!!!!!!! @jan TODO --> done, but very ugly
-                dislike: 0,
-                like: 0,
-                communityScore: 0
+                userId: userID,
+                dislike: false,
+                like: false,
             }).then(insertForVote => {
                 return Promise.resolve(insertForVote);
             }).catch(err => {

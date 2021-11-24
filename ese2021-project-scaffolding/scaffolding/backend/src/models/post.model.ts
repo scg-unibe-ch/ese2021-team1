@@ -7,6 +7,9 @@ export interface PostAttributes {
     image: string; // just a reference to the place that the images is stored (in /uploads)
     category: string; // will be a comma separated string containing labels
     userName: string;
+    dislike: number;
+    like: number;
+    communityScore: number;
 }
 
 export interface PostCreationAttributes extends Optional<PostAttributes, 'text'| 'image'> { }
@@ -18,6 +21,9 @@ export class Post extends Model<PostAttributes, PostCreationAttributes> implemen
     image: string;
     category: string;
     userName: string;
+    dislike: number;
+    like: number;
+    communityScore: number;
 
     public static initialize(sequelize: Sequelize) {
         Post.init({
@@ -45,6 +51,18 @@ export class Post extends Model<PostAttributes, PostCreationAttributes> implemen
             userName: {
                 type: DataTypes.STRING,
                 allowNull: false
+            },
+            like: {
+                type: DataTypes.INTEGER,
+                allowNull: false
+            },
+            dislike: {
+                type: DataTypes.INTEGER,
+                allowNull: false
+            },
+            communityScore: {
+                type: DataTypes.DOUBLE,
+                allowNull: false
             }
             },
             {
@@ -53,3 +71,4 @@ export class Post extends Model<PostAttributes, PostCreationAttributes> implemen
             }
         ); }
 }
+

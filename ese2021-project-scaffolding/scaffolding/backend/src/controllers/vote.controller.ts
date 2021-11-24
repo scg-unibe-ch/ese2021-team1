@@ -10,8 +10,10 @@ const voteService = new VoteService();
 // add check if a user already liked a post or disliked a post (only one should be valid per post
 // TODO: @jan i anderne Wort die zwe methodene müess no komplett ahpasst wärde (u im frontend ou)
 
+
+
 voteController.subscribe('/:id/post', (req: Request, res: Response) => {
-    voteService.updateVote(Number(req.params.id), 1, 0)
+    voteService.updateVote(req.body, 1)
         .then(updated => {
             console.log(updated);
             res.send(updated);

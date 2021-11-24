@@ -3,16 +3,14 @@ import {Sequelize, DataTypes, Model} from 'sequelize';
 export interface VoteAttributes {
     postId: number;
     userId: number;
-    like: number;
-    dislike: number;
-    communityScore: number;
+    like: boolean;
+    dislike: boolean;
 }
 export class Vote extends Model <VoteAttributes> implements VoteAttributes {
     postId!: number;
     userId!: number;
-    like!: number;
-    dislike!: number;
-    communityScore!: number;
+    like!: boolean;
+    dislike!: boolean;
 
     public static initialize(sequelize: Sequelize) {
         Vote.init({
@@ -25,16 +23,14 @@ export class Vote extends Model <VoteAttributes> implements VoteAttributes {
                 allowNull: false
             },
             like: {
-                type: DataTypes.INTEGER,
-                allowNull: false
+                type: DataTypes.BOOLEAN,
+                allowNull: false,
+                defaultValue: false
             },
             dislike: {
-                type: DataTypes.INTEGER,
-                allowNull: false
-            },
-            communityScore: {
-                type: DataTypes.INTEGER,
-                allowNull: false
+                type: DataTypes.BOOLEAN,
+                allowNull: false,
+                defaultValue: false
             }
         }, {
             sequelize,
