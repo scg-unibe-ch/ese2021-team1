@@ -39,4 +39,6 @@ userController.patch('/', (req: Request, res: Response) => {
        .catch( err => res.json(err));
 });
 
+// TODO: edit personal details
+
 export const UserController: Router = userController;
