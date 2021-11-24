@@ -62,6 +62,7 @@ export class Post extends Model<PostAttributes, PostCreationAttributes> implemen
             },
             communityScore: {
                 type: DataTypes.DOUBLE,
+                defaultValue: 0,
                 allowNull: false
             }
             },
@@ -71,4 +72,3 @@ export class Post extends Model<PostAttributes, PostCreationAttributes> implemen
             }
         ); }
 }
-
