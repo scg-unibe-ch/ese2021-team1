@@ -41,4 +41,10 @@ userController.patch('/', (req: Request, res: Response) => {
 
 // TODO: edit personal details
 
+userController.patch('/:id', (req: Request, res: Response) => {
+    userService.editDetails(req.body.toEdit, req.body.edit, req.body.id)
+        .then (changed => res.json(changed))
+        .catch (err => res.json(err));
+});
+
 export const UserController: Router = userController;

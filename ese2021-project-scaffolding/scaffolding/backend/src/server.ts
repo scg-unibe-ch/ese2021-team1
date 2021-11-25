@@ -56,7 +56,7 @@ export class Server {
                 'X-Access-Token',
             ],
             credentials: true,
-            methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE,SUBSCRIBE,UNSUBSCRIBE, RESET',
+            methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE,SUBSCRIBE,UNSUBSCRIBE,RESET,EDIT',
             origin: `http://localhost:${this.port}`,
             preflightContinue: false,
         };

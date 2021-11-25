@@ -112,4 +112,12 @@ export class UserService {
             return Promise.reject(hashedPW);
         }
      }
+
+     public editDetails (model: string, edit: string, id: number) {
+        return User.findByPk(id)
+            .then(found => {
+                found.update({model: edit})
+            })
+            .catch();
+     }
 }
