@@ -3,14 +3,13 @@ import {Post} from '../models/post.model';
 
 export class VoteService {
 
-    private async;     public async createVote(id: number, userName: string, subscriptionType: number) {
+    public async createVote(id: number, userName: string, subscriptionType: number) {
     let likeSub, dislikeSub = false;
-        if (subscriptionType === -1) { // dislike
+    if (subscriptionType === -1) { // dislike
         dislikeSub = true;
-
     } else {
         likeSub = true;
-        }
+    }
     return Vote.create({
         postId: id,
         userName: userName,
@@ -22,8 +21,9 @@ export class VoteService {
             return Promise.reject(err);
         });
     }
+    // TODO: return new like/dislike/communityScore count
     public async updateVote(body: { postid: number, userName: string, vote: number}, subscription: number) {
-        const found = this.searchSub(body.postid, body.userName, body.vote); // search alg to find the vote in Vote table
+        const found = this.searchSub(body.postid, body.userName); // search alg to find the vote in Vote table
         // fallunterscheidung:
         // subscription
         if (subscription === 1) {
@@ -58,7 +58,7 @@ export class VoteService {
                         } else {
                             Promise.reject('Post not found in posts table');
                         }
-                    }).catch( err => Promise.reject('failed to unsub'))
+                    }).catch(() => Promise.reject('failed to unsub'))
                 ).catch(() => Promise.reject('failed to destroy'));
                 // .then(decrease => {
                 // })
@@ -66,7 +66,7 @@ export class VoteService {
         }
     }
 
-    private searchSub(postid: number, userName: string, vote: number): any {
+    private searchSub(postid: number, userName: string): any {
         Vote.findByPk(postid) // search by postid
             .then(foundpost => {
                 if (foundpost != null) {
@@ -85,51 +85,5 @@ export class VoteService {
             .catch(err => Promise.reject(err));
 
     }
-                                /*
-                        // subscription === 1 --> sub
-                        // subscription === -1 --> unsub
-                        // vote === 1 --> like
-                        // vote === -1 --> dislike
-                        if (subscription === -1) { // unsub
-
-                        } else if (subscription === 1) {
-
-                        }
-                    }
-                } else {
-                    Promise.reject('PostId for dis/like not found');
-                }
-            }))
-            .catch (() => Promise.reject('failed to dis/like'));
-            })*/
-
-/*
-    public like(id) {
-        return Vote.findByPk(id)
-            .then((found => {
-                if (found != null) {
-                    found.update( {like: (found.like++), communityScore: (found.communityScore++)})
-                        .then(liked => Promise.resolve(liked))
-                        .catch(() => Promise.reject('failed to like'));
-                } else {
-                    Promise.reject('PostId for like not found');
-                }
-            }))
-            .catch(() => Promise.reject('failed to like'));
-    }
-
-    public dislike(id) {
-        return Vote.findByPk(id)
-            .then((found => {
-                if (found != null) {
-                    found.update( {dislike: (found.dislike++), communityScore: (found.communityScore--)})
-                        .then(disliked => Promise.resolve(disliked))
-                        .catch(() => Promise.reject('failed to dislike'));
-                } else {
-                    Promise.reject('PostId for dislike not found');
-                }
-            }))
-            .catch(() => Promise.reject('failed to dislike'));
-    } */
 
 }
