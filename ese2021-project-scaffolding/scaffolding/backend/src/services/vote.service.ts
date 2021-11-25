@@ -16,20 +16,21 @@ export class VoteService {
         userName: userName,
         dislike: dislikeSub,
         like: likeSub,
-    }).then(inserted => {
-
-        return Promise.resolve(inserted);
-    }).catch(err => {
-        return Promise.reject(err);
-    });
+        }).then(inserted => {
+            return Promise.resolve(inserted);
+        }).catch(err => {
+            return Promise.reject(err);
+        });
     }
-// TODO muess ou no ahpasst wärde
     public async updateVote(body: { postid: number, userName: string, vote: number}, subscription: number) {
         const found = this.searchSub(body.postid, body.userName, body.vote); // search alg to find the vote in Vote table
-        if (subscription === 1) { // --> subscription
-            if (found != null) { // there is already a subscription
+        // fallunterscheidung:
+        // subscription
+        if (subscription === 1) {
+            // there is already a subscription
+            if (found != null) {
                 return Promise.reject('You can\'t like and dislike the same post');
-            } else { // there is none in the Vote table so we can create a new one
+            } else { // there is no sub in the Vote table so we can create a new one
                 return this.createVote(body.postid, body.userName, body.vote)
                 .then(worked => {
                 return Promise.resolve(worked);
@@ -37,11 +38,10 @@ export class VoteService {
                 return Promise.reject(err);
                 });
             }
-        } else { // --> a UNsubscription
-            found.destroy()
-                .then(destroyed => Promise.reject(destroyed))
-                .catch(() => Promise.reject('failed to destroy'));
-                // .then(decrease => {
+        } else { // UNsubscription
+            found.destroy() // first destroy the subscription in the Vote table
+                .then(
+                    // then decrease like/dislike on the post
                     Post.findByPk(body.postid).then(foundToDecrease => {
                         if (foundToDecrease != null) {
                             if (body.vote === 1) { // like -1
@@ -58,7 +58,9 @@ export class VoteService {
                         } else {
                             Promise.reject('Post not found in posts table');
                         }
-                    }).catch( err => Promise.reject('failed to unsub'));
+                    }).catch( err => Promise.reject('failed to unsub'))
+                ).catch(() => Promise.reject('failed to destroy'));
+                // .then(decrease => {
                 // })
                 // .catch( err => Promise.reject(err));
         }
