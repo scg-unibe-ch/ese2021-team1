@@ -4,6 +4,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import validator from 'validator';
 import equals = validator.equals;
+import {Post} from "../models/post.model";
 
 export class UserService {
 
@@ -113,11 +114,37 @@ export class UserService {
         }
      }
 
-     public editDetails (model: string, edit: string, id: number) {
+     public editDetails (id, post) {
         return User.findByPk(id)
             .then(found => {
-                found.update({model: edit})
-            })
-            .catch();
+                if (found != null) {
+                    return this.updateDetails(found, post)
+                        .then (updated => Promise.resolve(updated))
+                        .catch ((err) => Promise.reject(err.message));
+                } else {
+                    return Promise.reject('Post not found');
+                }
+            });
      }
+
+
+     private async updateDetails(user: User, newUser: {firstName, lastName, email, homeAddress, streetNumber,
+         zipCode, city, birthday, phoneNumber}) {
+        return user.update(
+            {
+                firstName: newUser.firstName,
+                lastName: newUser.lastName,
+                email: newUser.email,
+                homeAddress: newUser.homeAddress,
+                streetNumber: newUser.streetNumber,
+                zipCode: newUser.zipCode,
+                city: newUser.city,
+                birthday: newUser.birthday,
+                phoneNumber: newUser.phoneNumber
+            }
+        )
+            .then(updated => Promise.resolve(updated))
+            .catch(() => Promise.reject('update failed'));
+     }
+
 }

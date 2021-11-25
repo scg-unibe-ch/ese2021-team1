@@ -39,10 +39,10 @@ userController.patch('/', (req: Request, res: Response) => {
        .catch( err => res.json(err));
 });
 
-// TODO: edit personal details
+// edit personal details
 
 userController.patch('/:id', (req: Request, res: Response) => {
-    userService.editDetails(req.body.toEdit, req.body.edit, req.body.id)
+    userService.editDetails(req, req.body.id)
         .then (changed => res.json(changed))
         .catch (err => res.json(err));
 });
