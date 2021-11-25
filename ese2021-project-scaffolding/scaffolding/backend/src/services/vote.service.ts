@@ -2,7 +2,8 @@ import {Vote} from '../models/vote.model';
 import {Post} from '../models/post.model';
 
 export class VoteService {
-    public async createVote(id: number, userID: number, subscriptionType: number) {
+
+    private async;     public async createVote(id: number, userID: number, subscriptionType: number) {
     let likeSub, dislikeSub = false;
         if (subscriptionType === -1) { // dislike
         dislikeSub = true;
@@ -24,11 +25,11 @@ export class VoteService {
     }
 // TODO muess ou no ahpasst wärde
     public async updateVote(body: { postid: number, userid: number, vote: number}, subscription: number) {
-        const found = this.searchSub(body.postid, body.userid, body.vote); // search alg to find the vote
+        const found = this.searchSub(body.postid, body.userid, body.vote); // search alg to find the vote in Vote table
         if (subscription === 1) { // --> subscription
             if (found != null) { // there is already a subscription
-                Promise.reject('You can\'t like and dislike the same post');
-            } else { // there is none in the database so we can create a new one
+                return Promise.reject('You can\'t like and dislike the same post');
+            } else { // there is none in the Vote table so we can create a new one
                 return this.createVote(body.postid, body.userid, body.vote)
                 .then(worked => {
                 return Promise.resolve(worked);
@@ -38,38 +39,41 @@ export class VoteService {
             }
         } else { // --> a UNsubscription
             found.destroy()
-                .then(destroyed => {
-                    Post.findByPk(body.postid).then(found => {
-                        if (found != null) {
+                .then(destroyed => Promise.reject(destroyed))
+                .catch(() => Promise.reject('failed to destroy'));
+                // .then(decrease => {
+                    Post.findByPk(body.postid).then(foundToDecrease => {
+                        if (foundToDecrease != null) {
                             if (body.vote === 1) { // like -1
-                                found.update({like: (found.like--), communityScore: (found.communityScore--)})
-                                    .then(unsubedliked => Promise.resolve(unsubedliked))
+                                foundToDecrease.update({like: (foundToDecrease.like--),
+                                    communityScore: ((foundToDecrease.like - foundToDecrease.dislike) / 10)})
+                                    .then(unSubedLike => Promise.resolve(unSubedLike))
                                     .catch(() => Promise.reject('failed to unsub the like'));
                             } else if (body.vote === -1) { // dislike -1
-                                found.update({dislike: (found.dislike--), communityScore: (found.communityScore--)})
-                                    .then(disliked => Promise.resolve(disliked))
-                                    .catch(() => Promise.reject('failed to dislike'));
+                                foundToDecrease.update({dislike: (foundToDecrease.dislike--),
+                                    communityScore: ((foundToDecrease.like - foundToDecrease.dislike) / 10)})
+                                    .then(unSubedDislike => Promise.resolve(unSubedDislike))
+                                    .catch(() => Promise.reject('failed to unsub the dislike'));
                             }
                         } else {
-                            Promise.reject('Post not found in posts');
+                            Promise.reject('Post not found in posts table');
                         }
-                    }).catch(err => Promise.reject(err));
-                    Promise.reject(destroyed);
-                })
-                .catch(() => Promise.reject('failed to unSubscribe'));
-            }
+                    }).catch( err => Promise.reject('failed to unsub'));
+                // })
+                // .catch( err => Promise.reject(err));
         }
+    }
 
-    private async searchSub(postid: number, userid: number, vote: number) {
+    private searchSub(postid: number, userid: number, vote: number): any {
         Vote.findByPk(postid) // search by postid
             .then(foundpost => {
                 if (foundpost != null) {
                     Vote.findByPk(userid) // search by userid
                         .then(founduser => {
                             if (founduser != null) {
-                                Promise.resolve(founduser);
+                                 Promise.resolve(founduser);
                             } else {
-                                Promise.reject(founduser);
+                                 Promise.reject(founduser);
                             }
                     }).catch(err => Promise.reject(err));
                 } else {
