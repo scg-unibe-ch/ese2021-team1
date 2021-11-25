@@ -7,6 +7,7 @@ import {VoteService} from '../services/vote.service';
 const postController: Router = express.Router();
 const postService = new PostService();
 const voteService = new VoteService();
+
 // this route is hit by the frontend when a user wants to create a new post
 postController.post('/', upload.single('file'), (req: Request, res: Response) => {
     // console.log(req); // this object contains the new post that the frontend sent us

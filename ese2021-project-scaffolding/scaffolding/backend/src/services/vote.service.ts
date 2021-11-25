@@ -3,7 +3,7 @@ import {Post} from '../models/post.model';
 
 export class VoteService {
 
-    private async;     public async createVote(id: number, userID: number, subscriptionType: number) {
+    private async;     public async createVote(id: number, userName: string, subscriptionType: number) {
     let likeSub, dislikeSub = false;
         if (subscriptionType === -1) { // dislike
         dislikeSub = true;
@@ -13,7 +13,7 @@ export class VoteService {
         }
     return Vote.create({
         postId: id,
-        userId: userID,
+        userName: userName,
         dislike: dislikeSub,
         like: likeSub,
     }).then(inserted => {
@@ -24,13 +24,13 @@ export class VoteService {
     });
     }
 // TODO muess ou no ahpasst wärde
-    public async updateVote(body: { postid: number, userid: number, vote: number}, subscription: number) {
-        const found = this.searchSub(body.postid, body.userid, body.vote); // search alg to find the vote in Vote table
+    public async updateVote(body: { postid: number, userName: string, vote: number}, subscription: number) {
+        const found = this.searchSub(body.postid, body.userName, body.vote); // search alg to find the vote in Vote table
         if (subscription === 1) { // --> subscription
             if (found != null) { // there is already a subscription
                 return Promise.reject('You can\'t like and dislike the same post');
             } else { // there is none in the Vote table so we can create a new one
-                return this.createVote(body.postid, body.userid, body.vote)
+                return this.createVote(body.postid, body.userName, body.vote)
                 .then(worked => {
                 return Promise.resolve(worked);
                 }).catch(err => {
@@ -64,11 +64,11 @@ export class VoteService {
         }
     }
 
-    private searchSub(postid: number, userid: number, vote: number): any {
+    private searchSub(postid: number, userName: string, vote: number): any {
         Vote.findByPk(postid) // search by postid
             .then(foundpost => {
                 if (foundpost != null) {
-                    Vote.findByPk(userid) // search by userid
+                    Vote.findByPk(userName) // search by userid
                         .then(founduser => {
                             if (founduser != null) {
                                  Promise.resolve(founduser);

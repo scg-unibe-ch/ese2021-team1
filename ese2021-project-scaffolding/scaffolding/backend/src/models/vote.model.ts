@@ -2,13 +2,13 @@ import {Sequelize, DataTypes, Model} from 'sequelize';
 
 export interface VoteAttributes {
     postId: number;
-    userId: number;
+    userName: string;
     like: boolean;
     dislike: boolean;
 }
 export class Vote extends Model <VoteAttributes> implements VoteAttributes {
     postId!: number;
-    userId!: number;
+    userName!: string;
     like!: boolean;
     dislike!: boolean;
 
@@ -18,8 +18,8 @@ export class Vote extends Model <VoteAttributes> implements VoteAttributes {
                 type: DataTypes.INTEGER,
                 primaryKey: true
             },
-            userId: {
-                type: DataTypes.INTEGER,
+            userName: {
+                type: DataTypes.STRING,
                 allowNull: false
             },
             like: {
