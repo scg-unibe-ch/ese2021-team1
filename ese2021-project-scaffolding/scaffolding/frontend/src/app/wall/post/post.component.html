@@ -1,6 +1,15 @@
 <!-- the following is rendered for all users except the creator -->
 <div class="postWrapper" *ngIf="user !== post.userName">
-    <div class="category">{{post.category}}</div>
+    <div *ngIf="!editable" class="category">{{post.category}}</div>
+      <mat-form-field *ngIf="editable" appearance="fill" class="category-selection">
+        <mat-label>Category</mat-label>
+        <mat-select matNativeControl required [(value)]="newCategory">
+          <mat-option value="Bitcoin">Bitcoin</mat-option>
+          <mat-option value="Ethereum">Ethereum</mat-option>
+          <mat-option value="Cardano">Cardano</mat-option>
+          <mat-option value="Polkadot">Polkadot</mat-option>
+        </mat-select>
+      </mat-form-field>
     <div class="metadata">
         <img src="../../../assets/marmot01.png" class="usericon">
         <div class="username">{{post.userName}}:</div>
@@ -9,7 +18,7 @@
     <div class="content">
       <img *ngIf="post.image" src='http://localhost:3000/uploads/{{post.image}}' height="250">
       <button *ngIf="canChange()" class="verticalDots" mat-button [mat-menu-trigger-for]="menu"></button>
-      <mat-menu #menu="matMenu">
+      <mat-menu #menu="matMenu" >
         <button mat-menu-item (click)="deletePost(post.id)">
           <span>Delete</span>
         </button>

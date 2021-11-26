@@ -23,6 +23,7 @@ export class PostComponent implements OnInit {
   @Output()
   deletePostEmit = new EventEmitter<Post>();
 
+  newCategory: string = ""
   auth: boolean = false
   user: string = ""
   newTitle: string = ""
@@ -63,11 +64,12 @@ export class PostComponent implements OnInit {
   }
 
   updatePost() {
+    this.labels.push(this.newCategory)
     this.httpClient.put(environment.endpointURL + "post/" + this.post.id, {
-      title: this.newTitle === "" ? this.post.title : this.newTitle,
-      content: this.newText === "" ? this.post.text : this.newText,
+      title: this.newTitle,
+      content: this.newText,
       image: this.post.image,
-      labels: this.post.labels,
+      labels: this.labels,
       userName: this.post.username
     }).subscribe(res => {
       console.log(res)
