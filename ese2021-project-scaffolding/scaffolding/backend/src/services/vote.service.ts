@@ -31,6 +31,7 @@ export class VoteService {
             if (found != null) {
                 return Promise.reject('You can\'t like and dislike the same post');
             } else { // there is no sub in the Vote table so we can create a new one
+                await this.upDownVote(body.postid, body.vote, 1);
                 return this.createVote(body.postid, body.userName, body.vote)
                 .then(worked => {
                 return Promise.resolve(worked);
@@ -40,31 +41,34 @@ export class VoteService {
             }
         } else { // UNsubscription
             found.destroy() // first destroy the subscription in the Vote table
-                .then(
-                    // then decrease like/dislike on the post
-                    Post.findByPk(body.postid).then(foundToDecrease => {
-                        if (foundToDecrease != null) {
-                            if (body.vote === 1) { // like -1
-                                foundToDecrease.update({like: (foundToDecrease.like--),
-                                    communityScore: ((foundToDecrease.like - foundToDecrease.dislike) / 10)})
-                                    .then(unSubedLike => Promise.resolve(unSubedLike))
-                                    .catch(() => Promise.reject('failed to unsub the like'));
-                            } else if (body.vote === -1) { // dislike -1
-                                foundToDecrease.update({dislike: (foundToDecrease.dislike--),
-                                    communityScore: ((foundToDecrease.like - foundToDecrease.dislike) / 10)})
-                                    .then(unSubedDislike => Promise.resolve(unSubedDislike))
-                                    .catch(() => Promise.reject('failed to unsub the dislike'));
-                            }
-                        } else {
-                            Promise.reject('Post not found in posts table');
-                        }
-                    }).catch(() => Promise.reject('failed to unsub'))
-                ).catch(() => Promise.reject('failed to destroy'));
-                // .then(decrease => {
-                // })
-                // .catch( err => Promise.reject(err));
+                .then(destroyed => {
+                        // then decrease like/dislike on the post
+                        this.upDownVote(body.postid, body.vote, -1);
+                        Promise.reject(destroyed);
+                    }
+                ).catch (() => Promise.reject('failed to destroy') );
         }
     }
+    private async upDownVote(postid: number, vote: number, increase: number) {
+        Post.findByPk(postid).then(foundToDeIncrease => {
+            if (foundToDeIncrease != null) {
+                if (vote === 1) { // like -1
+                    foundToDeIncrease.update({like: (foundToDeIncrease.like += increase),
+                        communityScore: ((foundToDeIncrease.like - foundToDeIncrease.dislike) / 10)})
+                        .then(unSubedLike => Promise.resolve(unSubedLike))
+                        .catch(() => Promise.reject('failed to unsub the like'));
+                } else if (vote === -1) { // dislike -1
+                    foundToDeIncrease.update({dislike: (foundToDeIncrease.dislike += increase),
+                        communityScore: ((foundToDeIncrease.like - foundToDeIncrease.dislike) / 10)})
+                        .then(unSubedDislike => Promise.resolve(unSubedDislike))
+                        .catch(() => Promise.reject('failed to unsub the dislike'));
+                }
+            } else {
+                Promise.reject('Post not found in posts table');
+            }
+        }).catch(() => Promise.reject('failed to unsub'));
+    }
+
 
     private searchSub(postid: number, userName: string): any {
         Vote.findByPk(postid) // search by postid

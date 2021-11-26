@@ -66,7 +66,8 @@ export class PostService {
                 .then(updated => Promise.resolve(updated))
                 .catch(() => Promise.reject('update failed') );
         } else {
-            return post.update({title: newPost.title, text: newPost.content, category: newPost.labels.toString()})
+            return post.update(
+                {title: newPost.title, text: newPost.content, category: newPost.labels.toString()})
                 .then(updated => Promise.resolve(updated))
                 .catch(() => Promise.reject('update failed') );
         }
