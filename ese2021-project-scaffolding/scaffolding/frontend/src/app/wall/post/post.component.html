@@ -22,8 +22,8 @@
       <input *ngIf="editable" class="material"[(ngModel)]="newText" placeholder="{{post.text}}"/>
     </div>
     <div class="underPost">
-      <button (click)="updatePost()" class="upvoteButton">Upvotes: {{post.upvotes}}</button>
-      <button (click)="updatePost()" class="downvoteButton">Downvotes: {{post.downvotes}}</button>
+      <button (click)="upvotePost()" class="upvoteButton">Upvotes: {{post.like}}</button>
+      <button (click)="downvotePost()" class="downvoteButton">Downvotes: {{post.dislike}}</button>
       <button class="commentsButton">Comments</button>
       <button *ngIf="editable" (click)="updatePost()" (click)="changeEditability()">Save Changes</button>
     </div>

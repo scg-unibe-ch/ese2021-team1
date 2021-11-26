@@ -25,7 +25,6 @@ postController.post('/', upload.single('file'), (req: Request, res: Response) =>
         });
 });
 
-
 // this route is hit by the frontend on startup to fetch all posts from the database
 postController.get('/', (req: Request, res: Response) => {
     postService.getAllPosts()

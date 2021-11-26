@@ -9,6 +9,8 @@ import { TodoList } from './models/todolist.model';
 import { TodoItem } from './models/todoitem.model';
 import { User } from './models/user.model';
 import { Post } from './models/post.model';
+
+
 import cors from 'cors';
 import {AdminController} from './controllers/admin.controller';
 import {ItemImage} from './models/itemImage.model';
@@ -28,9 +30,8 @@ export class Server {
     constructor() {
         this.server = this.configureServer();
         this.sequelize = this.configureSequelize();
-
         Vote.initialize(this.sequelize);
-        Post.initialize(this.sequelize); // create the new table!
+        Post.initialize(this.sequelize); // create the new table! // step 1
         TodoItem.initialize(this.sequelize); // creates the tables if they dont exist
         TodoList.initialize(this.sequelize);
         User.initialize(this.sequelize);
@@ -78,15 +79,17 @@ export class Server {
             .use('/secured', SecuredController)
             .use('/admin', AdminController)
             // first of all you have to set the new port here
-            .use('/post', PostController)
+            .use('/post', PostController) // step 2 / insert new controller
             .use('/product', ProductController)
             .use('/orders', OrderController)
             .use('/vote', VoteController)
             .options('*', cors(options))
+            .options('*', cors(options))
             .use('/uploads', express.static(__dirname + '/uploads'))
             // this is the message you get if you open http://localhost:3000/ when the server is running
-            .get('/', (req, res) => res.send('<h1>Jan and Alessios sexy domain <span style="font-size:50px">&#127881;</span></h1>'));
+            .get('/', (req, res) => res.send('<h1>Welcome to the ESE-2021 Backend Scaffolding <span style="font-size:50px">&#127881;</span></h1>'));
     }
+
     private configureSequelize(): Sequelize {
         return new Sequelize({
             dialect: 'sqlite',

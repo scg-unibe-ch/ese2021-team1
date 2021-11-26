@@ -31,7 +31,6 @@ export class PostComponent implements OnInit {
   labels: string[] = []
   editable: boolean = false;
 
-
   constructor(
     public httpClient: HttpClient,
     public userService: UserService
@@ -45,12 +44,31 @@ export class PostComponent implements OnInit {
 
   }
 
+  upvotePost() {
+    this.httpClient.post(environment.endpointURL + "vote/" + this.post.id + "/up", {
+      userName: this.post.userName,
+      vote: 1
+    }).subscribe(res => {
+      console.log(res)
+    })
+  }
+
+  downvotePost() {
+    this.httpClient.post(environment.endpointURL + "vote/" + this.post.id + "/down", {
+      userName: this.post.userName,
+      vote: 1
+    }).subscribe(res => {
+      console.log(res)
+    })
+  }
+
   updatePost() {
     this.httpClient.put(environment.endpointURL + "post/" + this.post.id, {
-      title: this.newTitle,
-      content: this.newText,
-      // image: this.image,
-      labels: this.labels
+      title: this.newTitle === "" ? this.post.title : this.newTitle,
+      content: this.newText === "" ? this.post.text : this.newText,
+      image: this.post.image,
+      labels: this.post.labels,
+      userName: this.post.username
     }).subscribe(res => {
       console.log(res)
       // @ts-ignore
