@@ -50,7 +50,6 @@ export class PostComponent implements OnInit {
       title: this.newTitle,
       content: this.newText,
       // image: this.image,
-      labels: this.labels
     }).subscribe(res => {
       console.log(res)
       // @ts-ignore

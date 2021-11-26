@@ -15,11 +15,12 @@ import {WallComponent} from "../wall/wall.component";
 export class AddPostComponent implements OnInit {
 
   selectedFile: any;
-  
+
   @Output()
   addPostEmit = new EventEmitter<any>();
-  
+
   url: any;
+  category: string = "";
   newPost: any = {
     title: "",
     content: "",
@@ -54,7 +55,8 @@ export class AddPostComponent implements OnInit {
       alert("Only signed in users can create posts. This form should not be visible.")
       return
     }
-    this.newPost.userName = user
+    this.newPost.labels.push(this.category);
+    this.newPost.userName = user;
     if (this.checkValidPost()) {
       const payload = new FormData()
       payload.append("post", JSON.stringify(this.newPost))

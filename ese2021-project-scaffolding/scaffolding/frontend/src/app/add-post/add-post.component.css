@@ -152,11 +152,12 @@
   margin-left: 0;
   left: 15px;
   padding: 15px;
-  width: calc(100% - 60px);
+  width: calc(78% - 60px);
   box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px 0px inset;
   font-size: larger;
   margin-top: 15px;
   margin-bottom: 15px;
+  float: left;
 }
 .textArea {
   background-color: rgb(246, 246, 246);
@@ -296,4 +297,16 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.category-selection {
+  color: black;
+  background-color: white;
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 10px;
+  border: none;
+  height: 60px;
+  margin-top: 15px;
+  margin-left: 35px;
 }
