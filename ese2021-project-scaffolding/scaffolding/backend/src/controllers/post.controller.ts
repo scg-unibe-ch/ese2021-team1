@@ -53,8 +53,11 @@ postController.search('/', (req: Request, res: Response) => {
 });
 
 
-
-// TODO: search for category -> done?
+postController.report('/:id', (req: Request, res: Response) => {
+    postService.reportPost(req.body.id)
+        .then(updated => res.send(updated))
+        .catch(err => res.send(err));
+});
 
 
 // you have to export the controller to use it in the server

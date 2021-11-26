@@ -129,4 +129,18 @@ export class PostService {
                 return Promise.reject(err.message);
             });
     }
+
+    public reportPost(id: number) {
+        return Post.findByPk(id)
+            .then(found => {
+                if (found != null) {
+                    found.update({reported: found.reported++})
+                        .then (updated => Promise.resolve(updated))
+                        .catch((err) => Promise.reject(err));
+                }
+            })
+            .then(updated => Promise.resolve(updated))
+            .catch((err) => Promise.reject(err));
+
+    }
 }
