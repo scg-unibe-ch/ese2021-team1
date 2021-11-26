@@ -1,6 +1,7 @@
 import {Post} from '../models/post.model';
 import {Vote} from '../models/vote.model';
 import {User} from '../models/user.model';
+import {Comment} from "../models/comment.model";
 
 
 export class PostService {
@@ -142,5 +143,17 @@ export class PostService {
             .then(updated => Promise.resolve(updated))
             .catch((err) => Promise.reject(err));
 
+    }
+
+    public comment(commentId: number, postId: number, text: string) {
+        return Comment.create( {
+            postID: postId,
+            commentID: commentId,
+            text: text,
+            reported: 0
+            }
+        )
+            .then(created => Promise.reject(created))
+            .catch(err => Promise.reject(err));
     }
 }
