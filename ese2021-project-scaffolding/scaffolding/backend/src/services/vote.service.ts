@@ -22,8 +22,8 @@ export class VoteService {
         });
     }
     // TODO: return new like/dislike/communityScore count
-    public async updateVote(body: { postid: number, userName: string, vote: number}, subscription: number) {
-        const found = this.searchSub(body.postid, body.userName); // search alg to find the vote in Vote table
+    public async updateVote(postid: number, body: { userName: string, vote: number}, subscription: number) {
+        const found = this.searchSub(postid, body.userName); // search alg to find the vote in Vote table
         // fallunterscheidung:
         // subscription
         if (subscription === 1) {
@@ -31,8 +31,8 @@ export class VoteService {
             if (found != null) {
                 return Promise.reject('You can\'t like and dislike the same post');
             } else { // there is no sub in the Vote table so we can create a new one
-                await this.upDownVote(body.postid, body.vote, 1);
-                return this.createVote(body.postid, body.userName, body.vote)
+                await this.upDownVote(postid, body.vote, 1);
+                return this.createVote(postid, body.userName, body.vote)
                 .then(worked => {
                 return Promise.resolve(worked);
                 }).catch(err => {
@@ -43,7 +43,7 @@ export class VoteService {
             found.destroy() // first destroy the subscription in the Vote table
                 .then(destroyed => {
                         // then decrease like/dislike on the post
-                        this.upDownVote(body.postid, body.vote, -1);
+                        this.upDownVote(postid, body.vote, -1);
                         Promise.reject(destroyed);
                     }
                 ).catch (() => Promise.reject('failed to destroy') );
@@ -74,7 +74,7 @@ export class VoteService {
         Vote.findByPk(postid) // search by postid
             .then(foundpost => {
                 if (foundpost != null) {
-                    Vote.findByPk(userName) // search by userid
+                    Vote.findOne({ where: { userName: userName }} ) // search by userid
                         .then(founduser => {
                             if (founduser != null) {
                                  Promise.resolve(founduser);

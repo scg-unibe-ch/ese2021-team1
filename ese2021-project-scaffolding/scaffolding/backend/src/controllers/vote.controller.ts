@@ -7,8 +7,8 @@ const voteController: Router = express.Router();
 const voteService = new VoteService();
 
 
-voteController.subscribe('/:id/post', (req: Request, res: Response) => {
-    voteService.updateVote(req.body, 1)
+voteController.post('/:id/up', (req: Request, res: Response) => { 
+    voteService.updateVote(Number(req.params.id), req.body, 1)
         .then(updated => {
             console.log(updated);
             res.send(updated);
@@ -17,8 +17,8 @@ voteController.subscribe('/:id/post', (req: Request, res: Response) => {
 });
 
 
-voteController.unsubscribe('/:id/post', (req: Request, res: Response) => {
-    voteService.updateVote(req.body, -1)
+voteController.post('/:id/down', (req: Request, res: Response) => {
+    voteService.updateVote(Number(req.params.id), req.body, -1)
         .then(updated => {
             console.log(updated);
             res.send(updated);
