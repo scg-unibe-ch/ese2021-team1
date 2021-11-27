@@ -29,6 +29,8 @@ import { AddPostComponent } from './add-post/add-post.component';
 import {MatMenuModule} from "@angular/material/menu";
 import {MatIconModule} from "@angular/material/icon";
 import {MatSelectModule} from "@angular/material/select";
+import { StoreComponent } from './store/store.component';
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import {MatSelectModule} from "@angular/material/select";
     PostComponent,
     routingComponents,
     AddPostComponent,
+    StoreComponent,
   ],
     imports: [
         BrowserModule,
@@ -62,7 +65,8 @@ import {MatSelectModule} from "@angular/material/select";
         AppRoutingModule,
         MatMenuModule,
         MatIconModule,
-        MatSelectModule
+        MatSelectModule,
+        FlexLayoutModule
     ],
   providers: [
     {
