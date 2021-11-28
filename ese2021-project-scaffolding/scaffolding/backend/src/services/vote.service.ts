@@ -20,7 +20,7 @@ export class VoteService {
         }*/
     }
     return Vote.create({
-        voteId: null,
+        voteId: 0,
         postId: id,
         userName: userName,
         dislike: dislikeSub,
@@ -31,12 +31,13 @@ export class VoteService {
             return Promise.reject(err);
         });
     }
-    // TODO: return new like/dislike/communityScore count
+
     public async updateVote(postid: number, body: { userName: string, vote: number}) {
-        const found = this.searchSub(postid, body.userName); // search alg to find the vote in Vote table
-        // fallunterscheidung:
+
+        return Vote.findOne({where: {userName: body.userName, postId: postid}})
+            .then(async found => {
         if (found != null) {
-            if ((found.like === true && body.vote === 1) || (found.dislike === true && body.vote === -1 )) {
+            if ((found.like === true && body.vote === 1) || (found.dislike === true && body.vote === -1)) {
                 console.log();
                 // UNsubscription
                 found.destroy() // first destroy the subscription in the Vote table
@@ -45,19 +46,22 @@ export class VoteService {
                             this.upDownVote(postid, body.vote, -1);
                             return Promise.reject(destroyed);
                         }
-                    ).catch ((err) => Promise.reject('failed to destroy ' + err) );
+                    ).catch((err) => Promise.reject('failed to destroy ' + err));
             } else {
                 return Promise.reject('You can\'t like and dislike the same post');
             }
         } else { // there is no sub in the Vote table so we can create a new one -> subscription
             await this.upDownVote(postid, body.vote, 1);
-            return this.createVote(postid, body.userName, body.vote)
-            .then(worked => {
-            return Promise.resolve(worked);
-            }).catch(err => {
-            return Promise.reject(err);
-            });
+            try {
+                const worked = await this.createVote(postid, body.userName, body.vote);
+                return Promise.resolve(worked);
+            } catch (err_1) {
+                return Promise.reject(err_1);
+            }
         }
+            })
+            .catch(err => Promise.reject(err));
+
     }
     private async upDownVote(postid: number, vote: number, increase: number) {
         Post.findByPk(postid).then(foundToDeIncrease => {
@@ -79,16 +83,5 @@ export class VoteService {
         }).catch(() => Promise.reject('failed to unsub'));
     }
 
-
-    private searchSub(postid: number, userName: string): any {
-        Vote.findOne({where: {postId: postid, userName: userName}}) // search by postid and userName
-            .then(foundVote => {
-                if (foundVote != null) {
-                    Promise.resolve(foundVote);
-                } else {
-                    Promise.reject(foundVote);
-                }
-            }).catch(err => Promise.reject(err));
-    }
 
 }
