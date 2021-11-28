@@ -24,22 +24,7 @@ export class PostService {
             category: this.arrayToString(post.labels),
             userName: post.userName
         })
-        // now we want to check whether the creation was successful
-        .then(inserted => {
-                    Vote.create({
-                        voteId: null,
-                        postId: inserted.id,
-                        userName: inserted.userName,
-                        dislike: false,
-                        like: false,
-                    }).then(insertForVote => {
-                        return Promise.resolve(insertForVote);
-                    }).catch(err => {
-                        return Promise.reject(err);
-                    });
-            // rif all ok, return the inserted row (Post) to the controller
-            return Promise.resolve(inserted);
-        })
+
         // else if an error occured
         .catch(err => {
             // return the error message
