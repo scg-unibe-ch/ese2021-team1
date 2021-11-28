@@ -9,6 +9,7 @@ export interface ProductProperties {
     available: boolean;
     price: number;
     discount: number;
+    deleted: boolean;
     // TODO: availability
 }
 
@@ -23,6 +24,7 @@ export class Product extends Model<ProductProperties, ProductCreationProperties>
     available: boolean;
     price: number;
     discount: number;
+    deleted: boolean;
 
     public static initialize(sequelize: Sequelize) {
         Product.init({
@@ -59,7 +61,13 @@ export class Product extends Model<ProductProperties, ProductCreationProperties>
             },
             discount: {
                     type: DataTypes.FLOAT,
-                    defaultValue: 1
+                    defaultValue: 1,
+                    allowNull: false
+            },
+            deleted: {
+                    type: DataTypes.BOOLEAN,
+                    defaultValue: false,
+                    allowNull: false
             }
             },
             {

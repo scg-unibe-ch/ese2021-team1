@@ -18,7 +18,8 @@ export class ProductService {
             category: product.category,
             available: product.available,
             price: product.price,
-            discount: standardDiscount
+            discount: standardDiscount,
+            deleted: false
         })
             .then(inserted => { return Promise.resolve(inserted);
             })
@@ -31,9 +32,9 @@ export class ProductService {
         return Product.findByPk(id)
             .then((found => {
                 if (found != null) {
-                    found.destroy()
-                        .then(destroyed => Promise.resolve(destroyed))
-                        .catch(() => Promise.reject('failed to destroy '));
+                    found.update({deleted: true})
+                        .then(updated => Promise.resolve(updated))
+                        .catch(() => Promise.reject('failed to delete '));
                 } else {
                     return Promise.reject('Post not found');
                 }
@@ -72,7 +73,7 @@ export class ProductService {
             .then(updated => Promise.reject(updated))
             .catch(() => Promise.reject('Product update failed'));
     }
-    // TODO: filter for categorys
+
     // TODO: buy order
 
     public searchForCategorysProduct (categorys: String []) {
@@ -94,5 +95,17 @@ export class ProductService {
             .catch(err => {
                 return Promise.reject(err.message);
             });
+    }
+
+    public getAllProducts () {
+        return Product.findAll({where: {deleted: false}})
+            .then(product => {
+                if (product != null) {
+                    return Promise.resolve(product);
+                } else {
+                    return Promise.reject(product);
+                }
+            })
+            .catch( () => Promise.reject('Cannot find products'));
     }
 }

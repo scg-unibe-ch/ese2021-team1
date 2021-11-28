@@ -28,7 +28,13 @@ productController.post('/', (req: Request, res: Response) => {
          .catch(err => res.json(err));
  });
 
- // TODO: filter for categorys
+ productController.get('/', (req: Request, res: Response) => {
+     productService.getAllProducts()
+         .then(updated => res.json(updated))
+         .catch(err => res.json(err));
+ });
+
+
 // TODO: buy order
 
 export const ProductController: Router = productController;
