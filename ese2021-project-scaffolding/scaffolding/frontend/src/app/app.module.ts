@@ -28,6 +28,9 @@ import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AddPostComponent } from './add-post/add-post.component';
 import {MatMenuModule} from "@angular/material/menu";
 import {MatIconModule} from "@angular/material/icon";
+import {MatSelectModule} from "@angular/material/select";
+import { StoreComponent } from './store/store.component';
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -43,25 +46,28 @@ import {MatIconModule} from "@angular/material/icon";
     PostComponent,
     routingComponents,
     AddPostComponent,
+    StoreComponent,
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    MatToolbarModule,
-    MatTabsModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatListModule,
-    FormsModule,
-    MatCheckboxModule,
-    OverlayModule,
-    AppRoutingModule,
-    MatMenuModule,
-    MatIconModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        MatToolbarModule,
+        MatTabsModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatListModule,
+        FormsModule,
+        MatCheckboxModule,
+        OverlayModule,
+        AppRoutingModule,
+        MatMenuModule,
+        MatIconModule,
+        MatSelectModule,
+        FlexLayoutModule
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

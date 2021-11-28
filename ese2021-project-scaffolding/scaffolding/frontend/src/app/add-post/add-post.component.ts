@@ -15,11 +15,12 @@ import {WallComponent} from "../wall/wall.component";
 export class AddPostComponent implements OnInit {
 
   selectedFile: any;
-  
+
   @Output()
   addPostEmit = new EventEmitter<any>();
-  
+
   url: any;
+  category: string = "";
   newPost: any = {
     title: "",
     content: "",
@@ -54,8 +55,9 @@ export class AddPostComponent implements OnInit {
       alert("Only signed in users can create posts. This form should not be visible.")
       return
     }
-    this.newPost.userName = user
+    this.newPost.userName = user;
     if (this.checkValidPost()) {
+      this.newPost.labels.push(this.category);
       const payload = new FormData()
       payload.append("post", JSON.stringify(this.newPost))
       payload.append("file", this.selectedFile)
@@ -83,16 +85,16 @@ export class AddPostComponent implements OnInit {
   }
 
   checkValidPost(): boolean {
-    if (this.newPost.title == "" || this.newPost.content == "") {
+    if (this.newPost.title == "" || this.category == "" || (this.selectedFile == null && this.newPost.content == "")) {
       if (this.newPost.title == "") {
         this.createPostFeedback.title = "Please enter a title"
+        this.createPostFeedback.content = ""
+      } else if (this.category == "") {
+        this.createPostFeedback.title = ""
+        this.createPostFeedback.content = "Please enter a category."
       } else {
         this.createPostFeedback.title = ""
-      }
-      if (this.newPost.content == "") {
-        this.createPostFeedback.content = "Content cannot be empty"
-      } else {
-        this.createPostFeedback.content = ""
+        this.createPostFeedback.content = "Please enter a text or an image."
       }
       return false;
     }

@@ -59,15 +59,15 @@ export class PostService {
             });
     }
 
-    private async updateBody(post: Post, newPost: { title: string, content: string, image: Blob, labels: string[] }) {
+    private async updateBody(post: Post, newPost: { title: string, content: string, image: Blob}) {
         if (newPost.image != null) {
             return post.update(
-                {title: newPost.title, text: newPost.content, category: newPost.labels.toString()})
+                {title: newPost.title, text: newPost.content})
                 .then(updated => Promise.resolve(updated))
                 .catch(() => Promise.reject('update failed') );
         } else {
             return post.update(
-                {title: newPost.title, text: newPost.content, category: newPost.labels.toString()})
+                {title: newPost.title, text: newPost.content})
                 .then(updated => Promise.resolve(updated))
                 .catch(() => Promise.reject('update failed') );
         }

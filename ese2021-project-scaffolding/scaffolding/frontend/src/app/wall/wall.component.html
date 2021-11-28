@@ -1,7 +1,7 @@
 
 <div class="wallWrapper">
   <!-- toggles the add-post component -->
-  <button *ngIf="auth" class="createPostButton" (click)="togglePostForm()" [innerHtml]="createPostButtonText"></button>
+  <button *ngIf="userService.getLoggedIn()" class="createPostButton" (click)="togglePostForm()" [innerHtml]="createPostButtonText"></button>
   <app-add-post *ngIf="showNewPostForm" (addPostEmit)="addPostParent($event)"></app-add-post>
   <!-- handles the no-posts case -->
   <p class="noPosts" *ngIf="isPostsEmpty()">There are currently no posts 😔</p>
@@ -10,3 +10,5 @@
     <app-post [post] = "post" (deletePostEmit)="deletePostParent($event)" (update)="updatePosts($event)"></app-post>
   </div>
 </div>
+
+<router-outlet></router-outlet>

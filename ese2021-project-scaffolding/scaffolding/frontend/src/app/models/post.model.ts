@@ -6,7 +6,7 @@ export class Post {
     public category: string,
     public upvotes: number,
     public downvotes: number,
-    public created_at: String,
+    public created_at: string,
     public userId: string,
     public id: number
   ) {}
