@@ -99,3 +99,8 @@ export class Server {
 }
 
 const server = new Server(); // starts the server
+const fs = require('fs');
+const dir = './build/uploads';
+if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir);
+}
