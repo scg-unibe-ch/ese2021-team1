@@ -63,7 +63,7 @@ export class Server {
                 'X-Access-Token',
             ],
             credentials: true,
-            methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE,SEARCH,SUBSCRIBE,UNSUBSCRIBE',
+            methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE,SEARCH',
             origin: `http://localhost:${this.port}`,
             preflightContinue: false,
         };
@@ -83,7 +83,6 @@ export class Server {
             .use('/product', ProductController)
             .use('/orders', OrderController)
             .use('/vote', VoteController)
-            .options('*', cors(options))
             .options('*', cors(options))
             .use('/uploads', express.static(__dirname + '/uploads'))
             // this is the message you get if you open http://localhost:3000/ when the server is running
