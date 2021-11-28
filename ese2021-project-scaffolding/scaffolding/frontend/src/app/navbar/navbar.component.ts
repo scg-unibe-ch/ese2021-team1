@@ -12,7 +12,7 @@ export class NavbarComponent implements OnInit {
   // toggle register and login modals
   showLoginModal: boolean = true
   showRegisterModal: boolean = true
-
+  title: string = "CryptoHub"
   loggedInState: boolean = false
 
   user: User | null = null
@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
       userService.loggedIn$.subscribe(res => this.loggedInState = res)
       userService.user$.subscribe(res => this.user = res)
   }
-  
+
   ngOnInit(): void {
     this.userService.loggedIn$.subscribe((loginState) => {
       this.loggedInState = true

@@ -48,6 +48,12 @@
   margin-top: 15px;
   margin-right: 12px;
 }
+
+.category-selection {
+  position: relative;
+  float: right;
+  font-size: 15px;
+}
 .postdate {
   line-height: 50px;
   position: relative;

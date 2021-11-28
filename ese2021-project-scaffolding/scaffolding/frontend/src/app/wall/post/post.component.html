@@ -9,7 +9,7 @@
     <div class="content">
       <img *ngIf="post.image" src='http://localhost:3000/uploads/{{post.image}}' height="250">
       <button *ngIf="canChange()" class="verticalDots" mat-button [mat-menu-trigger-for]="menu"></button>
-      <mat-menu #menu="matMenu">
+      <mat-menu #menu="matMenu" >
         <button mat-menu-item (click)="deletePost(post.id)">
           <span>Delete</span>
         </button>

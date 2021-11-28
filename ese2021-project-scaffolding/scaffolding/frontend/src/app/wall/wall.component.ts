@@ -24,7 +24,6 @@ export class WallComponent implements OnInit {
   }
   posts: Post[] = [];
 
-
   createPostFeedback = {
     title: '',
     content: ''
