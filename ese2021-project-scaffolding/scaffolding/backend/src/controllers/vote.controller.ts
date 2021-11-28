@@ -7,7 +7,7 @@ const voteController: Router = express.Router();
 const voteService = new VoteService();
 
 
-voteController.post('/:id/up', (req: Request, res: Response) => { 
+voteController.post('/:id/up', (req: Request, res: Response) => {
     voteService.updateVote(Number(req.params.id), req.body, 1)
         .then(updated => {
             console.log(updated);
