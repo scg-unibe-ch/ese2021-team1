@@ -27,6 +27,7 @@ export class PostService {
         // now we want to check whether the creation was successful
         .then(inserted => {
                     Vote.create({
+                        voteId: null,
                         postId: inserted.id,
                         userName: inserted.userName,
                         dislike: false,

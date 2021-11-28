@@ -56,7 +56,7 @@ export class PostComponent implements OnInit {
   downvotePost() {
     this.httpClient.post(environment.endpointURL + "vote/" + this.post.id + "/down", {
       userName: this.post.userName,
-      vote: 1
+      vote: -1
     }).subscribe(res => {
       console.log(res)
     })
