@@ -74,7 +74,7 @@ export class ProductService {
             .catch(() => Promise.reject('Product update failed'));
     }
 
-    // TODO: buy order
+
 
     public searchForCategorysProduct (categorys: String []) {
         let counter = 0;

@@ -62,4 +62,16 @@ export class UserService {
         }
         return 0;
     }
+
+    public isAdmin (id: number) {
+        return User.findByPk(id)
+            .then(found => {
+                if (found != null) {
+                    return Promise.resolve(found.admin);
+                } else {
+                    return Promise.reject(found);
+                }
+            })
+            .catch(() => Promise.reject('Cant find user'));
+    }
 }

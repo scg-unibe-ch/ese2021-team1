@@ -24,4 +24,10 @@ userController.get('/', verifyToken, // you can add middleware on specific reque
     }
 );
 
+userController.get('/admin', (req: Request, res: Response) => {
+    userService.isAdmin(req.body.id)
+        .then(admin => res.send(admin))
+        .catch(err => res.send(err));
+});
+
 export const UserController: Router = userController;

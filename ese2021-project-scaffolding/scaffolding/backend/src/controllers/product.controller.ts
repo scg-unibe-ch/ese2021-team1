@@ -35,6 +35,6 @@ productController.post('/', (req: Request, res: Response) => {
  });
 
 
-// TODO: buy order
+
 
 export const ProductController: Router = productController;
