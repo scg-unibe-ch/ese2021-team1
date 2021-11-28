@@ -6,8 +6,8 @@
         <div class="username">{{post.userName}}:</div>
         <div class="postdate">{{post.createdAt}}</div>
     </div>
+    <img class="postImage" *ngIf="post.image" src='http://localhost:3000/uploads/{{post.image}}'>
     <div class="content">
-      <img *ngIf="post.image" src='http://localhost:3000/uploads/{{post.image}}' height="250">
       <button *ngIf="canChange()" class="verticalDots" mat-button [mat-menu-trigger-for]="menu"></button>
       <mat-menu #menu="matMenu" >
         <button mat-menu-item (click)="deletePost(post.id)">
@@ -23,11 +23,20 @@
       <input *ngIf="editable" class="material"[(ngModel)]="newText" placeholder="{{post.text}}"/>
     </div>
     <div class="underPost">
-      <button (click)="upvotePost()" class="upvoteButton">Upvotes: {{post.like}}</button>
-      <button (click)="downvotePost()" class="downvoteButton">Downvotes: {{post.dislike}}</button>
-      <button class="commentsButton">Comments</button>
-      <button *ngIf="editable" (click)="updatePost()" (click)="changeEditability()">Save Changes</button>
+      <div class="upvote">
+        <img *ngIf="!clickedUpvote" class="upvoteImage" src="assets/upvoteUnclicked.png" (click)="upvotePost(); clickedUpvote=true">
+        <img *ngIf="clickedUpvote" class="upvoteImage" src="assets/upvoteClicked.png" (click)="upvotePost()">
+        <p class="likesCount">{{post.like}}</p>
+      </div>
+      <div class="downvote">
+        <img *ngIf="!clickedDownvote" class="upvoteImage" src="assets/downvoteUnclicked.png" (click)="downvotePost(); clickedDownvote=true">
+        <img *ngIf="clickedDownvote" class="upvoteImage" src="assets/downvoteClicked.png" (click)="downvotePost()">
+        <p class="dislikesCount">{{post.dislike}}</p>
+      </div>
+      <!-- <button class="commentsButton">Comments</button>         -->
+      <button *ngIf="editable" (click)="updatePost()" (click)="changeEditability()" id="saveChanges">Save</button>
     </div>
+</div>
     <!-- <div class="commentSection">
         <div class="comment">
             <img src="../../../assets/marmot01.png" class="usericon">
@@ -46,4 +55,4 @@
             <div class="commentContent">Nam fermentum, ligula nec pulvinar pretium, lorem</div>
         </div>
     </div> -->
-</div>
+

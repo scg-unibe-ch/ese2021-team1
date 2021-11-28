@@ -30,6 +30,8 @@ export class PostComponent implements OnInit {
   // image: Blob = Blob
   labels: string[] = []
   editable: boolean = false;
+  clickedUpvote: boolean = false;
+  clickedDownvote: boolean = false;
 
   constructor(
     public httpClient: HttpClient,
@@ -49,7 +51,7 @@ export class PostComponent implements OnInit {
       userName: this.post.userName,
       vote: 1
     }).subscribe(res => {
-      console.log(res)
+      this.post.like += 1;
     })
   }
 
@@ -58,7 +60,7 @@ export class PostComponent implements OnInit {
       userName: this.post.userName,
       vote: -1
     }).subscribe(res => {
-      console.log(res)
+      this.post.dislike += 1;
     })
   }
 
@@ -100,6 +102,10 @@ export class PostComponent implements OnInit {
       return true
     else
       return false
+  }
+
+  calculateCommunityScore() {
+    return this.post.like - this.post.dislike;
   }
 
 }

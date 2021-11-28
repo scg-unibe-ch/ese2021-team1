@@ -281,6 +281,7 @@
   left: 15px;
   padding: 15px;
   margin-top: 5px;
+  float: left;
 }
 
 #uploadImg {
@@ -308,5 +309,15 @@
   margin-top: 15px;
   margin-left: 35px;
   width: 20%;
+  position: relative;
+}
+
+#selectedFile {
+  float: left;
+  font-weight: bold;
+  font-size: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+  left: 30px;
+  bottom: 15px;
   position: relative;
 }

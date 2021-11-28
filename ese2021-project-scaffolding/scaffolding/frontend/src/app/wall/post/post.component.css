@@ -9,8 +9,9 @@
   padding: 10px;
   border-radius: 20px;
   display: block;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
   background: dimgrey;
+  overflow: hidden
 }
 
 .metadata {
@@ -134,12 +135,26 @@
   margin-left: 10px;
 }
 
-.upvoteButton, .downvoteButton, .commentsButton {
-  margin: 5px;
+.upvoteImage {
+  height: 20px;
+  margin-top: 8px;
+  margin-left: 5px;
+}
+.likesCount, .dislikesCount {
+  float: left;
+  font-size: 18px;
+  position: relative;
+  bottom: 10px;
 }
 
-.upvoteButton:focus {
-  background-color: #3bb615;
+.upvote, .downvote {
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.downvote {
+  margin-left: 15px;
 }
 
 .verticalDots:after {
@@ -161,5 +176,24 @@ input {
   padding: 0;
   margin: 0;
   background: transparent;
+}
+
+.postImage {
+  max-height: 400px;
+  max-width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+  margin-top: 15px;
+  border-radius: 15px;
+
+}
+
+#saveChanges {
+  float: right;
+  position: relative;
+  bottom: 30px;
+  right: 15px;
+  border-radius: 5px;
 }
 
