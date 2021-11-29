@@ -25,7 +25,6 @@
         <div class="feedback" >{{createPostFeedback.title}}</div>
         <button id="buttUploadImg"><label for="files" id="uploadImg">Datei auswählen</label></button>
         <input id="files" #imageInput (change)="imageHandler($event)" class="inputField" type="file" name="uploaded_image" accept="image/*" class="hidden"/><br>
-        <p id="selectedFile">{{this.selectedFile.name}}</p>
         <button type="submit" (click)="createPost()" class="postButton">SHARE NOW</button>
 
 

@@ -311,13 +311,3 @@
   width: 20%;
   position: relative;
 }
-
-#selectedFile {
-  float: left;
-  font-weight: bold;
-  font-size: 15px;
-  font-family: Arial, Helvetica, sans-serif;
-  left: 30px;
-  bottom: 15px;
-  position: relative;
-}
