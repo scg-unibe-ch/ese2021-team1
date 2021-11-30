@@ -21,7 +21,7 @@ export class PostService {
             dislike: 0,
             like: 0,
             communityScore: 0,
-            category: this.arrayToString(post.labels),
+            category: post.labels,
             userName: post.userName
         })
 
@@ -96,7 +96,7 @@ export class PostService {
 
     // TODO: search for category -> done?
 
-    public searchForCategorysPost (categorys: String []) {
+    public searchForCategorysPost2 (categorys: String []) {
         let counter = 0;
         let searchedForCategorys = null;
         return Post.findAll().then(found => {
@@ -104,7 +104,8 @@ export class PostService {
             for (let arrayLength = 0; arrayLength < found.length; arrayLength++) {
                 for (let categoryLength = 0; categoryLength < categorys.length; categoryLength++) {
                 const search = new RegExp('$' + categorys[categoryLength] + '$');
-                if ( search.test(found[arrayLength].category)) {
+                // @ts-ignore
+                    if ( search.test(found[arrayLength].category)) {
                     searchedForCategorys[counter] = found[arrayLength];
                     counter++;
                 }
@@ -115,5 +116,33 @@ export class PostService {
             .catch(err => {
                 return Promise.reject(err.message);
             });
+    }
+    //////////////////////////////////////////////////////////////////////////////////////
+
+    public async searchForCategorysPost(categorys: String[]) {
+        let searchdForCategorys = null;
+        let counter = 0;
+        return Post.findAll()
+            .then(found => {
+                searchdForCategorys = new Array(found.length);
+                if (found != null) {
+                    for (let foundLength = 0; foundLength < found.length; foundLength++) {
+                        for (let categorysLengt = 0; categorysLengt < categorys.length; categorysLengt++) {
+                            for (let foundCategorysLength = 0; foundCategorysLength < found[foundLength].category.length;
+                                 foundCategorysLength++) {
+                                if (categorys[categorysLengt] === found[foundLength].category[foundCategorysLength]) {
+                                    searchdForCategorys[counter] = found[foundLength];
+                                    counter++;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    return Promise.resolve(searchdForCategorys);
+                } else {
+                    return Promise.reject('Cant find Posts');
+                }
+            })
+            .catch(() => Promise.reject('Cant search for category'));
     }
 }
