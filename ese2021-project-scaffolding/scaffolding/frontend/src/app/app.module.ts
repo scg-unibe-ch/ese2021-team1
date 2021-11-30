@@ -31,6 +31,8 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatSelectModule} from "@angular/material/select";
 import { StoreComponent } from './store/store.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
+import { ProductComponent } from './product/product.component';
+import { AddProductComponent } from './add-product/add-product.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     routingComponents,
     AddPostComponent,
     StoreComponent,
+    ProductComponent,
+    AddProductComponent,
   ],
     imports: [
         BrowserModule,

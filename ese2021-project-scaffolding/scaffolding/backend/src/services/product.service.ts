@@ -2,7 +2,7 @@ import {Product} from '../models/product.model';
 import {Post} from '../models/post.model';
 
 export class ProductService {
-    public async createProduct(product: {title: string, image: Blob, description: string, category: string,
+    public async createProduct(product: {title: string, image: string, description: string, category: string,
         available: boolean, price: number, discount: number}) {
         let standardDiscount: number;
         if (product.discount === null) {
@@ -21,10 +21,10 @@ export class ProductService {
             discount: standardDiscount,
             deleted: false
         })
-            .then(inserted => { return Promise.resolve(inserted);
+            .then(inserted => {return Promise.resolve(inserted);
             })
             .catch(err => {
-                return Promise.reject(err.message);
+                console.log(err); return Promise.reject(err.message);
             });
     }
 
@@ -54,7 +54,7 @@ export class ProductService {
             });
     }
 
-    private async updateBody(product: Product, newProduct: {title: string, image: Blob, description: string, category: string,
+    private async updateBody(product: Product, newProduct: {title: string, image: string, description: string, category: string,
         available: boolean, price: number, discount: number}) {
         let standardDiscount: number;
         if (newProduct.discount === null) {
