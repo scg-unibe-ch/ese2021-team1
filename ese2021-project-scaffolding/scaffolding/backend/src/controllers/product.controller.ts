@@ -6,7 +6,7 @@ const productService = new ProductService();
 
 productController.post('/', (req: Request, res: Response) => {
     productService.createProduct(req.body)
-        .then(post => res.json(post))
+        .then(product => res.json(product))
         .catch(err => res.json(err));
 });
 

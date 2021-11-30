@@ -16,7 +16,7 @@ export interface ProductProperties {
 export interface  ProductCreationProperties extends Optional<ProductProperties, 'discount'> {}
 
 export class Product extends Model<ProductProperties, ProductCreationProperties> implements ProductProperties {
-    id: number;
+    id!: number;
     title: string;
     image: string;
     description: string;
@@ -49,24 +49,24 @@ export class Product extends Model<ProductProperties, ProductCreationProperties>
                     type: DataTypes.STRING,
                     allowNull: false
                 },
-            available: {
+                available: {
                     type: DataTypes.BOOLEAN,
                     allowNull: false
-            },
-            price: {
-                    type: DataTypes.FLOAT,
-                    allowNull: false
-            },
-            discount: {
-                    type: DataTypes.FLOAT,
-                    defaultValue: 1,
-                    allowNull: false
-            },
-            deleted: {
-                    type: DataTypes.BOOLEAN,
-                    defaultValue: false,
-                    allowNull: false
-            }
+                },
+                price: {
+                        type: DataTypes.FLOAT,
+                        allowNull: false
+                },
+                discount: {
+                        type: DataTypes.FLOAT,
+                        defaultValue: 1,
+                        allowNull: false
+                },
+                deleted: {
+                        type: DataTypes.BOOLEAN,
+                        defaultValue: false,
+                        allowNull: false
+                }
             },
             {
                 sequelize,

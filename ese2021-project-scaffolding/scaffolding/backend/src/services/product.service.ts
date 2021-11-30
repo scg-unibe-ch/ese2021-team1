@@ -11,7 +11,7 @@ export class ProductService {
             standardDiscount = product.discount;
         }
         return Product.create( {
-            id: 0,
+            id: null,
             title: product.title,
             image: product.image,
             description: product.description,
@@ -23,9 +23,7 @@ export class ProductService {
         })
             .then(inserted => {return Promise.resolve(inserted);
             })
-            .catch(err => {
-                console.log(err); return Promise.reject(err.message);
-            });
+            .catch(err => Promise.reject(err));
     }
 
     public async deleteProduct(id) {
