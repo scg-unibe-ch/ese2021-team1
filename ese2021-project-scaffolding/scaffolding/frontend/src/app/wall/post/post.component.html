@@ -24,12 +24,12 @@
     </div>
     <div class="underPost">
       <div class="upvote">
-        <img *ngIf="!clickedUpvote" class="upvoteImage" src="assets/upvoteUnclicked.png" (click)="upvotePost(); clickedUpvote=true">
+        <img *ngIf="!clickedUpvote" class="upvoteImage" src="assets/upvoteUnclicked.png" (click)="upvotePost()">
         <img *ngIf="clickedUpvote" class="upvoteImage" src="assets/upvoteClicked.png" (click)="upvotePost()">
         <p class="likesCount">{{post.like}}</p>
       </div>
       <div class="downvote">
-        <img *ngIf="!clickedDownvote" class="upvoteImage" src="assets/downvoteUnclicked.png" (click)="downvotePost(); clickedDownvote=true">
+        <img *ngIf="!clickedDownvote" class="upvoteImage" src="assets/downvoteUnclicked.png" (click)="downvotePost()">
         <img *ngIf="clickedDownvote" class="upvoteImage" src="assets/downvoteClicked.png" (click)="downvotePost()">
         <p class="dislikesCount">{{post.dislike}}</p>
       </div>

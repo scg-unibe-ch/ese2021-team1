@@ -25,4 +25,5 @@ voteController.post('/:id/down', (req: Request, res: Response) => {
         })
         .catch(err => res.send(err));
 });
+
 export const VoteController: Router = voteController;

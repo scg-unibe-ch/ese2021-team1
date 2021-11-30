@@ -47,21 +47,47 @@ export class PostComponent implements OnInit {
   }
 
   upvotePost() {
-    this.httpClient.post(environment.endpointURL + "vote/" + this.post.id + "/up", {
-      userName: this.post.userName,
-      vote: 1
-    }).subscribe(res => {
-      this.post.like += 1;
-    })
+    if(this.clickedDownvote) {
+      this.downvotePost()
+    }
+    else {
+      this.httpClient.post(environment.endpointURL + "vote/" + this.post.id + "/up", {
+        userName: this.post.userName,
+        vote: 1
+      }).subscribe(res => {
+        if (res == null) {
+          this.clickedUpvote = false;
+          console.log(this.clickedUpvote)
+          this.post.like -= 1;
+        } else {
+          this.clickedUpvote = true;
+          console.log(this.clickedUpvote)
+          this.post.like += 1;
+        }
+      });
+    }
   }
 
   downvotePost() {
-    this.httpClient.post(environment.endpointURL + "vote/" + this.post.id + "/down", {
-      userName: this.post.userName,
-      vote: -1
-    }).subscribe(res => {
-      this.post.dislike += 1;
-    })
+    if(this.clickedUpvote) {
+      this.upvotePost()
+    }
+    else {
+      this.httpClient.post(environment.endpointURL + "vote/" + this.post.id + "/down", {
+        userName: this.post.userName,
+        vote: -1
+      }).subscribe(res => {
+        if (res == null) {
+          this.clickedDownvote = false;
+          console.log(this.clickedDownvote)
+          this.post.dislike -= 1;
+        } else {
+          this.clickedDownvote = true;
+          console.log(this.clickedDownvote)
+          this.post.dislike += 1;
+        }
+      });
+    }
   }
 
   updatePost() {

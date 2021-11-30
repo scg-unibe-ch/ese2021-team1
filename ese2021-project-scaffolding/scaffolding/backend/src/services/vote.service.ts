@@ -82,6 +82,4 @@ export class VoteService {
             }
         }).catch(() => Promise.reject('failed to unsub'));
     }
-
-
 }
