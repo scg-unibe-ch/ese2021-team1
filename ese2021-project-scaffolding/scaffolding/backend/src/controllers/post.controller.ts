@@ -26,7 +26,7 @@ postController.post('/', upload.single('file'), (req: Request, res: Response) =>
 });
 
 
-// TODO: get all the comments
+
 // this route is hit by the frontend on startup to fetch all posts from the database
 postController.get('/', (req: Request, res: Response) => {
     postService.getAllPosts()
@@ -62,6 +62,12 @@ postController.report('/:id', (req: Request, res: Response) => {
 
 postController.patch('/:id', (req: Request, res: Response) => {
     postService.comment(req.body, req.body.postID, req.body.text)
+        .then(updated => res.send(updated))
+        .catch(err => res.send(err));
+});
+
+postController.get('/:post', (req: Request, res: Response) => {
+    postService.getAllComments(req.body.id)
         .then(updated => res.send(updated))
         .catch(err => res.send(err));
 });

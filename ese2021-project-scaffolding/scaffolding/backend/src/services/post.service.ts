@@ -156,4 +156,16 @@ export class PostService {
             .then(created => Promise.reject(created))
             .catch(err => Promise.reject(err));
     }
+
+    public getAllComments(postId: number) {
+        return Comment.findByPk(postId)
+            .then(found => {
+                if (found != null) {
+                    return Promise.resolve(found);
+                } else {
+                    return Promise.reject('No Comments found');
+                }
+            })
+            .catch(() => Promise.reject('Could not fetch Comments'));
+    }
 }
