@@ -3,7 +3,7 @@ import {Model, Sequelize, DataTypes, Optional} from 'sequelize';
 export interface ProductProperties {
     id: number; // used for the database
     title: string;
-    image: Blob;
+    image: string;
     description: string;
     category: string; // separated by a comma
     available: boolean;
@@ -18,7 +18,7 @@ export interface  ProductCreationProperties extends Optional<ProductProperties, 
 export class Product extends Model<ProductProperties, ProductCreationProperties> implements ProductProperties {
     id: number;
     title: string;
-    image: Blob;
+    image: string;
     description: string;
     category: string;
     available: boolean;
@@ -40,7 +40,7 @@ export class Product extends Model<ProductProperties, ProductCreationProperties>
                 },
 
                 image: {
-                    type: DataTypes.BLOB,
+                    type: DataTypes.STRING,
                     allowNull: false
                 },
                 description: {
