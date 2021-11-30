@@ -65,7 +65,7 @@ export class PostService {
                 if (found != null) {
                     found.destroy()
                         .then(destroyed => Promise.reject(destroyed))
-                        .catch(() => Promise.reject('failed to destroy'));
+                        .catch(() => Promise.reject('failed to destroy post'));
                 } else {
                     return Promise.reject('Post not found');
                 }

@@ -3,14 +3,13 @@ import {Model, Sequelize, DataTypes, Optional} from 'sequelize';
 export interface ProductProperties {
     id: number; // used for the database
     title: string;
-    image: Blob;
+    image: string;
     description: string;
     category: string; // separated by a comma
     available: boolean;
     price: number;
     discount: number;
     deleted: boolean;
-    // TODO: availability
 }
 
 export interface  ProductCreationProperties extends Optional<ProductProperties, 'discount'> {}
@@ -18,7 +17,7 @@ export interface  ProductCreationProperties extends Optional<ProductProperties, 
 export class Product extends Model<ProductProperties, ProductCreationProperties> implements ProductProperties {
     id: number;
     title: string;
-    image: Blob;
+    image: string;
     description: string;
     category: string;
     available: boolean;
@@ -28,29 +27,29 @@ export class Product extends Model<ProductProperties, ProductCreationProperties>
 
     public static initialize(sequelize: Sequelize) {
         Product.init({
-                id: {
-                    type: DataTypes.INTEGER,
-                    autoIncrement: true,
-                    primaryKey: true,
-                    defaultValue: 0
-                },
-                title: {
-                    type: DataTypes.STRING,
-                    allowNull: false
-                },
+            id: {
+                type: DataTypes.INTEGER,
+                autoIncrement: true,
+                primaryKey: true,
+                defaultValue: 0
+            },
+            title: {
+                type: DataTypes.STRING,
+                allowNull: false
+            },
 
-                image: {
-                    type: DataTypes.BLOB,
-                    allowNull: false
-                },
-                description: {
-                    type: DataTypes.STRING,
-                    allowNull: false
-                },
-                category: {
-                    type: DataTypes.STRING,
-                    allowNull: false
-                },
+            image: {
+                type: DataTypes.STRING,
+                allowNull: true
+            },
+            description: {
+                type: DataTypes.STRING,
+                allowNull: false
+            },
+            category: {
+                type: DataTypes.STRING,
+                allowNull: false
+            },
             available: {
                     type: DataTypes.BOOLEAN,
                     allowNull: false
