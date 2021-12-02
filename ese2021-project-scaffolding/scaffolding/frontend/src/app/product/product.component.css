@@ -7,6 +7,8 @@
   font-family: arial;
   background-color: lightgrey;
   padding: 0px;
+  overflow: hidden;
+  border: 4px solid #000;
 }
 
 .image {
