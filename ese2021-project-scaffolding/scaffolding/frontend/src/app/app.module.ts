@@ -33,6 +33,7 @@ import { StoreComponent } from './store/store.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import { ProductComponent } from './product/product.component';
 import { AddProductComponent } from './add-product/add-product.component';
+import {MatGridListModule} from "@angular/material/grid-list";
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { AddProductComponent } from './add-product/add-product.component';
         MatMenuModule,
         MatIconModule,
         MatSelectModule,
-        FlexLayoutModule
+        FlexLayoutModule,
+        MatGridListModule
     ],
   providers: [
     {

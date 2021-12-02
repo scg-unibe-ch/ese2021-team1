@@ -1,4 +1,9 @@
 <app-add-product (addProductEmit)="addProductParent($event)"></app-add-product>
-<div *ngFor="let product of products">
-  <app-product [product]="product"></app-product>
-</div>
+
+<mat-grid-list cols="3" rowHeight="550px" >
+  <ng-container *ngFor="let product of products">
+    <mat-grid-tile>
+      <app-product [product]="product"></app-product>
+    </mat-grid-tile>
+  </ng-container>
+</mat-grid-list>
