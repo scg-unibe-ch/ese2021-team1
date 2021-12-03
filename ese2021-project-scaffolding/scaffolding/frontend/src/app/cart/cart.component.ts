@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Product} from "../models/product.model";
 import {CartService} from "../services/cart.service";
+import {formatNumber} from "@angular/common";
 
 @Component({
   selector: 'app-cart',
@@ -21,7 +22,7 @@ export class CartComponent implements OnInit {
   calculateTotal() {
     let subtotal = 0.0;
     for(let product of this.products) {
-      subtotal += product.price
+      subtotal += parseFloat(String(product.price))
     }
     return subtotal;
   }
