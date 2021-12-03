@@ -27,4 +27,16 @@ export class CartComponent implements OnInit {
     return subtotal;
   }
 
+  clearCart() {
+    this.products = this.cartService.clearCart()
+  }
+
+  removeProductFromCart(product: Product) {
+    for (let i = 0; i < this.products.length; i++) {
+      if (this.products[i] === product) {
+        this.products.splice(i, 1);
+      }
+    }
+  }
+
 }

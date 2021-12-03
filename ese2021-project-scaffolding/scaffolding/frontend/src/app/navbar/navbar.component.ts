@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user.model';
+import {CartService} from "../services/cart.service";
 
 @Component({
   selector: 'app-navbar',
@@ -19,7 +20,8 @@ export class NavbarComponent implements OnInit {
   user: User | null = null
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private cartService: CartService
     ) {
       // listen for changes
       userService.loggedIn$.subscribe(res => this.loggedInState = res)
@@ -57,5 +59,17 @@ export class NavbarComponent implements OnInit {
     this.loggedInState = false
     this.user = {userId: 0, username: "", password: ""}
   }
+
+  showCart() {
+    if (this.showShoppingCart) {
+      return true;
+    }
+    if (!this.showShoppingCart && this.cartService.getProducts().length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 
 }

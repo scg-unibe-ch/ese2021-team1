@@ -35,6 +35,7 @@ import { ProductComponent } from './product/product.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import {MatGridListModule} from "@angular/material/grid-list";
 import { CartComponent } from './cart/cart.component';
+import { ProfilPageComponent } from './profil-page/profil-page.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { CartComponent } from './cart/cart.component';
     ProductComponent,
     AddProductComponent,
     CartComponent,
+    ProfilPageComponent,
   ],
     imports: [
         BrowserModule,

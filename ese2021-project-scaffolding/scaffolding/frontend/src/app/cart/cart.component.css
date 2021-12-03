@@ -3,11 +3,11 @@
   max-height: 500px;
   width: 25%;
   max-width: 500px;
-  background: white;
+  background: whitesmoke;
   position: absolute;
   right: 0;
   z-index: 1;
-  border: 2px solid black;
+  border: 1px solid grey;
   border-radius: 15px;
   margin: 5px 20px 5px 5px;
   font-family: din-round, sans-serif;
@@ -22,7 +22,44 @@ table {
 
 tr {
   margin-right: 5px;
+  height: 75px;
   border-top: 1px solid grey;
+}
+
+.removeAllButton {
+  position: absolute;
+  margin-top: 20px;
+  right: 15px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: red;
+  border-bottom: 1px solid red;
+}
+
+.checkoutButton {
+  float: right;
+  margin-right: 13px;
+  margin-bottom: 15px;
+  background: cornflowerblue;
+  color: black;
+  font-size: 15px;
+  padding: 10px;
+  border-radius: 15px;
+  border: none;
+  font-weight: bold;
+}
+
+.removeButton {
+  position: absolute;
+  right: 15px;
+  padding: 0;
+  border: none;
+  background: none;
+  margin-top: 50px;
+  color: red;
+  border-bottom: 1px solid red;
+  font-size: 10px;
 }
 
 .productTitle, .totalTitle {
@@ -37,6 +74,11 @@ tr {
 .price, .totalPrice {
   text-align: right;
   margin-right: 15px;
+}
+
+.price {
+  position: relative;
+  up: 0px;
 }
 
 .totalPrice {

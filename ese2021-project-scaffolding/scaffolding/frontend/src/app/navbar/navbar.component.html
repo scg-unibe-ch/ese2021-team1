@@ -12,9 +12,9 @@
     <button *ngIf="loggedInState" class="logoutButton" (click)="logoutUser()">Logout</button>
     <button *ngIf="!loggedInState" class="registerButton" (click)="toggleRegisterModal()" routerLink="/register">Register</button>
     <button *ngIf="!loggedInState" class="loginButton" (click)="toggleLoginModal()" routerLink="/login">Login</button>
-    <p *ngIf="user" class="userName">{{user.username}}</p>
+    <button *ngIf="user" class="userName" routerLink="/user/{{user.username}}">{{user.username}}</button>
 </mat-toolbar>
 
-<app-cart *ngIf="showShoppingCart"></app-cart>
+<app-cart *ngIf="showCart()"></app-cart>
 
 <router-outlet></router-outlet>
