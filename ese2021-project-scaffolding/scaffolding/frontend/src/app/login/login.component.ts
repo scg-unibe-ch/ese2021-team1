@@ -35,7 +35,7 @@ export class LoginComponent {
 
   // ADDED NEW ARGS FOR THE UPDATED USER MODEL
   userToRegister: UserRegister = new UserRegister('', '', '', '', 0, 0, '', '', 0);
-  userToLogin: User = new User(0, '', '');
+  userToLogin: User = new User(0, '', '', '', '', '', '', 0, 0, '', '', '', false);
 
   endpointMsgUser: string = '';
   endpointMsgAdmin: string = '';
@@ -99,12 +99,33 @@ export class LoginComponent {
 
       localStorage.setItem('userName', res.user.userName);
       localStorage.setItem('userToken', res.token);
+      localStorage.setItem('password', res.user.password);
+      localStorage.setItem('firstName', res.user.firstName);
+      localStorage.setItem('lastName', res.user.lastName);
+      localStorage.setItem('email', res.user.email);
+      localStorage.setItem('homeAddress', res.user.homeAddress);
+      localStorage.setItem('streetNumber', res.user.streetNumber);
+      localStorage.setItem('zipCode', res.user.zipCode);
+      localStorage.setItem('city', res.user.city);
+      localStorage.setItem('birthday', res.user.birthday);
+      localStorage.setItem('phoneNumber', res.user.phoneNumber);
+
 
       this.userService.setLoggedIn(true);
       this.userService.setUser(new User(
-          res.user.userId,
-          res.user.userName,
-          res.user.password));
+        res.user.userId,
+        res.user.userName,
+        res.user.password,
+        res.user.firstName,
+        res.user.lastName,
+        res.user.email,
+        res.user.homeAddress,
+        res.user.streetNumber,
+        res.user.zipCode,
+        res.user.city,
+        res.user.birthday,
+        res.user.phoneNumber,
+        res.user.admin));
     });
   }
 

@@ -81,16 +81,39 @@ export class AppComponent implements OnInit {
   }
 
   checkUserStatus() {
+    console.log(localStorage)
     // Get user data from local storage
     const userToken = localStorage.getItem('userToken');
-    const userName = localStorage.getItem('userName')
+    const userName = localStorage.getItem('userName');
+    const password = localStorage.getItem('password')
+    const firstName = localStorage.getItem('firstName')
+    const lastName = localStorage.getItem('lastName')
+    const email = localStorage.getItem('email')
+    const homeAddress = localStorage.getItem('homeAddress')
+    const streetNumber = parseInt(<string>localStorage.getItem('streetNumber'))
+    const zipCode = parseInt(<string>localStorage.getItem('zipCode'))
+    const city = localStorage.getItem('city')
+    const birthday = localStorage.getItem('birthday')
+    const phoneNumber = localStorage.getItem('phoneNumber')
+
+
     // Set boolean whether a user is logged in or not
-    if (!userName || !userToken) return
+    if (!userName || !userToken || !password || !firstName || !lastName || !email || !homeAddress || !streetNumber || !zipCode || !city || !birthday || !phoneNumber) return
     this.userService.setLoggedIn(!!userToken);
     this.userService.setUser({
       userId: 0,
       username: userName,
-      password: ""
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      homeAddress: homeAddress,
+      streetNumber: streetNumber,
+      zipCode: zipCode,
+      city: city,
+      birthday: birthday,
+      phoneNumber: phoneNumber,
+      admin: false
     })
   }
 }
