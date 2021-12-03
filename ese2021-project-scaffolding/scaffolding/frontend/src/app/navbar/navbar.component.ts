@@ -12,6 +12,7 @@ export class NavbarComponent implements OnInit {
   // toggle register and login modals
   showLoginModal: boolean = true
   showRegisterModal: boolean = true
+  showShoppingCart: boolean = false
   title: string = "CryptoHub"
   loggedInState: boolean = false
 

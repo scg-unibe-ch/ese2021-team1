@@ -1,0 +1,54 @@
+.cart {
+  min-height: 100px;
+  max-height: 500px;
+  width: 25%;
+  max-width: 500px;
+  background: white;
+  position: absolute;
+  right: 0;
+  z-index: 1;
+  border: 2px solid black;
+  border-radius: 15px;
+  margin: 5px 20px 5px 5px;
+  font-family: din-round, sans-serif;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  padding: 3px;
+}
+
+tr {
+  margin-right: 5px;
+  border-top: 1px solid grey;
+}
+
+.productTitle, .totalTitle {
+  font-weight: bold;
+  margin-left: 15px;
+}
+
+.total {
+  border-top: 3px solid black;
+}
+
+.price, .totalPrice {
+  text-align: right;
+  margin-right: 15px;
+}
+
+.totalPrice {
+  font-weight: bolder;
+}
+
+.title {
+  text-align: center;
+  padding-bottom: 5px;
+  border-bottom: 3px solid black;
+}
+
+#emptyMessage {
+  text-align: center;
+}

@@ -1,7 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {UserService} from "../services/user.service";
 import {Product} from "../models/product.model";
+import {CartService} from "../services/cart.service";
 
 @Component({
   selector: 'app-product',
@@ -15,10 +16,15 @@ export class ProductComponent implements OnInit {
 
   @Input() product: any = {}
 
+  @Output()
+  addProductEmit = new EventEmitter<any>();
+
 
   constructor(
+
     public httpClient: HttpClient,
-    public userService: UserService
+    public userService: UserService,
+    public cartService: CartService
   ) {
     // Listen for changes
     userService.loggedIn$.subscribe(res => this.auth = res);
@@ -27,5 +33,12 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  addToCart(product: Product) {
+    console.log(product)
+    this.cartService.addToCart(product);
+  }
+
+
 
 }

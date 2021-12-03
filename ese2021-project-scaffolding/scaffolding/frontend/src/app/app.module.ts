@@ -34,6 +34,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import { ProductComponent } from './product/product.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import {MatGridListModule} from "@angular/material/grid-list";
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import {MatGridListModule} from "@angular/material/grid-list";
     StoreComponent,
     ProductComponent,
     AddProductComponent,
+    CartComponent,
   ],
     imports: [
         BrowserModule,
