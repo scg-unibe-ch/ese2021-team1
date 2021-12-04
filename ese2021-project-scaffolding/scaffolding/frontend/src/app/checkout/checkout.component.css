@@ -76,19 +76,19 @@ body {
 }
 
 .step.active {
-  background-color: royalblue;
+  background-color: #ff9307;
 }
 .step.active:after {
-  background-color: royalblue;
+  background-color: #ff9307;
 }
 .step.active:before {
-  color: royalblue;
+  color: #ff9307;
 }
 .step.active + .step {
-  background-color: royalblue;
+  background-color: #ff9307;
 }
 .step.active + .step:before {
-  color: royalblue;
+  color: #ff9307;
 }
 
 .step:nth-child(1):before {
@@ -234,13 +234,13 @@ input[type='password']:focus {
 }
 
 .back-btn {
-  color: royalblue;
+  color: #ff9307;
   background: #fff;
 }
 
 .next-btn {
   color: #fff;
-  background: royalblue;
+  background: #ff9307;
 }
 
 .btn:focus {
@@ -251,7 +251,7 @@ input[type='password']:focus {
   transform: scale(1.1);
 }
 .blue-border {
-  border: 1px solid rgb(110, 178, 251);
+  border: 1px solid #ff9307;
 }
 
 .products {
