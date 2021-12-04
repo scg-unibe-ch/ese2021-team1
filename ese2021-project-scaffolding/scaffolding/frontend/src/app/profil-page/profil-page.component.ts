@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from "../services/user.service";
 import {User} from "../models/user.model";
 import {MatIconModule} from "@angular/material/icon";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-profil-page',
@@ -11,6 +13,7 @@ import {MatIconModule} from "@angular/material/icon";
 export class ProfilPageComponent implements OnInit {
 
   user: any
+  orders: [] = []
 
   showAbout: boolean = true;
   showPassword: boolean = false;
@@ -18,11 +21,13 @@ export class ProfilPageComponent implements OnInit {
   showHelp: boolean = false;
 
   constructor(
-    private userService : UserService
+    private userService : UserService,
+    private httpClient: HttpClient
   ) { }
 
   ngOnInit(): void {
     this.user = this.userService.getUser();
+    this.getOrders();
     console.log(this.user);
   }
 
@@ -40,8 +45,17 @@ export class ProfilPageComponent implements OnInit {
         this.showPassword = false;
         this.showOrders = true;
         this.showHelp = false;
-
-
     }
+  }
+
+
+  //doesnt work yet!
+  private getOrders() {
+    this.httpClient.get(environment.endpointURL + "orders/" + this.user.userId)
+      .subscribe((res: any) => {
+        console.log(this.user.userId)
+        console.log(res);
+        this.orders = res;
+      })
   }
 }

@@ -3,6 +3,8 @@ import {UserService} from "../services/user.service";
 import {User} from "../models/user.model";
 import {CartService} from "../services/cart.service";
 import {Product} from "../models/product.model";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-checkout',
@@ -18,6 +20,7 @@ export class CheckoutComponent implements OnInit {
   showThanks: boolean = false;
 
   user: any
+  userId: number = 0
   firstName: string = ""
   lastName: string = ""
   homeAddress: string = ""
@@ -26,6 +29,7 @@ export class CheckoutComponent implements OnInit {
   streetNumber: number = 0
 
   products : Product[] = []
+  productIDs: String = ""
 
   payment: string = ""
 
@@ -33,11 +37,13 @@ export class CheckoutComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private cartService: CartService
+    private cartService: CartService,
+    private httpClient: HttpClient
   ) {}
 
   ngOnInit(): void {
     this.user = this.userService.getUser()
+    this.userId = this.user.userId
     this.firstName = this.user.firstName
     this.lastName = this.user.lastName
     this.homeAddress = this.user.homeAddress
@@ -83,8 +89,27 @@ export class CheckoutComponent implements OnInit {
     return subtotal;
   }
 
-  confirmPurchase() {
+  createOrder() {
+    let date: String = new Date().toDateString()
+    for(let product of this.products) {
+      this.productIDs += String(product.id)
+    }
+    let payload = {
+      userID: parseInt(String(this.userId)),
+      products: this.productIDs,
+      paymentMethod: this.payment,
+      homeAddress: this.homeAddress,
+      streetNumber: this.streetNumber,
+      zipCode: this.zipCode,
+      city: this.city,
+      processingStatus: "pending",
+      purchaseDate: date
+    }
     this.showThanks = true;
     this.showFinish = false;
+    this.httpClient.post(environment.endpointURL + "orders", payload)
+      .subscribe((res: any) => {
+        console.log(res)
+      })
   }
 }

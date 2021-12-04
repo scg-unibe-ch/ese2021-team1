@@ -95,7 +95,7 @@
   <div *ngIf="!showThanks" class="panel-footer">
     <button class="btn back-btn" (click)="previousStep()">Back</button>
     <button *ngIf="!showFinish" class="btn next-btn" (click)="nextStep()">Next Step</button>
-    <button *ngIf="showFinish" class="btn next-btn" id="confirmButton" (click)="confirmPurchase()">Confirm</button>
+    <button *ngIf="showFinish" class="btn next-btn" id="confirmButton" (click)="createOrder()">Confirm</button>
   </div>
 </div>
 </div>

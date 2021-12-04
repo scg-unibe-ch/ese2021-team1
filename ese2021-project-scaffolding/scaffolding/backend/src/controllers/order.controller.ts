@@ -22,9 +22,8 @@ orderController.get('/:id', (req: Request, res: Response) => {
 });
 // get all the posts for the requested User
 orderController.get('/:id', (req: Request, res: Response) => {
-    orderService.getAllOrdersFrom(req.body)
-        .then(orders => res.json(orders))
-        .catch(err => res.json(err));
+   orderService.getAllOrdersFrom(req.body)
+       .catch(err => res.json(err));
 });
 
 

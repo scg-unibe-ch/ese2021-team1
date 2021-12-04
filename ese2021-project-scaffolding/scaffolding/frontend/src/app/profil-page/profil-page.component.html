@@ -49,7 +49,9 @@
       </div>
     </div>
     <div *ngIf="showOrders" class="content mat-elevation-z8">
-      <p>Orders Page</p>
+      <div *ngFor="let order of this.orders">
+
+      </div>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

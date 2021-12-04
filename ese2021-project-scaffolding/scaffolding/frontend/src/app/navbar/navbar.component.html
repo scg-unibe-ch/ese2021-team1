@@ -17,6 +17,7 @@
     <button mat-button (click)="showShoppingCart = !showShoppingCart">
       <mat-icon>shopping_basket</mat-icon>
     </button>
+    <img *ngIf="showAdded" class="addedItem" src="assets/bluePoint.png">
     <button *ngIf="loggedInState" class="logoutButton" (click)="logoutUser()">Logout</button>
     <button *ngIf="!loggedInState" class="registerButton" (click)="toggleRegisterModal()" routerLink="/register">Register</button>
     <button *ngIf="!loggedInState" class="loginButton" (click)="toggleLoginModal()" routerLink="/login">Login</button>

@@ -83,6 +83,7 @@ export class AppComponent implements OnInit {
   checkUserStatus() {
     console.log(localStorage)
     // Get user data from local storage
+    const userId = localStorage.getItem('userId')
     const userToken = localStorage.getItem('userToken');
     const userName = localStorage.getItem('userName');
     const password = localStorage.getItem('password')
@@ -98,10 +99,10 @@ export class AppComponent implements OnInit {
 
 
     // Set boolean whether a user is logged in or not
-    if (!userName || !userToken || !password || !firstName || !lastName || !email || !homeAddress || !streetNumber || !zipCode || !city || !birthday || !phoneNumber) return
+    if (!userId || !userName || !userToken || !password || !firstName || !lastName || !email || !homeAddress || !streetNumber || !zipCode || !city || !birthday || !phoneNumber) return
     this.userService.setLoggedIn(!!userToken);
     this.userService.setUser({
-      userId: 0,
+      userId: parseInt(userId),
       username: userName,
       password: password,
       firstName: firstName,

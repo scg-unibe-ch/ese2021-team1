@@ -97,6 +97,7 @@ export class LoginComponent {
         this.serverFeedback = "Welcome back, " + res.user.userName
       }
 
+      localStorage.setItem('userId', res.user.userId)
       localStorage.setItem('userName', res.user.userName);
       localStorage.setItem('userToken', res.token);
       localStorage.setItem('password', res.user.password);
