@@ -36,6 +36,8 @@ import { AddProductComponent } from './add-product/add-product.component';
 import {MatGridListModule} from "@angular/material/grid-list";
 import { CartComponent } from './cart/cart.component';
 import { ProfilPageComponent } from './profil-page/profil-page.component';
+import {MatSidenavModule} from "@angular/material/sidenav";
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,7 @@ import { ProfilPageComponent } from './profil-page/profil-page.component';
     AddProductComponent,
     CartComponent,
     ProfilPageComponent,
+    CheckoutComponent,
   ],
     imports: [
         BrowserModule,
@@ -76,7 +79,8 @@ import { ProfilPageComponent } from './profil-page/profil-page.component';
         MatIconModule,
         MatSelectModule,
         FlexLayoutModule,
-        MatGridListModule
+        MatGridListModule,
+        MatSidenavModule
     ],
   providers: [
     {

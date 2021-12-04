@@ -5,12 +5,14 @@ import { LoginComponent } from './login/login.component';
 import { StoreComponent} from "./store/store.component";
 import {WallComponent} from "./wall/wall.component";
 import {ProfilPageComponent} from "./profil-page/profil-page.component";
+import {CheckoutComponent} from "./checkout/checkout.component";
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'store', component: StoreComponent},
   { path: 'user/:username', component: ProfilPageComponent},
+  { path: 'checkout', component: CheckoutComponent},
   { path: '', component: WallComponent}
 ]
 

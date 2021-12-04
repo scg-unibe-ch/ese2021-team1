@@ -1,0 +1,101 @@
+<div class="checkout-panel">
+  <div class="panel-body">
+    <h2 class="title">Checkout</h2>
+
+    <div *ngIf="showPayment" class="progress-bar">
+      <div class="step active"></div>
+      <div class="step active"></div>
+      <div class="step"></div>
+      <div class="step"></div>
+    </div>
+    <div *ngIf="showAddress" class="progress-bar">
+      <div class="step active"></div>
+      <div class="step"></div>
+      <div class="step"></div>
+      <div class="step"></div>
+    </div>
+    <div *ngIf="showProducts" class="progress-bar">
+      <div class="step"></div>
+      <div class="step"></div>
+      <div class="step"></div>
+      <div class="step"></div>
+    </div>
+    <div *ngIf="showFinish" class="progress-bar">
+      <div class="step active"></div>
+      <div class="step active"></div>
+      <div class="step active"></div>
+      <div class="step"></div>
+    </div>
+
+    <div *ngIf="showThanks" class="thanks">
+      <h1>Thank you for your purchase! Please return to the store.</h1>
+    </div>
+
+    <div *ngIf="showFinish" class="finish">
+      <h1>If you checked everything and are happy with your purchase, please click confirm.</h1>
+    </div>
+
+    <div *ngIf="showProducts" class="products">
+      <table>
+        <tr class="product" *ngFor="let product of products">
+          <td><h3>{{product.title}}</h3></td>
+          <td><p>{{product.description}}</p></td>
+          <td><p>{{product.price}} CHF</p></td>
+        </tr>
+        <tr class="total">
+          <td><h2>Total</h2></td>
+          <td></td>
+          <td><h2>{{calculateTotal()}} CHF</h2></td>
+        </tr>
+      </table>
+    </div>
+
+    <div *ngIf="showAddress" class="address">
+      <p>Please check your informations.</p>
+      <div class="column-1">
+        <label>first name</label>
+        <input [(ngModel)]="firstName" type="text" />
+        <label>last name</label>
+        <input [(ngModel)]="lastName" type="text"/>
+      </div>
+
+      <div class="column-2">
+        <label>street</label>
+        <input [(ngModel)]="homeAddress" type="text"/>
+        <label>street number</label>
+        <input [(ngModel)]="streetNumber" type="text"/>
+        <label>city</label>
+        <input [(ngModel)]="city" type="text"/>
+        <label>zip code</label>
+        <input [(ngModel)]="zipCode" type="text"/>
+      </div>
+    </div>
+
+    <div *ngIf="showPayment" class="payment-method">
+      <label for="invoice" class="method card">
+        <div class="card-logos">
+          <img class="image" src="assets/invoice_logo.png">
+        </div>
+
+        <div class="radio-input">
+          <input checked [(ngModel)]="payment" id="invoice" type="radio" value="invoice" name="payment" >
+          Pay with Invoice
+        </div>
+      </label>
+
+      <label for="paypal" class="method paypal">
+        <img class="image"src="assets/paypal_logo.png"/>
+        <div class="radio-input">
+          <input [(ngModel)]="payment" id="paypal" type="radio" name="payment" value="paypal">
+          Pay with Paypal
+        </div>
+      </label>
+    </div>
+
+  <div *ngIf="!showThanks" class="panel-footer">
+    <button class="btn back-btn" (click)="previousStep()">Back</button>
+    <button *ngIf="!showFinish" class="btn next-btn" (click)="nextStep()">Next Step</button>
+    <button *ngIf="showFinish" class="btn next-btn" id="confirmButton" (click)="confirmPurchase()">Confirm</button>
+  </div>
+</div>
+</div>

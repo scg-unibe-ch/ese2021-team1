@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../services/user.service";
 import {User} from "../models/user.model";
+import {MatIconModule} from "@angular/material/icon";
 
 @Component({
   selector: 'app-profil-page',
@@ -10,6 +11,11 @@ import {User} from "../models/user.model";
 export class ProfilPageComponent implements OnInit {
 
   user: any
+
+  showAbout: boolean = true;
+  showPassword: boolean = false;
+  showOrders: boolean = false;
+  showHelp: boolean = false;
 
   constructor(
     private userService : UserService
@@ -21,5 +27,21 @@ export class ProfilPageComponent implements OnInit {
   }
 
 
+  show(show: string) {
+    switch(show) {
+      case "about":
+        this.showAbout = true;
+        this.showPassword = false;
+        this.showOrders = false;
+        this.showHelp = false;
+        break;
+      case "orders":
+        this.showAbout = false;
+        this.showPassword = false;
+        this.showOrders = true;
+        this.showHelp = false;
 
+
+    }
+  }
 }

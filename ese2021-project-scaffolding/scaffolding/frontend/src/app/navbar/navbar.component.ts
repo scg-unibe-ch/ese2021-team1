@@ -63,9 +63,6 @@ export class NavbarComponent implements OnInit {
   showCart() {
     if (this.showShoppingCart) {
       return true;
-    }
-    if (!this.showShoppingCart && this.cartService.getProducts().length > 0) {
-      return true;
     } else {
       return false;
     }
