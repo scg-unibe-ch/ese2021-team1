@@ -1,11 +1,77 @@
 p {
   font-size: 100px;
 }
+
 mat-grid-list {
-  margin-top: 500px;
+  margin-top: 15px;
   width: 60%;
   margin-left: auto;
   margin-right: auto;
+}
 
+.createProductButton {
+  margin-top: 15px;
+  position: relative;
+  width: 85%;
+  height: 60px;
+  border-radius: 25px;
+  left: 50%;
+  border: 0px;
+  transform: translate(-50%);
+  margin-bottom: 20px;
+  color: rgb(204, 204, 204);
+  background-color: #1eff00;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: din-round, sans-serif;
+  font-size: 120%;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  line-height: 20px;
+  outline: none;
+  overflow: visible;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transition: filter 0.2s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  transition: all 80ms ease-in-out;
+}
+.createProductButton:hover {
+  background-color: #e7692f;
+  height: 75px;
+  cursor: pointer;
+}
+.createProductButton:after {
+  background-clip: padding-box;
+  background-color: #3f3f3f;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  bottom: -4px;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
 
+.createProductButton:focus {
+  user-select: auto;
+}
+
+.createProductButton:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
+.createProductButton:disabled {
+  cursor: auto;
 }

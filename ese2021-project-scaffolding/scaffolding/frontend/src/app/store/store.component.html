@@ -1,13 +1,15 @@
 
-<app-add-product (addProductEmit)="addProductParent($event)"></app-add-product>
 
-<mat-grid-list cols="3" rowHeight="550px" >
-  <ng-container *ngFor="let product of products">
-    <mat-grid-tile>
-      <app-product [product]="product"></app-product>
-    </mat-grid-tile>
-  </ng-container>
-</mat-grid-list>
-
+  <button *ngIf="canAddProduct()" class="createProductButton" (click)="togglePostForm()" [innerHtml]="createProductButtonText"></button>
+  <app-add-product *ngIf="showNewProductForm" (addProductEmit)="addProductParent($event)"></app-add-product>
+    <div class="products">
+      <mat-grid-list cols="3" rowHeight="550px" >
+        <ng-container *ngFor="let product of products">
+          <mat-grid-tile>
+            <app-product [product]="product"></app-product>
+          </mat-grid-tile>
+        </ng-container>
+      </mat-grid-list>
+    </div>
 <router-outlet></router-outlet>
 

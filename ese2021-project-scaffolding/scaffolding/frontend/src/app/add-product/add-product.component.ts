@@ -19,7 +19,7 @@ export class AddProductComponent implements OnInit {
     description: "",
     category: "",
     available: true,
-    price: 0,
+    price: "",
     discount: 1
   }
 

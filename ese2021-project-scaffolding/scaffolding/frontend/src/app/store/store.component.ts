@@ -11,6 +11,8 @@ import {HttpClient} from "@angular/common/http";
 export class StoreComponent implements OnInit {
 
   products: Product[] = []
+  showNewProductForm: boolean = false;
+  createProductButtonText: String = 'CREATE PRODUCT'
 
   constructor(
     public httpClient: HttpClient
@@ -40,4 +42,12 @@ export class StoreComponent implements OnInit {
     getThisProduct(product: any) {
     this.httpClient.get(environment.endpointURL + "product", product)
     }
+
+  canAddProduct() {
+    return localStorage.getItem("admin") == "true"
+  }
+
+  togglePostForm() {
+    this.showNewProductForm = !this.showNewProductForm
+  }
 }

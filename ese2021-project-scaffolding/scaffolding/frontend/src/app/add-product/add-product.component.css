@@ -1,9 +1,148 @@
+.addProduct {
+  width: 65%;
+  position: relative;
+  margin: auto auto 10px;
+}
+
 .inputField {
   width: 100%;
   padding: 12px 5px 10px;
   margin-bottom: 8px;
   border-radius: 5px;
   border: none;
+}
+
+.createButton {
+  position: absolute;
+  background-color: #ff9307;
+  right: 0;
+  bottom: 0;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 5px 10px;
+  border-radius: 25px;
+  border: none;
+  transition-duration: 0.1s;
+  box-shadow: 0 3px #999;
+}
+
+.createButton:hover:enabled {
+  opacity: 0.7;
+}
+
+.createButton:active:enabled {
+  background-color: #ff9310;
+  box-shadow: 0 3px #666;
+  transform: translateY(2px);
+}
+
+.createButton:disabled {
+  background-color: grey;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+#uploadImg {
+  cursor: pointer;
+}
+
+/* copy of wall css */
+.wallWrapper {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  width: 60%;
+  height: auto;
+  bottom: 0px;
+  left: 50%;
+  transform: translate(-50%);
+  top: 10%;
+}
+
+.postCreateWrapper {
+  width: 85%;
+  height: auto;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  border-radius: 10px;
+  background-color: #3f3f3f;
+}
+
+.createPostButton {
+  position: relative;
+  width: 85%;
+  height: 60px;
+  border-radius: 25px;
+  left: 50%;
+  border: 0px;
+  transform: translate(-50%);
+  margin-bottom: 20px;
+  color: rgb(204, 204, 204);
+  background-color: #1eff00;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: din-round, sans-serif;
+  font-size: 120%;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  line-height: 20px;
+  outline: none;
+  overflow: visible;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transition: filter 0.2s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  transition: all 80ms ease-in-out;
+}
+.createPostButton:hover {
+  background-color: #e7692f;
+  height: 75px;
+  cursor: pointer;
+}
+.createPostButton:after {
+  background-clip: padding-box;
+  background-color: #3f3f3f;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  bottom: -4px;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.createPostButton:focus {
+  user-select: auto;
+}
+
+.createPostButton:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
+.createPostButton:disabled {
+  cursor: auto;
+}
+
+.overlay {
+  width: 100% !important;
+}
+
+.inputField {
   background-color: rgb(246, 246, 246);
   position: relative;
   height: 30px;
@@ -35,6 +174,7 @@
   font-size: larger;
   font-family: din-round, sans-serif;
 }
+
 .postButton {
   position: relative;
   width: 98%;
@@ -102,19 +242,63 @@
 .postButton:disabled {
   cursor: auto;
 }
-.addProduct {
-  position: absolute;
-  padding: 0;
-  margin: 0;
-  width: 60%;
-  height: auto;
-  bottom: 0px;
-  left: 50%;
-  transform: translate(-50%);
-  top: 10%;
+
+.noPosts {
+  color: rgb(199, 199, 199);
+  font-family: din-round, sans-serif;
+  font-size: 120%;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  line-height: 20px;
+  text-align: center;
 }
 
-.product-category-selection {
+.feedback {
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+  color: red;
+  font-weight: bold;
+  border-radius: 10px;
+  width: calc(100% - 60px);
+  font-size: 18px;
+  left: 15px;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+#buttUploadImg {
+  position: relative;
+  right: 0;
+  bottom: 0;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 5px 10px;
+  border-radius: 25px;
+  border: none;
+  left: 15px;
+  padding: 15px;
+  margin-top: 5px;
+  float: left;
+}
+
+#uploadImg {
+  color: black;
+}
+
+#postImage {
+  max-width:100%;
+  max-height:300px;
+  height: auto;
+  width:auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.category-selection, .availability-selection {
   color: black;
   background-color: white;
   font-weight: bold;
@@ -125,7 +309,27 @@
   margin-top: 15px;
   margin-left: 35px;
   width: 20%;
-  position: relative;
-  bottom: 435px;
-  left: 590px;
 }
+
+.availability-selection {
+  float: left;
+  margin-left: 10px;
+}
+
+
+.price {
+  margin: 15px;
+  height: 30px;
+  font-size: 15px;
+  font-family: din-round, sans-serif;
+  padding: 15px;
+  font-size: 15px;
+  font-size: larger;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px 0px inset;
+  font-size: large;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  float: left;
+}
+

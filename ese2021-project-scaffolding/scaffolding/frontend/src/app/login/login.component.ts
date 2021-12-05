@@ -210,6 +210,7 @@ export class LoginComponent {
     this.userToRegister.birthday = 'tt.mm.jjjj';
   }
 
-
-
+  reload() {
+    window.location.reload()
+  }
 }
