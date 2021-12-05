@@ -126,6 +126,8 @@ export class PostComponent implements OnInit {
       return false
     else if(this.userService.getUser()?.username === this.post.userName)
       return true
+    else if(localStorage.getItem("admin") == "true")
+      return true
     else
       return false
   }
@@ -134,4 +136,7 @@ export class PostComponent implements OnInit {
     return this.post.like - this.post.dislike;
   }
 
+  canNotVote() {
+    return localStorage.getItem("admin") == "true" || !this.userService.getLoggedIn();
+  }
 }

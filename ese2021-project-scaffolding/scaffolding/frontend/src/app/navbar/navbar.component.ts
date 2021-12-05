@@ -62,14 +62,15 @@ export class NavbarComponent implements OnInit {
   }
 
   showCart() {
-    if (this.cartService.products.length > 0) {
-      this.showAdded = true;
-    }
     if (this.showShoppingCart) {
       return true;
     } else {
       return false;
     }
+  }
+
+  getUserName() {
+    return this.userService.getUser()?.username;
   }
 
 

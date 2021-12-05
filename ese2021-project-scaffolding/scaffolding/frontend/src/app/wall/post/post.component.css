@@ -135,10 +135,22 @@
   margin-left: 10px;
 }
 
-.upvoteImage {
-  height: 20px;
-  margin-top: 8px;
-  margin-left: 5px;
+.upvoteButton, .downvoteButton {
+  height: 30px;
+  border: none;
+  background: none;
+}
+
+.clickedUp {
+  color: green;
+}
+
+.clickedDown {
+  color: red;
+}
+
+mat-icon {
+  outline: 0;
 }
 .likesCount, .dislikesCount {
   float: left;

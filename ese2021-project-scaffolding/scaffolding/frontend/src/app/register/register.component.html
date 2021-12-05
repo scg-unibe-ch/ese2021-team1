@@ -3,7 +3,6 @@
 <form *ngIf="showRegisterModal && !showRegistrSuccess" autocomplete="off" class="loginWrapper">
   <div class="loginHeader">Register</div>
 
-
     <input class="inputField"  type="text" placeholder="User Name" name="name" (focusout)="checkUsername()" [(ngModel)]="userToRegister.username" required>
     <div class="feedback">{{formFeedback.username}}</div>
 

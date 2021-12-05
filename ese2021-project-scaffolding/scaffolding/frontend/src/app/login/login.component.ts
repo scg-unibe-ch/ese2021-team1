@@ -110,6 +110,7 @@ export class LoginComponent {
       localStorage.setItem('city', res.user.city);
       localStorage.setItem('birthday', res.user.birthday);
       localStorage.setItem('phoneNumber', res.user.phoneNumber);
+      localStorage.setItem('admin', res.user.admin);
 
 
       this.userService.setLoggedIn(true);

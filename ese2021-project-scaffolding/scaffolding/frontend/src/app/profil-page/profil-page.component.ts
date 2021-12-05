@@ -4,6 +4,7 @@ import {User} from "../models/user.model";
 import {MatIconModule} from "@angular/material/icon";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
+import {Order} from "../models/order.model";
 
 @Component({
   selector: 'app-profil-page',
@@ -13,7 +14,7 @@ import {environment} from "../../environments/environment";
 export class ProfilPageComponent implements OnInit {
 
   user: any
-  orders: [] = []
+  orders: Order[] = []
 
   showAbout: boolean = true;
   showPassword: boolean = false;

@@ -18,14 +18,16 @@
       <mat-icon>shopping_basket</mat-icon>
     </button>
     <img *ngIf="showAdded" class="addedItem" src="assets/bluePoint.png">
-    <button *ngIf="loggedInState" class="logoutButton" (click)="logoutUser()">Logout</button>
-    <button *ngIf="!loggedInState" class="registerButton" (click)="toggleRegisterModal()" routerLink="/register">Register</button>
-    <button *ngIf="!loggedInState" class="loginButton" (click)="toggleLoginModal()" routerLink="/login">Login</button>
-    <button mat-button *ngIf="user" routerLink="/user/{{user.username}}">
+    <button *ngIf="loggedInState" class="logoutButton" (click)="logoutUser()" routerLink="/">Logout</button>
+    <button *ngIf="!loggedInState" class="registerButton" (click)="toggleRegisterModal()">Register</button>
+    <button *ngIf="!loggedInState" class="loginButton" (click)="toggleLoginModal()">Login</button>
+    <button mat-button *ngIf="loggedInState" routerLink="/user/{{getUserName()}}">
       <mat-icon>person</mat-icon>
     </button>
 </mat-toolbar>
 
 <app-cart *ngIf="showCart()"></app-cart>
+<app-login *ngIf="showLoginModal"></app-login>
+<app-register *ngIf="showRegisterModal"></app-register>
 
 <router-outlet></router-outlet>

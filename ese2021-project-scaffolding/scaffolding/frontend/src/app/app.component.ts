@@ -96,10 +96,11 @@ export class AppComponent implements OnInit {
     const city = localStorage.getItem('city')
     const birthday = localStorage.getItem('birthday')
     const phoneNumber = localStorage.getItem('phoneNumber')
+    const admin = <boolean><unknown>localStorage.getItem('admin')
 
 
     // Set boolean whether a user is logged in or not
-    if (!userId || !userName || !userToken || !password || !firstName || !lastName || !email || !homeAddress || !streetNumber || !zipCode || !city || !birthday || !phoneNumber) return
+    if (!admin || !userId || !userName || !userToken || !password || !firstName || !lastName || !email || !homeAddress || !streetNumber || !zipCode || !city || !birthday || !phoneNumber) return
     this.userService.setLoggedIn(!!userToken);
     this.userService.setUser({
       userId: parseInt(userId),
@@ -114,7 +115,7 @@ export class AppComponent implements OnInit {
       city: city,
       birthday: birthday,
       phoneNumber: phoneNumber,
-      admin: false
+      admin: admin
     })
   }
 }

@@ -50,8 +50,10 @@
     </div>
     <div *ngIf="showOrders" class="content mat-elevation-z8">
       <div *ngFor="let order of this.orders">
-
+        {{order.paymentMethod}}
       </div>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+<router-outlet></router-outlet>

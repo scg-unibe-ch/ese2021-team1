@@ -24,13 +24,21 @@
     </div>
     <div class="underPost">
       <div class="upvote">
-        <img *ngIf="!clickedUpvote" class="upvoteImage" src="assets/upvoteUnclicked.png" (click)="upvotePost()">
-        <img *ngIf="clickedUpvote" class="upvoteImage" src="assets/upvoteClicked.png" (click)="upvotePost()">
+        <button [disabled]="canNotVote()" *ngIf="!clickedUpvote" class="upvoteButton" (click)="upvotePost()">
+          <mat-icon>thumb_up</mat-icon>
+        </button>
+        <button [disabled]="canNotVote()"*ngIf="clickedUpvote" class="upvoteButton clickedUp"  (click)="upvotePost()">
+          <mat-icon>thumb_up</mat-icon>
+        </button>
         <p class="likesCount">{{post.like}}</p>
       </div>
       <div class="downvote">
-        <img *ngIf="!clickedDownvote" class="upvoteImage" src="assets/downvoteUnclicked.png" (click)="downvotePost()">
-        <img *ngIf="clickedDownvote" class="upvoteImage" src="assets/downvoteClicked.png" (click)="downvotePost()">
+        <button [disabled]="canNotVote()" *ngIf="!clickedDownvote" class="downvoteButton" (click)="downvotePost()">
+          <mat-icon>thumb_down</mat-icon>
+        </button>
+        <button [disabled]="canNotVote()" *ngIf="clickedDownvote" class="downvoteButton clickedDown"  (click)="downvotePost()">
+          <mat-icon>thumb_down</mat-icon>
+        </button>
         <p class="dislikesCount">{{post.dislike}}</p>
       </div>
       <!-- <button class="commentsButton">Comments</button>         -->

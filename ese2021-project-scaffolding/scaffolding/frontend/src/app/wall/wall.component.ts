@@ -97,4 +97,8 @@ export class WallComponent implements OnInit {
     }
   }
 
+  showCreatePost() {
+    return localStorage.getItem("admin") == "false" && this.userService.getLoggedIn()
+  }
+
 }
