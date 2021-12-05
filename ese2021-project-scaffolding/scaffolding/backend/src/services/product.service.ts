@@ -73,8 +73,8 @@ export class ProductService {
     }
 
 
-
-    public searchForCategorysProduct (categorys: String []) {
+// TODO: make this new/better
+    public searchForCategorysProduct (categorys: string) {
         let counter = 0;
         let searchedForProducts = null;
         return Product.findAll().then(found => {
