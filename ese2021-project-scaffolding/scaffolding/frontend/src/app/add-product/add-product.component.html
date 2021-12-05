@@ -3,4 +3,13 @@
   <textarea [(ngModel)]="newProduct.description" class="textArea" name="text" placeholder="Enter text"></textarea>
   <textarea class ="price"[(ngModel)]="newProduct.price" placeholder="Enter Price"></textarea>
   <button type="submit" (click)="createProduct()" class="postButton">SHARE NOW</button>
+  <mat-form-field appearance="fill" class="product-category-selection">
+    <mat-label>Category</mat-label>
+    <mat-select matNativeControl required [(value)]="newProduct.category">
+      <mat-option value="Hoodie">Hoodie</mat-option>
+      <mat-option value="Shirt">Shirt</mat-option>
+      <mat-option value="Bag">Bag</mat-option>
+      <mat-option value="Extra">Extra</mat-option>
+    </mat-select>
+  </mat-form-field>
 </div>
