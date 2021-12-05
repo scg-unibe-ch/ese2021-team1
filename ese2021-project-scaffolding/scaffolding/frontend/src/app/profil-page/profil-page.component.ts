@@ -51,7 +51,7 @@ export class ProfilPageComponent implements OnInit {
 
   //doesnt work yet!
   private getOrders() {
-    this.httpClient.get(environment.endpointURL + "orders/" + this.user.userId)
+    this.httpClient.get(environment.endpointURL + "orders/" + this.user.userId, this.user.userId)
       .subscribe((res: any) => {
         console.log(this.user.userId)
         console.log(res);

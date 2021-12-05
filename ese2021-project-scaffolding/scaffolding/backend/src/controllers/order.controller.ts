@@ -23,6 +23,7 @@ orderController.post('/', (req: Request, res: Response) => {
 // });
 // get all the posts for the requested User
 orderController.get('/:id', (req: Request, res: Response) => {
+    console.log(req.body);
    orderService.getAllOrdersFrom(req.body)
        .catch(err => res.json(err));
 });

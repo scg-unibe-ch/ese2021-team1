@@ -55,8 +55,6 @@ export class CheckoutComponent implements OnInit {
 
 
   nextStep() {
-    console.log(this.firstName)
-    console.log(this.payment)
     if(this.showProducts) {
       this.showProducts = false;
       this.showAddress = true;

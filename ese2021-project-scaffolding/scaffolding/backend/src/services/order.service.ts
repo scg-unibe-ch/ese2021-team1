@@ -86,7 +86,7 @@ export class OrderService {
                                 })
                                 .catch(err => Promise.reject(err));
 
-                    } else {
+                    } else if (user.admin) {{
                         Orders.findAll()
                             .then(orders => {if (orders) {
                                 Promise.resolve(orders);
@@ -95,7 +95,7 @@ export class OrderService {
                             }
                             })
                             .catch( () => Promise.reject('orders not got'));
-                    }} else {
+                    }}} else {
                         return  Promise.reject('User not found');
                     }})
                 .catch( err => Promise.reject(err));
