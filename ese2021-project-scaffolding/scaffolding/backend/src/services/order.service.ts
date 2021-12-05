@@ -72,11 +72,20 @@ export class OrderService {
         }
     }
     public async getAllOrdersFrom(userID) {
-            User.findByPk(userID)
+            return User.findByPk(userID)
                 .then(user => {
                     if (user != null) {
                         if (!user.admin) {
-                        return Promise.resolve(Orders.findAll({where: {userId: user.userId}}));
+                            Orders.findAll({where: {userId: user.userId}})
+                                .then(order => {
+                                    if (order != null) {
+                                        return Promise.resolve(order);
+                                    } else {
+                                        return Promise.reject('Cant find order');
+                                    }
+                                })
+                                .catch(err => Promise.reject(err));
+
                     } else {
                         Orders.findAll()
                             .then(orders => {if (orders) {
