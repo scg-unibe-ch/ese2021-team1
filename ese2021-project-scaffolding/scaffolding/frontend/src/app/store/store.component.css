@@ -5,6 +5,7 @@ p {
 mat-grid-list {
   margin-top: 15px;
   width: 60%;
+  max-width: 1300px;
   margin-left: auto;
   margin-right: auto;
 }

@@ -1,9 +1,10 @@
   <div class="product">
     <div *ngIf="!isAvailable()" class="overlay"><h1 id="notAvailableText">NOT AVAILABLE</h1></div>
+    <p class="category"> {{product.category}} </p>
     <img class="image" src="assets/eth_pullover.jpg" alt="{{product.title}}">
     <h1>{{product.title}}</h1>
     <p class="price">CHF {{product.price}}</p>
-    <p> {{product.category}} </p>
+    <!--<p> {{product.category}} </p>-->
     <p>{{product.description}}</p>
     <p><button (click)="addToCart(product);">Add to Cart</button></p>
   </div>

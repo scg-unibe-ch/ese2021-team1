@@ -1,7 +1,7 @@
 .product {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   width: 300px;
-  max-height: 600px;
+  height: 500px;
   margin: auto;
   text-align: center;
   font-family: arial;
@@ -9,6 +9,7 @@
   padding: 0px;
   overflow: hidden;
   border: 4px solid #000;
+  border-radius: 15px;
 }
 
 .image {
@@ -41,8 +42,8 @@
   position: absolute;
   display: block; /* Hidden by default */
   width: 300px; /* Full width (cover the whole page) */
-  height: 100%; /* Full height (cover the whole page) */
-  background-color: dimgrey; /* Black background with opacity */
+  height: 500px; /* Full height (cover the whole page) */
+  background-color: black; /* Black background with opacity */
   opacity: 0.8;
   z-index: 0.5; /* Specify a stack order in case you're using a different order for other elements */
   justify-content: center;
@@ -50,7 +51,17 @@
 }
 
 #notAvailableText {
-  opacity: 1 !important;
   margin-top: 250px;
+  color: white;
+}
+
+.category {
+  position: absolute;
+  background-color: #ff9307;
+  padding: 5px 15px;
+  font-size: 15px;
+  border-radius: 20px;
+  margin: 10px;
+  opacity: 0.9;
 }
 
