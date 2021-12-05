@@ -3,7 +3,7 @@ import {Optional, Model, Sequelize, DataTypes, INTEGER} from 'sequelize';
 export interface OrderAttributes {
     orderId: number;
     userId: number;
-    products: number[]; // product ids separated by comma
+    products: string; // product ids separated by comma
     paymentMethod: string;
     homeAddress: string;
     streetNumber: number;
@@ -17,7 +17,7 @@ export interface OrderAttributes {
 export class Orders extends Model<OrderAttributes> implements OrderAttributes {
     orderId: number;
     userId: number;
-    products: number[];
+    products: string;
     paymentMethod: string;
     homeAddress: string;
     streetNumber: number;
@@ -38,7 +38,7 @@ export class Orders extends Model<OrderAttributes> implements OrderAttributes {
                     allowNull: false
                 },
                 products: {
-                    type: DataTypes.ARRAY(INTEGER),
+                    type: DataTypes.STRING,
                     allowNull: false
                 },
                 paymentMethod: {
