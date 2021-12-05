@@ -36,4 +36,8 @@ export class StoreComponent implements OnInit {
     addProductParent(product: any) {
       this.products.unshift(product)
     }
+
+    getThisProduct(product: any) {
+    this.httpClient.get(environment.endpointURL + "product", product)
+    }
 }
