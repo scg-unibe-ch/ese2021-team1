@@ -88,7 +88,7 @@ export class OrderService {
                             .catch( () => Promise.reject('orders not got'));
                     }} else {
                         return  Promise.reject('User not found');
-                    })
+                    }})
                 .catch( err => Promise.reject(err));
     }
 
