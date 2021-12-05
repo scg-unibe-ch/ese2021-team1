@@ -1,9 +1,9 @@
-import { Optional, Model, Sequelize, DataTypes } from 'sequelize';
+import {Optional, Model, Sequelize, DataTypes, INTEGER} from 'sequelize';
 
 export interface OrderAttributes {
     orderId: number;
     userId: number;
-    products: string; // product ids separated by comma
+    products: number[]; // product ids separated by comma
     paymentMethod: string;
     homeAddress: string;
     streetNumber: number;
@@ -17,7 +17,7 @@ export interface OrderAttributes {
 export class Orders extends Model<OrderAttributes> implements OrderAttributes {
     orderId: number;
     userId: number;
-    products: string;
+    products: number[];
     paymentMethod: string;
     homeAddress: string;
     streetNumber: number;
@@ -38,7 +38,7 @@ export class Orders extends Model<OrderAttributes> implements OrderAttributes {
                     allowNull: false
                 },
                 products: {
-                    type: DataTypes.STRING,
+                    type: DataTypes.ARRAY(INTEGER),
                     allowNull: false
                 },
                 paymentMethod: {

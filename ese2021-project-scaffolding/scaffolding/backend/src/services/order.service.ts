@@ -5,7 +5,7 @@ import {Product} from '../models/product.model';
 
 export class OrderService {
 // TODO: testing for admin inside of creatingORDER
-    public async createOrder(order: { userID: number, products: string, paymentMethod: string,
+    public async createOrder(order: { userID: number, products: number[], paymentMethod: string,
         homeAddress: string, streetNumber: number, zipCode: number, city: string,
         processingStatus: string, purchaseDate: string}) {
             if (order.zipCode === null && order.city === null && order.streetNumber === null && order.homeAddress === null) {
