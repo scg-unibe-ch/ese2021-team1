@@ -25,10 +25,9 @@
       placeholder="Enter Password">
       <div *ngIf="serverFeedback" class="feedback">{{ serverFeedback }}</div>
     <!-- <div *ngIf="loginFeedback[0]" class="feedback" [ngStyle]="{color: loginFeedback[2]}">{{loginFeedback[1]}}</div> -->
-    <button (click)="loginUser(); reload()" class="registerButton" routerLink="/">Login</button>
+    <button (click)="loginUser()" class="registerButton">Login</button>
   </form>
 
-  <router-outlet></router-outlet>
 
 
 

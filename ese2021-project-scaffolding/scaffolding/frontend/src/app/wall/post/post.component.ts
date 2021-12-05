@@ -43,7 +43,7 @@ export class PostComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.post.category = this.post.category.replace(/[, ]+/g, " ").trim(); //very ugly to remove comma from category
   }
 
   upvotePost() {
@@ -52,9 +52,10 @@ export class PostComponent implements OnInit {
     }
     else {
       this.httpClient.post(environment.endpointURL + "vote/" + this.post.id + "/up", {
-        userName: this.post.userName,
+        userName: localStorage.getItem("userName"),
         vote: 1
       }).subscribe(res => {
+        console.log(res)
         if (res == null) {
           this.clickedUpvote = false;
           console.log(this.clickedUpvote)
@@ -74,7 +75,7 @@ export class PostComponent implements OnInit {
     }
     else {
       this.httpClient.post(environment.endpointURL + "vote/" + this.post.id + "/down", {
-        userName: this.post.userName,
+        userName: localStorage.getItem("userName"),
         vote: -1
       }).subscribe(res => {
         if (res == null) {

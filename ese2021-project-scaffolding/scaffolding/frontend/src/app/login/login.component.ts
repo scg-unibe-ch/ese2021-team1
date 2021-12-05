@@ -94,6 +94,7 @@ export class LoginComponent {
         this.serverFeedback = res
         return
       } else if (res.user) {
+        this.reload()
         this.serverFeedback = "Welcome back, " + res.user.userName
       }
 
