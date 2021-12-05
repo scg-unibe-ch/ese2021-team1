@@ -72,16 +72,24 @@ export class OrderService {
         }
     }
     public async getAllOrdersFrom(userID) {
-        if (userID.admin) {
-            Orders.findAll()
-                .then(orders => {if (orders) {
-                Promise.resolve(orders);
-            } else {
-                    Promise.reject('orders not found');
-                }
-            })
-                .catch( () => Promise.reject('orders not got'));
-        }
+            User.findByPk(userID)
+                .then(user => {
+                    if (user != null) {
+                        if (!user.admin) {
+                        return Promise.resolve(Orders.findAll({where: {userId: user.userId}}));
+                    } else {
+                        Orders.findAll()
+                            .then(orders => {if (orders) {
+                                Promise.resolve(orders);
+                            } else {
+                                Promise.reject('orders not found');
+                            }
+                            })
+                            .catch( () => Promise.reject('orders not got'));
+                    }} else {
+                        return  Promise.reject('User not found');
+                    })
+                .catch( err => Promise.reject(err));
     }
 
     private isAdmin(id) {
