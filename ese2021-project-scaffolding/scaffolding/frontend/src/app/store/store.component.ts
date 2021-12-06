@@ -25,7 +25,7 @@ export class StoreComponent implements OnInit {
   getAllProducts(): void {
       this.httpClient.get(environment.endpointURL + "product")
         .subscribe(res => {
-          if (typeof res === "object") {
+          if (typeof res === "object" && res != null) {
             Object.values(res).forEach(post => {
               this.products.push(post)
             })

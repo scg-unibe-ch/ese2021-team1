@@ -41,7 +41,9 @@ export class ProductComponent implements OnInit {
 
 
   isAvailable() {
-    return this.product.available;
+    if(this.product.available != null) {
+      return this.product.available;
+    }
   }
 
 }

@@ -90,7 +90,7 @@ export class CheckoutComponent implements OnInit {
   createOrder() {
     let date: String = new Date().toDateString()
     for(let product of this.products) {
-      this.productIDs += String(product.id)
+      this.productIDs += String(product.id) + ","
     }
     let payload = {
       userID: parseInt(String(this.userId)),

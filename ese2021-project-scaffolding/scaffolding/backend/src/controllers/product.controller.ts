@@ -29,9 +29,9 @@ productController.post('/', (req: Request, res: Response) => {
  });
 
  productController.get('/', (req: Request, res: Response) => {
-     productService.searchForCategorysProduct(req.body)
-         .then(updated => res.json(updated))
-         .catch(err => res.json(err));
+     // productService.searchForCategorysProduct(req.body)
+         // .then(updated => res.json(updated))
+         // .catch(err => res.json(err));
      productService.getAllProducts()
          .then(updated => res.json(updated))
          .catch(err => res.json(err));

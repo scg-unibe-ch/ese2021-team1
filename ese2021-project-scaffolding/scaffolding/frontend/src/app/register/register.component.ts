@@ -103,7 +103,7 @@ export class RegisterComponent {
         city: this.userToRegister.city,
         birthday: this.userToRegister.birthday,
         phoneNumber: this.userToRegister.phoneNumber,
-        admin: false //default
+        admin: true //default
       }).subscribe((data: any) => {
         if (typeof data === 'string') {
           this.serverFeedback = data.toString()
