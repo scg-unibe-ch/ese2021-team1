@@ -140,4 +140,17 @@ export class PostComponent implements OnInit {
   canNotVote() {
     return localStorage.getItem("admin") == "true" || !this.userService.getLoggedIn();
   }
+
+  calculateTimePosted() {
+    let postedDate = new Date(this.post.createdAt)
+    let currentDate = new Date()
+    let difference = currentDate.getTime() - postedDate.getTime()
+    if (difference / 86400000 > 1) {
+      return String(Math.floor(difference / 86400000)) + "d ago"
+    } else if(difference / 3600000 > 1) {
+      return String(Math.floor(difference / 3600000)) + "h ago"
+    } else {
+      return String(Math.floor(difference / 60000)) + "h ago"
+    }
+  }
 }

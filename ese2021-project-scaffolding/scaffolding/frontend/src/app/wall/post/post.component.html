@@ -4,7 +4,7 @@
     <div class="metadata">
         <img src="../../../assets/marmot01.png" class="usericon">
         <div class="username">{{post.userName}}:</div>
-        <div class="postdate">{{post.createdAt}}</div>
+        <div class="postdate">{{calculateTimePosted()}}</div>
     </div>
     <img class="postImage" *ngIf="post.image" src='http://localhost:3000/uploads/{{post.image}}'>
     <div class="content">
