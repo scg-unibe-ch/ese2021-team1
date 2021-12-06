@@ -150,7 +150,7 @@ export class PostComponent implements OnInit {
     } else if(difference / 3600000 > 1) {
       return String(Math.floor(difference / 3600000)) + "h ago"
     } else {
-      return String(Math.floor(difference / 60000)) + "h ago"
+      return String(Math.floor(difference / 60000)) + "m ago"
     }
   }
 }

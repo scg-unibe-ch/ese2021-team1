@@ -23,6 +23,7 @@ export class WallComponent implements OnInit {
     userName: ""
   }
   posts: Post[] = [];
+  filteredPosts: Post[] = [];
 
   createPostFeedback = {
     title: '',
@@ -31,6 +32,7 @@ export class WallComponent implements OnInit {
 
   auth: boolean = false
   user: string | null = null
+  toFilterCategories: String[] = []
 
 
   constructor(
@@ -56,9 +58,11 @@ export class WallComponent implements OnInit {
         if (typeof res === "object") {
           Object.values(res).forEach(post => {
             this.posts.push(post)
+            this.filteredPosts.push(post)
           })
         }
-        this.posts.reverse(); //so newest post is at the top
+        this.posts.reverse();
+        this.filteredPosts.reverse()//so newest post is at the top
         console.log(this.posts)
       })
   }
@@ -99,6 +103,28 @@ export class WallComponent implements OnInit {
 
   showCreatePost() {
     return localStorage.getItem("admin") == "false" && this.userService.getLoggedIn()
+  }
+
+  filterPosts() {
+    let filteredPosts: Post[] = []
+    if (this.toFilterCategories.length > 0) {
+      for (let post of this.posts) {
+        if (this.toFilterCategories.indexOf(post.category) > -1) {
+          filteredPosts.push(post)
+        }
+      }
+      this.filteredPosts = filteredPosts
+    } else {
+      this.filteredPosts = this.posts
+    }
+  }
+
+  showFiltered(post: any): boolean {
+    if(this.filteredPosts.indexOf(post) > -1) {
+      return true
+    } else {
+      return false
+    }
   }
 
 }
