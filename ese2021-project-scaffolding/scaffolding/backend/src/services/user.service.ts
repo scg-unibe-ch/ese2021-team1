@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import validator from 'validator';
 import equals = validator.equals;
-import {Post} from "../models/post.model";
+import {Post} from '../models/post.model';
 
 export class UserService {
 

@@ -43,8 +43,10 @@ userController.patch('/', (req: Request, res: Response) => {
 
 userController.patch('/:id', (req: Request, res: Response) => {
     userService.editDetails(req, req.body.id)
-        .then (changed => res.json(changed))
-        .catch (err => res.json(err));
+        .then(changed => res.json(changed))
+        .catch(err => res.json(err));
+});
+
 userController.get('/admin', (req: Request, res: Response) => {
     userService.isAdmin(req.body.id)
         .then(admin => res.send(admin))
