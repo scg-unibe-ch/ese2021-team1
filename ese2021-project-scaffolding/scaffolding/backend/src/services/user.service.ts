@@ -90,7 +90,14 @@ export class UserService {
         return User.findByPk(body.userId)
             .then(found => {
                 if (found != null) {
-                    this.updatePassword(body.userId, body.password);
+                    const hashedPW = this.passwordGenerator(body.password);
+                    if (typeof hashedPW === 'string') {
+                        return found.update({password: hashedPW})
+                            .then(updated => Promise.resolve(updated))
+                            .catch(() => Promise.reject('update failed'));
+                    } else {
+                        return Promise.reject(hashedPW); // errormessage from passwordGenerator
+                    }
                 } else {
                     return Promise.reject({ message: 'User not found.'});
                 }
@@ -99,16 +106,6 @@ export class UserService {
             });
     }
 
-    private async updatePassword(user: User, newUnhashedPassword: string) {
-        const hashedPW = this.passwordGenerator(newUnhashedPassword);
-        if (typeof hashedPW === 'string') {
-            return user.update({password: hashedPW})
-                .then(updated => Promise.resolve(updated))
-                .catch(() => Promise.reject('update failed'));
-        } else {
-            return Promise.reject(hashedPW); // errormessage from passwordGenerator
-        }
-    }
 
     private passwordGenerator (password: string) {
          const saltRounds = 12;

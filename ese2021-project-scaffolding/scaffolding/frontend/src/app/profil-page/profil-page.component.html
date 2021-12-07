@@ -4,7 +4,7 @@
       <mat-icon>info</mat-icon>
       <span> About</span>
     </button>
-    <button mat-button class="menu-button">
+    <button mat-button class="menu-button" (click)="show('password')">
       <mat-icon>security</mat-icon>
       <span> Password</span>
     </button>
@@ -52,6 +52,13 @@
       <div *ngFor="let order of this.orders">
         {{order.paymentMethod}}
       </div>
+    </div>
+    <div *ngIf="showPassword" class="content mat-elevation-z8">
+      <div class="changePassword">Change Password</div>
+
+      <input [(ngModel)]="newPassword" placeholder="New Password">
+      <input [ngModel]="newPassword2" placeholder="Again new Password">
+      <button (click)="changePassword()">Submit Password change</button>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

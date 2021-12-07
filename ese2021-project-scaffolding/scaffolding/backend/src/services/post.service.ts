@@ -75,7 +75,7 @@ export class PostService {
 
         // this service returns all posts from the database
         public async getAllPosts() {
-            return Post.findAll({id})
+            return Post.findAll()
                 .then(posts => {
                     if (posts) {
                         return Promise.resolve(posts);
