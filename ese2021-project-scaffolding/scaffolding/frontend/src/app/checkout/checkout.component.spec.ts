@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CheckoutComponent } from './checkout.component';
+import {HttpClientModule} from "@angular/common/http";
 
 describe('CheckoutComponent', () => {
   let component: CheckoutComponent;
@@ -14,12 +15,17 @@ describe('CheckoutComponent', () => {
   });
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientModule],
+      providers: [CheckoutComponent]
+    })
     fixture = TestBed.createComponent(CheckoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    let checkout: CheckoutComponent = TestBed.get(CheckoutComponent);
+    expect(checkout).toBeTruthy();
   });
 });
