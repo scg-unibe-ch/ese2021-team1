@@ -167,8 +167,9 @@ export class PostService {
                 }
             })
             .catch(() => Promise.reject('Could not fetch Comments'));
+    }
 
-
+/*
     public async searchForCategorysPost(categorys: String[]) {
         let searchdForCategorys = null;
         let counter = 0;
@@ -194,5 +195,5 @@ export class PostService {
                 }
             })
             .catch(() => Promise.reject('Cant search for category'));
-    }
+    }*/
 }

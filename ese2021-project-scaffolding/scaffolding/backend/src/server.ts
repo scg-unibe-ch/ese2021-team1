@@ -21,6 +21,7 @@ import {ProductController} from './controllers/product.controller';
 import {OrderController} from './controllers/order.controller';
 import {Vote} from './models/vote.model';
 import {VoteController} from './controllers/vote.controller';
+import {Comment} from './models/comment.model';
 
 export class Server {
 /**
@@ -44,6 +45,7 @@ export class Server {
         ItemImage.initialize(this.sequelize);
         Product.initialize(this.sequelize);
         Orders.initialize(this.sequelize);
+        Comment.initialize(this.sequelize);
         TodoItem.createAssociations();
         TodoList.createAssociations();
         ItemImage.createAssociations();

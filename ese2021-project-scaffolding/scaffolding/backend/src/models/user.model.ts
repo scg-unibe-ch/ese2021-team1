@@ -12,7 +12,6 @@ import { Optional, Model, Sequelize, DataTypes } from 'sequelize';
 * @param phoneNumber
 * @param userId
 */
-* /;
 
 export interface UserAttributes {
      firstName: string;

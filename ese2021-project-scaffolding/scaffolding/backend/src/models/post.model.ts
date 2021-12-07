@@ -25,7 +25,6 @@ export interface PostAttributes {
 }
 
 export interface PostCreationAttributes extends Optional<PostAttributes, 'text'| 'image' | 'reported'> { }
-export interface PostCreationAttributes extends Optional<PostAttributes, 'text'| 'image' | 'category'> { }
 
 export class Post extends Model<PostAttributes, PostCreationAttributes> implements PostAttributes {
     id: number;

@@ -48,13 +48,13 @@ postController.delete('/:id', (req: Request, res: Response) => {
         .then(updated => res.send(updated))
         .catch(err => res.send(err));
 });
-
+/*
 postController.search('/', (req: Request, res: Response) => {
     postService.searchForCategorysPost(req.body)
         .then(updated => res.send(updated))
         .catch(err => res.send(err));
 });
-
+*/
 
 postController.report('/:id', (req: Request, res: Response) => {
     postService.reportPost(req.body.id)
