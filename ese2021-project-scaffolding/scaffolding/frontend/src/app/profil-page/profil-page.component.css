@@ -1,0 +1,78 @@
+mat-sidenav-container{
+  width: 80%;
+  height: 565px ;
+  margin: auto;
+  overflow: hidden;
+  background: none;
+  z-index: 0;
+}
+
+mat-toolbar {
+  background: white;
+  color: white;
+}
+
+.menu-button {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+mat-sidenav {
+  margin: 16px;
+  height: 500px;
+  width: 200px;
+  border-right: none;
+  background: #002b5c;
+  color: white;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+  display: flex;
+}
+
+.content {
+  height: 500px;
+  border-radius: 10px;
+  margin: 16px 16px 16px 32px;
+  background: white;
+
+  display: flex;
+  overflow: auto;
+
+  font-size: 2rem;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.profilePicture{
+  margin: 20px;
+}
+
+tr {
+  line-height: 0px;
+  position: relative;
+  bottom: 30px;
+}
+
+#username, #address, #email, #phonenumber {
+  margin-left: 20px;
+}
+
+.category {
+  font-weight: bold;
+}
+
+#name {
+  border-bottom: grey 1px solid;
+  font-size: 40px;
+}
+
+p {
+  font-size: 20px;
+}
+
+.profilePicture img {
+  width: 400px;
+  height: auto;
+  border-radius: 10px;
+}

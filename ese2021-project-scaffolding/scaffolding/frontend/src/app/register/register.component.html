@@ -3,10 +3,9 @@
 <form *ngIf="showRegisterModal && !showRegistrSuccess" autocomplete="off" class="loginWrapper">
   <div class="loginHeader">Register</div>
 
-
     <input class="inputField"  type="text" placeholder="User Name" name="name" (focusout)="checkUsername()" [(ngModel)]="userToRegister.username" required>
     <div class="feedback">{{formFeedback.username}}</div>
-    
+
     <input (input)="checkPassword(passwordInput)" class="inputField" (focus)="showPasswordReqs(true)" (focusout)="showPasswordReqs(false)" [(ngModel)]="passwordInput"  type="password" placeholder="Password" name="password" [(ngModel)]="userToRegister.password" required>
       <app-password-modal [showPassReqs]="showPassReqs"></app-password-modal>
 

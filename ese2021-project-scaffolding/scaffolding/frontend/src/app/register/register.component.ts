@@ -37,16 +37,16 @@ export class RegisterComponent {
       phoneNumber: '',
   }
 
-  
+
   // CHECK FEATURE END
-  
+
   loggedIn: boolean | undefined;
-  
+
   user: User | undefined;
-  
+
   // ADDED NEW ARGS FOR THE UPDATED USER MODEL
   userToRegister: UserRegister = new UserRegister('', '', '', '', '', '', '', '', '');
-  
+
   // COMMUNICATION WITH THE CHILD COMPONENT -- START
   @ViewChild(PasswordModalComponent)
   private passwordModal!: PasswordModalComponent
@@ -64,7 +64,7 @@ export class RegisterComponent {
   }
   // COMMUNICATION WITH THE CHILD COMPONENT -- END
 
-  
+
   constructor(
     public httpClient: HttpClient,
     public userService: UserService,
@@ -103,6 +103,7 @@ export class RegisterComponent {
         city: this.userToRegister.city,
         birthday: this.userToRegister.birthday,
         phoneNumber: this.userToRegister.phoneNumber,
+        admin: false //default
       }).subscribe((data: any) => {
         if (typeof data === 'string') {
           this.serverFeedback = data.toString()
@@ -220,7 +221,7 @@ export class RegisterComponent {
     }
     return true
   }
-  
+
   resetRegistrationForm(): void {
     // RESET THE DAMN FORM
     this.formFeedback  = {

@@ -9,7 +9,9 @@
   padding: 10px;
   border-radius: 20px;
   display: block;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
+  background: whitesmoke;
+  overflow: auto;
 }
 
 .metadata {
@@ -17,7 +19,7 @@
   width: fit-content;
   height: 50px;
   top: 0px;
-  background-color: rgb(182, 182, 182, 0.2);
+  background-color: lightgrey;
   border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 }
@@ -37,11 +39,25 @@
   border-radius: 100%;
   margin-left: 5px;
   margin-right: 5px;
-  margin-right: 5px;
-
   top: 50%;
 
   transform: translate(0, -50%);
+}
+.category {
+  position: relative;
+  float: right;
+  padding: 10px;
+  border-radius: 20px;
+  margin-right: 10px;
+  margin-top: 5px;
+
+
+}
+
+.category-selection {
+  position: relative;
+  float: right;
+  font-size: 15px;
 }
 .postdate {
   line-height: 50px;
@@ -60,7 +76,7 @@
   position: relative;
   top: 10px;
   width: 100%;
-  background-color: rgb(182, 182, 182);
+  background-color: #ff9307;
   border-radius: 20px;
 }
 
@@ -68,7 +84,7 @@
   position: relative;
   width: auto;
   height: calc(100% - 25px);
-  background-color: rgb(146, 146, 146);
+  background-color: antiquewhite;
   font-weight: normal;
   padding: 15px;
   display: block;
@@ -123,10 +139,82 @@
   margin-left: 10px;
 }
 
-.upvoteButton, .downvoteButton, .commentsButton {
-  margin: 5px;
+.upvoteButton, .downvoteButton {
+  height: 30px;
+  border: none;
+  background: none;
 }
 
-.upvoteButton:focus {
-  background-color: #3bb615;
+.clickedUp {
+  color: green;
 }
+
+.clickedDown {
+  color: red;
+}
+
+mat-icon {
+  outline: 0;
+}
+.likesCount, .dislikesCount {
+  float: left;
+  font-size: 18px;
+  position: relative;
+  bottom: 10px;
+}
+
+.upvote, .downvote {
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.downvote {
+  margin-left: 15px;
+}
+
+.verticalDots:after {
+  content: '\2807';
+  font-size: 30px;
+}
+
+.verticalDots {
+  background-color: transparent;
+  border: none;
+  position: relative;
+  float: right;
+  outline: none;
+  margin-top: 5px;
+}
+
+.verticalDots:checked{
+  background-color: transparent;
+}
+
+input {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+}
+
+.postImage {
+  max-height: 400px;
+  max-width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+  margin-top: 15px;
+  border-radius: 15px;
+
+}
+
+#saveChanges {
+  float: right;
+  position: relative;
+  bottom: 30px;
+  right: 15px;
+  border-radius: 5px;
+}
+
+

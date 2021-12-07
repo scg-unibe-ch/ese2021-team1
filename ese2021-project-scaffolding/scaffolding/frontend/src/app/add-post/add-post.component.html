@@ -3,17 +3,29 @@
       <input [(ngModel)]="newPost.title" class="inputField" type="text" name="title" placeholder="Enter Title" /><br>
       <textarea [(ngModel)]="newPost.content" class="inputField" name="text" placeholder="Enter text"></textarea><br>
       ingore the image for now -->
-      <!-- <input  id="files" type="file" name="upload" accept="image/*" class="hidden"/><br>
-      <button id="buttUploadImg"><label for="files" id="uploadImg">Datei auswählen</label></button>
-      <button [disabled]="updateButtonStatus()" onClick="window.location.reload()" type="submit" class="createButton">Post</button> -->
+<!-- <input  id="files" type="file" name="upload" accept="image/*" class="hidden"/><br>
+<button id="buttUploadImg"><label for="files" id="uploadImg">Datei auswählen</label></button>
+<button [disabled]="updateButtonStatus()" onClick="window.location.reload()" type="submit" class="createButton">Post</button> -->
       <!-- refreshes page -->
     <!-- </form> -->
 <!-- </div> -->
-
+        <div><img id="postImage" [src]="url" *ngIf="url"></div>
         <input [(ngModel)]="newPost.title" class="inputField" type="text" name="title" placeholder="Enter Title" />
-        <div class="feedback" >{{createPostFeedback.title}}</div>
+          <mat-form-field appearance="fill" class="category-selection">
+            <mat-label>Category</mat-label>
+            <mat-select matNativeControl required [(value)]="category">
+              <mat-option value="Bitcoin">Bitcoin</mat-option>
+              <mat-option value="Ethereum">Ethereum</mat-option>
+              <mat-option value="Cardano">Cardano</mat-option>
+              <mat-option value="Polkadot">Polkadot</mat-option>
+            </mat-select>
+          </mat-form-field>
         <textarea [(ngModel)]="newPost.content" class="textArea" name="text" placeholder="Enter text"></textarea>
         <div class="feedback">{{createPostFeedback.content}}</div>
-        <!-- ingore the image for now -->
-        <!-- <input [(ngModel)]="newPost.image" class="inputField" type="file" name="upload" accept="image/*" /><br> -->
+        <div class="feedback" >{{createPostFeedback.title}}</div>
+        <button id="buttUploadImg"><label for="files" id="uploadImg">Datei auswählen</label></button>
+        <input id="files" #imageInput (change)="imageHandler($event)" class="inputField" type="file" name="uploaded_image" accept="image/*" class="hidden"/><br>
         <button type="submit" (click)="createPost()" class="postButton">SHARE NOW</button>
+
+
+

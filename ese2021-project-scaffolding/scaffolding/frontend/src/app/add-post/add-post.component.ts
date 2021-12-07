@@ -11,31 +11,38 @@ import {WallComponent} from "../wall/wall.component";
   templateUrl: './add-post.component.html',
   styleUrls: ['./add-post.component.css']
 })
+
 export class AddPostComponent implements OnInit {
+
+  selectedFile: any;
 
   @Output()
   addPostEmit = new EventEmitter<any>();
 
-  newPost = {
+  url: any;
+  category: string = "";
+  newPost: any = {
     title: "",
     content: "",
+    image: null,
     labels: [],
-    userName: "",
+    userName: ""
   }
   user: User | null = null;
   auth: boolean = false;
   posts: Post[] = [];
 
+
   createPostFeedback = {
     title: '',
     content: ''
-  }  
+  }
 
   constructor(
     public httpClient: HttpClient,
     public userService: UserService
   ) {
-    
+
   }
 
   ngOnInit(): void {
@@ -48,45 +55,49 @@ export class AddPostComponent implements OnInit {
       alert("Only signed in users can create posts. This form should not be visible.")
       return
     }
-    this.newPost.userName = user
+    this.newPost.userName = user;
     if (this.checkValidPost()) {
+      this.newPost.labels.push(this.category);
+      const payload = new FormData()
+      payload.append("post", JSON.stringify(this.newPost))
+      payload.append("file", this.selectedFile)
       // with the code below we send the new post object to the server
-      this.httpClient.post(environment.endpointURL + "post", this.newPost)
+      this.httpClient.post(environment.endpointURL + "post", payload)
         .subscribe((res: any) => {
           // here we get the response from the server
           // check if object is of type Post - should contain some property like title or text
           if (res.title) {
-            // emit event 
+            // emit event
             this.addPostEmit.emit(res)
           } else {
             // else it may be a error message that we can somehow show to the user
-            alert(JSON.stringify(res))
+            console.log(res) // log the error message
           }
         })
       this.newPost = {
       title: "",
       content: "",
+      image: null,
       labels: [],
       userName: ""
       }
-
     }
   }
 
   checkValidPost(): boolean {
-    if (this.newPost.title == "" || this.newPost.content == "") {
+    if (this.newPost.title == "" || this.category == "" || (this.selectedFile == null && this.newPost.content == "")) {
       if (this.newPost.title == "") {
         this.createPostFeedback.title = "Please enter a title"
+        this.createPostFeedback.content = ""
+      } else if (this.category == "") {
+        this.createPostFeedback.title = ""
+        this.createPostFeedback.content = "Please enter a category."
       } else {
         this.createPostFeedback.title = ""
-      }
-      if (this.newPost.content == "") {
-        this.createPostFeedback.content = "Content cannot be empty"
-      } else {
-        this.createPostFeedback.content = ""
+        this.createPostFeedback.content = "Please enter a text or an image."
       }
       return false;
-    } 
+    }
     else {
       return true
     }
@@ -96,4 +107,10 @@ export class AddPostComponent implements OnInit {
     return this.newPost.title == '';
   }
 
+  imageHandler(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0]
+      this.selectedFile = file
+    }
+  }
 }

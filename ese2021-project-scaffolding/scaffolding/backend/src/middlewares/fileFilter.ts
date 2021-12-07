@@ -1,16 +1,15 @@
 import multer from 'multer';
 
-
 // This is a middleware to handle the incoming files and images.
 
 const storage = multer.diskStorage({
     // where the images are stored
     destination: function (req, file, cb) {
-        cb(null, './uploads/');
+        cb(null, __dirname + '/../uploads');
     },
     // what the image is called.
     filename: function (req, file, cb) {
-        cb(null, Date.now() + '_' + file.originalname);
+        cb(null, file.originalname);
     }
 });
 
@@ -28,5 +27,6 @@ export const upload = multer({
     limits: { fileSize: 1024 * 1024 * 5 },
     fileFilter: fileFilter
 });
+
 
 

@@ -1,0 +1,59 @@
+<mat-sidenav-container>
+  <mat-sidenav class="mat-elevation-z8" mode="side" opened>
+    <button mat-button class="menu-button" (click)="show('about')">
+      <mat-icon>info</mat-icon>
+      <span> About</span>
+    </button>
+    <button mat-button class="menu-button">
+      <mat-icon>security</mat-icon>
+      <span> Password</span>
+    </button>
+    <button mat-button class="menu-button" (click)="show('orders')">
+      <mat-icon>shopping_cart</mat-icon>
+      <span> Orders</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button">
+      <mat-icon>help</mat-icon>
+      <span> Help</span>
+    </button>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div *ngIf="showAbout" class="content mat-elevation-z8">
+      <div class="profilePicture">
+        <img src="assets/profilePicture.jpg">
+      </div>
+      <div *ngIf="showAbout" class="Informations">
+        <h3 id="name">{{this.user.firstName}} {{this.user.lastName}}</h3>
+        <table>
+          <tr>
+            <td><p class="category">username:</p></td>
+            <td><p id="username">{{this.user.username}}</p></td>
+          </tr>
+          <tr>
+            <td><p class="category">address:</p></td>
+            <td><p id="address">{{this.user.homeAddress}} {{this.user.streetNumber}}, {{this.user.zipCode}} {{this.user.city}}</p></td>
+          </tr>
+          <tr>
+            <td><p class="category">email: </p></td>
+            <td><p id="email">{{this.user.email}}</p></td>
+          </tr>
+          <tr>
+            <td><p class="category">phone number:</p></td>
+            <td><p id="phonenumber">{{this.user.phoneNumber}}</p></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div *ngIf="showOrders" class="content mat-elevation-z8">
+      <div *ngFor="let order of this.orders">
+        {{order.paymentMethod}}
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<router-outlet></router-outlet>

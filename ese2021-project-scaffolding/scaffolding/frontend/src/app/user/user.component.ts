@@ -33,7 +33,7 @@ export class UserComponent {
 
   // ADDED NEW ARGS FOR THE UPDATED USER MODEL
   userToRegister: UserRegister = new UserRegister('', '', '', '', 0, 0, '', '', 0);
-  userToLogin: User = new User(0, '', '');
+  userToLogin: User = new User(0, '', '', '', '', '', '', 0, 0, '', '', '', false);
 
   endpointMsgUser: string = '';
   endpointMsgAdmin: string = '';
@@ -46,16 +46,16 @@ export class UserComponent {
     userService.loggedIn$.subscribe(res => this.loggedIn = res);
     userService.user$.subscribe(res => this.user = res);
 
-    
+
     // Current value
     this.loggedIn = userService.getLoggedIn();
     this.user = userService.getUser();
   }
-  
+
   ngInit() {
     // set user service state
     const userName = localStorage.getItem("userName")
-    if (userName) this.userService.setUser(new User(0, userName, ''))
+    if (userName) this.userService.setUser(new User(0, '', '', '', '', '', '', 0, 0, '', '', '', false))
   }
 
   registerUser(): void {
@@ -103,7 +103,17 @@ export class UserComponent {
       this.userService.setUser(new User(
           res.user.userId,
           res.user.userName,
-          res.user.password));
+          res.user.password,
+          res.user.firstName,
+          res.user.lastName,
+          res.user.email,
+          res.user.homeAddress,
+          res.user.streetNumber,
+          res.user.zipCode,
+          res.user.city,
+          res.user.birthday,
+          res.user.phoneNumber,
+          res.user.admin));
     });
   }
 

@@ -1,19 +1,52 @@
 <!-- the following is rendered for all users except the creator -->
 <div class="postWrapper" *ngIf="user !== post.userName">
+    <div class="category">{{post.category}}</div>
     <div class="metadata">
         <img src="../../../assets/marmot01.png" class="usericon">
         <div class="username">{{post.userName}}:</div>
-        <div class="postdate">{{post.createdAt}}</div>
+        <div class="postdate">{{calculateTimePosted()}}</div>
     </div>
+    <img class="postImage" *ngIf="post.image" src='http://localhost:3000/uploads/{{post.image}}'>
     <div class="content">
-      <div class="contentTitle">{{post.title}}</div>
-      <div class="material">{{post.text}}</div>
+      <button *ngIf="canChange()" class="verticalDots" mat-button [mat-menu-trigger-for]="menu"></button>
+      <mat-menu #menu="matMenu" >
+        <button mat-menu-item (click)="deletePost(post.id)">
+          <mat-icon>delete</mat-icon>
+          <span>Delete</span>
+        </button>
+        <button mat-menu-item (click)="changeEditability()">
+          <mat-icon>edit</mat-icon>
+          <span>Edit</span>
+        </button>
+      </mat-menu>
+      <div *ngIf="!editable" class="contentTitle">{{post.title}}</div>
+      <input *ngIf="editable" class="contentTitle"[(ngModel)]="newTitle" placeholder="{{post.title}}"/>
+      <div *ngIf="!editable" class="material">{{post.text}}</div>
+      <input *ngIf="editable" class="material"[(ngModel)]="newText" placeholder="{{post.text}}"/>
     </div>
     <div class="underPost">
-      <button (click)="updatePost()" class="upvoteButton">Upvotes: {{post.upvotes}}</button>
-      <button (click)="updatePost()" class="downvoteButton">Downvotes: {{post.downvotes}}</button>
-      <button class="commentsButton">Comments</button>
+      <div class="upvote">
+        <button [disabled]="canNotVote()" *ngIf="!clickedUpvote" class="upvoteButton" (click)="upvotePost()">
+          <mat-icon>thumb_up</mat-icon>
+        </button>
+        <button [disabled]="canNotVote()"*ngIf="clickedUpvote" class="upvoteButton clickedUp"  (click)="upvotePost()">
+          <mat-icon>thumb_up</mat-icon>
+        </button>
+        <p class="likesCount">{{post.like}}</p>
+      </div>
+      <div class="downvote">
+        <button [disabled]="canNotVote()" *ngIf="!clickedDownvote" class="downvoteButton" (click)="downvotePost()">
+          <mat-icon>thumb_down</mat-icon>
+        </button>
+        <button [disabled]="canNotVote()" *ngIf="clickedDownvote" class="downvoteButton clickedDown"  (click)="downvotePost()">
+          <mat-icon>thumb_down</mat-icon>
+        </button>
+        <p class="dislikesCount">{{post.dislike}}</p>
+      </div>
+      <!-- <button class="commentsButton">Comments</button>         -->
+      <button *ngIf="editable" (click)="updatePost()" (click)="changeEditability()" id="saveChanges">Save</button>
     </div>
+</div>
     <!-- <div class="commentSection">
         <div class="comment">
             <img src="../../../assets/marmot01.png" class="usericon">
@@ -32,18 +65,4 @@
             <div class="commentContent">Nam fermentum, ligula nec pulvinar pretium, lorem</div>
         </div>
     </div> -->
-</div>
 
-<!-- the following is rendered for the creator to enable crud operations -->
-<div class="postWrapper">
-    <div class="metadata">
-        <div class="username">{{post.userName}}</div>
-        <div class="postdate">{{post.createdAt}}</div>
-    </div>
-    <div class="content">
-        <input type="text" ng-model="newTitle" class="contentTitle" placeholder="{{post.title}}" />
-        <textarea ng-model="newText" class="material" value="{{post.text}}"></textarea>
-        <button (click)="updatePost()" >Update</button>
-        <button (click)="deletePost(post.id)">Delete</button>
-    </div>
-</div>

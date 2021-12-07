@@ -4,11 +4,12 @@ export interface PostAttributes {
     id: number;
     title: string;
     text: string;
-    image: Blob;
+    image: string; // just a reference to the place that the images is stored (in /uploads)
     category: string; // will be a comma separated string containing labels
-    upvotes: number;
-    downvotes: number;
     userName: string;
+    dislike: number;
+    like: number;
+    communityScore: number;
 }
 
 export interface PostCreationAttributes extends Optional<PostAttributes, 'text'| 'image'> { }
@@ -17,11 +18,12 @@ export class Post extends Model<PostAttributes, PostCreationAttributes> implemen
     id: number;
     title: string;
     text: string;
-    image: Blob;
+    image: string;
     category: string;
-    upvotes: number;
-    downvotes: number;
     userName: string;
+    dislike: number;
+    like: number;
+    communityScore: number;
 
     public static initialize(sequelize: Sequelize) {
         Post.init({
@@ -39,23 +41,28 @@ export class Post extends Model<PostAttributes, PostCreationAttributes> implemen
                 allowNull: true
             },
             image: {
-                type: DataTypes.BLOB,
+                type: DataTypes.STRING,
                 allowNull: true
             },
             category: {
                 type: DataTypes.STRING,
                 allowNull: true
             },
-            upvotes: {
-                type: DataTypes.INTEGER,
-                allowNull: true,
-            },
-            downvotes: {
-                type: DataTypes.INTEGER,
-                allowNull: true,
-            },
             userName: {
                 type: DataTypes.STRING,
+                allowNull: false
+            },
+            like: {
+                type: DataTypes.INTEGER,
+                allowNull: false
+            },
+            dislike: {
+                type: DataTypes.INTEGER,
+                allowNull: false
+            },
+            communityScore: {
+                type: DataTypes.DOUBLE,
+                defaultValue: 0,
                 allowNull: false
             }
             },

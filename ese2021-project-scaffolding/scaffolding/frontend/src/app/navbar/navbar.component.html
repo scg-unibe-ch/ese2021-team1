@@ -1,15 +1,33 @@
-<div class="nav">
-    <div class="navWrapper">
-    </div>
-        <button *ngIf="loggedInState" class="logoutButton" (click)="logoutUser()">Logout</button>
-        <button *ngIf="!loggedInState" class="registerButton" (click)="toggleRegisterModal()" routerLink="/register">Register</button>
-        <button *ngIf="!loggedInState" class="loginButton" (click)="toggleLoginModal()" routerLink="/login">Login</button>
-        <p *ngIf="user" class="userName">{{user.username}}
-        </p>
-    <!-- <app-login *ngIf="showLoginModal"></app-login>
-    <app-register *ngIf="showRegisterModal"></app-register> -->
 
-    <app-login *ngIf="showLoginModal"></app-login>
-    <app-register *ngIf="showRegisterModal"></app-register>
+<mat-toolbar class="navbar">
+  <img id="logo"src="../../../assets/bitcoin.png">
+  <h1 id="title">CryptoHub</h1>
+  <div class="navbuttons">
+  <button class="navitem" mat-button routerLink="/">
+    <mat-icon>home</mat-icon>
+    <span> HOME</span>
+  </button>
+  <button class="navitem" mat-button routerLink="/store">
+    <mat-icon>shopping_cart</mat-icon>
+    <span> STORE</span>
+  </button>
+  </div>
+  <!-- This fills the remaining space of the current row -->
+  <span class="fill-remaining-space"></span>
+    <button mat-button (click)="showShoppingCart = !showShoppingCart">
+      <mat-icon>shopping_basket</mat-icon>
+    </button>
+    <img *ngIf="showAdded" class="addedItem" src="assets/bluePoint.png">
+    <button *ngIf="loggedInState" class="logoutButton" (click)="logoutUser()" routerLink="/">Logout</button>
+    <button *ngIf="!loggedInState" class="registerButton" (click)="toggleRegisterModal()">Register</button>
+    <button *ngIf="!loggedInState" class="loginButton" (click)="toggleLoginModal()">Login</button>
+    <button mat-button *ngIf="loggedInState" routerLink="/user/{{getUserName()}}">
+      <mat-icon>person</mat-icon>
+    </button>
+</mat-toolbar>
 
-</div>
+<app-cart *ngIf="showCart()"></app-cart>
+<app-login *ngIf="showLoginModal"></app-login>
+<app-register *ngIf="showRegisterModal"></app-register>
+
+<router-outlet></router-outlet>

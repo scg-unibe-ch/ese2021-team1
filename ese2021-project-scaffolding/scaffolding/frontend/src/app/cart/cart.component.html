@@ -1,0 +1,18 @@
+<div class="cart">
+  <button (click)="clearCart()"class="removeAllButton">Remove All</button>
+  <h3 class="title">Shopping Cart</h3>
+  <table>
+    <tr class="cart-item" *ngFor="let product of products">
+      <td><h4 class="productTitle">{{product.title}}</h4></td>
+      <td><p class="price">{{product.price}} CHF</p></td>
+      <button (click)="removeProductFromCart(product)"class="removeButton">Remove</button>
+    </tr>
+
+    <tr *ngIf="this.products.length > 0" class="total">
+      <td><h4 class="totalTitle">Total</h4></td>
+      <td><p class="totalPrice">{{calculateTotal()}} CHF</p></td>
+    </tr>
+  </table>
+  <button class="checkoutButton"*ngIf="this.products.length > 0" routerLink="/checkout">Checkout</button>
+  <p id = "emptyMessage"*ngIf="this.products.length == 0">Your Shopping Cart is empty!</p>
+</div>
