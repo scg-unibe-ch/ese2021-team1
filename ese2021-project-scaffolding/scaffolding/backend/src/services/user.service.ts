@@ -6,6 +6,7 @@ import validator from 'validator';
 import equals = validator.equals;
 import {Post} from '../models/post.model';
 
+
 export class UserService {
 
     public register(user: UserAttributes): Promise<UserAttributes> {
@@ -79,6 +80,7 @@ export class UserService {
         }
         return 0;
     }
+
 
     public async changePassword (body) {
         return User.findByPk(body.userId)
@@ -172,5 +174,57 @@ export class UserService {
                 }
             })
             .catch(() => Promise.reject('Cant find user'));
+    }
+
+    public getUploads(userId: number) {
+        return User.findByPk(userId)
+            .then(found => {
+                if (found != null) {
+                    return Promise.resolve(this.countUploads(found));
+                } else {
+                    return Promise.reject('User not found');
+                }
+            })
+            .catch(() => Promise.reject('Cant get uploads'));
+    }
+
+    public getUpvotes(userId: number) {
+        return User.findByPk(userId)
+            .then(found => {
+                if (found != null) {
+                    return Promise.resolve(this.countUpvotes(found));
+                } else {
+                    return Promise.reject('User not found');
+                }
+            })
+            .catch(() => Promise.reject('Cant get Upvotes'));
+    }
+
+    private countUploads(user: User) {
+        return Post.findAll({where: {userName: user.userName}})
+            .then(found => {
+                if (found != null) {
+                    return Promise.resolve(found.length);
+                } else {
+                    return Promise.resolve(0);
+                }
+            })
+            .catch(() => Promise.reject('Post not found'));
+    }
+
+    private countUpvotes(user: User) {
+        let upvotes = 0;
+        return Post.findAll({where: {userName: user.userName}})
+            .then(found => {
+                if (found != null) {
+                    for (let posts = 0; posts < found.length; posts++) {
+                        upvotes += found[posts].like;
+                    }
+                    return Promise.resolve(upvotes);
+                } else {
+                    return Promise.reject('Post not found');
+                }
+            })
+            .catch(() => Promise.reject('Cant count Upvotes'));
     }
 }

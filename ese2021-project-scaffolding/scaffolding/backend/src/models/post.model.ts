@@ -10,9 +10,10 @@ export interface PostAttributes {
     dislike: number;
     like: number;
     communityScore: number;
+    reported: number;
 }
 
-export interface PostCreationAttributes extends Optional<PostAttributes, 'text'| 'image'> { }
+export interface PostCreationAttributes extends Optional<PostAttributes, 'text'| 'image' | 'reported'> { }
 
 export class Post extends Model<PostAttributes, PostCreationAttributes> implements PostAttributes {
     id: number;
@@ -24,6 +25,7 @@ export class Post extends Model<PostAttributes, PostCreationAttributes> implemen
     dislike: number;
     like: number;
     communityScore: number;
+    reported: number;
 
     public static initialize(sequelize: Sequelize) {
         Post.init({
@@ -62,6 +64,11 @@ export class Post extends Model<PostAttributes, PostCreationAttributes> implemen
             },
             communityScore: {
                 type: DataTypes.DOUBLE,
+                defaultValue: 0,
+                allowNull: false
+            },
+            reported: {
+                type: DataTypes.INTEGER,
                 defaultValue: 0,
                 allowNull: false
             }

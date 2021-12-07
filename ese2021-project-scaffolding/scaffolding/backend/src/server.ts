@@ -64,7 +64,7 @@ export class Server {
             ],
             credentials: true,
 
-            methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE,SEARCH,SUBSCRIBE,UNSUBSCRIBE,RESET,EDIT',
+            methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE,SEARCH,SUBSCRIBE,UNSUBSCRIBE,RESET,EDIT,COMMENT',
             origin: `http://localhost:${this.port}`,
             preflightContinue: false,
         };

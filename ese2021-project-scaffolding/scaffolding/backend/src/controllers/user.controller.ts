@@ -53,4 +53,16 @@ userController.get('/admin', (req: Request, res: Response) => {
         .catch(err => res.send(err));
 });
 
+userController.get('/:uploads', (req: Request, res: Response) => {
+    userService.getUploads(req.body.id)
+        .then(uploads => res.send(uploads))
+        .catch(err => res.send(err));
+});
+
+userController.get('/:upvotes', (req: Request, res: Response) => {
+    userService.getUpvotes(req.body.id)
+        .then(upvotes => res.send(upvotes))
+        .catch(err => res.send(err));
+});
+
 export const UserController: Router = userController;

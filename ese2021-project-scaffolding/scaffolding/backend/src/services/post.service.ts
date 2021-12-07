@@ -1,6 +1,5 @@
 import {Post} from '../models/post.model';
-import {Vote} from '../models/vote.model';
-import {User} from '../models/user.model';
+import {Comment} from '../models/comment.model';
 
 
 export class PostService {
@@ -85,4 +84,73 @@ export class PostService {
                 })
                 .catch(() => Promise.reject('Could not fetch posts.'));
         }
+
+        private arrayToString (array: String[]): string {
+            let stringArray = '';
+
+            for (let i = 0; i < array.length; i++) {
+                stringArray += array[i] + ', ';
+            }
+            return stringArray;
+        }
+
+
+    public searchForCategorysPost (categorys: String []) {
+        let counter = 0;
+        let searchedForCategorys = null;
+        return Post.findAll().then(found => {
+            searchedForCategorys = new Array(found.length);
+            for (let arrayLength = 0; arrayLength < found.length; arrayLength++) {
+                for (let categoryLength = 0; categoryLength < categorys.length; categoryLength++) {
+                const search = new RegExp('$' + categorys[categoryLength] + '$');
+                if ( search.test(found[arrayLength].category)) {
+                    searchedForCategorys[counter] = found[arrayLength];
+                    counter++;
+                }
+                }
+            }
+            return Promise.resolve(searchedForCategorys);
+        })
+            .catch(err => {
+                return Promise.reject(err.message);
+            });
+    }
+
+    public reportPost(id: number) {
+        return Post.findByPk(id)
+            .then(found => {
+                if (found != null) {
+                    found.update({reported: found.reported++})
+                        .then (updated => Promise.resolve(updated))
+                        .catch((err) => Promise.reject(err));
+                }
+            })
+            .then(updated => Promise.resolve(updated))
+            .catch((err) => Promise.reject(err));
+
+    }
+
+    public comment(commentId: number, postId: number, text: string) {
+        return Comment.create( {
+            postID: postId,
+            commentID: commentId,
+            text: text,
+            reported: 0
+            }
+        )
+            .then(created => Promise.reject(created))
+            .catch(err => Promise.reject(err));
+    }
+
+    public getAllComments(postId: number) {
+        return Comment.findByPk(postId)
+            .then(found => {
+                if (found != null) {
+                    return Promise.resolve(found);
+                } else {
+                    return Promise.reject('No Comments found');
+                }
+            })
+            .catch(() => Promise.reject('Could not fetch Comments'));
+    }
 }
