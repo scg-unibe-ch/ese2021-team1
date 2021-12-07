@@ -1,25 +1,20 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {WallComponent} from "./wall.component";
+import {TestBed} from "@angular/core/testing";
+import {HttpClientModule} from "@angular/common/http";
 
-import { WallComponent } from './wall.component';
+describe('Wall Components', () => {
+  let wallComponent: WallComponent;
 
-describe('WallComponent', () => {
-  let component: WallComponent;
-  let fixture: ComponentFixture<WallComponent>;
+  beforeEach( () => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientModule],
+      providers: [WallComponent]
+    });
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ WallComponent ]
-    })
-    .compileComponents();
+    wallComponent = TestBed.get(WallComponent);
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(WallComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should be created', () => {
+    expect(wallComponent).toBeTruthy();
   });
 });

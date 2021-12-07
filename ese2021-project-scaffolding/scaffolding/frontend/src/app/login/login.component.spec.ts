@@ -1,20 +1,20 @@
-import {UserComponent} from "./user.component";
+import {LoginComponent} from "./login.component";
 import {TestBed} from "@angular/core/testing";
 import {HttpClientModule} from "@angular/common/http";
 
-describe('User Components', () => {
-  let userComponent: UserComponent;
+describe('Login Component', () => {
+  let loginComponent: LoginComponent;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
-      providers: [UserComponent]
+      providers: [LoginComponent]
     });
 
-    userComponent = TestBed.get(UserComponent);
+    loginComponent = TestBed.get(LoginComponent);
   });
 
   it('should be created', () => {
-    expect(userComponent).toBeTruthy();
+    expect(loginComponent).toBeTruthy();
   });
 });

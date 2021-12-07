@@ -1,25 +1,20 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ProfilPageComponent} from "./profil-page.component";
+import {TestBed} from "@angular/core/testing";
+import {HttpClientModule} from "@angular/common/http";
 
-import { ProfilPageComponent } from './profil-page.component';
-
-describe('ProfilPageComponent', () => {
-  let component: ProfilPageComponent;
-  let fixture: ComponentFixture<ProfilPageComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ ProfilPageComponent ]
-    })
-    .compileComponents();
-  });
+describe('Profile Page Components', () => {
+  let profilPageComponent: ProfilPageComponent;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProfilPageComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    TestBed.configureTestingModule({
+      imports: [HttpClientModule],
+      providers: [ProfilPageComponent]
+    });
+
+    profilPageComponent = TestBed.get(ProfilPageComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should be created', () => {
+    expect(profilPageComponent).toBeTruthy();
   });
 });

@@ -1,31 +1,20 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { CheckoutComponent } from './checkout.component';
+import {CheckoutComponent} from "./checkout.component";
+import {TestBed} from "@angular/core/testing";
 import {HttpClientModule} from "@angular/common/http";
 
-describe('CheckoutComponent', () => {
-  let component: CheckoutComponent;
-  let fixture: ComponentFixture<CheckoutComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ CheckoutComponent ]
-    })
-    .compileComponents();
-  });
+describe('Checkout Component', () => {
+  let checkoutComponent: CheckoutComponent;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
       providers: [CheckoutComponent]
-    })
-    fixture = TestBed.createComponent(CheckoutComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    });
+
+    checkoutComponent = TestBed.get(CheckoutComponent);
   });
 
-  it('should create', () => {
-    let checkout: CheckoutComponent = TestBed.get(CheckoutComponent);
-    expect(checkout).toBeTruthy();
+  it('should be created', () => {
+    expect(checkoutComponent).toBeTruthy();
   });
 });

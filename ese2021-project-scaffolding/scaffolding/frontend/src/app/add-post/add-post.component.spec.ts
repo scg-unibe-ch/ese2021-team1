@@ -1,37 +1,19 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
+import {AddPostComponent} from "./add-post.component";
+import {TestBed} from "@angular/core/testing";
 import {HttpClientModule} from "@angular/common/http";
-import { AddPostComponent } from './add-post.component';
 
-describe('AddPostComponent', () => {
-  let component: AddPostComponent;
-  let fixture: ComponentFixture<AddPostComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ AddPostComponent ]
-    })
-    .compileComponents();
-  });
+describe('Add Post Components', () => {
+  let addPostComponent: AddPostComponent;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
       providers: [AddPostComponent]
-    })
-    fixture = TestBed.createComponent(AddPostComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    });
 
-  it('should create', () => {
-    let service: AddPostComponent = TestBed.get(AddPostComponent);
-    expect(service).toBeTruthy();
+    addPostComponent = TestBed.get(AddPostComponent);
   });
-
-  it('should test for title', () => {
-    let service: AddPostComponent = TestBed.get(AddPostComponent);
-    expect(service.checkValidPost).toBeFalse();
+  it('should be created', () => {
+    expect(addPostComponent).toBeTruthy();
   });
-
 });
