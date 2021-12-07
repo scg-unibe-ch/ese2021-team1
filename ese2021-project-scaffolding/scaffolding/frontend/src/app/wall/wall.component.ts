@@ -12,6 +12,10 @@ import { User } from '../models/user.model';
   templateUrl: './wall.component.html',
   styleUrls: ['./wall.component.css']
 })
+  /**
+  * @param showNewPostForm
+  * @param createPostButtonText
+  */
 export class WallComponent implements OnInit {
 
   showNewPostForm: boolean = false;
@@ -92,7 +96,11 @@ export class WallComponent implements OnInit {
     this.showNewPostForm = !this.showNewPostForm;
     (this.showNewPostForm) ? this.createPostButtonText = '⬆' : this.createPostButtonText = 'CREATE POST'
   }
-
+     /**
+     * @param post
+     * @param event
+     * @return post
+     */
   updatePosts(event: any): void {
     for (let i = 0; i < this.posts.length; i++) {
       if (this.posts[i].id == event[0].id) {

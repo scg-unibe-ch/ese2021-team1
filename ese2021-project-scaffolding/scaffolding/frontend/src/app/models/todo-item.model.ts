@@ -1,4 +1,11 @@
 export class TodoItem {
+/**
+  * @param itemId
+  * @param listId
+  * @param name
+  * @param image
+  * @param dones
+  */
 
   constructor(
     public itemId: number,

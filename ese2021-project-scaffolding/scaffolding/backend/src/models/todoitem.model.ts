@@ -2,6 +2,13 @@ import {Optional, Model, Sequelize, DataTypes, Association} from 'sequelize';
 import { TodoList } from './todolist.model';
 import {ItemImage} from './itemImage.model';
 
+/**
+* @param todoItemId
+* @param name
+* @param done
+* @param todoListId
+* @param itemImage
+*/
 export interface TodoItemAttributes {
     todoItemId: number;
     name: string;

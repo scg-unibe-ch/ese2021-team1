@@ -2,6 +2,11 @@ import jwt from 'jsonwebtoken';
 import { Request, Response } from 'express';
 
 // this way you can just define a function and export it instead of a whole class
+/**
+* @param Request
+* @param Response
+* @try decode the picture
+*/
 export function verifyToken(req: Request, res: Response, next: any) {
     try {
         // get secret key from environment (defined in nodemon.json)

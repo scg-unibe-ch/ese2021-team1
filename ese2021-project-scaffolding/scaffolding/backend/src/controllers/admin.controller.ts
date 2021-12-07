@@ -1,6 +1,8 @@
 import express, { Router, Request, Response } from 'express';
 import {checkAdmin} from '../middlewares/checkAdmin';
-
+/**
+* @param adminController
+*/
 const adminController: Router = express.Router();
 
 // This is a middleware function that validates the token in the authorization header for each incoming request. Whether it is an admin.

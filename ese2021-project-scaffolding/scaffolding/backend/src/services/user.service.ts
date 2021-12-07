@@ -64,7 +64,12 @@ export class UserService {
         return User.findAll();
     }
 
-    public passwordCheck(password: string): number {
+    /**
+      * @param passwort string
+      * @return boolean if the password is valid
+      * @param sequelize
+      */
+    private passwordCheck(password: string): number {
         const capital_small = new RegExp('^(?=.*[a-z])(?=.*[A-Z])+$');
         const number = new RegExp('^(?=.*\\d)+$');
         const specialCharacter = new RegExp('^(?=.*[-+_!@#$%^&*.,?])+$');

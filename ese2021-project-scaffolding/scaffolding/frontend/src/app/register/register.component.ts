@@ -11,6 +11,14 @@ import { PasswordModalComponent } from '../password-modal/password-modal.compone
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
+  /** Functions for Posts
+  * @param passwordInput
+  * @param showPassReqs
+  * @param showRegisterModal
+  * @param showRegistrSuccess
+  * @param isValidPassword
+  * @param serverFeedback
+  */
 export class RegisterComponent {
 
   // CHECK FEATURE START

@@ -4,8 +4,11 @@ import {Comment} from '../models/comment.model';
 
 export class PostService {
 
-    // @jan, @alessio
-
+   /**
+     * @author jan
+     * @autor Alessio
+     */
+     W;
     // this function (aka service) is responsible for converting the received object (see method parameter)
     // into the right Post format and store it in the database. It also has to give some
     // feedback back to the controller which then will send it to the front
@@ -31,6 +34,11 @@ export class PostService {
             return Promise.reject(err.message);
         });
     }
+    /**
+      * @param id
+      * @param pst
+      * @return validation if post is updated or not
+      */
 
     public async updatePost(id, post) {
         return Post.findByPk(id)
@@ -95,6 +103,12 @@ export class PostService {
         }
 
 
+    // TODO: search for category -> done?
+/**
+  * @param Sring[]
+  * @param sequelize
+  * @param processingStatus
+  */
     public searchForCategorysPost2 (categorys: String []) {
         let counter = 0;
         let searchedForCategorys = null;

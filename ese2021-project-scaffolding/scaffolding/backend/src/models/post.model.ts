@@ -1,5 +1,16 @@
 import {Optional, Model, Sequelize, DataTypes, INTEGER} from 'sequelize';
 
+/**
+* @param id
+* @param title
+* @param text
+* @param image
+* @param category
+* @param userName
+* @param dislike
+* @param like
+* @param communityScore
+*/
 export interface PostAttributes {
     id: number;
     title: string;

@@ -3,6 +3,12 @@ import {Post} from '../models/post.model';
 
 export class VoteService {
 
+
+/**
+* @param number
+* @param userName
+* @param subscriptionType
+*/
     public async createVote(id: number, userName: string, subscriptionType: number) {
     let likeSub = false;
     let dislikeSub = false;

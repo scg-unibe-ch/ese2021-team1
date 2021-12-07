@@ -1,4 +1,16 @@
 export class Order {
+/**
+  * @param oderId
+  * @param userId
+  * @param products
+  * @param paymentMethod
+  * @param homeAddress
+  * @param streetNumber
+  * @param zipCode
+  * @param city
+  * @param processingStatus
+  * @param purchaseDate
+  */
   constructor(
     public orderId: number,
     public userId: number,

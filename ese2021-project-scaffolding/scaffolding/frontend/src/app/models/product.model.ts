@@ -1,4 +1,14 @@
 export class Product {
+/**
+  * @param id
+  * @param title
+  * @param text
+  * @param description
+  * @param price
+  * @param category
+  * @param image
+  */
+
   constructor(
     public id: number,
     public title: string,

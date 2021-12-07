@@ -9,6 +9,12 @@ import {CartService} from "../services/cart.service";
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css']
 })
+/**
+  * @param auth
+  * @param user
+  * @param addProductEmit
+  */
+
 export class ProductComponent implements OnInit {
 
   auth: boolean = false

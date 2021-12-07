@@ -5,6 +5,10 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './password-modal.component.html',
   styleUrls: ['./password-modal.component.css']
 })
+/**
+  * @Input showPassReqs
+  * @Input passwordInput
+  */
 export class PasswordModalComponent implements OnInit {
 
   @Input() showPassReqs: boolean = false
@@ -18,7 +22,7 @@ export class PasswordModalComponent implements OnInit {
   ngOnInit(): void {
   }
 
-    
+
   checkPassword(data: any): boolean {
     // passwordReqs[min 8 char, capital & small letters, a number, a special char]
     this.passwordReqs[0] = data.length >= 8;
@@ -32,6 +36,6 @@ export class PasswordModalComponent implements OnInit {
       return false
     }
   }
-  
+
 
 }

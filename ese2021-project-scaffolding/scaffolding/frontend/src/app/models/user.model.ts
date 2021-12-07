@@ -1,3 +1,18 @@
+/**
+  * @param userId
+  * @param username
+  * @param password
+  * @param firstName
+  * @param lastName
+  * @param email
+  * @param homeAddress
+  * @param streetNumber
+  * @param zipCode
+  * @param city
+  * @param birthday
+  * @param phoneNumber
+  * @param admin
+  */
 export class User {
 
   constructor(

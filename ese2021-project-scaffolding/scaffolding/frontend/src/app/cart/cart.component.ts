@@ -9,6 +9,9 @@ import {formatNumber} from "@angular/common";
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
+/**
+  * @param products
+ */
 
   products = this.cartService.getProducts();
 
