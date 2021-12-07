@@ -1,11 +1,11 @@
-import { Optional, Model, Sequelize, DataTypes } from 'sequelize';
+import {Optional, Model, Sequelize, DataTypes, INTEGER} from 'sequelize';
 
 export interface PostAttributes {
     id: number;
     title: string;
     text: string;
     image: string; // just a reference to the place that the images is stored (in /uploads)
-    category: string; // will be a comma separated string containing labels
+    category: string[]; // will be a comma separated string containing labels
     userName: string;
     dislike: number;
     like: number;
@@ -14,13 +14,14 @@ export interface PostAttributes {
 }
 
 export interface PostCreationAttributes extends Optional<PostAttributes, 'text'| 'image' | 'reported'> { }
+export interface PostCreationAttributes extends Optional<PostAttributes, 'text'| 'image' | 'category'> { }
 
 export class Post extends Model<PostAttributes, PostCreationAttributes> implements PostAttributes {
     id: number;
     title: string;
     text: string;
     image: string;
-    category: string;
+    category: string[];
     userName: string;
     dislike: number;
     like: number;
@@ -47,7 +48,7 @@ export class Post extends Model<PostAttributes, PostCreationAttributes> implemen
                 allowNull: true
             },
             category: {
-                type: DataTypes.STRING,
+                type: DataTypes.ARRAY(INTEGER),
                 allowNull: true
             },
             userName: {

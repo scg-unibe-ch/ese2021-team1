@@ -64,7 +64,7 @@ export class UserService {
         return User.findAll();
     }
 
-    private passwordCheck(password: string): number {
+    public passwordCheck(password: string): number {
         const capital_small = new RegExp('^(?=.*[a-z])(?=.*[A-Z])+$');
         const number = new RegExp('^(?=.*\\d)+$');
         const specialCharacter = new RegExp('^(?=.*[-+_!@#$%^&*.,?])+$');
