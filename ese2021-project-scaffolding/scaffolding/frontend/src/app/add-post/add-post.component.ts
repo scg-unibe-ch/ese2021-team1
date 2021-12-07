@@ -25,7 +25,7 @@ export class AddPostComponent implements OnInit {
     title: "",
     content: "",
     image: null,
-    labels: [],
+    labels: "",
     userName: ""
   }
   user: User | null = null;
@@ -57,7 +57,7 @@ export class AddPostComponent implements OnInit {
     }
     this.newPost.userName = user;
     if (this.checkValidPost()) {
-      this.newPost.labels.push(this.category);
+      this.newPost.labels = this.category;
       const payload = new FormData()
       payload.append("post", JSON.stringify(this.newPost))
       payload.append("file", this.selectedFile)
@@ -78,7 +78,7 @@ export class AddPostComponent implements OnInit {
       title: "",
       content: "",
       image: null,
-      labels: [],
+      labels: "",
       userName: ""
       }
     }
