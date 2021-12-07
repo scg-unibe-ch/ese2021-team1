@@ -35,6 +35,7 @@ export class RegisterComponent {
       city: '',
       birthday: '',
       phoneNumber: '',
+      admin: true
   }
 
 
@@ -85,8 +86,9 @@ export class RegisterComponent {
   }
 
   registerUser(): void {
+    console.log(this.userToRegister)
     this.serverFeedback = '';
-    if (!this.checkIsValid()) {
+    if (this.checkIsValid()) {
       // specific feedback on each input is shown based on formFeedback object
     } else {
 
@@ -196,7 +198,7 @@ export class RegisterComponent {
     }
   }
   checkBirthday(): void {
-    if (this.userToRegister.birthday == '') { //  || Date.now() > Date.parse(this.userToRegister.birthday.toString()) DOES NOT WORK CORRECTLY
+    if (this.userToRegister.birthday == '' ) { //  || Date.now() > Date.parse(this.userToRegister.birthday.toString()) DOES NOT WORK CORRECTLY
       this.formFeedback.birthday  = 'Please enter a valid birthday.'
     } else {
       this.formFeedback.birthday = ''

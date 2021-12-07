@@ -31,7 +31,8 @@
         <table>
           <tr>
             <td><p class="category">username:</p></td>
-            <td><p id="username">{{this.user.username}}</p></td>
+            <td><p *ngIf="!editable" id="username">{{this.user.username}}</p></td>
+            <td><input [(ngModel)]="newUsername" *ngIf="editable"></td>
           </tr>
           <tr>
             <td><p class="category">address:</p></td>
@@ -46,6 +47,11 @@
             <td><p id="phonenumber">{{this.user.phoneNumber}}</p></td>
           </tr>
         </table>
+        <button class="editButton" (click)="editable = !editable">
+          <mat-icon>edit</mat-icon>
+          <span>Edit</span>
+        </button>
+        <button *ngIf="editable" (click)="editable = !editable">Save Changes</button>
       </div>
     </div>
     <div *ngIf="showOrders" class="content mat-elevation-z8">

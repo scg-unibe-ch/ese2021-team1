@@ -24,6 +24,9 @@ export class ProfilPageComponent implements OnInit {
   showPassword: boolean = false;
   showOrders: boolean = false;
   showHelp: boolean = false;
+  editable: boolean = false;
+
+  newUsername: String = "";
 
 
   constructor(
@@ -63,6 +66,7 @@ export class ProfilPageComponent implements OnInit {
 
 
   //doesnt work yet!
+
   private getOrders() {
     this.httpClient.get(environment.endpointURL + "orders/" + this.user.userId, this.user.userId)
       .subscribe((res: any) => {
