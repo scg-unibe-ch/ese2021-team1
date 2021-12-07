@@ -12,6 +12,13 @@ import { User } from './models/user.model';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+  /**
+  * @param title
+  * @return todoLists
+  * @param newTodoListName
+  * @return loggedIn
+  * @param user
+  */
 export class AppComponent implements OnInit {
   title = 'frontend';
 
@@ -80,6 +87,10 @@ export class AppComponent implements OnInit {
     });
   }
 
+  /**
+  * @param userId, userToken, userName, password, firstName, lastName, email, homeAddress, streetNumber, zipCode, city, birthday, phoneNumber, admin
+  * @return boolean (if everything is okay)
+  */
   checkUserStatus() {
     console.log(localStorage)
     // Get user data from local storage

@@ -38,6 +38,11 @@ export class ProductService {
                 }
             }));
     }
+/**
+* @param id
+* @param product
+* @return if the Product was found or not
+*/
 
     public async updateProduct(id, product) {
         return Product.findByPk(id)

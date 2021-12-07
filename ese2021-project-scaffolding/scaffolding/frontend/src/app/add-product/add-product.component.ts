@@ -9,7 +9,10 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent implements OnInit {
-
+/**
+  * @output addProductEmit
+  * @param newPoduct
+*/
   @Output()
   addProductEmit = new EventEmitter<any>();
 

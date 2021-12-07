@@ -4,7 +4,10 @@ import {TodoItem} from '../models/todoitem.model';
 import {ItemService} from '../services/item.service';
 import {MulterRequest} from '../models/multerRequest.model';
 
-
+/**
+* @param todoItemController
+* @param itemService
+*/
 
 const todoItemController: Router = express.Router();
 const itemService = new ItemService();

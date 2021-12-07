@@ -1,10 +1,11 @@
 import express from 'express';
 import { Router, Request, Response } from 'express';
 import {OrderService} from '../services/order.service';
-
+/**
+* @param orderController
+* @param orderService
+*/
 const orderController: Router = express.Router();
-
-
 const orderService = new OrderService();
 
 orderController.post('/', (req: Request, res: Response) => {

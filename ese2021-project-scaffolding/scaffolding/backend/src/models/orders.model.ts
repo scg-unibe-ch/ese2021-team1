@@ -1,5 +1,17 @@
 import {Optional, Model, Sequelize, DataTypes, INTEGER} from 'sequelize';
 
+/**
+* @param orderId
+* @param userId
+* @param products
+* @param paymentMethod
+* @param homeAddress
+* @param streetNumber
+* @param zipCode
+* @param city
+* @param processingStatus
+* @param purchaseDate
+*/
 export interface OrderAttributes {
     orderId: number;
     userId: number;

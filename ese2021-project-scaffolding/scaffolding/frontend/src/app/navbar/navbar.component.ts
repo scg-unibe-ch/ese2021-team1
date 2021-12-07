@@ -8,6 +8,13 @@ import {CartService} from "../services/cart.service";
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
+/**
+  * @param showLoginModal
+  * @param showRegisterModal
+  * @param showShoppingCart
+  * @param title
+  * @param loggedInStated
+  */
 export class NavbarComponent implements OnInit {
 
   // toggle register and login modals

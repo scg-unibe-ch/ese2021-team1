@@ -5,6 +5,10 @@ import {Product} from '../models/product.model';
 
 export class OrderService {
 // TODO: testing for admin inside of creatingORDER
+/**
+* @param Order
+*/
+
     public async createOrder(order: { userID: number, products: string, paymentMethod: string,
         homeAddress: string, streetNumber: number, zipCode: number, city: string,
         processingStatus: string, purchaseDate: string}) {
@@ -71,6 +75,11 @@ export class OrderService {
             }).catch((err) => Promise.reject(err));
         }
     }
+    /**
+    * @param user Id
+    * @return All orders form this Id
+    */
+
     public async getAllOrdersFrom(userID) {
             return User.findByPk(userID)
                 .then(user => {
@@ -100,6 +109,10 @@ export class OrderService {
                     }})
                 .catch( err => Promise.reject(err));
     }
+    /**
+    * @param Id
+    * @return if admin was found or not
+    */
 
     private isAdmin(id) {
         User.findByPk(id)

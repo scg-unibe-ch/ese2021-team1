@@ -1,4 +1,9 @@
 import multer from 'multer';
+/**
+* @param storage stores where images are stored
+* @param fileFilter
+* @param upload format
+*/
 
 // This is a middleware to handle the incoming files and images.
 

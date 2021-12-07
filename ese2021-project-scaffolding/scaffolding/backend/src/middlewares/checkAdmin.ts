@@ -1,6 +1,11 @@
 import jwt from 'jsonwebtoken';
 import { Request, Response } from 'express';
 
+/**
+* @param Request
+* @param Response
+* @param next
+*/
 // this way you can just define a function and export it instead of a whole class
 export function checkAdmin(req: Request, res: Response, next: any) {
     try {

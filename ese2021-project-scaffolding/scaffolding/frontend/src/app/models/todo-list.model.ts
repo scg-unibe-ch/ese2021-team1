@@ -1,4 +1,9 @@
 import { TodoItem } from './todo-item.model';
+ /**
+  * @param listId
+  * @param name
+  * @param todoItems
+  */
 
 export class TodoList {
 

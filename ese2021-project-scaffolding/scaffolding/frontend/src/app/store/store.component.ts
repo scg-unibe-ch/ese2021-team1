@@ -8,6 +8,11 @@ import {HttpClient} from "@angular/common/http";
   templateUrl: './store.component.html',
   styleUrls: ['./store.component.css']
 })
+  /** Functions for Posts
+  * @param products
+  * @param showNewProductForm
+  * @param createProductButtonText
+  */
 export class StoreComponent implements OnInit {
 
   products: Product[] = []

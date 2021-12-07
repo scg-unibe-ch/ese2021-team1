@@ -2,7 +2,10 @@
 import express, { Router, Request, Response } from 'express';
 import { UserService } from '../services/user.service';
 import { verifyToken } from '../middlewares/checkAuth';
-
+/**
+* @param userController
+* @param userService
+*/
 const userController: Router = express.Router();
 const userService = new UserService();
 

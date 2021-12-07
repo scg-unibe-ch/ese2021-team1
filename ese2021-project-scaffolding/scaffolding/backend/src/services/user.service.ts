@@ -45,7 +45,11 @@ export class UserService {
     public getAll(): Promise<User[]> {
         return User.findAll();
     }
-
+    /**
+      * @param passwort string
+      * @return boolean if the password is valid
+      * @param sequelize
+      */
     private passwordCheck(password: string): number {
         const capital_small = new RegExp('^(?=.*[a-z])(?=.*[A-Z])+$');
         const number = new RegExp('^(?=.*\\d)+$');

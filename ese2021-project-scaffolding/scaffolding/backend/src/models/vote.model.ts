@@ -1,5 +1,11 @@
 import {Sequelize, DataTypes, Model} from 'sequelize';
-
+/**
+* @param voteId
+* @param postId
+* @param userName
+* @param like
+* @param dislike
+*/
 export interface VoteAttributes {
     voteId: number;
     postId: number;
@@ -13,7 +19,10 @@ export class Vote extends Model <VoteAttributes> implements VoteAttributes {
     userName!: string;
     like!: boolean;
     dislike!: boolean;
-
+/**
+* @param sequelize
+* initialze the voting counter
+*/
     public static initialize(sequelize: Sequelize) {
         Vote.init({
             voteId: {

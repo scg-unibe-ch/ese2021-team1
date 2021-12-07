@@ -1,5 +1,16 @@
 import {Model, Sequelize, DataTypes, Optional} from 'sequelize';
 
+/**
+* @param id
+* @param title
+* @param image
+* @param description
+* @param category
+* @param available
+* @param price
+* @param discount
+* @param deleted
+*/
 export interface ProductProperties {
     id: number; // used for the database
     title: string;

@@ -2,7 +2,10 @@ import express from 'express';
 import { Router, Request, Response } from 'express';
 import {VoteService} from '../services/vote.service';
 import {PostService} from '../services/post.service';
-
+/**
+* @param voteController
+* @param voteService
+*/
 const voteController: Router = express.Router();
 const voteService = new VoteService();
 

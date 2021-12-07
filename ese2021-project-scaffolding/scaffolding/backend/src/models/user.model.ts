@@ -1,5 +1,18 @@
 import { TodoItem, TodoItemAttributes, TodoItemCreationAttributes } from './todoitem.model';
 import { Optional, Model, Sequelize, DataTypes } from 'sequelize';
+/**
+* @param firstName
+* @param lastName
+* @param email
+* @param homeAddress
+* @param streetNumber
+* @param zipCode
+* @param city
+* @param birthday
+* @param phoneNumber
+* @param userId
+*/
+* /;
 
 export interface UserAttributes {
      firstName: string;

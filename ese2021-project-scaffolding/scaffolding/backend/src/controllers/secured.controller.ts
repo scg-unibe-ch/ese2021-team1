@@ -1,6 +1,8 @@
 import express, { Router, Request, Response } from 'express';
 import { verifyToken } from '../middlewares/checkAuth';
-
+/**
+* @param securedEndpoint
+*/
 const securedEndpoint: Router = express.Router();
 
 // This is a middleware function that validates the token in the authorization-header for any incoming request

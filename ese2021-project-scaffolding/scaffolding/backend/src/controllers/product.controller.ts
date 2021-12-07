@@ -1,6 +1,9 @@
 import express, {Router, Request, Response} from 'express';
 import { ProductService } from '../services/product.service';
-
+/**
+* @param productController
+* @param productService
+*/
 const productController: Router = express.Router();
 const productService = new ProductService();
 

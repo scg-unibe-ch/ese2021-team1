@@ -3,7 +3,11 @@ import { Router, Request, Response } from 'express';
 import { upload } from '../middlewares/fileFilter';
 import { PostService } from '../services/post.service';
 import {VoteService} from '../services/vote.service';
-
+/**
+* @param postController
+* @param postService
+* @param voteService
+*/
 const postController: Router = express.Router();
 const postService = new PostService();
 const voteService = new VoteService();

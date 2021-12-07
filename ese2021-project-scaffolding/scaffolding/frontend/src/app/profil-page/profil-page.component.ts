@@ -11,6 +11,14 @@ import {Order} from "../models/order.model";
   templateUrl: './profil-page.component.html',
   styleUrls: ['./profil-page.component.css']
 })
+  /** Functions for Posts
+  * @param user
+  * @param orders
+  * @param showAbout
+  * @param showPassword
+  * @param showOrders
+  * @param showHelp
+  */
 export class ProfilPageComponent implements OnInit {
 
   user: any

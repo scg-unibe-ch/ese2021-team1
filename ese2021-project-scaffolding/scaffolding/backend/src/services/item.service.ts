@@ -22,7 +22,11 @@ export class ItemService {
             })
             .catch(() => Promise.reject('Could not upload image!'));
     }
-
+/**
+  * @param imageId
+  * @param number
+  * @return if Image was foung or not
+  */
     public getImageItem(imageId: number): Promise<ItemImage> {
         return ItemImage.findByPk(imageId)
             .then(image => {

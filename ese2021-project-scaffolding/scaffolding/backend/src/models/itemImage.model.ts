@@ -1,6 +1,12 @@
 import { Optional, Model, DataTypes, Sequelize, Association } from 'sequelize';
 import {TodoItem} from './todoitem.model';
 
+/**
+* @param imageId
+* @param fileName
+* @param todoItemId
+*/
+
 export interface ItemImageAttributes {
     imageId: number;
     fileName: string;

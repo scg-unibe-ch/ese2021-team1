@@ -1,4 +1,15 @@
 export class Post {
+/**
+  * @param title
+  * @param text
+  * @param image
+  * @param category
+  * @param upvotes
+  * @param downvotes
+  * @param created_at
+  * @param userId
+  * @param id
+  */
   constructor(
     public title: string,
     public text: string,

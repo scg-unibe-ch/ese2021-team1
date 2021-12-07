@@ -12,7 +12,16 @@ import { User } from 'src/app/models/user.model';
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css'],
 })
-
+  /** Functions for Posts
+  * @param auth
+  * @param user
+  * @param newText
+  * @param newTitle
+  * @param labels
+  * @param editable
+  * @param clickedDownvote
+  * @param  clickedUpvote
+  */
 export class PostComponent implements OnInit {
 
   @Input() post: any = {}
@@ -45,7 +54,9 @@ export class PostComponent implements OnInit {
   ngOnInit(): void {
     this.post.category = this.post.category.replace(/[, ]+/g, " ").trim(); //very ugly to remove comma from category
   }
-
+  /**
+  * Updates the Vote counter
+  */
   upvotePost() {
     if(this.clickedDownvote) {
       this.downvotePost()
@@ -90,7 +101,10 @@ export class PostComponent implements OnInit {
       });
     }
   }
-
+    /**
+    * @param Post.id
+    * changes data from the post
+    */
   updatePost() {
     this.httpClient.put(environment.endpointURL + "post/" + this.post.id, {
       title: this.newTitle,
@@ -140,7 +154,10 @@ export class PostComponent implements OnInit {
   canNotVote() {
     return localStorage.getItem("admin") == "true" || !this.userService.getLoggedIn();
   }
-
+  /**
+  * @param Post.createdAt
+  * @return Time past since post (in days, hours or months)
+  */
   calculateTimePosted() {
     let postedDate = new Date(this.post.createdAt)
     let currentDate = new Date()
@@ -150,7 +167,7 @@ export class PostComponent implements OnInit {
     } else if(difference / 3600000 > 1) {
       return String(Math.floor(difference / 3600000)) + "h ago"
     } else {
-      return String(Math.floor(difference / 60000)) + "h ago"
+      return String(Math.floor(difference / 60000)) + "m ago"
     }
   }
 }

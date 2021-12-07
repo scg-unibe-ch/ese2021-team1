@@ -1,6 +1,9 @@
 import { Optional, Model, HasManyGetAssociationsMixin, HasManyAddAssociationMixin, DataTypes, Sequelize, Association } from 'sequelize';
 import { TodoItem } from './todoitem.model';
-
+/**
+* @param todolistId
+* @param name
+*/
 export interface TodoListAttributes {
     todoListId: number;
     name: string;
@@ -21,6 +24,10 @@ export class TodoList extends Model<TodoListAttributes, TodoListCreationAttribut
 
     public readonly todoItems?: TodoItem[];
 
+/**
+* @param  sequelize
+* initialize database
+*/
     public static initialize(sequelize: Sequelize) {
         TodoList.init(
             {

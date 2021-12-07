@@ -1,7 +1,9 @@
 import express from 'express';
 import { Router, Request, Response } from 'express';
 import { TodoList } from '../models/todolist.model';
-
+/**
+* @param todoListController
+*/
 const todoListController: Router = express.Router();
 
 todoListController.post('/', (req: Request, res: Response) => {

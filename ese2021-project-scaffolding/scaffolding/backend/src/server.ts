@@ -23,6 +23,12 @@ import {Vote} from './models/vote.model';
 import {VoteController} from './controllers/vote.controller';
 
 export class Server {
+/**
+  * @param server
+  * @param sequelize
+  * @param processingStatus
+  */
+
     private server: Application;
     private sequelize: Sequelize;
     private port = process.env.PORT || 3000;
@@ -88,7 +94,12 @@ export class Server {
             // this is the message you get if you open http://localhost:3000/ when the server is running
             .get('/', (req, res) => res.send('<h1>Welcome to the ESE-2021 Backend Scaffolding <span style="font-size:50px">&#127881;</span></h1>'));
     }
-
+ /**
+   * @param server
+   * @param sequelize
+   * @param processingStatus
+   * @return initialisation of database
+     */
     private configureSequelize(): Sequelize {
         return new Sequelize({
             dialect: 'sqlite',

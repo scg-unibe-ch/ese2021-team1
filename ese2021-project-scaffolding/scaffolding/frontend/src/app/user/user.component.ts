@@ -10,6 +10,18 @@ import { UserRegister } from '../models/userRegister.mode';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
+  /** Functions for Posts
+  * @param passwordInput
+  * @param showPassReqs
+  * @param showEmptyFieldError
+  * @param passwordReqs
+  * @param isEmptyField
+  * @param isValidEmail
+  * @param isValidBirthday
+  * @param isValidPhoneNumber
+  * @param serverFeedback
+  * @param isValidPhoneNumber
+  */
 export class UserComponent {
 
   // CHECK FEATURE START
