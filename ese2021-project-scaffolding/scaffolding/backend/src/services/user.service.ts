@@ -10,15 +10,9 @@ export class UserService {
 
     public register(user: UserAttributes): Promise<UserAttributes> {
         const saltRounds = 12;
-        switch (this.passwordCheck(user.password)) {
-            case 1 :
-                return Promise.reject({message: 'Doesnt contain capital/small letter'});
-            case 2 :
-                return Promise.reject({message: 'Doesnt contain number'});
-            case 3 :
-                return Promise.reject({message: 'Doesnt contain special character'});
-            case 4 :
-                return Promise.reject({message: 'Minimum of 8 characters'});
+        const password = this.passwordGenerator(user.password);
+        if (typeof password === 'string') {
+            user.password = password;
         }
         user.password = bcrypt.hashSync(user.password, saltRounds); // hashes the password, never store passwords as plaintext
         return User.create({
