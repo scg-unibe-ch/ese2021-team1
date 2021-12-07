@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user.model';
+import {CartService} from "../services/cart.service";
 
 @Component({
   selector: 'app-navbar',
@@ -12,19 +13,22 @@ export class NavbarComponent implements OnInit {
   // toggle register and login modals
   showLoginModal: boolean = true
   showRegisterModal: boolean = true
-
+  showShoppingCart: boolean = false
+  title: string = "CryptoHub"
   loggedInState: boolean = false
 
   user: User | null = null
+  showAdded: boolean = false;
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private cartService: CartService
     ) {
       // listen for changes
       userService.loggedIn$.subscribe(res => this.loggedInState = res)
       userService.user$.subscribe(res => this.user = res)
   }
-  
+
   ngOnInit(): void {
     this.userService.loggedIn$.subscribe((loginState) => {
       this.loggedInState = true
@@ -54,7 +58,20 @@ export class NavbarComponent implements OnInit {
     // remove data from localStorage
     localStorage.clear()
     this.loggedInState = false
-    this.user = {userId: 0, username: "", password: ""}
+    this.user = new User(0, '', '','','','','',0,0,'','','',false)
   }
+
+  showCart() {
+    if (this.showShoppingCart) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  getUserName() {
+    return this.userService.getUser()?.username;
+  }
+
 
 }

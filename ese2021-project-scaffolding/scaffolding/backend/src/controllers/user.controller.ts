@@ -45,6 +45,10 @@ userController.patch('/:id', (req: Request, res: Response) => {
     userService.editDetails(req, req.body.id)
         .then (changed => res.json(changed))
         .catch (err => res.json(err));
+userController.get('/admin', (req: Request, res: Response) => {
+    userService.isAdmin(req.body.id)
+        .then(admin => res.send(admin))
+        .catch(err => res.send(err));
 });
 
 export const UserController: Router = userController;

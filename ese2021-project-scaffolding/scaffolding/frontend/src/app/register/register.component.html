@@ -1,13 +1,11 @@
 
 
-<form *ngIf="showRegisterModal" autocomplete="off" class="loginWrapper">
-
+<form *ngIf="showRegisterModal && !showRegistrSuccess" autocomplete="off" class="loginWrapper">
   <div class="loginHeader">Register</div>
-
 
     <input class="inputField"  type="text" placeholder="User Name" name="name" (focusout)="checkUsername()" [(ngModel)]="userToRegister.username" required>
     <div class="feedback">{{formFeedback.username}}</div>
-    
+
     <input (input)="checkPassword(passwordInput)" class="inputField" (focus)="showPasswordReqs(true)" (focusout)="showPasswordReqs(false)" [(ngModel)]="passwordInput"  type="password" placeholder="Password" name="password" [(ngModel)]="userToRegister.password" required>
       <app-password-modal [showPassReqs]="showPassReqs"></app-password-modal>
 
@@ -43,15 +41,7 @@
   <button (click)="registerUser()" class="registerButton">Register</button>
 </form>
 
-
-
-  <!-- <input (input)="updateformFeedback('username')" [(ngModel)]="user.username" class="inputField" type="text" name="text" id="username" placeholder="Enter a Username">
-  <div class="feedback">{{formFeedback.username}}</div>
-  <input (input)="updateformFeedback('password')" [(ngModel)]="user.password" autocomplete="on" class="inputField" type="password" name="text" id="password" placeholder="Enter a Password">
-  <div class="feedback">{{formFeedback.password}}</div>
-  <input (input)="updateformFeedback('email')" [(ngModel)]="user.email" class="inputField" type="email" name="text" id="email" placeholder="Enter Email">
-  <div class="feedback">{{formFeedback.email}}</div> -->
-
+<div class="registrSuccess" *ngIf="showRegistrSuccess">Registration completed successfully! <br> Please Login.</div>
 
 
 

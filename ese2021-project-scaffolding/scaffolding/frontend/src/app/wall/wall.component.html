@@ -1,16 +1,26 @@
+
 <div class="wallWrapper">
-  <button (click)="showNewPostForm=!showNewPostForm" cdkOverlayOrigin #trigger="cdkOverlayOrigin">Create Post</button>
-  <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="showNewPostForm">
-    <form class="overlay" (ngSubmit)="createPost()">
-      <input [(ngModel)]="newPost.title" class="inputField" type="text" name="title" placeholder="Enter Title" /><br>
-      <textarea [(ngModel)]="newPost.content" class="inputField" name="text" placeholder="Enter text"></textarea><br>
-      <!-- ingore the image for now -->
-      <!-- <input [(ngModel)]="newPost.image" class="inputField" type="file" name="upload" accept="image/*" /><br> -->
-      <button type="submit" class="createButton">Create</button>
-    </form>
-  </ng-template>
-  <p *ngIf="isPostsEmpty()">There are currently no posts.</p>
+  <!-- toggles the add-post component -->
+  <button *ngIf="showCreatePost()" class="createPostButton" (click)="togglePostForm()" [innerHtml]="createPostButtonText"></button>
+  <app-add-post *ngIf="showNewPostForm" (addPostEmit)="addPostParent($event)"></app-add-post>
+  <div class="filter">
+    <mat-form-field appearance="fill" class="category-selection">
+      <mat-label>Category</mat-label>
+      <mat-select matNativeControl required [(value)]="toFilterCategories" [multiple]="true">
+        <mat-option value="Bitcoin">Bitcoin</mat-option>
+        <mat-option value="Ethereum">Ethereum</mat-option>
+        <mat-option value="Cardano">Cardano</mat-option>
+        <mat-option value="Polkadot">Polkadot</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button (click)="filterPosts()">Filter</button>
+  </div>
+  <!-- handles the no-posts case -->
+  <p class="noPosts" *ngIf="isPostsEmpty()">There are currently no posts 😔</p>
+  <!-- renders all posts -->
   <div *ngFor="let post of posts">
-    <app-post [post] = "post"></app-post>
+    <app-post *ngIf="showFiltered(post)" [post] = "post" (deletePostEmit)="deletePostParent($event)" (update)="updatePosts($event)"></app-post>
   </div>
 </div>
+
+<router-outlet></router-outlet>

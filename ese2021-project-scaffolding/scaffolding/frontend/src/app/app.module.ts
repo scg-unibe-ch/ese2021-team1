@@ -24,6 +24,20 @@ import { PasswordModalComponent } from './password-modal/password-modal.componen
 import { WallComponent } from './wall/wall.component';
 import { PostComponent } from './wall/post/post.component';
 import {OverlayModule} from "@angular/cdk/overlay";
+import { AppRoutingModule, routingComponents } from './app-routing.module';
+import { AddPostComponent } from './add-post/add-post.component';
+import {MatMenuModule} from "@angular/material/menu";
+import {MatIconModule} from "@angular/material/icon";
+import {MatSelectModule} from "@angular/material/select";
+import { StoreComponent } from './store/store.component';
+import {FlexLayoutModule} from "@angular/flex-layout";
+import { ProductComponent } from './product/product.component';
+import { AddProductComponent } from './add-product/add-product.component';
+import {MatGridListModule} from "@angular/material/grid-list";
+import { CartComponent } from './cart/cart.component';
+import { ProfilPageComponent } from './profil-page/profil-page.component';
+import {MatSidenavModule} from "@angular/material/sidenav";
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +50,15 @@ import {OverlayModule} from "@angular/cdk/overlay";
     RegisterComponent,
     PasswordModalComponent,
     WallComponent,
-    PostComponent
+    PostComponent,
+    routingComponents,
+    AddPostComponent,
+    StoreComponent,
+    ProductComponent,
+    AddProductComponent,
+    CartComponent,
+    ProfilPageComponent,
+    CheckoutComponent,
   ],
     imports: [
         BrowserModule,
@@ -51,7 +73,14 @@ import {OverlayModule} from "@angular/cdk/overlay";
         MatListModule,
         FormsModule,
         MatCheckboxModule,
-        OverlayModule
+        OverlayModule,
+        AppRoutingModule,
+        MatMenuModule,
+        MatIconModule,
+        MatSelectModule,
+        FlexLayoutModule,
+        MatGridListModule,
+        MatSidenavModule
     ],
   providers: [
     {

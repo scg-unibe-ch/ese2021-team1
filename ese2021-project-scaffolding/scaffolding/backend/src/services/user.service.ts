@@ -13,7 +13,24 @@ export class UserService {
         if (typeof password === 'string') {
             user.password = password;
         }
-        return User.create(user).then(inserted => Promise.resolve(inserted)).catch(err => {
+        user.password = bcrypt.hashSync(user.password, saltRounds); // hashes the password, never store passwords as plaintext
+        return User.create({
+            userId: null,
+            userName: user.userName,
+            password: user.password,
+            admin: false,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            homeAddress: user.homeAddress,
+            streetNumber: user.streetNumber,
+            zipCode: user.zipCode,
+            city: user.city,
+            birthday: user.birthday,
+            phoneNumber: user.phoneNumber
+        })
+            .then(inserted => Promise.resolve(inserted))
+            .catch(err => {
             return Promise.reject(err.errors[0].message); // returns the detailed message that caused the error
         });
     }
@@ -147,4 +164,15 @@ export class UserService {
             .catch(() => Promise.reject('update failed'));
      }
 
+    public isAdmin (id: number) {
+        return User.findByPk(id)
+            .then(found => {
+                if (found != null) {
+                    return Promise.resolve(found.admin);
+                } else {
+                    return Promise.reject(found);
+                }
+            })
+            .catch(() => Promise.reject('Cant find user'));
+    }
 }

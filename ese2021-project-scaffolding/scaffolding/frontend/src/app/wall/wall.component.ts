@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { OverlayModule} from "@angular/cdk/overlay";
 import {Post} from "../models/post.model";
 import {environment} from "../../environments/environment";
@@ -15,6 +15,7 @@ import { User } from '../models/user.model';
 export class WallComponent implements OnInit {
 
   showNewPostForm: boolean = false;
+  createPostButtonText: String = 'CREATE POST'
   newPost = {
     title: "",
     content: "",
@@ -22,63 +23,62 @@ export class WallComponent implements OnInit {
     userName: ""
   }
   posts: Post[] = [];
-  auth: boolean = false;
-  user: User | null = null;
+  filteredPosts: Post[] = [];
+
+  createPostFeedback = {
+    title: '',
+    content: ''
+  }
+
+  auth: boolean = false
+  user: string | null = null
+  toFilterCategories: String[] = []
+
 
   constructor(
     public httpClient: HttpClient,
     public userService: UserService
-  ) { 
-    // Listen for changes
+  ) {
     userService.loggedIn$.subscribe(res => this.auth = res);
-    userService.user$.subscribe(res => this.user = res);
+    userService.user$.subscribe(res => this.user = res.username);
   }
 
   ngOnInit(): void {
     // fetch all posts from server on start
-    this.httpClient.get(environment.endpointURL + "post")
-      .subscribe(res => {
-        if (typeof res === "object") {
-          Object.values(res).forEach(post => {
-            this.posts.push(post)
-          })
-        }
-        console.log(this.posts)
-      })
-  }
-  
-  createPost() { // gets fired when the create post form is submitted
-    if (this.user) this.newPost.userName = this.user?.username // automatically set the user that creates the post
-    if (!this.auth || !this.user) {
-      alert("Only signed in users can create posts. This form should not be visible.")
-      return
-    }
-    // with the code below we send the new post object to the server
-    this.httpClient.post(environment.endpointURL + "post", this.newPost)
-      .subscribe((res: any) => {
-        console.log(res)
-        // here we get the response from the server
-        // check if object is of type Post - should contain some property like title or text
-        if (res.title) {
-          this.posts.push(res)
-        } else {
-          // else it may be a error message that we can somehow show to the user
-          alert(JSON.stringify(res))
-        }
-      })
-    this.showNewPostForm = !this.showNewPostForm;
+    this.getAllPosts();
   }
 
   isPostsEmpty(): boolean {
     return this.posts.length == 0;
   }
 
-  convertImgToBlob(file: File): Blob|undefined {
-    let blob;
-    file.arrayBuffer().then((arrayBuffer) => {
-      blob = new Blob([new Uint8Array(arrayBuffer)], {type: file.type});
-    })
-    return blob;
+  getAllPosts(): void {
+    this.httpClient.get(environment.endpointURL + "post")
+      .subscribe(res => {
+        if (typeof res === "object") {
+          Object.values(res).forEach(post => {
+            this.posts.push(post)
+            this.filteredPosts.push(post)
+          })
+        }
+        this.posts.reverse();
+        this.filteredPosts.reverse()//so newest post is at the top
+        console.log(this.posts)
+      })
+  }
+
+  deletePostParent(postId: any) {
+    for (let i = 0; i < this.posts.length; i++) {
+      if (this.posts[i].id == postId) {
+        this.posts.splice(i, 1)
+      }
+    }
+  }
+
+  addPostParent(post: any) {
+    console.log(post)
+    this.posts.unshift(post)
+    this.togglePostForm();
   }
 
   currentDate(): string {
@@ -87,4 +87,44 @@ export class WallComponent implements OnInit {
     let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     return date+' '+time;
   }
+
+  togglePostForm(): void {
+    this.showNewPostForm = !this.showNewPostForm;
+    (this.showNewPostForm) ? this.createPostButtonText = '⬆' : this.createPostButtonText = 'CREATE POST'
+  }
+
+  updatePosts(event: any): void {
+    for (let i = 0; i < this.posts.length; i++) {
+      if (this.posts[i].id == event[0].id) {
+        this.posts[i] = event[1]
+      }
+    }
+  }
+
+  showCreatePost() {
+    return localStorage.getItem("admin") == "false" && this.userService.getLoggedIn()
+  }
+
+  filterPosts() {
+    let filteredPosts: Post[] = []
+    if (this.toFilterCategories.length > 0) {
+      for (let post of this.posts) {
+        if (this.toFilterCategories.indexOf(post.category) > -1) {
+          filteredPosts.push(post)
+        }
+      }
+      this.filteredPosts = filteredPosts
+    } else {
+      this.filteredPosts = this.posts
+    }
+  }
+
+  showFiltered(post: any): boolean {
+    if(this.filteredPosts.indexOf(post) > -1) {
+      return true
+    } else {
+      return false
+    }
+  }
+
 }

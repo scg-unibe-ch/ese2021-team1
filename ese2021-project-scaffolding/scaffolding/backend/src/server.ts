@@ -15,7 +15,12 @@ import cors from 'cors';
 import {AdminController} from './controllers/admin.controller';
 import {ItemImage} from './models/itemImage.model';
 import { PostController } from './controllers/post.controller';
-
+import {Orders} from './models/orders.model';
+import {Product} from './models/product.model';
+import {ProductController} from './controllers/product.controller';
+import {OrderController} from './controllers/order.controller';
+import {Vote} from './models/vote.model';
+import {VoteController} from './controllers/vote.controller';
 
 export class Server {
     private server: Application;
@@ -25,12 +30,14 @@ export class Server {
     constructor() {
         this.server = this.configureServer();
         this.sequelize = this.configureSequelize();
-
-        Post.initialize(this.sequelize); // create the new table!
+        Vote.initialize(this.sequelize);
+        Post.initialize(this.sequelize); // create the new table! // step 1
         TodoItem.initialize(this.sequelize); // creates the tables if they dont exist
         TodoList.initialize(this.sequelize);
         User.initialize(this.sequelize);
         ItemImage.initialize(this.sequelize);
+        Product.initialize(this.sequelize);
+        Orders.initialize(this.sequelize);
         TodoItem.createAssociations();
         TodoList.createAssociations();
         ItemImage.createAssociations();
@@ -56,7 +63,8 @@ export class Server {
                 'X-Access-Token',
             ],
             credentials: true,
-            methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE,SUBSCRIBE,UNSUBSCRIBE,RESET,EDIT',
+
+            methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE,SEARCH,SUBSCRIBE,UNSUBSCRIBE,RESET,EDIT',
             origin: `http://localhost:${this.port}`,
             preflightContinue: false,
         };
@@ -65,15 +73,19 @@ export class Server {
             .use(cors())
             .use(express.json())                    // parses an incoming json to an object
             .use(morgan('tiny'))                    // logs incoming requests
+            .use(morgan('dev'))
             .use('/todoitem', TodoItemController)   // any request on this path is forwarded to the TodoItemController
             .use('/todolist', TodoListController)
             .use('/user', UserController)
             .use('/secured', SecuredController)
             .use('/admin', AdminController)
             // first of all you have to set the new port here
-            .use('/post', PostController)
+            .use('/post', PostController) // step 2 / insert new controller
+            .use('/product', ProductController)
+            .use('/orders', OrderController)
+            .use('/vote', VoteController)
             .options('*', cors(options))
-            .use(express.static('./src/public'))
+            .use('/uploads', express.static(__dirname + '/uploads'))
             // this is the message you get if you open http://localhost:3000/ when the server is running
             .get('/', (req, res) => res.send('<h1>Welcome to Jan and Alessios domain <span style="font-size:50px">&#128525;</span></h1>'));
     }
@@ -88,3 +100,8 @@ export class Server {
 }
 
 const server = new Server(); // starts the server
+const fs = require('fs');
+const dir = './build/uploads';
+if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir);
+}
