@@ -24,6 +24,29 @@ userController.get('/', verifyToken, // you can add middleware on specific reque
     }
 );
 
+// change the password
+userController.put('/:id', (req: Request, res: Response) => {
+    userService.changePassword(req.body)
+        .then( changed => res.send(changed))
+        .catch(err => res.send(err));
+    }
+);
+
+// reset the password with the birthday
+userController.patch('/', (req: Request, res: Response) => {
+   userService.resetPassword(req.body.name, req.body.password, req.body.birthday)
+       .then( changed => res.json(changed))
+       .catch( err => res.json(err));
+});
+
+// edit personal details
+
+userController.patch('/:id', (req: Request, res: Response) => {
+    userService.editDetails(req, req.body.id)
+        .then(changed => res.json(changed))
+        .catch(err => res.json(err));
+});
+
 userController.get('/admin', (req: Request, res: Response) => {
     userService.isAdmin(req.body.id)
         .then(admin => res.send(admin))

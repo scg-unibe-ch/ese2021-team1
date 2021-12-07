@@ -2,16 +2,16 @@ import { UserAttributes, User } from '../models/user.model';
 import { LoginResponse, LoginRequest } from '../models/login.model';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import validator from 'validator';
+import equals = validator.equals;
+import {Post} from '../models/post.model';
 
 export class UserService {
 
     public register(user: UserAttributes): Promise<UserAttributes> {
-        const saltRounds = 12;
-        switch (this.passwordCheck(user.password)) {
-            case 1 : return Promise.reject({message: 'Doesnt contain capital/small letter'});
-            case 2 : return Promise.reject({message: 'Doesnt contain number'});
-            case 3 : return Promise.reject({message: 'Doesnt contain special character'});
-            case 4 : return Promise.reject({message: 'Minimum of 8 characters'});
+        const password = this.passwordGenerator(user.password);
+        if (typeof password === 'string') {
+            user.password = password;
         }
         user.password = bcrypt.hashSync(user.password, saltRounds); // hashes the password, never store passwords as plaintext
         return User.create({
@@ -78,6 +78,91 @@ export class UserService {
         }
         return 0;
     }
+
+    public async changePassword (body) {
+        return User.findByPk(body.userId)
+            .then(found => {
+                if (found != null) {
+                    this.updatePassword(body.userId, body.password);
+                } else {
+                    return Promise.reject({ message: 'User not found.'});
+                }
+            }).catch(err => {
+                return Promise.reject(err.message);
+            });
+    }
+
+    private async updatePassword(user: User, newUnhashedPassword: string) {
+        const hashedPW = this.passwordGenerator(newUnhashedPassword);
+        if (typeof hashedPW === 'string') {
+            return user.update({password: hashedPW})
+                .then(updated => Promise.resolve(updated))
+                .catch(() => Promise.reject('update failed'));
+        } else {
+            return Promise.reject(hashedPW); // errormessage from passwordGenerator
+        }
+    }
+
+    private passwordGenerator (password: string) {
+         const saltRounds = 12;
+         switch (this.passwordCheck(password)) {
+             case 1 : return Promise.reject({message: 'Doesnt contain capital/small letter'});
+             case 2 : return Promise.reject({message: 'Doesnt contain number'});
+             case 3 : return Promise.reject({message: 'Doesnt contain special character'});
+             case 4 : return Promise.reject({message: 'Minimum of 8 characters'});
+         }
+         return bcrypt.hashSync(password, saltRounds);
+     }
+
+     // resets the password if entered the birthday correctly
+     public resetPassword(name: string, password: string, birthdayTest: string) {
+        const hashedPW = this.passwordGenerator(password);
+        if (typeof  hashedPW === 'string') {
+            return User.findAll({where: {userName: name}})
+                .then(user => {
+                    if (equals(user[0].birthday, birthdayTest)) {
+                    user[0].update({password: hashedPW})
+                .then(updated => Promise.resolve(updated))
+                .catch(() => Promise.reject('Cant update password'));
+                    }
+                } );
+            } else {
+            return Promise.reject(hashedPW);
+        }
+     }
+
+     public editDetails (id, post) {
+        return User.findByPk(id)
+            .then(found => {
+                if (found != null) {
+                    return this.updateDetails(found, post)
+                        .then (updated => Promise.resolve(updated))
+                        .catch ((err) => Promise.reject(err.message));
+                } else {
+                    return Promise.reject('Post not found');
+                }
+            });
+     }
+
+
+     private async updateDetails(user: User, newUser: {firstName, lastName, email, homeAddress, streetNumber,
+         zipCode, city, birthday, phoneNumber}) {
+        return user.update(
+            {
+                firstName: newUser.firstName,
+                lastName: newUser.lastName,
+                email: newUser.email,
+                homeAddress: newUser.homeAddress,
+                streetNumber: newUser.streetNumber,
+                zipCode: newUser.zipCode,
+                city: newUser.city,
+                birthday: newUser.birthday,
+                phoneNumber: newUser.phoneNumber
+            }
+        )
+            .then(updated => Promise.resolve(updated))
+            .catch(() => Promise.reject('update failed'));
+     }
 
     public isAdmin (id: number) {
         return User.findByPk(id)
