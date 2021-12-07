@@ -14,7 +14,23 @@ export class UserService {
             case 4 : return Promise.reject({message: 'Minimum of 8 characters'});
         }
         user.password = bcrypt.hashSync(user.password, saltRounds); // hashes the password, never store passwords as plaintext
-        return User.create(user).then(inserted => Promise.resolve(inserted)).catch(err => {
+        return User.create({
+            userId: null,
+            userName: user.userName,
+            password: user.password,
+            admin: false,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            homeAddress: user.homeAddress,
+            streetNumber: user.streetNumber,
+            zipCode: user.zipCode,
+            city: user.city,
+            birthday: user.birthday,
+            phoneNumber: user.phoneNumber
+        })
+            .then(inserted => Promise.resolve(inserted))
+            .catch(err => {
             return Promise.reject(err.errors[0].message); // returns the detailed message that caused the error
         });
     }

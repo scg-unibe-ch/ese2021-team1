@@ -23,9 +23,10 @@ export class PostService {
             communityScore: 0,
             category: this.arrayToString(post.labels),
             userName: post.userName
+        }).then(inserted => {
+            Promise.resolve(inserted);
+            // else if an error occured
         })
-
-        // else if an error occured
         .catch(err => {
             // return the error message
             return Promise.reject(err.message);
