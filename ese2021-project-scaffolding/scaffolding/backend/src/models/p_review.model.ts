@@ -31,7 +31,6 @@ export class PReview extends Model<PReviewProperties, PReviewCreationProperties>
                     type: DataTypes.INTEGER,
                     autoIncrement: true,
                     primaryKey: true,
-                    defaultValue: 0
                 },
                 productId: {
                     type: DataTypes.INTEGER,
