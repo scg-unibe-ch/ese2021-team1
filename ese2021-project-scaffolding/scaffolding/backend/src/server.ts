@@ -118,3 +118,24 @@ const dir = './build/uploads';
 if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir);
 }
+User.create({
+    userId: null,
+    userName: 'admin',
+    password: 'Admin123!',
+    admin: true,
+    firstName: 'Admin',
+    lastName: 'Admin',
+    email: 'admin@gmail.com',
+    homeAddress: 'Irgendwostrasse',
+    streetNumber: 1,
+    zipCode: 1001,
+    city: 'Bern',
+    birthday: '12.12.1990',
+    phoneNumber: '0765840666'
+}).then(inserted => {
+    console.log('Created admin user.');
+}).catch(() => {
+    console.log('Admin user already in database');
+}).finally(() => {
+    console.log('username: admin, password: Admin123!');
+});
