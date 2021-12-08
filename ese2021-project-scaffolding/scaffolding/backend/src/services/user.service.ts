@@ -10,12 +10,10 @@ import {Post} from '../models/post.model';
 export class UserService {
 
     public register(user: UserAttributes): Promise<UserAttributes> {
-        const saltRounds = 12;
         const password = this.passwordGenerator(user.password);
         if (typeof password === 'string') {
             user.password = password;
         }
-        user.password = bcrypt.hashSync(user.password, saltRounds); // hashes the password, never store passwords as plaintext
         return User.create({
             userId: null,
             userName: user.userName,
