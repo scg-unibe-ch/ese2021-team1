@@ -21,7 +21,6 @@ export interface ProductProperties {
     price: number;
     discount: number;
     deleted: boolean;
-    // TODO: availability
 }
 
 export interface  ProductCreationProperties extends Optional<ProductProperties, 'discount'> {}
@@ -50,7 +49,7 @@ export class Product extends Model<ProductProperties, ProductCreationProperties>
                 },
                 image: {
                     type: DataTypes.STRING,
-                    allowNull: false
+                    allowNull: true
                 },
                 description: {
                     type: DataTypes.STRING,
