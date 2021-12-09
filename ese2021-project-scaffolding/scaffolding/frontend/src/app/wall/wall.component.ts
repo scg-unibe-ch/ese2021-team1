@@ -37,6 +37,7 @@ export class WallComponent implements OnInit {
   auth: boolean = false
   user: string | null = null
   toFilterCategories: String[] = []
+  showFilter: boolean = false;
 
 
   constructor(
