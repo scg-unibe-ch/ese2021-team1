@@ -78,8 +78,8 @@
     <div *ngIf="showPassword" class="content mat-elevation-z8">
       <div class="password">
         <h3 class="changePassword">Change Password</h3>
-        <input class="inputPassword"[(ngModel)]="newPassword" placeholder="New Password">
-        <input class="inputPassword"[(ngModel)]="newPassword2" placeholder="Confirm new Password">
+        <input class="inputPassword"[(ngModel)]="newPassword" placeholder="New Password" type="password">
+        <input class="inputPassword"[(ngModel)]="newPassword2" placeholder="Confirm new Password" type="password">
         <p id="feedback">{{this.passwordFeedback}}</p>
         <button id="submitPasswordChange"(click)="changePassword()">Submit</button>
       </div>
