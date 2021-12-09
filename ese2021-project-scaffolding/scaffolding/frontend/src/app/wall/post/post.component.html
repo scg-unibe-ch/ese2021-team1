@@ -1,6 +1,16 @@
 <!-- the following is rendered for all users except the creator -->
 <div class="postWrapper" *ngIf="user !== post.userName">
-    <div class="category">{{post.category}}</div>
+    <div class="report">
+    <button [disabled]="canNot()" *ngIf="!clickedReport" class="ReportButton" (click)="reportPost()">
+      <mat-icon>report_icon</mat-icon>
+    </button>
+    <button [disabled]="canNot()"*ngIf="clickedReport" class="ReportButton"  (click)="reportPost()">
+      <mat-icon>report_icon</mat-icon>
+    </button>
+    <p class="likesCount">{{post.like}}</p>
+  </div>
+
+  <div class="category">{{post.category}}</div>
     <div class="metadata">
         <img src="../../../assets/marmot01.png" class="usericon">
         <div class="username">{{post.userName}}:</div>
@@ -26,19 +36,19 @@
     </div>
     <div class="underPost">
       <div class="upvote">
-        <button [disabled]="canNotVote()" *ngIf="!clickedUpvote" class="upvoteButton" (click)="upvotePost()">
+        <button [disabled]="canNot()" *ngIf="!clickedUpvote" class="upvoteButton" (click)="upvotePost()">
           <mat-icon>thumb_up</mat-icon>
         </button>
-        <button [disabled]="canNotVote()"*ngIf="clickedUpvote" class="upvoteButton clickedUp"  (click)="upvotePost()">
+        <button [disabled]="canNot()"*ngIf="clickedUpvote" class="upvoteButton clickedUp"  (click)="upvotePost()">
           <mat-icon>thumb_up</mat-icon>
         </button>
         <p class="likesCount">{{post.like}}</p>
       </div>
       <div class="downvote">
-        <button [disabled]="canNotVote()" *ngIf="!clickedDownvote" class="downvoteButton" (click)="downvotePost()">
+        <button [disabled]="canNot()" *ngIf="!clickedDownvote" class="downvoteButton" (click)="downvotePost()">
           <mat-icon>thumb_down</mat-icon>
         </button>
-        <button [disabled]="canNotVote()" *ngIf="clickedDownvote" class="downvoteButton clickedDown"  (click)="downvotePost()">
+        <button [disabled]="canNot()" *ngIf="clickedDownvote" class="downvoteButton clickedDown"  (click)="downvotePost()">
           <mat-icon>thumb_down</mat-icon>
         </button>
         <p class="dislikesCount">{{post.dislike}}</p>
@@ -56,8 +66,8 @@
         <div class="newComment">
           <input [(ngModel)]="commentText" class="inputField" type="text" name="Comment" placeholder="Enter Comment" />
 
-          <button  *ngIf="clickedComment" (click)="commentPost()">Comments</button>
-          <button  *ngIf="!clickedComment" (click)="commentPost()">Comments</button>
+          <button [disabled]="canNot()" *ngIf="clickedComment" (click)="commentPost()">Comments</button>
+          <button [disabled]="canNot()" *ngIf="!clickedComment" (click)="commentPost()">Comments</button>
 
           <!--
             <img src="../../../assets/marmot01.png" class="usericon">
