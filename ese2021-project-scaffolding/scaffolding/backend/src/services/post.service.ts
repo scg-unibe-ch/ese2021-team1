@@ -6,9 +6,8 @@ export class PostService {
 
    /**
      * @author jan
-     * @autor Alessio
+     * @author Alessio
      */
-     W;
     // this function (aka service) is responsible for converting the received object (see method parameter)
     // into the right Post format and store it in the database. It also has to give some
     // feedback back to the controller which then will send it to the front
@@ -16,7 +15,7 @@ export class PostService {
         // in the parameter signature we can define and "type" the parameters that we get, for now I just made it as simple as possible
         return Post.create({ // we use the model's inherited methods (like create) to store the new post in the db
             // prior to that we have to "create" a valid post with the data we took from the front
-            id: 0,
+            id: null,
             title: post.title, // these attributes come from the object that the front sent us
             text: post.content,
             image: imagePath, // will not be set if no image was received
@@ -24,7 +23,8 @@ export class PostService {
             like: 0,
             communityScore: 0,
             category: post.labels,
-            userName: post.userName
+            userName: post.userName,
+            reported: 0
         }).then(inserted => {
             Promise.resolve(inserted);
             // else if an error occured
@@ -109,6 +109,7 @@ export class PostService {
   * @param sequelize
   * @param processingStatus
   */
+/*
     public searchForCategorysPost2 (categorys: String []) {
         let counter = 0;
         let searchedForCategorys = null;
@@ -130,7 +131,7 @@ export class PostService {
                 return Promise.reject(err.message);
             });
     }
-
+*/
     public reportPost(id: number) {
         return Post.findByPk(id)
             .then(found => {

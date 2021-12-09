@@ -10,13 +10,14 @@ import {Optional, Model, Sequelize, DataTypes, INTEGER} from 'sequelize';
 * @param dislike
 * @param like
 * @param communityScore
+ * @param reported
 */
 export interface PostAttributes {
     id: number;
     title: string;
     text: string;
     image: string; // just a reference to the place that the images is stored (in /uploads)
-    category: string[]; // will be a comma separated string containing labels
+    category: string; // will be a comma separated string containing labels
     userName: string;
     dislike: number;
     like: number;
@@ -31,7 +32,7 @@ export class Post extends Model<PostAttributes, PostCreationAttributes> implemen
     title: string;
     text: string;
     image: string;
-    category: string[];
+    category: string;
     userName: string;
     dislike: number;
     like: number;
@@ -58,7 +59,7 @@ export class Post extends Model<PostAttributes, PostCreationAttributes> implemen
                 allowNull: true
             },
             category: {
-                type: DataTypes.ARRAY(INTEGER),
+                type: DataTypes.STRING,
                 allowNull: true
             },
             userName: {
@@ -75,12 +76,10 @@ export class Post extends Model<PostAttributes, PostCreationAttributes> implemen
             },
             communityScore: {
                 type: DataTypes.DOUBLE,
-                defaultValue: 0,
                 allowNull: false
             },
             reported: {
                 type: DataTypes.INTEGER,
-                defaultValue: 0,
                 allowNull: false
             }
             },
