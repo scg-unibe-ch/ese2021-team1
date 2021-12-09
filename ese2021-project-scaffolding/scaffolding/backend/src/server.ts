@@ -23,12 +23,21 @@ import { Vote } from './models/vote.model';
 import { VoteController } from './controllers/vote.controller';
 import { Comment } from './models/comment.model';
 import { CommentController } from './controllers/comment.controller';
+
+const fs = require('fs');
+const dir = './build/uploads';
+if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir);
+}
+
 const sequelize: Sequelize = new Sequelize({
     dialect: 'sqlite',
     storage: 'db.sqlite',
     logging: false // can be set to true for debugging
 });
+
 const port = process.env.PORT || 3000;
+
 Vote.initialize(sequelize);
 Post.initialize(sequelize); // create the new table! // step 1
 TodoItem.initialize(sequelize); // creates the tables if they dont exist
@@ -41,42 +50,38 @@ Comment.initialize(sequelize);
 TodoItem.createAssociations();
 TodoList.createAssociations();
 ItemImage.createAssociations();
-const fs = require('fs');
-const dir = './build/uploads';
-if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir);
-}
-const pass = 'Admin123!';
-const name = 'admin';
-User.create({
-    userId: null,
-    userName: name,
-    password: pass,
-    admin: true,
-    firstName: 'Admin',
-    lastName: 'Admin',
-    email: 'admin@gmail.com',
-    homeAddress: 'Irgendwostrasse',
-    streetNumber: 1,
-    zipCode: 1001,
-    city: 'Bern',
-    birthday: '12.12.1990',
-    phoneNumber: '0765840666'
-}).then(() => {
-    // console.log('Created admin user.');
-}).catch(() => {
-    // console.log('Admin user already in database');
-}).finally(() => {
-    // console.log('username:', name, ' password: ', pass);
-});
 
-sequelize.sync().then(() => {                           // create connection to the database
+sequelize.sync({ force: true }).then(async () => {
+    const pass = 'Admin123!';
+    const name = 'admin';
+    await User.create({
+        userId: null,
+        userName: name,
+        password: pass,
+        admin: true,
+        firstName: 'Admin',
+        lastName: 'Admin',
+        email: 'admin@gmail.com',
+        homeAddress: 'Irgendwostrasse',
+        streetNumber: 1,
+        zipCode: 1001,
+        city: 'Bern',
+        birthday: '12.12.1990',
+        phoneNumber: '0765840666'
+    }).then(() => {
+        // console.log('Created admin user.');
+    }).catch(() => {
+        // console.log('Admin user already in database');
+    }).finally(() => {
+        // console.log('username:', name, ' password: ', pass);
+    });                      // create connection to the database
     if (require.main === module) {
         server.listen(port, () => {                                   // start server on specified port
             console.log(`server listening at http://localhost:${port}`);   // indicate that the server has started
         });
     }
 });
+
 const options: cors.CorsOptions = {
     allowedHeaders: [
         'Origin',
@@ -90,6 +95,7 @@ const options: cors.CorsOptions = {
     origin: `http://localhost:${port}`,
     preflightContinue: false,
 };
+
 export const server = express()
     .use(cors())
     .use(express.json())                    // parses an incoming json to an object
@@ -110,5 +116,4 @@ export const server = express()
     .use('/uploads', express.static(__dirname + '/uploads'))
     // this is the message you get if you open http://localhost:3000/ when the server is running
     .get('/', (req, res) => res.send('<h1>Welcome to Jan and Alessios domain <span style="font-size:50px">&#128525;</span></h1>'));
-
 
