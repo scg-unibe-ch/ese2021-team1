@@ -10,6 +10,7 @@ import {Optional, Model, Sequelize, DataTypes, INTEGER} from 'sequelize';
 * @param dislike
 * @param like
 * @param communityScore
+ * @param reported
 */
 export interface PostAttributes {
     id: number;
@@ -75,12 +76,10 @@ export class Post extends Model<PostAttributes, PostCreationAttributes> implemen
             },
             communityScore: {
                 type: DataTypes.DOUBLE,
-                defaultValue: 0,
                 allowNull: false
             },
             reported: {
                 type: DataTypes.INTEGER,
-                defaultValue: 0,
                 allowNull: false
             }
             },

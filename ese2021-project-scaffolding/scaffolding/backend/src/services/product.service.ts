@@ -30,7 +30,7 @@ export class ProductService {
         return Product.findByPk(id)
             .then((found => {
                 if (found != null) {
-                    found.update({deleted: true})
+                    found.destroy()
                         .then(updated => Promise.resolve(updated))
                         .catch(() => Promise.reject('failed to delete '));
                 } else {

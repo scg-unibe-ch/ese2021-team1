@@ -46,25 +46,25 @@ export class UserService {
                 userName: loginRequestee.userName
             }
         })
-            .then(user => {
-                if (!user || !user.userName) {
-                    return Promise.reject({ message: 'Username/E-Mail not found ' });
-                }
-                if (user.userName === 'admin') { // special case for admin for development purposes
-                    if (user.password !== loginRequestee.password) { return Promise.reject({ message: 'Wrong password.'}); }
-                    const token: string = jwt.sign({ userName: user.userName, userId: user.userId, admin: user.admin }, secret, { expiresIn: '2h' });
-                    return Promise.resolve({ user, token });
-                }
-                if (bcrypt.compareSync(loginRequestee.password, user.password)) {// compares the hash with the password from the login request
-                    const token: string = jwt.sign({ userName: user.userName, userId: user.userId, admin: user.admin }, secret, { expiresIn: '2h' });
-                    return Promise.resolve({ user, token });
-                } else {
-                    return Promise.reject({ message: 'A wrong Password' });
-                }
-            })
-            .catch(err => {
-                return Promise.reject(err.message);
-            });
+        .then(user => {
+            if (!user || !user.userName) {
+                return Promise.reject({message: 'Username/E-Mail not found '});
+            }
+            // if (user.userName === 'admin') { // special case for admin for development purposes
+            // tslint:disable-next-line:max-line-length
+                // const token: string = jwt.sign({ userName: user.userName, userId: user.userId, admin: user.admin }, secret, { expiresIn: '2h' });
+                // return Promise.resolve({ user, token });
+            // }
+            if (bcrypt.compareSync(loginRequestee.password, user.password)) {// compares the hash with the password from the login request
+                const token: string = jwt.sign({ userName: user.userName, userId: user.userId, admin: user.admin }, secret, { expiresIn: '2h' });
+                return Promise.resolve({ user, token });
+            } else {
+                return Promise.reject({ message: 'A wrong Password' });
+            }
+        })
+        .catch(err => {
+            return Promise.reject(err.message);
+        });
     }
 
     public getAll(): Promise<User[]> {
@@ -143,13 +143,18 @@ export class UserService {
         }
     }
 
-    public editDetails(id, post) {
-        return User.findByPk(id)
+     public editDetails (body) {
+        console.log(body.userId);
+        return User.findByPk(body.userId)
             .then(found => {
                 if (found != null) {
-                    return this.updateDetails(found, post)
-                        .then(updated => Promise.resolve(updated))
-                        .catch((err) => Promise.reject(err.message));
+                    return this.updateDetails(found, body)
+                        .then (updated =>  {
+                            return Promise.resolve(updated);
+                        })
+                        .catch ((err) => {
+                            return Promise.reject(err.message);
+                        });
                 } else {
                     return Promise.reject('Post not found');
                 }
@@ -157,12 +162,11 @@ export class UserService {
     }
 
 
-    private async updateDetails(user: User, newUser: {
-        firstName, lastName, email, homeAddress, streetNumber,
-        zipCode, city, birthday, phoneNumber
-    }) {
+     private async updateDetails(user: User, newUser: {userName, firstName, lastName, email, homeAddress, streetNumber,
+         zipCode, city, birthday, phoneNumber}) {
         return user.update(
             {
+                userName: newUser.userName,
                 firstName: newUser.firstName,
                 lastName: newUser.lastName,
                 email: newUser.email,
@@ -174,9 +178,13 @@ export class UserService {
                 phoneNumber: newUser.phoneNumber
             }
         )
-            .then(updated => Promise.resolve(updated))
-            .catch(() => Promise.reject('update failed'));
-    }
+            .then(updated => {
+                return Promise.resolve(updated);
+            })
+            .catch(() => {
+                return Promise.reject('update failed');
+            });
+     }
 
     public isAdmin(id: number) {
         return User.findByPk(id)

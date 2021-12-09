@@ -44,9 +44,8 @@ userController.patch('/', (req: Request, res: Response) => {
 });
 
 // edit personal details
-
 userController.patch('/:id', (req: Request, res: Response) => {
-    userService.editDetails(req, req.body.id)
+    userService.editDetails(req.body)
         .then(changed => res.json(changed))
         .catch(err => res.json(err));
 });

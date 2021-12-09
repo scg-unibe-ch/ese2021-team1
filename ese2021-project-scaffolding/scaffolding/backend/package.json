@@ -9,7 +9,7 @@
     "prestart": "npm run build",
     "dev": "nodemon",
     "start": "node .",
-    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts'"
+    "test": "mocha -r ts-node/register src/**/*.spec.ts"
   },
   "dependencies": {
     "@types/chai-http": "^4.2.0",

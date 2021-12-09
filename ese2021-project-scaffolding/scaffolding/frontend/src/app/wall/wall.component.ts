@@ -37,6 +37,7 @@ export class WallComponent implements OnInit {
   auth: boolean = false
   user: string | null = null
   toFilterCategories: String[] = []
+  showFilter: boolean = false;
 
 
   constructor(
@@ -55,7 +56,6 @@ export class WallComponent implements OnInit {
   isPostsEmpty(): boolean {
     return this.posts.length == 0;
   }
-
   getAllPosts(): void {
     this.httpClient.get(environment.endpointURL + "post")
       .subscribe(res => {
@@ -75,6 +75,7 @@ export class WallComponent implements OnInit {
     for (let i = 0; i < this.posts.length; i++) {
       if (this.posts[i].id == postId) {
         this.posts.splice(i, 1)
+        this.filteredPosts.splice(i, 1)
       }
     }
   }
@@ -82,6 +83,7 @@ export class WallComponent implements OnInit {
   addPostParent(post: any) {
     console.log(post)
     this.posts.unshift(post)
+    this.filteredPosts.unshift(post)
     this.togglePostForm();
   }
 
@@ -105,6 +107,7 @@ export class WallComponent implements OnInit {
     for (let i = 0; i < this.posts.length; i++) {
       if (this.posts[i].id == event[0].id) {
         this.posts[i] = event[1]
+        this.filteredPosts[i] = event[1]
       }
     }
   }

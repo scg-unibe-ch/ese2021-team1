@@ -20,9 +20,9 @@
         </button>
       </mat-menu>
       <div *ngIf="!editable" class="contentTitle">{{post.title}}</div>
-      <input *ngIf="editable" class="contentTitle"[(ngModel)]="newTitle" placeholder="{{post.title}}"/>
+      <input *ngIf="editable" class="contentTitle editableTitle"[(ngModel)]="post.title"/>
       <div *ngIf="!editable" class="material">{{post.text}}</div>
-      <input *ngIf="editable" class="material"[(ngModel)]="newText" placeholder="{{post.text}}"/>
+      <input *ngIf="editable" class="material editableText"[(ngModel)]="post.text"/>
     </div>
     <div class="underPost">
       <div class="upvote">
@@ -43,12 +43,23 @@
         </button>
         <p class="dislikesCount">{{post.dislike}}</p>
       </div>
-      <!-- <button class="commentsButton">Comments</button>         -->
-      <button *ngIf="editable" (click)="updatePost()" (click)="changeEditability()" id="saveChanges">Save</button>
-    </div>
-</div>
-    <!-- <div class="commentSection">
-        <div class="comment">
+      <div class="commentSection">
+        <p class="noPosts" *ngIf="isCommentsEmpty()">Be the first to comment</p>
+        <!-- renders all comments -->
+
+        <div *ngFor="let comment of comments">
+          <!--HELP
+          <app-comment *ngIf="!isCommentsEmpty()" [comment] = 'comments'></app-comment>
+          -->
+        </div>
+
+        <div class="newComment">
+          <input [(ngModel)]="commentText" class="inputField" type="text" name="Comment" placeholder="Enter Comment" />
+
+          <button  *ngIf="clickedComment" (click)="commentPost()">Comments</button>
+          <button  *ngIf="!clickedComment" (click)="commentPost()">Comments</button>
+
+          <!--
             <img src="../../../assets/marmot01.png" class="usericon">
             <div class="username">paulK:</div>
             <div class="commentContent">Lorem ipsum dolor</div>
@@ -64,5 +75,8 @@
             <div class="username">paulK:</div>
             <div class="commentContent">Nam fermentum, ligula nec pulvinar pretium, lorem</div>
         </div>
-    </div> -->
-
+        -->
+        </div>
+    </div>
+    </div>
+</div>

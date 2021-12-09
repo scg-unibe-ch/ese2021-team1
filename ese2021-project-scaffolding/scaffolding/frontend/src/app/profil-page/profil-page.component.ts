@@ -34,7 +34,8 @@ export class ProfilPageComponent implements OnInit {
   showHelp: boolean = false;
   editable: boolean = false;
 
-  newUsername: String = "";
+  public feedback: string = "";
+  public passwordFeedback: string = "";
 
 
   constructor(
@@ -85,17 +86,63 @@ export class ProfilPageComponent implements OnInit {
   }
 
   changePassword() {
-    if (this.newPassword.localeCompare(this.newPassword2) && this.checkPassword()) {
+    if (this.newPassword == this.newPassword2 && this.checkPassword()) {
       this.httpClient.put(environment.endpointURL + "user/" + this.user.userId, {
         userId: this.user.userId,
         password: this.newPassword
       }).subscribe((res: any) => {
         console.log(res);
+        this.passwordFeedback = "Change was successful."
       });
     }
     else {
-      console.log("gugus");
+      if(this.newPassword != this.newPassword2) {
+        this.passwordFeedback = "The two passwords aren't equal. Try again.";
+      } else {
+        this.passwordFeedback = "The new password doesn't fulfill the requirements. Try again.";
+      }
     }
+  }
+
+  updateUser() {
+    this.httpClient.patch(environment.endpointURL + "user/" + this.user.userId, {
+      userId: this.user.userId,
+      userName: this.user.userName,
+      firstName: this.user.firstName,
+      lastName: this.user.lastName,
+      email: this.user.email,
+      homeAddress: this.user.homeAddress,
+      streetNumber: this.user.streetNumber,
+      zipCode: this.user.zipCode,
+      city: this.user.city,
+      birthday: this.user.birthday,
+      phoneNumber: this.user.phoneNumber
+    }).subscribe((res: any) => {
+      if(res != null) {
+        console.log(res)
+        this.userService.setUser(res)
+        this.user = res
+        this.user.username = res.userName;
+        localStorage.setItem('userId', this.user.userId);
+        localStorage.setItem('userName', this.user.userName);
+        localStorage.setItem('userToken', this.user.token);
+        localStorage.setItem('password', this.user.password);
+        localStorage.setItem('firstName', this.user.firstName);
+        localStorage.setItem('lastName', this.user.lastName);
+        localStorage.setItem('email', this.user.email);
+        localStorage.setItem('homeAddress', this.user.homeAddress);
+        localStorage.setItem('streetNumber', this.user.streetNumber);
+        localStorage.setItem('zipCode', this.user.zipCode);
+        localStorage.setItem('city', this.user.city);
+        localStorage.setItem('birthday', this.user.birthday);
+        localStorage.setItem('phoneNumber', this.user.phoneNumber);
+        localStorage.setItem('admin', this.user.admin);
+
+        this.feedback = "Changes were successful!"
+      } else {
+        this.feedback = "Something went wrong. Try again!"
+      }
+    })
   }
 
   checkPassword(): boolean {
@@ -113,6 +160,5 @@ export class ProfilPageComponent implements OnInit {
       return false;
     }
   }
-
 
 }

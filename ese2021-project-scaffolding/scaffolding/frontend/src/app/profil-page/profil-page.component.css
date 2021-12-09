@@ -1,5 +1,6 @@
 mat-sidenav-container{
   width: 80%;
+  max-width: 1500px;
   height: 565px ;
   margin: auto;
   overflow: hidden;
@@ -22,8 +23,8 @@ mat-sidenav {
   height: 500px;
   width: 200px;
   border-right: none;
-  background: #002b5c;
-  color: white;
+  background: #ff9307;
+  color: whitesmoke;
   border-radius: 10px;
   padding: 16px;
   text-align: center;
@@ -35,7 +36,6 @@ mat-sidenav {
   border-radius: 10px;
   margin: 16px 16px 16px 32px;
   background: white;
-
   display: flex;
   overflow: auto;
 
@@ -54,7 +54,7 @@ tr {
   bottom: 30px;
 }
 
-#username, #address, #email, #phonenumber {
+#username, #address, #email, #phonenumber, #zipcode, #city, #streetnumber, #birthday {
   margin-left: 20px;
 }
 
@@ -65,6 +65,7 @@ tr {
 #name {
   border-bottom: grey 1px solid;
   font-size: 40px;
+  width: 500px;
 }
 
 p {
@@ -76,3 +77,55 @@ p {
   height: auto;
   border-radius: 10px;
 }
+
+.editField {
+  margin-left: 20px;
+  font-size: 20px;
+}
+
+.editButton, .saveButton {
+  float: right;
+  margin-top: 45px;
+}
+
+.saveButton {
+  margin-right: 10px;
+}
+.Informations {
+  margin-left: 10px;
+}
+.inputPassword {
+  font-size: 15px;
+  height: 30px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.changePassword {
+  border-bottom: grey 1px solid;
+}
+
+#submitPasswordChange {
+  display: flex;
+  height: 30px;
+  background-color: #ff9307;
+  border-radius: 10px;
+  border: none;
+  font-size: 15px;
+  padding: 7px;
+  text-align: center;
+  justify-content: center;
+  color: black;
+  margin-top: 20px;
+
+}
+.password {
+  margin-left: 25px;
+}
+
+.feedback {
+  font-size: 15px;
+}
+
+
+

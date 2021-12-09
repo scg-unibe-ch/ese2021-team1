@@ -55,4 +55,12 @@ export class StoreComponent implements OnInit {
   togglePostForm() {
     this.showNewProductForm = !this.showNewProductForm
   }
+
+  deleteProductParent(productId: any) {
+    for (let i = 0; i < this.products.length; i++) {
+      if (this.products[i].id == productId) {
+        this.products.splice(i, 1)
+      }
+    }
+  }
 }
