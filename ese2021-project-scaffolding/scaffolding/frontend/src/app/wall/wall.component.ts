@@ -60,7 +60,6 @@ export class WallComponent implements OnInit {
   isPostsEmpty(): boolean {
     return this.posts.length == 0;
   }
-
   getAllPosts(): void {
     this.httpClient.get(environment.endpointURL + "post")
       .subscribe(res => {

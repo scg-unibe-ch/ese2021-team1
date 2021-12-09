@@ -41,6 +41,13 @@ export class PostComponent implements OnInit {
   editable: boolean = false;
   clickedUpvote: boolean = false;
   clickedDownvote: boolean = false;
+  clickedReport: boolean = false;
+  clickedComment: boolean = false;
+
+  postId: number = this.post.id;
+  commentText: string = "";
+
+  comments: Comment[] = [];
 
   constructor(
     public httpClient: HttpClient,
@@ -53,15 +60,18 @@ export class PostComponent implements OnInit {
 
   ngOnInit(): void {
     this.post.category = this.post.category.replace(/[, ]+/g, " ").trim(); //very ugly to remove comma from category
+    this.get3Comments();
+  }
+  reportPost() {
+    this.httpClient.put(environment.endpointURL + "post/" + this.post.id + "/report", this.postId)
+      .subscribe(res => {
+      console.log(res);
+    })
   }
   /**
   * Updates the Vote counter
   */
   upvotePost() {
-    if(this.clickedDownvote) {
-      this.downvotePost()
-    }
-    else {
       this.httpClient.post(environment.endpointURL + "vote/" + this.post.id + "/up", {
         userName: localStorage.getItem("userName"),
         vote: 1
@@ -77,14 +87,9 @@ export class PostComponent implements OnInit {
           this.post.like += 1;
         }
       });
-    }
   }
 
   downvotePost() {
-    if(this.clickedUpvote) {
-      this.upvotePost()
-    }
-    else {
       this.httpClient.post(environment.endpointURL + "vote/" + this.post.id + "/down", {
         userName: localStorage.getItem("userName"),
         vote: -1
@@ -99,8 +104,36 @@ export class PostComponent implements OnInit {
           this.post.dislike += 1;
         }
       });
-    }
   }
+
+  isCommentsEmpty(): boolean {
+    return this.comments.length == 0;
+  }
+
+  commentPost() {
+    this.httpClient.post(environment.endpointURL + "comment/" + this.post.id, {
+      postID: this.post.id,
+      text: this.commentText
+    }).subscribe(res =>{
+      console.log(res);
+    })
+  }
+
+
+  get3Comments(): void {
+    this.httpClient.get(environment.endpointURL + "comment/" + this.post.id)
+      .subscribe(res => {
+        console.log(res);
+        if (typeof res === "object") {
+          Object.values(res).forEach(comment => {
+            this.comments.push(comment)
+          })
+        }
+        this.comments.reverse();
+      })
+  }
+
+
     /**
     * @param Post.id
     * changes data from the post
@@ -151,7 +184,7 @@ export class PostComponent implements OnInit {
     return this.post.like - this.post.dislike;
   }
 
-  canNotVote() {
+  canNot() {
     return localStorage.getItem("admin") == "true" || !this.userService.getLoggedIn();
   }
   /**
