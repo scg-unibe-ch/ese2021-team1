@@ -22,6 +22,7 @@ import {OrderController} from './controllers/order.controller';
 import {Vote} from './models/vote.model';
 import {VoteController} from './controllers/vote.controller';
 import {Comment} from './models/comment.model';
+import {CommentController} from './controllers/comment.controller';
 
 export class Server {
 /**
@@ -88,6 +89,7 @@ export class Server {
             .use('/admin', AdminController)
             // first of all you have to set the new port here
             .use('/post', PostController) // step 2 / insert new controller
+            .use('/comment', CommentController)
             .use('/product', ProductController)
             .use('/orders', OrderController)
             .use('/vote', VoteController)

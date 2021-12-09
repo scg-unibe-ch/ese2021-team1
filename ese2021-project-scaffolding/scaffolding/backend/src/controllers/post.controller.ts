@@ -60,17 +60,6 @@ postController.report('/:id', (req: Request, res: Response) => {
         .catch(err => res.send(err));
 });
 
-postController.patch('/:id', (req: Request, res: Response) => {
-    postService.comment(req.body, req.body.postID, req.body.text)
-        .then(updated => res.send(updated))
-        .catch(err => res.send(err));
-});
-
-postController.get('/:post', (req: Request, res: Response) => {
-    postService.getAllComments(req.body.id)
-        .then(updated => res.send(updated))
-        .catch(err => res.send(err));
-});
 
 // you have to export the controller to use it in the server
 export const PostController: Router = postController;

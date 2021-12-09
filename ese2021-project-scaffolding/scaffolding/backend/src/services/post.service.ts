@@ -146,30 +146,6 @@ export class PostService {
 
     }
 
-    public comment(commentId: number, postId: number, text: string) {
-        return Comment.create( {
-            postID: postId,
-            commentID: commentId,
-            text: text,
-            reported: 0
-            }
-        )
-            .then(created => Promise.reject(created))
-            .catch(err => Promise.reject(err));
-    }
-
-    public getAllComments(postId: number) {
-        return Comment.findByPk(postId)
-            .then(found => {
-                if (found != null) {
-                    return Promise.resolve(found);
-                } else {
-                    return Promise.reject('No Comments found');
-                }
-            })
-            .catch(() => Promise.reject('Could not fetch Comments'));
-    }
-
 /*
     public async searchForCategorysPost(categorys: String[]) {
         let searchdForCategorys = null;
