@@ -40,7 +40,7 @@ export class UserService {
     }
 
     public login(loginRequestee: LoginRequest): Promise<User | LoginResponse> {
-        const secret = process.env.JWT_SECRET;
+        const secret = 'not_secure'; // changed for testing
         return User.findOne({
             where: {
                 userName: loginRequestee.userName
@@ -48,18 +48,13 @@ export class UserService {
         })
         .then(user => {
             if (!user || !user.userName) {
-                return Promise.reject({message: 'Username/E-Mail not found '});
+                return Promise.reject({message: 'Username/E-Mail not found'});
             }
-            // if (user.userName === 'admin') { // special case for admin for development purposes
-            // tslint:disable-next-line:max-line-length
-                // const token: string = jwt.sign({ userName: user.userName, userId: user.userId, admin: user.admin }, secret, { expiresIn: '2h' });
-                // return Promise.resolve({ user, token });
-            // }
             if (bcrypt.compareSync(loginRequestee.password, user.password)) {// compares the hash with the password from the login request
                 const token: string = jwt.sign({ userName: user.userName, userId: user.userId, admin: user.admin }, secret, { expiresIn: '2h' });
                 return Promise.resolve({ user, token });
             } else {
-                return Promise.reject({ message: 'A wrong Password' });
+                return Promise.reject({ message: 'Invalid Credentials.' });
             }
         })
         .catch(err => {

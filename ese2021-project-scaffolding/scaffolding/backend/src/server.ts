@@ -63,11 +63,11 @@ User.create({
     birthday: '12.12.1990',
     phoneNumber: '0765840666'
 }).then(() => {
-    console.log('Created admin user.');
+    // console.log('Created admin user.');
 }).catch(() => {
-    console.log('Admin user already in database');
+    // console.log('Admin user already in database');
 }).finally(() => {
-    console.log('username:', name, ' password: ', pass);
+    // console.log('username:', name, ' password: ', pass);
 });
 
 sequelize.sync().then(() => {                           // create connection to the database
@@ -90,7 +90,7 @@ const options: cors.CorsOptions = {
     origin: `http://localhost:${port}`,
     preflightContinue: false,
 };
-const server = express()
+export const server = express()
     .use(cors())
     .use(express.json())                    // parses an incoming json to an object
     .use(morgan('tiny'))                    // logs incoming requests
@@ -110,10 +110,5 @@ const server = express()
     .use('/uploads', express.static(__dirname + '/uploads'))
     // this is the message you get if you open http://localhost:3000/ when the server is running
     .get('/', (req, res) => res.send('<h1>Welcome to Jan and Alessios domain <span style="font-size:50px">&#128525;</span></h1>'));
-
-
-
-
-
 
 

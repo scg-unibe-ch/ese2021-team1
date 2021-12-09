@@ -10,7 +10,7 @@ import { Request, Response } from 'express';
 export function verifyToken(req: Request, res: Response, next: any) {
     try {
         // get secret key from environment (defined in nodemon.json)
-        const secret = process.env.JWT_SECRET;
+        const secret = 'not_secure'; // changed for testing
         // since the authorization header consists of "Bearer <token>" where <token> is a JWT token
         const token = req.headers.authorization.split(' ')[1];
         const decoded = jwt.verify(token, secret);
