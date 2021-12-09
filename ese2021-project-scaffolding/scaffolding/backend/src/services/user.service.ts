@@ -46,10 +46,11 @@ export class UserService {
             if (!user || !user.userName) {
                 return Promise.reject({message: 'Username/E-Mail not found '});
             }
-            if (user.userName === 'admin') { // special case for admin for development purposes
-                const token: string = jwt.sign({ userName: user.userName, userId: user.userId, admin: user.admin }, secret, { expiresIn: '2h' });
-                return Promise.resolve({ user, token });
-            }
+            // if (user.userName === 'admin') { // special case for admin for development purposes
+            // tslint:disable-next-line:max-line-length
+                // const token: string = jwt.sign({ userName: user.userName, userId: user.userId, admin: user.admin }, secret, { expiresIn: '2h' });
+                // return Promise.resolve({ user, token });
+            // }
             if (bcrypt.compareSync(loginRequestee.password, user.password)) {// compares the hash with the password from the login request
                 const token: string = jwt.sign({ userName: user.userName, userId: user.userId, admin: user.admin }, secret, { expiresIn: '2h' });
                 return Promise.resolve({ user, token });

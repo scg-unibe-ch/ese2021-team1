@@ -161,5 +161,4 @@ export class ProfilPageComponent implements OnInit {
     }
   }
 
-
 }

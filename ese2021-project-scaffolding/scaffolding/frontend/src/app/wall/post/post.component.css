@@ -212,9 +212,23 @@ input {
 #saveChanges {
   float: right;
   position: relative;
-  bottom: 30px;
-  right: 15px;
-  border-radius: 5px;
+  bottom: 0px;
+  right: 0px;
+  border-radius: 15px;
+  margin: 10px;
+  padding: 10px;
+  background-color: #ff9307;
+  border: none;
+  color: black;
+  font-weight: bold;
+}
+.editableTitle {
+  color: black;
+  font-size: 150%;
+  font-weight: bold;
 }
 
+.editableText {
+  font-size: 18px;
+}
 

@@ -6,7 +6,7 @@
       <mat-grid-list cols="3" rowHeight="550px" >
         <ng-container *ngFor="let product of products">
           <mat-grid-tile>
-            <app-product [product]="product"></app-product>
+            <app-product [product]="product" (deleteProductEmit)="deleteProductParent($event)"></app-product>
           </mat-grid-tile>
         </ng-container>
       </mat-grid-list>

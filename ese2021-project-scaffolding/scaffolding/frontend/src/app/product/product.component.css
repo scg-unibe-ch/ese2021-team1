@@ -27,7 +27,7 @@
   outline: 0;
   padding: 12px;
   color: white;
-  background-color: #000;
+  background-color: #ff9307;
   text-align: center;
   cursor: pointer;
   width: 100%;
@@ -63,5 +63,73 @@
   border-radius: 20px;
   margin: 10px;
   opacity: 0.9;
+  width: auto;
 }
 
+.editCategory {
+  width: auto;
+  max-width: 10%;
+}
+
+.verticalDots:after {
+  content: '\2807';
+  font-size: 30px;
+  background-color: transparent!important;
+  color: black;
+  opacity: 1;
+  width: 2px;
+}
+
+.verticalDots {
+  background-color: transparent!important;
+  border: none;
+  outline: none;
+  margin-top: 5px;
+  width: 0px!important;
+  height: 0px!important;
+  position: absolute;
+  right: 8%;
+  display: flex;
+}
+
+
+.verticalDots:checked{
+  background-color: transparent!important;
+  opacity: 1;
+}
+.editableTitle {
+  font-size: 32px;
+  font-weight: bolder;
+  width: 290px;
+  margin-top: 16px;
+}
+
+.editableText {
+  margin-top: 15px;
+  width: 290px;
+}
+.saveChanges {
+  position: absolute;
+  bottom: 215px;
+  right: 15%;
+  background-color: transparent !important;
+  width: 40px !important;
+  height: auto;
+  display: flex;
+}
+
+.saveChanges mat-icon {
+  color: black;
+  height: 30px;
+}
+
+.availability-selection {
+  position: absolute;
+  font-size: 13px;
+  top: 250px;
+  margin-left: 15px;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 15px;
+  z-index: 0;
+}

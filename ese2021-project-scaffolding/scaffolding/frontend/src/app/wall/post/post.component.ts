@@ -134,10 +134,10 @@ export class PostComponent implements OnInit {
     */
   updatePost() {
     this.httpClient.put(environment.endpointURL + "post/" + this.post.id, {
-      title: this.newTitle,
-      content: this.newText,
+      title: this.post.title,
+      content: this.post.text,
       image: this.post.image,
-      labels: this.labels,
+      labels: this.post.labels,
       userName: this.post.username
     }).subscribe(res => {
       console.log(res)
