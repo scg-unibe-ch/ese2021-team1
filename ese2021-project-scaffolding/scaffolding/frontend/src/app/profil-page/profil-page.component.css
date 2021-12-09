@@ -94,6 +94,38 @@ p {
 .Informations {
   margin-left: 10px;
 }
+.inputPassword {
+  font-size: 15px;
+  height: 30px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.changePassword {
+  border-bottom: grey 1px solid;
+}
+
+#submitPasswordChange {
+  display: flex;
+  height: 30px;
+  background-color: #ff9307;
+  border-radius: 10px;
+  border: none;
+  font-size: 15px;
+  padding: 7px;
+  text-align: center;
+  justify-content: center;
+  color: black;
+  margin-top: 20px;
+
+}
+.password {
+  margin-left: 25px;
+}
+
+.feedback {
+  font-size: 15px;
+}
 
 
 

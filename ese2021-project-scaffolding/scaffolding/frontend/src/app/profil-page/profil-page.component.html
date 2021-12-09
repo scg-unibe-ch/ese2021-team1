@@ -76,11 +76,13 @@
       </div>
     </div>
     <div *ngIf="showPassword" class="content mat-elevation-z8">
-      <div class="changePassword">Change Password</div>
-
-      <input [(ngModel)]="newPassword" placeholder="New Password">
-      <input [ngModel]="newPassword2" placeholder="Again new Password">
-      <button (click)="changePassword()">Submit Password change</button>
+      <div class="password">
+        <h3 class="changePassword">Change Password</h3>
+        <input class="inputPassword"[(ngModel)]="newPassword" placeholder="New Password">
+        <input class="inputPassword"[(ngModel)]="newPassword2" placeholder="Confirm new Password">
+        <p id="feedback">{{this.passwordFeedback}}</p>
+        <button id="submitPasswordChange"(click)="changePassword()">Submit</button>
+      </div>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

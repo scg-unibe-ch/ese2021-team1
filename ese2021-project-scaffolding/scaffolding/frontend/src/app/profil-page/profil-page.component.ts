@@ -35,6 +35,7 @@ export class ProfilPageComponent implements OnInit {
   editable: boolean = false;
 
   public feedback: string = "";
+  public passwordFeedback: string = "";
 
 
   constructor(
@@ -85,16 +86,21 @@ export class ProfilPageComponent implements OnInit {
   }
 
   changePassword() {
-    if (this.newPassword.localeCompare(this.newPassword2) && this.checkPassword()) {
+    if (this.newPassword == this.newPassword2 && this.checkPassword()) {
       this.httpClient.put(environment.endpointURL + "user/" + this.user.userId, {
         userId: this.user.userId,
         password: this.newPassword
       }).subscribe((res: any) => {
         console.log(res);
+        this.passwordFeedback = "Change was successful."
       });
     }
     else {
-      console.log("gugus");
+      if(this.newPassword != this.newPassword2) {
+        this.passwordFeedback = "The two passwords aren't equal. Try again.";
+      } else {
+        this.passwordFeedback = "The new password doesn't fulfill the requirements. Try again.";
+      }
     }
   }
 
