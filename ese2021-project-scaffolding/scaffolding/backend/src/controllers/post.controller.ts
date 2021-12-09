@@ -19,12 +19,10 @@ postController.post('/', upload.single('file'), (req: Request, res: Response) =>
     postService.createPost(JSON.parse(req.body.post), req.file?.filename)
         // we await the creation of the new post and send it back to the front if everything went ok
         .then(post => {
-            console.log(post);
             res.json(post);
         })
         // else if something went wrong we catch it and send the appropriate feedback to the front
         .catch(err => {
-            console.log(err.message);
             res.json(err);
         });
 });
@@ -45,7 +43,7 @@ postController.put('/:id', (req: Request, res: Response) => {
 
 postController.delete('/:id', (req: Request, res: Response) => {
     postService.deletePost(req.params.id)
-        .then(updated => res.send(updated))
+        .then(deleted => res.send(deleted))
         .catch(err => res.send(err));
 });
 /*

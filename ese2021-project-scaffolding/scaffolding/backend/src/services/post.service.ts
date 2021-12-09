@@ -26,7 +26,7 @@ export class PostService {
             userName: post.userName,
             reported: 0
         }).then(inserted => {
-            Promise.resolve(inserted);
+            return Promise.resolve(inserted);
             // else if an error occured
         })
         .catch(err => {
@@ -72,7 +72,7 @@ export class PostService {
             .then((found => {
                 if (found != null) {
                     found.destroy()
-                        .then(destroyed => Promise.reject(destroyed))
+                        .then(destroyed => Promise.resolve(destroyed))
                         .catch(() => Promise.reject('failed to destroy post'));
                 } else {
                     return Promise.reject('Post not found');
