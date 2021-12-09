@@ -6,19 +6,29 @@
   <div class="filter">
     <mat-form-field appearance="fill" class="category-selection">
       <mat-label>Category</mat-label>
-      <mat-select matNativeControl required [(value)]="toFilterCategories" [multiple]="true">
+      <mat-select matNativeControl required [(value)]="toFilterCategories" [multiple]="true" (valueChange)="filterPosts()">
         <mat-option value="Bitcoin">Bitcoin</mat-option>
         <mat-option value="Ethereum">Ethereum</mat-option>
         <mat-option value="Cardano">Cardano</mat-option>
         <mat-option value="Polkadot">Polkadot</mat-option>
       </mat-select>
     </mat-form-field>
-    <button (click)="filterPosts()">Filter</button>
+    <mat-form-field appearance="fill" class="category-selection">
+      <mat-label>Sort By</mat-label>
+      <mat-select matNativeControl required [(value)]="toSortMethod" (valueChange)="filterPosts()">
+        <mat-option value="likes">Likes</mat-option>
+        <mat-option value="dislikes">Dislikes</mat-option>
+        <mat-option value="newest">Newest</mat-option>
+        <mat-option value="oldest">Oldest</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button (click)="resetFilter()">Reset</button>
   </div>
+  <p class="feedback">{{feedback}}</p>
   <!-- handles the no-posts case -->
   <p class="noPosts" *ngIf="isPostsEmpty()">There are currently no posts 😔</p>
   <!-- renders all posts -->
-  <div *ngFor="let post of posts">
+  <div *ngFor="let post of filteredPosts">
     <app-post *ngIf="showFiltered(post)" [post] = "post" (deletePostEmit)="deletePostParent($event)" (update)="updatePosts($event)"></app-post>
   </div>
 </div>

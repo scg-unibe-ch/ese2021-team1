@@ -54,8 +54,8 @@ postController.search('/', (req: Request, res: Response) => {
 });
 */
 
-postController.report('/:id', (req: Request, res: Response) => {
-    postService.reportPost(req.body.id)
+postController.put('/:id/report', (req: Request, res: Response) => {
+    postService.reportPost(req.body)
         .then(updated => res.send(updated))
         .catch(err => res.send(err));
 });

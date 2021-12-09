@@ -34,10 +34,14 @@ export class WallComponent implements OnInit {
     content: ''
   }
 
+  searchTitle: string = ""
   auth: boolean = false
   user: string | null = null
   toFilterCategories: String[] = []
+  toSortMethod: String = ""
   showFilter: boolean = false;
+  feedback: string = "";
+
 
 
   constructor(
@@ -128,7 +132,65 @@ export class WallComponent implements OnInit {
     } else {
       this.filteredPosts = this.posts
     }
+    if (this.filteredPosts.length == 0) {
+      this.feedback = "Your filter didn't find any posts."
+    } else {
+      this.feedback = "";
+    }
+    console.log(this.filteredPosts)
+    if(this.toSortMethod == "likes") {
+      this.filteredPosts.sort(this.compareLikes)
+    } else if(this.toSortMethod == "dislikes") {
+      this.filteredPosts.sort(this.compareDislikes)
+    } else if(this.toSortMethod == "newest") {
+      this.filteredPosts.sort(this.compareNewest)
+    } else if(this.toSortMethod == "oldest") {
+      this.filteredPosts.sort(this.compareOldest)
+    }
   }
+
+
+  private compareNewest(a: Post, b: Post) {
+    let aCreated = new Date(a.createdAt).getTime();
+    let bCreated = new Date(b.createdAt).getTime();
+    if(aCreated < bCreated) {
+      return 1;
+    } if(aCreated > bCreated) {
+      return -1;
+    }
+    return 0;
+  }
+
+  private compareOldest(a: Post, b: Post) {
+    let aCreated = new Date(a.createdAt).getTime();
+    let bCreated = new Date(b.createdAt).getTime();
+    if(aCreated < bCreated) {
+      return -1;
+    } if(aCreated > bCreated) {
+      return 1;
+    }
+    return 0;
+  }
+
+  private compareLikes(a: Post, b: Post) {
+    if(a.like < b.like) {
+      return 1;
+    } if (a.like > b.like) {
+      return -1;
+    }
+    return 0;
+  }
+
+  private compareDislikes(a: Post, b: Post) {
+    if(a.dislike < b.dislike) {
+      return 1;
+    } if (a.dislike > b.dislike) {
+      return -1;
+    }
+    return 0;
+  }
+
+
 
   showFiltered(post: any): boolean {
     if(this.filteredPosts.indexOf(post) > -1) {
@@ -138,4 +200,7 @@ export class WallComponent implements OnInit {
     }
   }
 
+  resetFilter() {
+    window.location.reload();
+  }
 }

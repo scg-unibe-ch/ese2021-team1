@@ -152,9 +152,11 @@ export class PostService {
         return Post.findByPk(id)
             .then(found => {
                 if (found != null) {
-                    found.update({reported: found.reported++})
+                    found.update({reported: found.reported + 1})
                         .then (updated => Promise.resolve(updated))
-                        .catch((err) => Promise.reject(err));
+                        .catch(() => Promise.reject('could not update report'));
+                } else {
+                    return Promise.reject('post not found');
                 }
             })
             .then(updated => Promise.resolve(updated))

@@ -41,10 +41,10 @@ export class PostComponent implements OnInit {
   editable: boolean = false;
   clickedUpvote: boolean = false;
   clickedDownvote: boolean = false;
-
+  clickedReport: boolean = false;
   clickedComment: boolean = false;
 
-  postId: number= this.post.id;
+  postId: number = this.post.id;
   commentText: string = "";
 
   comments: Comment[] = [];
@@ -61,6 +61,12 @@ export class PostComponent implements OnInit {
   ngOnInit(): void {
     this.post.category = this.post.category.replace(/[, ]+/g, " ").trim(); //very ugly to remove comma from category
     this.get3Comments();
+  }
+  reportPost() {
+    this.httpClient.put(environment.endpointURL + "post/" + this.post.id + "/report", this.postId)
+      .subscribe(res => {
+      console.log(res);
+    })
   }
   /**
   * Updates the Vote counter
@@ -178,7 +184,7 @@ export class PostComponent implements OnInit {
     return this.post.like - this.post.dislike;
   }
 
-  canNotVote() {
+  canNot() {
     return localStorage.getItem("admin") == "true" || !this.userService.getLoggedIn();
   }
   /**
@@ -186,15 +192,21 @@ export class PostComponent implements OnInit {
   * @return Time past since post (in days, hours or months)
   */
   calculateTimePosted() {
-    let postedDate = new Date(this.post.createdAt)
-    let currentDate = new Date()
-    let difference = currentDate.getTime() - postedDate.getTime()
+    let difference = this.calculateDifference()
     if (difference / 86400000 > 1) {
       return String(Math.floor(difference / 86400000)) + "d ago"
     } else if(difference / 3600000 > 1) {
       return String(Math.floor(difference / 3600000)) + "h ago"
-    } else {
+    } else if(difference / 60000 > 1) {
       return String(Math.floor(difference / 60000)) + "m ago"
+    } else {
+      return "< 1m ago"
     }
+  }
+
+  public calculateDifference() {
+    let postedDate = new Date(this.post.createdAt)
+    let currentDate = new Date()
+    return currentDate.getTime() - postedDate.getTime()
   }
 }
