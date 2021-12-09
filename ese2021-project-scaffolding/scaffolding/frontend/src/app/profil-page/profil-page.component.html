@@ -27,31 +27,47 @@
         <img src="assets/profilePicture.jpg">
       </div>
       <div *ngIf="showAbout" class="Informations">
+        <button class="editButton" (click)="editable = !editable">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button class="saveButton"*ngIf="editable" (click)="editable = !editable; updateUser()">
+          <mat-icon>save</mat-icon>
+        </button>
         <h3 id="name">{{this.user.firstName}} {{this.user.lastName}}</h3>
         <table>
           <tr>
             <td><p class="category">username:</p></td>
-            <td><p *ngIf="!editable" id="username">{{this.user.username}}</p></td>
-            <td><input [(ngModel)]="newUsername" *ngIf="editable"></td>
+            <td><p id="username">{{this.user.username}}</p></td>
+          </tr>
+          <tr>
+            <td><p class="category">birthday:</p></td>
+            <td><p id="birthday">{{this.user.birthday}}</p></td>
           </tr>
           <tr>
             <td><p class="category">address:</p></td>
-            <td><p id="address">{{this.user.homeAddress}} {{this.user.streetNumber}}, {{this.user.zipCode}} {{this.user.city}}</p></td>
+            <td><p *ngIf="!editable" id="address">{{this.user.homeAddress}}</p><input class="editField"[(ngModel)]=this.user.homeAddress *ngIf="editable"></td>
+          </tr>
+          <tr>
+            <td><p class="category">street number:</p></td>
+            <td><p *ngIf="!editable" id="streetnumber">{{this.user.streetNumber}}</p><input class="editField"[(ngModel)]=this.user.streetNumber *ngIf="editable"></td>
+          </tr>
+          <tr>
+            <td><p class="category">zip:</p></td>
+            <td><p *ngIf="!editable" id="zipcode">{{this.user.zipCode}}</p><input class="editField"[(ngModel)]=this.user.zipCode *ngIf="editable"></td>
+          </tr>
+          <tr>
+            <td><p class="category">city:</p></td>
+            <td><p *ngIf="!editable" id="city">{{this.user.city}}</p><input class="editField"[(ngModel)]=this.user.city *ngIf="editable"></td>
           </tr>
           <tr>
             <td><p class="category">email: </p></td>
-            <td><p id="email">{{this.user.email}}</p></td>
+            <td><p *ngIf="!editable" id="email">{{this.user.email}}</p><input class="editField"[(ngModel)]=this.user.email *ngIf="editable"></td>
           </tr>
           <tr>
             <td><p class="category">phone number:</p></td>
-            <td><p id="phonenumber">{{this.user.phoneNumber}}</p></td>
+            <td><p *ngIf="!editable" id="phonenumber">{{this.user.phoneNumber}}</p><input class="editField"[(ngModel)]=this.user.phoneNumber *ngIf="editable"></td>
           </tr>
         </table>
-        <button class="editButton" (click)="editable = !editable">
-          <mat-icon>edit</mat-icon>
-          <span>Edit</span>
-        </button>
-        <button *ngIf="editable" (click)="editable = !editable">Save Changes</button>
       </div>
     </div>
     <div *ngIf="showOrders" class="content mat-elevation-z8">
