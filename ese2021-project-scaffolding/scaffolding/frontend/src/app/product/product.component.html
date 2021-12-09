@@ -1,5 +1,16 @@
   <div class="product">
     <div *ngIf="!isAvailable()" class="overlay"><h1 id="notAvailableText">NOT AVAILABLE</h1></div>
+    <button *ngIf="canChange()" class="verticalDots" mat-button [mat-menu-trigger-for]="menu"></button>
+    <mat-menu #menu="matMenu" >
+      <button mat-menu-item (click)="deleteProduct()">
+        <mat-icon>delete</mat-icon>
+        <span>Delete</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>edit</mat-icon>
+        <span>Edit</span>
+      </button>
+    </mat-menu>
     <p class="category"> {{product.category}} </p>
     <img class="image" src="assets/eth_pullover.jpg" alt="{{product.title}}">
     <h1>{{product.title}}</h1>

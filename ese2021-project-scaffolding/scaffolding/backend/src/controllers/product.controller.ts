@@ -13,10 +13,11 @@ productController.post('/', (req: Request, res: Response) => {
         .catch(err => res.json(err));
 });
 
- productController.delete('/', (req: Request, res: Response) => {
+ productController.delete('/:id', (req: Request, res: Response) => {
+     console.log('Correct');
     productService.deleteProduct(req.params.id)
-        .then(deleted => res.json(deleted))
-        .catch(err => res.json(err));
+        .then(deleted => res.send(deleted))
+        .catch(err => res.send(err));
  });
 
  productController.put('/:id', (req: Request, res: Response) => {

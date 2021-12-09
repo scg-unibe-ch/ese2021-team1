@@ -65,3 +65,29 @@
   opacity: 0.9;
 }
 
+.verticalDots:after {
+  content: '\2807';
+  font-size: 30px;
+  background-color: transparent!important;
+  color: black;
+  opacity: 1;
+  width: 2px;
+}
+
+.verticalDots {
+  background-color: transparent!important;
+  border: none;
+  outline: none;
+  margin-top: 5px;
+  width: 0px!important;
+  height: 0px!important;
+  position: absolute;
+  right: 8px;
+}
+
+
+.verticalDots:checked{
+  background-color: transparent!important;
+  opacity: 1;
+}
+
