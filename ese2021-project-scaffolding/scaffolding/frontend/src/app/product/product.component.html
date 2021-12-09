@@ -1,22 +1,35 @@
   <div class="product">
-    <div *ngIf="!isAvailable()" class="overlay"><h1 id="notAvailableText">NOT AVAILABLE</h1></div>
+    <div *ngIf="!this.product.available && !editable" class="overlay"><h1 id="notAvailableText">NOT AVAILABLE</h1></div>
     <button *ngIf="canChange()" class="verticalDots" mat-button [mat-menu-trigger-for]="menu"></button>
     <mat-menu #menu="matMenu" >
       <button mat-menu-item (click)="deleteProduct()">
         <mat-icon>delete</mat-icon>
         <span>Delete</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item (click)="editable = !editable">
         <mat-icon>edit</mat-icon>
         <span>Edit</span>
       </button>
     </mat-menu>
+    <mat-form-field *ngIf="editable" appearance="fill" class="availability-selection">
+      <mat-label>Availability</mat-label>
+      <mat-select matNativeControl required [(value)]="this.product.available">
+        <mat-option value=true>available</mat-option>
+        <mat-option value=false>unavailable</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button *ngIf="editable" (click)="editable = !editable; updateProduct()" class="saveChanges">
+      <mat-icon>save</mat-icon>
+    </button>
     <p class="category"> {{product.category}} </p>
     <img class="image" src="assets/eth_pullover.jpg" alt="{{product.title}}">
-    <h1>{{product.title}}</h1>
-    <p class="price">CHF {{product.price}}</p>
-    <!--<p> {{product.category}} </p>-->
-    <p>{{product.description}}</p>
+    <h1 *ngIf="!editable">{{product.title}}</h1>
+    <input class="editableTitle"*ngIf="editable" [(ngModel)]="this.product.title" type="text">
+    <p *ngIf="!editable" class="price">CHF {{product.price}}</p>
+    <input class="editableText price" *ngIf="editable" [(ngModel)]="this.product.price" type="number">
+    <p *ngIf="!editable"> {{product.description}}</p>
+    <input class="editableText" *ngIf="editable" [(ngModel)]="this.product.description" type="text">
+
     <p><button (click)="addToCart(product);">Add to Cart</button></p>
   </div>
 

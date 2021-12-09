@@ -20,6 +20,7 @@ export class ProductComponent implements OnInit {
 
   auth: boolean = false
   user: string = ""
+  editable: boolean = false;
 
   @Input() product: any = {}
 
@@ -28,6 +29,7 @@ export class ProductComponent implements OnInit {
 
   @Output()
   deleteProductEmit = new EventEmitter<any>();
+
 
 
   constructor(
@@ -71,5 +73,19 @@ export class ProductComponent implements OnInit {
       .subscribe(res => {
         console.log('DELETE REQUEST', res)
       })
+  }
+
+  updateProduct() {
+    this.httpClient.put(environment.endpointURL + "product/" + this.product.id, {
+      title: this.product.title,
+      image: this.product.image,
+      description: this.product.description,
+      category: this.product.category,
+      available: this.product.available,
+      price: this.product.price,
+      discount: this.product.discount
+    }).subscribe(res=> {
+      console.log(res)
+    })
   }
 }

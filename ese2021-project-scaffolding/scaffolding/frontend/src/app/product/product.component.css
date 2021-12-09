@@ -63,6 +63,12 @@
   border-radius: 20px;
   margin: 10px;
   opacity: 0.9;
+  width: auto;
+}
+
+.editCategory {
+  width: auto;
+  max-width: 10%;
 }
 
 .verticalDots:after {
@@ -82,7 +88,8 @@
   width: 0px!important;
   height: 0px!important;
   position: absolute;
-  right: 8px;
+  right: 8%;
+  display: flex;
 }
 
 
@@ -90,4 +97,39 @@
   background-color: transparent!important;
   opacity: 1;
 }
+.editableTitle {
+  font-size: 32px;
+  font-weight: bolder;
+  width: 290px;
+  margin-top: 16px;
+}
 
+.editableText {
+  margin-top: 15px;
+  width: 290px;
+}
+.saveChanges {
+  position: absolute;
+  bottom: 215px;
+  right: 15%;
+  background-color: transparent !important;
+  width: 40px !important;
+  height: auto;
+  display: flex;
+}
+
+.saveChanges mat-icon {
+  color: black;
+  height: 30px;
+}
+
+.availability-selection {
+  position: absolute;
+  font-size: 13px;
+  top: 250px;
+  margin-left: 15px;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 15px;
+  z-index: 0;
+}

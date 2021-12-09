@@ -14,7 +14,6 @@ productController.post('/', (req: Request, res: Response) => {
 });
 
  productController.delete('/:id', (req: Request, res: Response) => {
-     console.log('Correct');
     productService.deleteProduct(req.params.id)
         .then(deleted => res.send(deleted))
         .catch(err => res.send(err));
