@@ -13,6 +13,7 @@ export class PostService {
     // into the right Post format and store it in the database. It also has to give some
     // feedback back to the controller which then will send it to the front
     public async createPost(post: any, imagePath: string) {
+        console.log(post);
         // in the parameter signature we can define and "type" the parameters that we get, for now I just made it as simple as possible
         return Post.create({ // we use the model's inherited methods (like create) to store the new post in the db
             // prior to that we have to "create" a valid post with the data we took from the front
@@ -31,8 +32,20 @@ export class PostService {
         })
         .catch(err => {
             // return the error message
+            console.log(err.message);
             return Promise.reject(err.message);
         });
+    }
+
+    // demonstration of how async functions can be tested
+    public async doThis (param: number) {
+        const posts = await Post.findAll();
+        console.log(posts);
+        // return new Promise((resolve) => {
+        //     setTimeout(() => {
+        //         resolve(param + 1)
+        //     }, 1000);
+        // })
     }
     /**
       * @param id
@@ -90,7 +103,10 @@ export class PostService {
                         return Promise.reject('No posts available.');
                     }
                 })
-                .catch(() => Promise.reject('Could not fetch posts.'));
+                .catch(e => {
+                    console.log(e);
+                    return Promise.reject('Could not fetch posts.');
+                });
         }
 
         private arrayToString (array: String[]): string {

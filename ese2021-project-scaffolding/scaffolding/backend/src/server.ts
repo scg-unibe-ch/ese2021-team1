@@ -1,4 +1,4 @@
-import express, { Application , Request, Response } from 'express';
+import express, { Application, Request, Response } from 'express';
 import morgan from 'morgan';
 import { TodoItemController } from './controllers/todoitem.controller';
 import { TodoListController } from './controllers/todolist.controller';
@@ -12,23 +12,23 @@ import { Post } from './models/post.model';
 
 
 import cors from 'cors';
-import {AdminController} from './controllers/admin.controller';
-import {ItemImage} from './models/itemImage.model';
+import { AdminController } from './controllers/admin.controller';
+import { ItemImage } from './models/itemImage.model';
 import { PostController } from './controllers/post.controller';
-import {Orders} from './models/orders.model';
-import {Product} from './models/product.model';
-import {ProductController} from './controllers/product.controller';
-import {OrderController} from './controllers/order.controller';
-import {Vote} from './models/vote.model';
-import {VoteController} from './controllers/vote.controller';
-import {Comment} from './models/comment.model';
+import { Orders } from './models/orders.model';
+import { Product } from './models/product.model';
+import { ProductController } from './controllers/product.controller';
+import { OrderController } from './controllers/order.controller';
+import { Vote } from './models/vote.model';
+import { VoteController } from './controllers/vote.controller';
+import { Comment } from './models/comment.model';
 
 export class Server {
-/**
-  * @param server
-  * @param sequelize
-  * @param processingStatus
-  */
+    /**
+      * @param server
+      * @param sequelize
+      * @param processingStatus
+      */
 
     private server: Application;
     private sequelize: Sequelize;
@@ -50,13 +50,42 @@ export class Server {
         TodoList.createAssociations();
         ItemImage.createAssociations();
 
-
+        const fs = require('fs');
+        const dir = './build/uploads';
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir);
+        }
+        const pass = 'Admin123!';
+        const name = 'admin';
+        User.create({
+            userId: null,
+            userName: name,
+            password: pass,
+            admin: true,
+            firstName: 'Admin',
+            lastName: 'Admin',
+            email: 'admin@gmail.com',
+            homeAddress: 'Irgendwostrasse',
+            streetNumber: 1,
+            zipCode: 1001,
+            city: 'Bern',
+            birthday: '12.12.1990',
+            phoneNumber: '0765840666'
+        }).then(() => {
+            console.log('Created admin user.');
+        }).catch(() => {
+            console.log('Admin user already in database');
+        }).finally(() => {
+            console.log('username:', name, ' password: ', pass);
+        });
 
 
         this.sequelize.sync().then(() => {                           // create connection to the database
-            this.server.listen(this.port, () => {                                   // start server on specified port
-                console.log(`server listening at http://localhost:${this.port}`);   // indicate that the server has started
-            });
+            if (require.main === module) {
+                this.server.listen(this.port, () => {                                   // start server on specified port
+                    console.log(`server listening at http://localhost:${this.port}`);   // indicate that the server has started
+                });
+            }
         });
     }
 
@@ -97,12 +126,12 @@ export class Server {
             // this is the message you get if you open http://localhost:3000/ when the server is running
             .get('/', (req, res) => res.send('<h1>Welcome to Jan and Alessios domain <span style="font-size:50px">&#128525;</span></h1>'));
     }
- /**
-   * @param server
-   * @param sequelize
-   * @param processingStatus
-   * @return initialisation of database
-     */
+    /**
+      * @param server
+      * @param sequelize
+      * @param processingStatus
+      * @return initialisation of database
+        */
     private configureSequelize(): Sequelize {
         return new Sequelize({
             dialect: 'sqlite',
@@ -113,29 +142,3 @@ export class Server {
 }
 
 const server = new Server(); // starts the server
-const fs = require('fs');
-const dir = './build/uploads';
-if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir);
-}
-User.create({
-    userId: null,
-    userName: 'admin',
-    password: 'Admin123!',
-    admin: true,
-    firstName: 'Admin',
-    lastName: 'Admin',
-    email: 'admin@gmail.com',
-    homeAddress: 'Irgendwostrasse',
-    streetNumber: 1,
-    zipCode: 1001,
-    city: 'Bern',
-    birthday: '12.12.1990',
-    phoneNumber: '0765840666'
-}).then(inserted => {
-    console.log('Created admin user.');
-}).catch(() => {
-    console.log('Admin user already in database');
-}).finally(() => {
-    console.log('username: admin, password: Admin123!');
-});
