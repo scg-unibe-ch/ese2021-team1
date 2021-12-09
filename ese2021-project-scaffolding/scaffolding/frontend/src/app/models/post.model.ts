@@ -1,4 +1,5 @@
 export class Post {
+
 /**
   * @param title
   * @param text
@@ -19,6 +20,9 @@ export class Post {
     public downvotes: number,
     public created_at: string,
     public userId: string,
-    public id: number
+    public id: number,
+    public like: number,
+    public dislike: number,
+    public createdAt: string
   ) {}
 }

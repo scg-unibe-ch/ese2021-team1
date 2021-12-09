@@ -2,9 +2,32 @@
 
   <button *ngIf="canAddProduct()" class="createProductButton" (click)="togglePostForm()" [innerHtml]="createProductButtonText"></button>
   <app-add-product *ngIf="showNewProductForm" (addProductEmit)="addProductParent($event)"></app-add-product>
+  <div class="filter">
+    <mat-form-field appearance="fill" class="category-selection">
+      <mat-label>Category</mat-label>
+      <mat-select matNativeControl required [(value)]="toFilterCategories" [multiple]="true" (valueChange)="filterProducts()">
+        <mat-option value="Bag">Bag</mat-option>
+        <mat-option value="Shirt">Shirt</mat-option>
+        <mat-option value="Hoodie">Hoodie</mat-option>
+        <mat-option value="Extra">Extra</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="category-selection">
+      <mat-label>Price range</mat-label>
+      <mat-select matNativeControl required [(value)]="priceRange" (valueChange)="filterProducts()">
+        <mat-option value="0-30">0-30</mat-option>
+        <mat-option value="31-100">31-100</mat-option>
+        <mat-option value="101-300">101-300</mat-option>
+        <mat-option value="301-1000">301-1000</mat-option>
+        <mat-option value="1000+">1000+</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button (click)="resetFilter()">Reset</button>
+  </div>
+  <p class="feedback">{{feedback}}</p>
     <div class="products">
       <mat-grid-list cols="3" rowHeight="550px" >
-        <ng-container *ngFor="let product of products">
+        <ng-container *ngFor="let product of filteredProducts">
           <mat-grid-tile>
             <app-product [product]="product" (deleteProductEmit)="deleteProductParent($event)"></app-product>
           </mat-grid-tile>

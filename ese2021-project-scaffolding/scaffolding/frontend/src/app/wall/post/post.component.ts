@@ -159,15 +159,21 @@ export class PostComponent implements OnInit {
   * @return Time past since post (in days, hours or months)
   */
   calculateTimePosted() {
-    let postedDate = new Date(this.post.createdAt)
-    let currentDate = new Date()
-    let difference = currentDate.getTime() - postedDate.getTime()
+    let difference = this.calculateDifference()
     if (difference / 86400000 > 1) {
       return String(Math.floor(difference / 86400000)) + "d ago"
     } else if(difference / 3600000 > 1) {
       return String(Math.floor(difference / 3600000)) + "h ago"
-    } else {
+    } else if(difference / 60000 > 1) {
       return String(Math.floor(difference / 60000)) + "m ago"
+    } else {
+      return "< 1m ago"
     }
+  }
+
+  public calculateDifference() {
+    let postedDate = new Date(this.post.createdAt)
+    let currentDate = new Date()
+    return currentDate.getTime() - postedDate.getTime()
   }
 }
