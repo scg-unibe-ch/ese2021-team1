@@ -26,7 +26,7 @@
     <div *ngIf="showAbout" class="content mat-elevation-z8">
       <div class="profilePicture">
         <img *ngIf="!user.image" class="image" src="assets/profilePicture.jpg" />
-        <img *ngIf="user.image" class="image" src="http://localhost:3000/uploads/{{user.image}}" />
+        <img *ngIf="this.user.image" class="image" src="http://localhost:3000/uploads/{{user.image}}" />
       </div>
       <div *ngIf="showAbout" class="Informations">
         <button class="editButton" (click)="editable = !editable">
