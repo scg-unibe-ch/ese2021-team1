@@ -1,19 +1,23 @@
-import {Product} from '../models/product.model';
-import {Post} from '../models/post.model';
+import { Product } from '../models/product.model';
+import { Post } from '../models/post.model';
 
 export class ProductService {
-    public async createProduct(product: {title: string, image: string, description: string, category: string,
-        available: boolean, price: number, discount: number}) {
+    public async createProduct(product: {
+        title: string, image: string, description: string, category: string,
+        available: boolean, price: number, discount: number
+    }, path: string) {
+        console.log(product);
+        console.log(path);
         let standardDiscount: number;
         if (product.discount === null) {
             standardDiscount = 1;
         } else {
             standardDiscount = product.discount;
         }
-        return Product.create( {
+        return Product.create({
             id: null,
             title: product.title,
-            image: product.image,
+            image: path,
             description: product.description,
             category: product.category,
             available: product.available,
@@ -21,7 +25,8 @@ export class ProductService {
             discount: standardDiscount,
             deleted: false
         })
-            .then(inserted => {return Promise.resolve(inserted);
+            .then(inserted => {
+                return Promise.resolve(inserted);
             })
             .catch(err => Promise.reject(err));
     }
@@ -38,11 +43,11 @@ export class ProductService {
                 }
             }));
     }
-/**
-* @param id
-* @param product
-* @return if the Product was found or not
-*/
+    /**
+    * @param id
+    * @param product
+    * @return if the Product was found or not
+    */
 
     public async updateProduct(id, product) {
         return Product.findByPk(id)
@@ -57,8 +62,10 @@ export class ProductService {
             });
     }
 
-    private async updateBody(product: Product, newProduct: {title: string, image: string, description: string, category: string,
-        available: boolean, price: number, discount: number}) {
+    private async updateBody(product: Product, newProduct: {
+        title: string, image: string, description: string, category: string,
+        available: boolean, price: number, discount: number
+    }) {
         let standardDiscount: number;
         if (newProduct.discount === null) {
             standardDiscount = 1;
@@ -72,14 +79,15 @@ export class ProductService {
             category: newProduct.category,
             available: newProduct.available,
             price: newProduct.price,
-            discount: standardDiscount})
+            discount: standardDiscount
+        })
             .then(updated => Promise.reject(updated))
             .catch(() => Promise.reject('Product update failed'));
     }
 
 
-// TODO: make this new/better
-    public searchForCategorysProduct (categorys: string) {
+    // TODO: make this new/better
+    public searchForCategorysProduct(categorys: string) {
         let counter = 0;
         let searchedForProducts = null;
         return Product.findAll().then(found => {
@@ -87,7 +95,7 @@ export class ProductService {
             for (let arrayLength = 0; arrayLength < found.length; arrayLength++) {
                 for (let categoryLength = 0; categoryLength < categorys.length; categoryLength++) {
                     const search = new RegExp('$' + categorys[categoryLength] + '$');
-                    if ( search.test(found[arrayLength].category)) {
+                    if (search.test(found[arrayLength].category)) {
                         searchedForProducts[counter] = found[arrayLength];
                         counter++;
                     }
@@ -100,8 +108,8 @@ export class ProductService {
             });
     }
 
-    public getAllProducts () {
-        return Product.findAll({where: {deleted: false}})
+    public getAllProducts() {
+        return Product.findAll({ where: { deleted: false } })
             .then(product => {
                 if (product != null) {
                     return Promise.resolve(product);
@@ -109,6 +117,6 @@ export class ProductService {
                     return Promise.reject(product);
                 }
             })
-            .catch( () => Promise.reject('Cannot find products'));
+            .catch(() => Promise.reject('Cannot find products'));
     }
 }
