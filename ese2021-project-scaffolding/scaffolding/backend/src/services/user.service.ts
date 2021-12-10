@@ -75,6 +75,10 @@ export class UserService {
         return User.findAll();
     }
 
+    public getUser(id: string) {
+        return User.findByPk(id);
+    }
+
     /**
       * @param passwort string
       * @return boolean if the password is valid

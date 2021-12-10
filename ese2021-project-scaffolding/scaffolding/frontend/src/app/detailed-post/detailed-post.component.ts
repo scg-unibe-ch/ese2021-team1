@@ -50,6 +50,7 @@ export class DetailedPostComponent implements OnInit {
       text: this.commentText,
       userID: this.userService.getUser()?.userId
     }).subscribe(res =>{
+      console.log(res)
       // @ts-ignore
       this.comments.unshift(res);
     })

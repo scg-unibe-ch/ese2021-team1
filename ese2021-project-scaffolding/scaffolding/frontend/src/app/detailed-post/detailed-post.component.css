@@ -1,25 +1,40 @@
 .post {
   margin-top: 30px;
 }
-.commentSection {
-  background-color: white;
+.Wrapper {
+  max-width: 2000px;
+  width: 80%;
+  margin: auto;
+}
+.comments, .create {
   border-radius: 20px;
   border: none;
   margin: auto;
-  width: 65%;
-  padding: 10px;
-  min-height: 100px;
 }
+
+.create {
+  width: 60%;
+}
+
+.comments {
+  width: 60%;
+  max-height: 400px;
+  min-height: 100px;
+  background-color: white;
+  padding: 10px;
+  overflow: auto;
+}
+
 
 .createComment {
   width: 70%;
   font-size: 18px;
-  padding: 5px;
+  padding: 10px;
+  border-radius: 15px;
+  border: none;
 }
 
 .comments {
-  max-height: 300px;
-  overflow: auto;
   margin-top: 20px;
 }
 
@@ -31,4 +46,5 @@
   font-weight: bold;
   color: black;
   margin-left: 15px;
+  float: right;
 }

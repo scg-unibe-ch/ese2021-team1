@@ -28,6 +28,12 @@ userController.get('/', // you can add middleware on specific requests like that
     }
 );
 
+userController.get('/:id',
+    (req: Request, res: Response) => {
+        userService.getUser(req.params.id).then(user => res.send(user)).catch(err => res.status(500).send(err));
+    }
+);
+
 // change the password
 userController.put('/:id', (req: Request, res: Response) => {
     userService.changePassword(req.body)

@@ -6,7 +6,7 @@ const commentController: Router = express.Router();
 const commentService = new CommentService();
 
 commentController.post('/:id', (req: Request, res: Response) => {
-    commentService.commentCreate(req.body.postID, req.body.text)
+    commentService.commentCreate(req.body.postID, req.body.text, req.body.userID)
         .then(updated => res.send(updated))
         .catch(err => res.send(err));
 });

@@ -2,4 +2,41 @@
   padding: 5px;
   margin: 10px 0px;
   background-color: whitesmoke;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 15px;
+  margin-right: 20px;
 }
+.text {
+  margin-left: 5px;
+}
+
+.author {
+  background-color: lightgrey;
+  padding-left: 2px;
+  padding-right: 2px;
+  font-size: 15px;
+  border-radius: 30px;
+  font-weight: bold;
+  overflow: auto;
+  justify-content: center;
+}
+
+#name {
+  padding: 2px;
+  float: left;
+  margin-left: 3px;
+}
+
+.image img {
+  height: 30px;
+  width: 30px;
+  padding: 2px;
+  margin-top: 8px;
+  margin-left: 5px;
+  border-radius: 50%;
+}
+
+.image {
+  float: left;
+}
+

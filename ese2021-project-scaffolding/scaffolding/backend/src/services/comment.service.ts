@@ -1,12 +1,13 @@
 import {Comment} from '../models/comment.model';
 
 export class CommentService {
-    public commentCreate(postId: number, text: string) {
+    public commentCreate(postId: number, text: string, userID: number) {
         return Comment.create({
                 commentID: null,
                 postID: postId,
                 text: text,
-                reported: 0
+                reported: 0,
+                userID: userID
             }
         )
             .then(created => {
