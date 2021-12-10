@@ -1,6 +1,6 @@
 <!-- the following is rendered for all users except the creator -->
 <div class="postWrapper" *ngIf="user !== post.userName">
-    <div class="report">
+    <!-- <div class="report">
     <button [disabled]="canNot()" *ngIf="!clickedReport" class="ReportButton" (click)="reportPost()">
       <mat-icon>report_icon</mat-icon>
     </button>
@@ -8,7 +8,7 @@
       <mat-icon>report_icon</mat-icon>
     </button>
     <p class="likesCount">{{post.like}}</p>
-  </div>
+  </div> -->
 
   <div class="category">{{post.category}}</div>
     <div class="metadata">
@@ -53,40 +53,11 @@
         </button>
         <p class="dislikesCount">{{post.dislike}}</p>
       </div>
-      <div class="commentSection">
-        <p class="noPosts" *ngIf="isCommentsEmpty()">Be the first to comment</p>
-        <!-- renders all comments -->
-
-        <div *ngFor="let comment of comments">
-          <!--HELP
-          <app-comment *ngIf="!isCommentsEmpty()" [comment] = 'comments'></app-comment>
-          -->
-        </div>
-
-        <div class="newComment">
-          <input [(ngModel)]="commentText" class="inputField" type="text" name="Comment" placeholder="Enter Comment" />
-
-          <button [disabled]="canNot()" *ngIf="clickedComment" (click)="commentPost()">Comments</button>
-          <button [disabled]="canNot()" *ngIf="!clickedComment" (click)="commentPost()">Comments</button>
-
-          <!--
-            <img src="../../../assets/marmot01.png" class="usericon">
-            <div class="username">paulK:</div>
-            <div class="commentContent">Lorem ipsum dolor</div>
-        </div>
-        <div class="comment">
-            <img src="../../../assets/marmot01.png" class="usericon">
-            <div class="username">paulK:</div>
-            <div class="commentContent">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur rutrum ligula leo, a elementum risus suscipit ut.
-            Maecenas dictum massa et dapibus eleifend.</div>
-        </div>
-        <div class="comment">
-            <img src="../../../assets/marmot01.png" class="usericon">
-            <div class="username">paulK:</div>
-            <div class="commentContent">Nam fermentum, ligula nec pulvinar pretium, lorem</div>
-        </div>
-        -->
-        </div>
-    </div>
+      <div class="comment">
+        <button class="commentButton" routerLink="post/{{post.id}}">
+          <mat-icon>comment</mat-icon>
+        </button>
+        <p class="commentsCount">{{numberComments}}</p>
+      </div>
     </div>
 </div>

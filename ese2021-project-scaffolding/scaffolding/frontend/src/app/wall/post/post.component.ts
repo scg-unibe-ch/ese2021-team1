@@ -43,6 +43,7 @@ export class PostComponent implements OnInit {
   clickedDownvote: boolean = false;
   clickedReport: boolean = false;
   clickedComment: boolean = false;
+  numberComments: number = 0;
 
   postId: number = this.post.id;
   commentText: string = "";
@@ -59,8 +60,8 @@ export class PostComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.post.category = this.post.category.replace(/[, ]+/g, " ").trim(); //very ugly to remove comma from category
-    this.get3Comments();
+    this.countComments()
+    //this.post.category = this.post.category.replace(/[, ]+/g, " ").trim(); //very ugly to remove comma from category
   }
   reportPost() {
     this.httpClient.put(environment.endpointURL + "post/" + this.post.id + "/report", this.postId)
@@ -110,28 +111,9 @@ export class PostComponent implements OnInit {
     return this.comments.length == 0;
   }
 
-  commentPost() {
-    this.httpClient.post(environment.endpointURL + "comment/" + this.post.id, {
-      postID: this.post.id,
-      text: this.commentText
-    }).subscribe(res =>{
-      console.log(res);
-    })
-  }
 
 
-  get3Comments(): void {
-    this.httpClient.get(environment.endpointURL + "comment/" + this.post.id)
-      .subscribe(res => {
-        console.log(res);
-        if (typeof res === "object") {
-          Object.values(res).forEach(comment => {
-            this.comments.push(comment)
-          })
-        }
-        this.comments.reverse();
-      })
-  }
+
 
 
     /**
@@ -209,4 +191,16 @@ export class PostComponent implements OnInit {
     let currentDate = new Date()
     return currentDate.getTime() - postedDate.getTime()
   }
+
+  countComments() {
+    this.httpClient.get(environment.endpointURL + "comment/" + this.post.id)
+      .subscribe(res=> {
+        if(res != null) {
+          Object.values(res).forEach(comment => {
+            this.numberComments += 1
+          })
+        }
+      });
+  }
+
 }

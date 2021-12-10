@@ -108,6 +108,20 @@ export class PostService {
                     return Promise.reject('Could not fetch posts.');
                 });
         }
+        public async getPost(id: string) {
+            return Post.findByPk(id)
+                .then(post => {
+                    if (post) {
+                        return Promise.resolve(post);
+                    } else {
+                        return Promise.reject('No post available.');
+                    }
+                })
+                    .catch(e => {
+                        console.log(e);
+                        return Promise.reject('Could not fetch post.');
+                    });
+        }
 
         private arrayToString (array: String[]): string {
             let stringArray = '';
@@ -191,4 +205,5 @@ export class PostService {
             })
             .catch(() => Promise.reject('Cant search for category'));
     }*/
+
 }

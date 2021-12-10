@@ -1,0 +1,12 @@
+<div class="post">
+  <app-post [post] = post></app-post>
+</div>
+<div class="commentSection">
+  <input *ngIf="this.userService.getLoggedIn()" [(ngModel)]="commentText" class="createComment" placeholder="Write your comment here!">
+  <button *ngIf="this.userService.getLoggedIn()" id="commentButton" (click)="commentPost()">COMMENT</button>
+  <div class="comments">
+    <div *ngFor="let comment of comments">
+      <app-comment [comment]="comment"></app-comment>
+    </div>
+  </div>
+</div>

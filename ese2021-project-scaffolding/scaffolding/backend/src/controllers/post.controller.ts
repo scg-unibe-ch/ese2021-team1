@@ -34,6 +34,12 @@ postController.get('/', (req: Request, res: Response) => {
         .catch(err => res.json(err));
 });
 
+postController.get('/:id', (req: Request, res: Response) => {
+    postService.getPost(req.params.id)
+        .then(post => res.send(post))
+        .catch(err => res.send(err));
+});
+
 
 postController.put('/:id', (req: Request, res: Response) => {
     postService.updatePost(req.params.id, req.body)

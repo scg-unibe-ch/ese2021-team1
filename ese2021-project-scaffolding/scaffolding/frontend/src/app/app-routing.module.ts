@@ -6,6 +6,8 @@ import { StoreComponent} from "./store/store.component";
 import {WallComponent} from "./wall/wall.component";
 import {ProfilPageComponent} from "./profil-page/profil-page.component";
 import {CheckoutComponent} from "./checkout/checkout.component";
+import {PostComponent} from "./wall/post/post.component";
+import {DetailedPostComponent} from "./detailed-post/detailed-post.component";
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -13,6 +15,7 @@ const routes: Routes = [
   { path: 'store', component: StoreComponent},
   { path: 'user/:username', component: ProfilPageComponent},
   { path: 'checkout', component: CheckoutComponent},
+  { path: 'post/:id', component: DetailedPostComponent},
   { path: '', component: WallComponent}
 ]
 

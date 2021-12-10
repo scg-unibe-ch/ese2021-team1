@@ -147,7 +147,7 @@
   margin-left: 10px;
 }
 
-.upvoteButton, .downvoteButton {
+.upvoteButton, .downvoteButton, .commentButton {
   height: 30px;
   border: none;
   background: none;
@@ -164,20 +164,20 @@
 mat-icon {
   outline: 0;
 }
-.likesCount, .dislikesCount {
+.likesCount, .dislikesCount, .commentsCount {
   float: left;
   font-size: 18px;
   position: relative;
   bottom: 10px;
 }
 
-.upvote, .downvote {
+.upvote, .downvote, .comment {
   float: left;
   margin-left: 5px;
   margin-right: 5px;
 }
 
-.downvote {
+.downvote, .comment {
   margin-left: 15px;
 }
 

@@ -38,6 +38,8 @@ import { CartComponent } from './cart/cart.component';
 import { ProfilPageComponent } from './profil-page/profil-page.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import { CheckoutComponent } from './checkout/checkout.component';
+import { DetailedPostComponent } from './detailed-post/detailed-post.component';
+import { CommentComponent } from './comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
     CartComponent,
     ProfilPageComponent,
     CheckoutComponent,
+    DetailedPostComponent,
+    CommentComponent,
   ],
     imports: [
         BrowserModule,
