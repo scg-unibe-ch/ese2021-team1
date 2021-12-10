@@ -25,8 +25,8 @@
   <mat-sidenav-content>
     <div *ngIf="showAbout" class="content mat-elevation-z8">
       <div class="profilePicture">
-        <img *ngIf="!user.image" class="image" src="assets/profilePicture.jpg" />
-        <img *ngIf="this.user.image" class="image" src="http://localhost:3000/uploads/{{user.image}}" />
+        <img *ngIf="this.user.image == 'null'" class="image" src="assets/default_profilePicture.png" />
+        <img *ngIf="this.user.image != 'null'" class="image" src="http://localhost:3000/uploads/{{user.image}}" />
       </div>
       <div *ngIf="showAbout" class="Informations">
         <button class="editButton" (click)="editable = !editable">
@@ -111,10 +111,9 @@
             <td>
               <p class="category">image name:</p>
             </td>
-            <input *ngIf="editable" id="files" #profilImageInput (change)="profileImageHandler($event)" class="editField" type="file"
-              name="profile_image" accept="image/*" />
             <td>
-              <p *ngIf="!editable" id="image">{{this.user.image}}</p>
+            <p *ngIf="!editable" id="image">{{this.user.image}}</p><input *ngIf="editable" id="files" #profilImageInput (change)="profileImageHandler($event)" class="editField" type="file"
+              name="profile_image" accept="image/*" />
             </td>
           </tr>
         </table>

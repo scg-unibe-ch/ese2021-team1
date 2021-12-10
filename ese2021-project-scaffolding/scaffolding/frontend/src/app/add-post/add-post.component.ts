@@ -5,6 +5,7 @@ import {UserService} from "../services/user.service";
 import {User} from "../models/user.model";
 import {Post} from "../models/post.model";
 import {WallComponent} from "../wall/wall.component";
+import {formatNumber} from "@angular/common";
 
 @Component({
   selector: 'app-add-post',
@@ -26,7 +27,7 @@ export class AddPostComponent implements OnInit {
     content: "",
     image: null,
     labels: "",
-    userName: ""
+    userName: "",
   }
   user: User | null = null;
   auth: boolean = false;
@@ -79,7 +80,7 @@ export class AddPostComponent implements OnInit {
       content: "",
       image: null,
       labels: "",
-      userName: ""
+      userName: "",
       }
     }
   }

@@ -48,13 +48,19 @@ mat-sidenav {
   margin: 20px;
 }
 
+.profilePicture img {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+}
+
 tr {
   line-height: 0px;
   position: relative;
   bottom: 30px;
 }
 
-#username, #address, #email, #phonenumber, #zipcode, #city, #streetnumber, #birthday {
+#username, #address, #email, #phonenumber, #zipcode, #city, #streetnumber, #birthday, #image {
   margin-left: 20px;
 }
 
@@ -70,12 +76,6 @@ tr {
 
 p {
   font-size: 20px;
-}
-
-.profilePicture img {
-  width: 400px;
-  height: auto;
-  border-radius: 10px;
 }
 
 .editField {

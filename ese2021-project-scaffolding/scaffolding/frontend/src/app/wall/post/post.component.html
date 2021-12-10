@@ -9,11 +9,11 @@
     </button>
     <p class="likesCount">{{post.like}}</p>
   </div> -->
-
   <div class="category">{{post.category}}</div>
     <div class="metadata">
-        <img src="../../../assets/marmot01.png" class="usericon">
-        <div class="username">{{post.userName}}:</div>
+        <img *ngIf="this.userService.getUser()?.image != 'null'" src="http://localhost:3000/uploads/{{this.userService.getUser()?.image}}" class="usericon">
+        <img *ngIf="this.userService.getUser()?.image == 'null'" src="assets/default_profilePicture.png" class="usericon">
+        <div class="username">{{this.post.userName}}:</div>
         <div class="postdate">{{calculateTimePosted()}}</div>
     </div>
     <img class="postImage" *ngIf="post.image" src='http://localhost:3000/uploads/{{post.image}}'>

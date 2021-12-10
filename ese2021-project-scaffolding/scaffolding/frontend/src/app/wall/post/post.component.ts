@@ -33,7 +33,7 @@ export class PostComponent implements OnInit {
   deletePostEmit = new EventEmitter<Post>();
 
   auth: boolean = false
-  user: string = ""
+  user: any = {}
   newTitle: string = ""
   newText: string = ""
   // image: Blob = Blob
@@ -56,7 +56,6 @@ export class PostComponent implements OnInit {
   ) {
     // Listen for changes
     userService.loggedIn$.subscribe(res => this.auth = res);
-    userService.user$.subscribe(res => this.user = res.username);
   }
 
   ngOnInit(): void {
@@ -202,5 +201,4 @@ export class PostComponent implements OnInit {
         }
       });
   }
-
 }

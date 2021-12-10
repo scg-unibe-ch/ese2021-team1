@@ -47,7 +47,8 @@ export class DetailedPostComponent implements OnInit {
   commentPost() {
     this.httpClient.post(environment.endpointURL + "comment/" + this.id, {
       postID: this.id,
-      text: this.commentText
+      text: this.commentText,
+      userID: this.userService.getUser()?.userId
     }).subscribe(res =>{
       // @ts-ignore
       this.comments.unshift(res);

@@ -22,7 +22,7 @@ userController.post('/login',
     }
 );
 
-userController.get('/', verifyToken, // you can add middleware on specific requests like that
+userController.get('/', // you can add middleware on specific requests like that
     (req: Request, res: Response) => {
         userService.getAll().then(users => res.send(users)).catch(err => res.status(500).send(err));
     }
