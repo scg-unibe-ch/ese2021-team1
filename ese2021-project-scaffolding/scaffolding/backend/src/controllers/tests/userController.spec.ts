@@ -7,6 +7,13 @@ import { before, describe } from 'mocha';
 chai.use(chaiHttp);
 const expect = chai.expect;
 
+// NEEDED TO AVOID RACING CONDITIONS BETWEEN SEQUELIZE AND MOCHA/CHAI
+before(done => {
+    server.on('serverStarted', () => {
+        done();
+    });
+});
+
 // COMPLETE TEST FOR USER_CONTROLLER/LOGIN
 describe('User Controller', () => {
     const port = '/user/login';
