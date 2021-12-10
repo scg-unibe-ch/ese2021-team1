@@ -13,7 +13,7 @@ export class UserRegister extends User {
     public birthday: String | any,
     public phoneNumber: number | any
   ) {
-        super(0, '', '','','','','',0,0,'','','',false);
+        super(0, '', '','','','','',0,0,'','','',false, null);
         this.userId = this.userId
         this.username = this.username
         this.password = this.password

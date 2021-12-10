@@ -36,7 +36,7 @@ export class LoginComponent {
 
   // ADDED NEW ARGS FOR THE UPDATED USER MODEL
   userToRegister: UserRegister = new UserRegister('', '', '', '', 0, 0, '', '', 0);
-  userToLogin: User = new User(0, '', '', '', '', '', '', 0, 0, '', '', '', false);
+  userToLogin: User = new User(0, '', '', '', '', '', '', 0, 0, '', '', '', false, null);
 
   endpointMsgUser: string = '';
   endpointMsgAdmin: string = '';
@@ -129,7 +129,7 @@ export class LoginComponent {
         res.user.city,
         res.user.birthday,
         res.user.phoneNumber,
-        res.user.admin));
+        res.user.admin, res.user.image));
     });
   }
 

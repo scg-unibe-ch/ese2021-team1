@@ -81,7 +81,8 @@ sequelize.sync({ force: true }).then(async () => {
             zipCode: 1001,
             city: 'Bern',
             birthday: '12.12.1990',
-            phoneNumber: '0765840666'
+            phoneNumber: '0765840666',
+            image: null
         });
         server.emit('serverStarted');
         console.log(`server listening at http://localhost:${port}`);   // indicate that the server has started

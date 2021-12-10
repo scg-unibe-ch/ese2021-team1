@@ -2,6 +2,7 @@
 import express, { Router, Request, Response } from 'express';
 import { UserService } from '../services/user.service';
 import { verifyToken } from '../middlewares/checkAuth';
+import { upload } from '../middlewares/fileFilter';
 /**
 * @param userController
 * @param userService
@@ -43,8 +44,8 @@ userController.patch('/', (req: Request, res: Response) => {
 });
 
 // edit personal details
-userController.patch('/:id', (req: Request, res: Response) => {
-    userService.editDetails(req.body)
+userController.patch('/:id', upload.single('file'), (req: Request, res: Response) => {
+    userService.editDetails(JSON.parse(req.body.profile), req.file?.filename)
         .then(changed => res.json(changed))
         .catch(err => res.json(err));
 });

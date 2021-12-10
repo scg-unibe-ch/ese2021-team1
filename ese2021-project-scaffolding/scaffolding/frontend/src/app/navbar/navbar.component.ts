@@ -65,7 +65,7 @@ export class NavbarComponent implements OnInit {
     // remove data from localStorage
     localStorage.clear()
     this.loggedInState = false
-    this.user = new User(0, '', '','','','','',0,0,'','','',false)
+    this.user = new User(0, '', '','','','','',0,0,'','','',false, null)
   }
 
   showCart() {

@@ -27,16 +27,16 @@ export class ProfilPageComponent implements OnInit {
   newPassword2: string = "";
   passwordReqs: boolean[] = [false, false, false, false];
 
-
   showAbout: boolean = true;
   showPassword: boolean = false;
   showOrders: boolean = false;
   showHelp: boolean = false;
   editable: boolean = false;
 
+  selectedFile: any
+
   public feedback: string = "";
   public passwordFeedback: string = "";
-
 
   constructor(
     private userService : UserService,
@@ -105,7 +105,8 @@ export class ProfilPageComponent implements OnInit {
   }
 
   updateUser() {
-    this.httpClient.patch(environment.endpointURL + "user/" + this.user.userId, {
+    const payload = new FormData()
+    payload.append("profile", JSON.stringify({
       userId: this.user.userId,
       userName: this.user.userName,
       firstName: this.user.firstName,
@@ -117,7 +118,9 @@ export class ProfilPageComponent implements OnInit {
       city: this.user.city,
       birthday: this.user.birthday,
       phoneNumber: this.user.phoneNumber
-    }).subscribe((res: any) => {
+    }))
+    payload.append("file", this.selectedFile)
+    this.httpClient.patch(environment.endpointURL + "user/" + this.user.userId, payload).subscribe((res: any) => {
       if(res != null) {
         console.log(res)
         this.userService.setUser(res)
@@ -137,8 +140,9 @@ export class ProfilPageComponent implements OnInit {
         localStorage.setItem('birthday', this.user.birthday);
         localStorage.setItem('phoneNumber', this.user.phoneNumber);
         localStorage.setItem('admin', this.user.admin);
-
+        localStorage.setItem("image", this.user.image)
         this.feedback = "Changes were successful!"
+        this.selectedFile = null
       } else {
         this.feedback = "Something went wrong. Try again!"
       }
@@ -158,6 +162,13 @@ export class ProfilPageComponent implements OnInit {
     }
     else{
       return false;
+    }
+  }
+
+  profileImageHandler(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0]
+      this.selectedFile = file
     }
   }
 

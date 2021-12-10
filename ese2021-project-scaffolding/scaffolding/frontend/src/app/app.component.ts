@@ -108,6 +108,7 @@ export class AppComponent implements OnInit {
     const birthday = localStorage.getItem('birthday')
     const phoneNumber = localStorage.getItem('phoneNumber')
     const admin = <boolean><unknown>localStorage.getItem('admin')
+    const image = localStorage.getItem("image")
 
 
     // Set boolean whether a user is logged in or not
@@ -126,7 +127,8 @@ export class AppComponent implements OnInit {
       city: city,
       birthday: birthday,
       phoneNumber: phoneNumber,
-      admin: admin
+      admin: admin,
+      image: image
     })
   }
 }

@@ -28,7 +28,8 @@ export class User {
     public city: string,
     public birthday: string,
     public phoneNumber: string,
-    public admin: boolean
+    public admin: boolean,
+    public image: string | null
   ) {}
 }
 

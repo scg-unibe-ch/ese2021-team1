@@ -27,7 +27,8 @@ export class UserService {
             zipCode: user.zipCode,
             city: user.city,
             birthday: user.birthday,
-            phoneNumber: user.phoneNumber
+            phoneNumber: user.phoneNumber,
+            image: null
         })
             .then(inserted => {
                 console.log('SUCCESS');
@@ -146,8 +147,8 @@ export class UserService {
         }
     }
 
-    public editDetails(body) {
-        console.log(body.userId);
+    public async editDetails(body: any, path: string) {
+        body.image = path;
         return User.findByPk(body.userId)
             .then(found => {
                 if (found != null) {
@@ -159,7 +160,7 @@ export class UserService {
                             return Promise.reject(err.message);
                         });
                 } else {
-                    return Promise.reject('Post not found');
+                    return Promise.reject('Profile not found');
                 }
             });
     }
@@ -167,7 +168,7 @@ export class UserService {
 
     private async updateDetails(user: User, newUser: {
         userName, firstName, lastName, email, homeAddress, streetNumber,
-        zipCode, city, birthday, phoneNumber
+        zipCode, city, birthday, phoneNumber, image
     }) {
         return user.update(
             {
@@ -180,7 +181,8 @@ export class UserService {
                 zipCode: newUser.zipCode,
                 city: newUser.city,
                 birthday: newUser.birthday,
-                phoneNumber: newUser.phoneNumber
+                phoneNumber: newUser.phoneNumber,
+                image: newUser.image
             }
         )
             .then(updated => {

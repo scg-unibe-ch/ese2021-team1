@@ -27,6 +27,7 @@ export interface UserAttributes {
      userName: string;
      password: string;
      admin: boolean;
+     image: string;
 }
 
 export interface UserCreationAttributes extends Optional<UserAttributes, 'userId'> { }
@@ -45,6 +46,7 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
         userName!: string;
         password!: string;
         admin!: boolean;
+        image!: string; // path to image in /uploads
 
     public static initialize(sequelize: Sequelize) {
         User.init({
@@ -101,6 +103,10 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
             phoneNumber: {
                 type: DataTypes.STRING,
                 allowNull: false
+            },
+            image: {
+                type: DataTypes.STRING,
+                allowNull: true
             }
         },
             {

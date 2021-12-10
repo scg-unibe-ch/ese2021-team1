@@ -21,51 +21,101 @@
     </button>
 
   </mat-sidenav>
+  {{user.image}}
   <mat-sidenav-content>
     <div *ngIf="showAbout" class="content mat-elevation-z8">
       <div class="profilePicture">
-        <img src="assets/profilePicture.jpg">
+        <img *ngIf="!user.image" class="image" src="assets/profilePicture.jpg" />
+        <img *ngIf="user.image" class="image" src="http://localhost:3000/uploads/{{user.image}}" />
       </div>
       <div *ngIf="showAbout" class="Informations">
         <button class="editButton" (click)="editable = !editable">
           <mat-icon>edit</mat-icon>
         </button>
-        <button class="saveButton"*ngIf="editable" (click)="editable = !editable; updateUser()">
+        <button class="saveButton" *ngIf="editable" (click)="editable = !editable; updateUser()">
           <mat-icon>save</mat-icon>
         </button>
         <h3 id="name">{{this.user.firstName}} {{this.user.lastName}}</h3>
         <table>
           <tr>
-            <td><p class="category">username:</p></td>
-            <td><p id="username">{{this.user.username}}</p></td>
+            <td>
+              <p class="category">username:</p>
+            </td>
+            <td>
+              <p id="username">{{this.user.username}}</p>
+            </td>
           </tr>
           <tr>
-            <td><p class="category">birthday:</p></td>
-            <td><p id="birthday">{{this.user.birthday}}</p></td>
+            <td>
+              <p class="category">birthday:</p>
+            </td>
+            <td>
+              <p id="birthday">{{this.user.birthday}}</p>
+            </td>
           </tr>
           <tr>
-            <td><p class="category">address:</p></td>
-            <td><p *ngIf="!editable" id="address">{{this.user.homeAddress}}</p><input class="editField"[(ngModel)]=this.user.homeAddress *ngIf="editable"></td>
+            <td>
+              <p class="category">address:</p>
+            </td>
+            <td>
+              <p *ngIf="!editable" id="address">{{this.user.homeAddress}}</p><input class="editField"
+                [(ngModel)]=this.user.homeAddress *ngIf="editable">
+            </td>
           </tr>
           <tr>
-            <td><p class="category">street number:</p></td>
-            <td><p *ngIf="!editable" id="streetnumber">{{this.user.streetNumber}}</p><input class="editField"[(ngModel)]=this.user.streetNumber *ngIf="editable"></td>
+            <td>
+              <p class="category">street number:</p>
+            </td>
+            <td>
+              <p *ngIf="!editable" id="streetnumber">{{this.user.streetNumber}}</p><input class="editField"
+                [(ngModel)]=this.user.streetNumber *ngIf="editable">
+            </td>
           </tr>
           <tr>
-            <td><p class="category">zip:</p></td>
-            <td><p *ngIf="!editable" id="zipcode">{{this.user.zipCode}}</p><input class="editField"[(ngModel)]=this.user.zipCode *ngIf="editable"></td>
+            <td>
+              <p class="category">zip:</p>
+            </td>
+            <td>
+              <p *ngIf="!editable" id="zipcode">{{this.user.zipCode}}</p><input class="editField"
+                [(ngModel)]=this.user.zipCode *ngIf="editable">
+            </td>
           </tr>
           <tr>
-            <td><p class="category">city:</p></td>
-            <td><p *ngIf="!editable" id="city">{{this.user.city}}</p><input class="editField"[(ngModel)]=this.user.city *ngIf="editable"></td>
+            <td>
+              <p class="category">city:</p>
+            </td>
+            <td>
+              <p *ngIf="!editable" id="city">{{this.user.city}}</p><input class="editField" [(ngModel)]=this.user.city
+                *ngIf="editable">
+            </td>
           </tr>
           <tr>
-            <td><p class="category">email: </p></td>
-            <td><p *ngIf="!editable" id="email">{{this.user.email}}</p><input class="editField"[(ngModel)]=this.user.email *ngIf="editable"></td>
+            <td>
+              <p class="category">email: </p>
+            </td>
+            <td>
+              <p *ngIf="!editable" id="email">{{this.user.email}}</p><input class="editField"
+                [(ngModel)]=this.user.email *ngIf="editable">
+            </td>
           </tr>
           <tr>
-            <td><p class="category">phone number:</p></td>
-            <td><p *ngIf="!editable" id="phonenumber">{{this.user.phoneNumber}}</p><input class="editField"[(ngModel)]=this.user.phoneNumber *ngIf="editable"></td>
+            <td>
+              <p class="category">phone number:</p>
+            </td>
+            <td>
+              <p *ngIf="!editable" id="phonenumber">{{this.user.phoneNumber}}</p><input class="editField"
+                [(ngModel)]=this.user.phoneNumber *ngIf="editable">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p class="category">image name:</p>
+            </td>
+            <input *ngIf="editable" id="files" #profilImageInput (change)="profileImageHandler($event)" class="editField" type="file"
+              name="profile_image" accept="image/*" />
+            <td>
+              <p *ngIf="!editable" id="image">{{this.user.image}}</p>
+            </td>
           </tr>
         </table>
       </div>
@@ -78,10 +128,10 @@
     <div *ngIf="showPassword" class="content mat-elevation-z8">
       <div class="password">
         <h3 class="changePassword">Change Password</h3>
-        <input class="inputPassword"[(ngModel)]="newPassword" placeholder="New Password" type="password">
-        <input class="inputPassword"[(ngModel)]="newPassword2" placeholder="Confirm new Password" type="password">
+        <input class="inputPassword" [(ngModel)]="newPassword" placeholder="New Password" type="password">
+        <input class="inputPassword" [(ngModel)]="newPassword2" placeholder="Confirm new Password" type="password">
         <p id="feedback">{{this.passwordFeedback}}</p>
-        <button id="submitPasswordChange"(click)="changePassword()">Submit</button>
+        <button id="submitPasswordChange" (click)="changePassword()">Submit</button>
       </div>
     </div>
   </mat-sidenav-content>
