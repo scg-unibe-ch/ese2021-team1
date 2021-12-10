@@ -1,5 +1,7 @@
 import express, {Router, Request, Response} from 'express';
 import { ProductService } from '../services/product.service';
+import { upload } from '../middlewares/fileFilter';
+
 /**
 * @param productController
 * @param productService
@@ -7,8 +9,9 @@ import { ProductService } from '../services/product.service';
 const productController: Router = express.Router();
 const productService = new ProductService();
 
-productController.post('/', (req: Request, res: Response) => {
-    productService.createProduct(req.body)
+productController.post('/',  upload.single('file'), (req: Request, res: Response) => {
+
+    productService.createProduct(JSON.parse(req.body.product), req.file?.filename)
         .then(product => res.json(product))
         .catch(err => res.json(err));
 });
