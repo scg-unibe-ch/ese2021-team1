@@ -13,6 +13,6 @@
       <td><p class="totalPrice">{{calculateTotal()}} CHF</p></td>
     </tr>
   </table>
-  <button class="checkoutButton"*ngIf="this.products.length > 0" routerLink="/checkout">Checkout</button>
+  <button (click)="this.cartService.setShowCart()" class="checkoutButton"*ngIf="this.products.length > 0" routerLink="/checkout">Checkout</button>
   <p id = "emptyMessage"*ngIf="this.products.length == 0">Your Shopping Cart is empty!</p>
 </div>

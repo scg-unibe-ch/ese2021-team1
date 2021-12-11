@@ -31,7 +31,7 @@
     <p *ngIf="!editable"> {{product.description}}</p>
     <input class="editableText" *ngIf="editable" [(ngModel)]="this.product.description" type="text">
 
-    <p><button (click)="addToCart(product);">Add to Cart</button></p>
+    <p><button (click)="addToCart(product)">Add to Cart</button></p>
   </div>
 
 

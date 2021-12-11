@@ -28,7 +28,7 @@
     </div>
 
     <div *ngIf="showThanks" class="thanks">
-      <h1>Thank you for your purchase! Please return to the store.</h1>
+      <h1>Thank you for your purchase! You will be redirected to the store.</h1>
     </div>
 
     <div *ngIf="showFinish" class="finish">
@@ -95,7 +95,7 @@
   <div *ngIf="!showThanks" class="panel-footer">
     <button class="btn back-btn" (click)="previousStep()">Back</button>
     <button *ngIf="!showFinish" class="btn next-btn" (click)="nextStep()">Next Step</button>
-    <button *ngIf="showFinish" class="btn next-btn" id="confirmButton" (click)="createOrder()">Confirm</button>
+    <button *ngIf="showFinish" class="btn next-btn" id="confirmButton" (click)="createOrder(); this.cartService.clearCart(); redirectToStore()">Confirm</button>
   </div>
 </div>
 </div>

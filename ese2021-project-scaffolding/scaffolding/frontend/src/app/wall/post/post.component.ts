@@ -44,11 +44,13 @@ export class PostComponent implements OnInit {
   clickedReport: boolean = false;
   clickedComment: boolean = false;
   numberComments: number = 0;
+  reportFeedback: string = "";
 
   postId: number = this.post.id;
   commentText: string = "";
 
   comments: Comment[] = [];
+
 
   constructor(
     public httpClient: HttpClient,
@@ -63,9 +65,9 @@ export class PostComponent implements OnInit {
     //this.post.category = this.post.category.replace(/[, ]+/g, " ").trim(); //very ugly to remove comma from category
   }
   reportPost() {
-    this.httpClient.put(environment.endpointURL + "post/" + this.post.id + "/report", this.postId)
+    this.httpClient.put(environment.endpointURL + "post/" + this.post.id + "/report", {})
       .subscribe(res => {
-      console.log(res);
+        this.reportFeedback = "Your report was successful."
     })
   }
   /**
@@ -109,11 +111,6 @@ export class PostComponent implements OnInit {
   isCommentsEmpty(): boolean {
     return this.comments.length == 0;
   }
-
-
-
-
-
 
     /**
     * @param Post.id

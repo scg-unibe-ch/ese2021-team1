@@ -29,7 +29,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private cartService: CartService
+    public cartService: CartService
     ) {
       // listen for changes
       userService.loggedIn$.subscribe(res => this.loggedInState = res)
@@ -45,10 +45,10 @@ export class NavbarComponent implements OnInit {
       this.user = user
     })
     this.userService.showRegisterModal.subscribe(result => {
-      this.showRegisterModal = result; // this set's the username to the default observable value
+      this.showRegisterModal = result;
     });
     this.userService.showLoginModal.subscribe(result => {
-      this.showLoginModal = result; // this set's the username to the default observable value
+      this.showLoginModal = result;
     });
   }
 

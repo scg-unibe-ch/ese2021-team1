@@ -1,14 +1,5 @@
 <!-- the following is rendered for all users except the creator -->
 <div class="postWrapper" *ngIf="user !== post.userName">
-    <!-- <div class="report">
-    <button [disabled]="canNot()" *ngIf="!clickedReport" class="ReportButton" (click)="reportPost()">
-      <mat-icon>report_icon</mat-icon>
-    </button>
-    <button [disabled]="canNot()"*ngIf="clickedReport" class="ReportButton"  (click)="reportPost()">
-      <mat-icon>report_icon</mat-icon>
-    </button>
-    <p class="likesCount">{{post.like}}</p>
-  </div> -->
   <div class="category">{{post.category}}</div>
     <div class="metadata">
         <img *ngIf="this.userService.getUser()?.image != 'null'" src="http://localhost:3000/uploads/{{this.userService.getUser()?.image}}" class="usericon">
@@ -58,6 +49,11 @@
           <mat-icon>comment</mat-icon>
         </button>
         <p class="commentsCount">{{numberComments}}</p>
+      </div>
+      <div class="report">
+        <button [disabled]="canNot()" class="ReportButton" (click)="reportPost()">
+          <mat-icon>report_icon</mat-icon>
+        </button>
       </div>
     </div>
 </div>

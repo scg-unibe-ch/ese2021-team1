@@ -30,10 +30,10 @@ export class UserService {
 
   private showRegisterModalPrivate = new BehaviorSubject<boolean>(false);
   showRegisterModal = this.showRegisterModalPrivate.asObservable()
-  
+
   private showLoginModalPrivate = new BehaviorSubject<boolean>(false);
   showLoginModal = this.showLoginModalPrivate.asObservable()
-  
+
 
    setLoginModalShow(state: boolean) {
     this.showLoginModalPrivate.next(state);

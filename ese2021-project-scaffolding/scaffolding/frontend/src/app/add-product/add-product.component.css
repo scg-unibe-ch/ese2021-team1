@@ -333,4 +333,9 @@
   float: left;
 }
 
+#files {
+  width: 40%;
+  margin-left: 15px;
+}
+
 

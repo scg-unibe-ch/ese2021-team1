@@ -47,8 +47,12 @@ export class ProductComponent implements OnInit {
   }
 
   addToCart(product: Product) {
-    console.log(product)
-    this.cartService.addToCart(product);
+    if(!this.userService.getLoggedIn()) {
+      this.showLogin()
+    } else {
+      this.showCart();
+      this.cartService.addToCart(product);
+    }
   }
 
 
@@ -87,5 +91,15 @@ export class ProductComponent implements OnInit {
     }).subscribe(res=> {
       console.log(res)
     })
+  }
+
+  showCart() {
+    if (!this.cartService.getShowCart()) {
+      this.cartService.setShowCart();
+    }
+  }
+
+  private showLogin() {
+    this.userService.setLoginModalShow(true)
   }
 }

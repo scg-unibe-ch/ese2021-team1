@@ -5,6 +5,7 @@ import {CartService} from "../services/cart.service";
 import {Product} from "../models/product.model";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-checkout',
@@ -37,8 +38,9 @@ export class CheckoutComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private cartService: CartService,
-    private httpClient: HttpClient
+    public cartService: CartService,
+    private httpClient: HttpClient,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -109,5 +111,11 @@ export class CheckoutComponent implements OnInit {
       .subscribe((res: any) => {
         console.log(res)
       })
+  }
+
+  redirectToStore() {
+    setTimeout(() => {
+      this.router.navigate(['/store']);
+    }, 3000);
   }
 }

@@ -61,7 +61,7 @@ postController.search('/', (req: Request, res: Response) => {
 */
 
 postController.put('/:id/report', (req: Request, res: Response) => {
-    postService.reportPost(req.body)
+    postService.reportPost(Number(req.params.id))
         .then(updated => res.send(updated))
         .catch(err => res.send(err));
 });

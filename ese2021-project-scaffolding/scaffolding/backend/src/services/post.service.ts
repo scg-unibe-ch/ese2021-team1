@@ -163,6 +163,7 @@ export class PostService {
     }
 */
     public reportPost(id: number) {
+        console.log(id);
         return Post.findByPk(id)
             .then(found => {
                 if (found != null) {

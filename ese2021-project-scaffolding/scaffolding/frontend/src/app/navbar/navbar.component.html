@@ -14,7 +14,7 @@
   </div>
   <!-- This fills the remaining space of the current row -->
   <span class="fill-remaining-space"></span>
-    <button mat-button (click)="showShoppingCart = !showShoppingCart">
+    <button mat-button (click)="this.cartService.setShowCart()">
       <mat-icon>shopping_basket</mat-icon>
     </button>
     <img *ngIf="showAdded" class="addedItem" src="assets/bluePoint.png">
@@ -26,7 +26,7 @@
     </button>
 </mat-toolbar>
 
-<app-cart *ngIf="showCart()"></app-cart>
+<app-cart *ngIf="this.cartService.getShowCart()"></app-cart>
 <app-login *ngIf="showLoginModal"></app-login>
 <app-register *ngIf="showRegisterModal"></app-register>
 
