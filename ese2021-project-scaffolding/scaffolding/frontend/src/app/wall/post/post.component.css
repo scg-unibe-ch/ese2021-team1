@@ -14,6 +14,10 @@
   overflow: hidden;
 }
 
+button:disabled {
+  pointer-events: none;
+}
+
 .metadata {
   position: relative;
   width: fit-content;
@@ -56,6 +60,10 @@
   background-color: transparent;
   border: none;
   color: red;
+}
+
+.ReportButton:disabled {
+  color: grey;
 }
 
 
@@ -172,12 +180,19 @@
 mat-icon {
   outline: 0;
 }
-.likesCount, .dislikesCount, .commentsCount {
+.likesCount, .dislikesCount, .commentsCount, .reportedCount {
   float: left;
   font-size: 18px;
   position: relative;
   bottom: 10px;
 }
+
+.reportedCount {
+  bottom: 13px;
+  color: red;
+}
+
+
 
 .upvote, .downvote, .comment {
   float: left;

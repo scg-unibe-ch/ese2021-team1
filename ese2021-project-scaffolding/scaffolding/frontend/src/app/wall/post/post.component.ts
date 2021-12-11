@@ -215,4 +215,11 @@ export class PostComponent implements OnInit {
         this.user = res;
       })
   }
+
+  isAdmin() {
+    if(localStorage.getItem("admin") == "true") {
+      return true
+    } return false
+
+  }
 }

@@ -51,7 +51,8 @@
         <p class="commentsCount">{{numberComments}}</p>
       </div>
       <div class="report popup">
-        <button class="ReportButton" (click)="reportPost()">
+        <p *ngIf="isAdmin()" class="reportedCount">{{post.reported}}</p>
+        <button [disabled]="canNot()" class="ReportButton" (click)="reportPost()">
           <mat-icon>report</mat-icon>
         </button>
         <span class="popuptext" id="myPopup">Your report was successful.</span>
