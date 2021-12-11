@@ -28,6 +28,7 @@ export class AddPostComponent implements OnInit {
     image: null,
     labels: "",
     userName: "",
+    userID: 0
   }
   user: User | null = null;
   auth: boolean = false;
@@ -52,11 +53,13 @@ export class AddPostComponent implements OnInit {
   createPost() { // gets fired when the create post form is submitted
     // the following needs to be refactored to use the userService
     const user = localStorage.getItem("userName")
+    const userID = localStorage.getItem("userId")
     if (!user) {
       alert("Only signed in users can create posts. This form should not be visible.")
       return
     }
     this.newPost.userName = user;
+    this.newPost.userID = userID;
     if (this.checkValidPost()) {
       this.newPost.labels = this.category;
       const payload = new FormData()
@@ -81,6 +84,7 @@ export class AddPostComponent implements OnInit {
       image: null,
       labels: "",
       userName: "",
+      userID: 0
       }
     }
   }

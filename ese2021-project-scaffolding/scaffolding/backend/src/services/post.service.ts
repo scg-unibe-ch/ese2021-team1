@@ -25,7 +25,8 @@ export class PostService {
             communityScore: 0,
             category: post.labels,
             userName: post.userName,
-            reported: 0
+            reported: 0,
+            userID: post.userID
         }).then(inserted => {
             return Promise.resolve(inserted);
             // else if an error occured

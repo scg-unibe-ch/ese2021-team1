@@ -62,6 +62,7 @@ export class PostComponent implements OnInit {
 
   ngOnInit(): void {
     this.countComments()
+    this.findUser()
     //this.post.category = this.post.category.replace(/[, ]+/g, " ").trim(); //very ugly to remove comma from category
   }
   reportPost() {
@@ -197,5 +198,13 @@ export class PostComponent implements OnInit {
           })
         }
       });
+  }
+
+  findUser() {
+    this.httpClient.get(environment.endpointURL + "user/" + this.post.userID)
+      .subscribe(res => {
+        console.log(res)
+        this.user = res;
+      })
   }
 }

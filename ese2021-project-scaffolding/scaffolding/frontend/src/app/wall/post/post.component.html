@@ -2,8 +2,8 @@
 <div class="postWrapper" *ngIf="user !== post.userName">
   <div class="category">{{post.category}}</div>
     <div class="metadata">
-        <img *ngIf="this.userService.getUser()?.image != 'null'" src="http://localhost:3000/uploads/{{this.userService.getUser()?.image}}" class="usericon">
-        <img *ngIf="this.userService.getUser()?.image == 'null'" src="assets/default_profilePicture.png" class="usericon">
+        <img *ngIf="this.user.image != null" src="http://localhost:3000/uploads/{{this.user.image}}" class="usericon">
+        <img *ngIf="this.user.image == null" src="assets/default_profilePicture.png" class="usericon">
         <div class="username">{{this.post.userName}}:</div>
         <div class="postdate">{{calculateTimePosted()}}</div>
     </div>
