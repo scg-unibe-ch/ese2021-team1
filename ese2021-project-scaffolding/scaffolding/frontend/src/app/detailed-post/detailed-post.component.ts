@@ -63,7 +63,6 @@ export class DetailedPostComponent implements OnInit {
           Object.values(res).forEach(comment => {
             this.comments.push(comment)
           })
-          console.log(this.comments)
         }
         this.comments.reverse()
     })

@@ -63,13 +63,21 @@ export class PostComponent implements OnInit {
   ngOnInit(): void {
     this.countComments()
     this.findUser()
+    console.log(this.post)
     //this.post.category = this.post.category.replace(/[, ]+/g, " ").trim(); //very ugly to remove comma from category
   }
   reportPost() {
     this.httpClient.put(environment.endpointURL + "post/" + this.post.id + "/report", {})
       .subscribe(res => {
-        this.reportFeedback = "Your report was successful."
+        this.toggleReportFeedback()
+        setTimeout(this.toggleReportFeedback, 2000)
     })
+  }
+
+  private toggleReportFeedback() {
+    var popup = document.getElementById("myPopup");
+    // @ts-ignore
+    popup.classList.toggle("show")
   }
   /**
   * Updates the Vote counter

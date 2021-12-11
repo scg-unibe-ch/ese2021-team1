@@ -2,9 +2,9 @@
 <div class="postWrapper" *ngIf="user !== post.userName">
   <div class="category">{{post.category}}</div>
     <div class="metadata">
-        <img *ngIf="this.user.image != null" src="http://localhost:3000/uploads/{{this.user.image}}" class="usericon">
-        <img *ngIf="this.user.image == null" src="assets/default_profilePicture.png" class="usericon">
-        <div class="username">{{this.post.userName}}:</div>
+        <img *ngIf="user.image != null" src="http://localhost:3000/uploads/{{user.image}}" class="usericon">
+        <img *ngIf="user.image == null" src="assets/default_profilePicture.png" class="usericon">
+        <div class="username">{{post.userName}}:</div>
         <div class="postdate">{{calculateTimePosted()}}</div>
     </div>
     <img class="postImage" *ngIf="post.image" src='http://localhost:3000/uploads/{{post.image}}'>
@@ -50,10 +50,11 @@
         </button>
         <p class="commentsCount">{{numberComments}}</p>
       </div>
-      <div class="report">
-        <button [disabled]="canNot()" class="ReportButton" (click)="reportPost()">
-          <mat-icon>report_icon</mat-icon>
+      <div class="report popup">
+        <button class="ReportButton" (click)="reportPost()">
+          <mat-icon>report</mat-icon>
         </button>
+        <span class="popuptext" id="myPopup">Your report was successful.</span>
       </div>
     </div>
 </div>
