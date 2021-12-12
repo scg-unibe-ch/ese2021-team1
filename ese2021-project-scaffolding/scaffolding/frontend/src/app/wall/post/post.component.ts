@@ -220,6 +220,5 @@ export class PostComponent implements OnInit {
     if(localStorage.getItem("admin") == "true") {
       return true
     } return false
-
   }
 }

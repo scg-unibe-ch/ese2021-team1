@@ -127,5 +127,12 @@ p {
   font-size: 15px;
 }
 
+.order {
+  background-color: whitesmoke;
+  margin: 20px;
+}
+.order p {
+  font-size: 25px;
+}
 
 

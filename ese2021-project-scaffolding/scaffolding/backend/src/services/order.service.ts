@@ -81,13 +81,24 @@ export class OrderService {
     */
 
     public async getAllOrdersFrom(userID) {
-            return User.findByPk(userID)
+        return Orders.findAll({where: {userId: userID}})
+            .then(found => {
+                if (found != null) {
+                    return Promise.resolve(found);
+                } else {
+                    return Promise.reject('No Orders available');
+                }
+            }).catch(() => Promise.reject('Could not fetch Orders'));
+    /**
+        User.findByPk(userID)
+            // @ts-ignore
                 .then(user => {
                     if (user != null) {
                         if (!user.admin) {
-                            Orders.findAll({where: {userId: user.userId}})
+                            return Orders.findAll({where: {userId: user.userId}})
                                 .then(order => {
                                     if (order != null) {
+                                        console.log(order);
                                         return Promise.resolve(order);
                                     } else {
                                         return Promise.reject('Cant find order');
@@ -96,7 +107,7 @@ export class OrderService {
                                 .catch(err => Promise.reject(err));
 
                     } else if (user.admin) {{
-                        Orders.findAll()
+                        return Orders.findAll()
                             .then(orders => {if (orders) {
                                 Promise.resolve(orders);
                             } else {
@@ -108,6 +119,7 @@ export class OrderService {
                         return  Promise.reject('User not found');
                     }})
                 .catch( err => Promise.reject(err));
+     */
     }
     /**
     * @param Id

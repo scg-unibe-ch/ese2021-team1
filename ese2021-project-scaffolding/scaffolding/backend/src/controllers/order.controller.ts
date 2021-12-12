@@ -11,8 +11,8 @@ const orderService = new OrderService();
 orderController.post('/', (req: Request, res: Response) => {
     console.log(req.body);
     orderService.createOrder(req.body)
-        .then(order => res.json(order))
-        .catch(err => res.json(err));
+        .then(order => res.send(order))
+        .catch(err => res.send(err));
 });
 
 
@@ -24,8 +24,8 @@ orderController.post('/', (req: Request, res: Response) => {
 // });
 // get all the posts for the requested User
 orderController.get('/:id', (req: Request, res: Response) => {
-    console.log(req.body);
-   orderService.getAllOrdersFrom(req.body)
+   orderService.getAllOrdersFrom(Number(req.params.id))
+       .then(orders => res.json(orders))
        .catch(err => res.json(err));
 });
 

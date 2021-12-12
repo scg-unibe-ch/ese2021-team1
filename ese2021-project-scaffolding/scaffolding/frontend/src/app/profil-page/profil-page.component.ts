@@ -55,6 +55,7 @@ export class ProfilPageComponent implements OnInit {
     this.user = this.userService.getUser();
     // this.getOrders();
     // this.counter()
+    this.getMyOrders();
     this.getMyPosts();
     console.log(this.user);
   }
@@ -127,6 +128,14 @@ export class ProfilPageComponent implements OnInit {
         }
         this.posts.reverse();
         console.log(res);
+      })
+  }
+
+  private getMyOrders() {
+    this.httpClient.get(environment.endpointURL + "orders/" + this.user.userId)
+      .subscribe((res: any) => {
+        this.orders = res;
+        console.log(this.orders)
       })
   }
 

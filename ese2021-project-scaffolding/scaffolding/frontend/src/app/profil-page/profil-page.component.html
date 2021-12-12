@@ -143,8 +143,29 @@
       </div>
     </div>
     <div *ngIf="showOrders" class="content mat-elevation-z8">
-      <div *ngFor="let order of this.orders">
-        {{order.paymentMethod}}
+      <div>
+        <table>
+          <tr>
+            <td>
+              products
+            </td>
+            <td>
+              purchase date
+            </td>
+            <td>
+              price
+            </td>
+            <td>
+              status
+            </td>
+          </tr>
+        </table>
+          <div class="order" *ngFor="let order of this.orders">
+            <p>{{order.purchaseDate}}</p>
+            <p>{{order.processingStatus}}</p>
+            <p>{{order.products}}</p>
+            <button>Cancel</button>
+          </div>
       </div>
     </div>
     <div *ngIf="showPassword" class="content mat-elevation-z8">
