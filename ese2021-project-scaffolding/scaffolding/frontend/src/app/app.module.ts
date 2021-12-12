@@ -41,8 +41,6 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { DetailedPostComponent } from './detailed-post/detailed-post.component';
 import { CommentComponent } from './comment/comment.component';
 import {CdkTableModule} from "@angular/cdk/table";
-import {DetailedProductComponent} from "./detailed-product/detailed-product.component";
-import {ReviewComponent} from "./p_review/review.component";
 
 @NgModule({
   declarations: [
@@ -65,8 +63,6 @@ import {ReviewComponent} from "./p_review/review.component";
     ProfilPageComponent,
     CheckoutComponent,
     DetailedPostComponent,
-    DetailedProductComponent,
-    ReviewComponent,
     CommentComponent,
   ],
     imports: [
