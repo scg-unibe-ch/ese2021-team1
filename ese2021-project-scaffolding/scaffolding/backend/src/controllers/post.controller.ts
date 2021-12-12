@@ -3,6 +3,7 @@ import { Router, Request, Response } from 'express';
 import { upload } from '../middlewares/fileFilter';
 import { PostService } from '../services/post.service';
 import {VoteService} from '../services/vote.service';
+import {NUMBER} from 'sequelize';
 /**
 * @param postController
 * @param postService
@@ -30,6 +31,12 @@ postController.post('/', upload.single('file'), (req: Request, res: Response) =>
 // this route is hit by the frontend on startup to fetch all posts from the database
 postController.get('/', (req: Request, res: Response) => {
     postService.getAllPosts()
+        .then(posts => res.json(posts))
+        .catch(err => res.json(err));
+});
+
+postController.get('/myPosts/:userId', (req: Request, res: Response) => {
+    postService.getMyPosts(Number(req.params.userId))
         .then(posts => res.json(posts))
         .catch(err => res.json(err));
 });
@@ -65,7 +72,14 @@ postController.put('/:id/report', (req: Request, res: Response) => {
         .then(updated => res.send(updated))
         .catch(err => res.send(err));
 });
-
+/*
+// TODO: make it work
+postController.get('/:userId/counter', (req: Request, res: Response) => {
+   postService.counter(req.body.userID)
+       .then(counted => res.send(counted))
+       .catch(err => res.send(err));
+});
+*/
 
 // you have to export the controller to use it in the server
 export const PostController: Router = postController;

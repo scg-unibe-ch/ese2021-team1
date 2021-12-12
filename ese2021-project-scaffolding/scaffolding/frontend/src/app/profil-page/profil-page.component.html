@@ -20,7 +20,14 @@
       <span> Help</span>
     </button>
 
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" (click)="show('MyPosts')">
+      <mat-icon>posts</mat-icon>
+      <span> MyPosts</span>
+    </button>
   </mat-sidenav>
+
   {{user.image}}
   <mat-sidenav-content>
     <div *ngIf="showAbout" class="content mat-elevation-z8">
@@ -117,6 +124,22 @@
             </td>
           </tr>
         </table>
+      </div>
+    </div>
+    <div *ngIf="showMyPosts" class="content mat-elevation-z8">
+      <p class="noPosts" *ngIf="isPostsEmpty()">You have currently no posts 😔</p>
+
+      <div *ngFor="let post of this.posts">
+
+        Total Post count: {{posts.length}}
+        Total Likes: <!-- {{count[1]}} -->
+        Total Dislikes: <!-- {{count.length}} -->
+
+        <app-post [post]="post">
+                  <!--(deletePostEmit)="deletePost($event)" (update)="updatePost($event)"
+                  -->
+        </app-post>
+
       </div>
     </div>
     <div *ngIf="showOrders" class="content mat-elevation-z8">

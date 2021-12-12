@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {UserService} from "../services/user.service";
 import {User} from "../models/user.model";
 import {MatIconModule} from "@angular/material/icon";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Order} from "../models/order.model";
-
+import {Post} from "../models/post.model"
 @Component({
   selector: 'app-profil-page',
   templateUrl: './profil-page.component.html',
@@ -21,17 +21,24 @@ import {Order} from "../models/order.model";
   */
 export class ProfilPageComponent implements OnInit {
 
+  // post: any = {}
+
+
   user: any
   orders: Order[] = []
+  posts: Post[] = []
+  count: number[] = []
   newPassword: string = "";
   newPassword2: string = "";
   passwordReqs: boolean[] = [false, false, false, false];
 
   showAbout: boolean = true;
+  showMyPosts: boolean = false;
   showPassword: boolean = false;
   showOrders: boolean = false;
   showHelp: boolean = false;
   editable: boolean = false;
+
 
   selectedFile: any
 
@@ -39,49 +46,87 @@ export class ProfilPageComponent implements OnInit {
   public passwordFeedback: string = "";
 
   constructor(
-    private userService : UserService,
+    private userService: UserService,
     private httpClient: HttpClient
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.user = this.userService.getUser();
-    this.getOrders();
+    // this.getOrders();
+    // this.counter()
+    this.getMyPosts();
     console.log(this.user);
   }
 
 
   show(show: string) {
-    switch(show) {
+    switch (show) {
       case "about":
         this.showAbout = true;
+        this.showMyPosts = false;
+        this.showPassword = false;
+        this.showOrders = false;
+        this.showHelp = false;
+        break;
+      case "MyPosts":
+        this.showAbout = false;
+        this.showMyPosts = true;
         this.showPassword = false;
         this.showOrders = false;
         this.showHelp = false;
         break;
       case "orders":
         this.showAbout = false;
+        this.showMyPosts = false;
         this.showPassword = false;
         this.showOrders = true;
         this.showHelp = false;
         break;
       case "password":
         this.showAbout = false;
+        this.showMyPosts = false;
         this.showPassword = true;
         this.showOrders = false;
         this.showHelp = false;
+        break;
+      case "help":
+        this.showAbout = false;
+        this.showMyPosts = false;
+        this.showPassword = false;
+        this.showOrders = false;
+        this.showHelp = true;
         break;
     }
   }
 
 
   //doesnt work yet!
+  /*
+    private getOrders() {
+      this.httpClient.get(environment.endpointURL + "orders/" + this.user.userId, this.user.userId)
+        .subscribe((res: any) => {
+          console.log(this.user.userId)
+          console.log(res);
+          this.orders = res;
+        })
+    }
+  */
+  isPostsEmpty(): boolean {
+    return this.posts.length == 0;
+  }
 
-  private getOrders() {
-    this.httpClient.get(environment.endpointURL + "orders/" + this.user.userId, this.user.userId)
+  private getMyPosts() {
+    this.httpClient.get(environment.endpointURL + "post/myPosts/" + this.user.userId)
       .subscribe((res: any) => {
-        console.log(this.user.userId)
+        this.posts = res;
+        if (typeof this.posts === "object") {
+          Object.values(this.posts).forEach(post => {
+            this.posts.push(post)
+          })
+        }
+        this.posts.reverse();
         console.log(res);
-        this.orders = res;
       })
   }
 
@@ -94,9 +139,8 @@ export class ProfilPageComponent implements OnInit {
         console.log(res);
         this.passwordFeedback = "Change was successful."
       });
-    }
-    else {
-      if(this.newPassword != this.newPassword2) {
+    } else {
+      if (this.newPassword != this.newPassword2) {
         this.passwordFeedback = "The two passwords aren't equal. Try again.";
       } else {
         this.passwordFeedback = "The new password doesn't fulfill the requirements. Try again.";
@@ -121,7 +165,7 @@ export class ProfilPageComponent implements OnInit {
     }))
     payload.append("file", this.selectedFile)
     this.httpClient.patch(environment.endpointURL + "user/" + this.user.userId, payload).subscribe((res: any) => {
-      if(res != null) {
+      if (res != null) {
         console.log(res)
         this.userService.setUser(res)
         this.user = res
@@ -157,10 +201,9 @@ export class ProfilPageComponent implements OnInit {
     this.passwordReqs[2] = /\d/.test(this.newPassword);
     let specChars = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/
     this.passwordReqs[3] = specChars.test(this.newPassword);
-    if (this.passwordReqs[0] && this.passwordReqs[1] && this.passwordReqs[2] && this.passwordReqs[3]){
+    if (this.passwordReqs[0] && this.passwordReqs[1] && this.passwordReqs[2] && this.passwordReqs[3]) {
       return true;
-    }
-    else{
+    } else {
       return false;
     }
   }
@@ -172,4 +215,38 @@ export class ProfilPageComponent implements OnInit {
     }
   }
 
+  /*
+    deletePost($event: Post) {
+      this.httpClient.delete(environment.endpointURL + "post/" + this.post.id)
+        .subscribe(res => {
+          console.log(res);
+        })
+    }
+
+    updatePost($event: Post) {
+      this.httpClient.put(environment.endpointURL + "post/" + this.post.id, {
+        title: this.post.title,
+        content: this.post.text,
+        image: this.post.image,
+        labels: this.post.labels,
+        userName: this.post.username
+      }).subscribe(res => {
+        console.log(res);
+      })
+    }*/
+  public counter() {
+    this.httpClient.get(environment.endpointURL + "post/" + this.user.userId + "/counter")
+      .subscribe(res => {
+        console.log("hallo" + res);
+
+        if (typeof res === "object") {
+          Object.values(res).forEach(para => {
+            this.count.push(para)
+          })
+          this.count.reverse();
+          console.log(this.count);
+
+        }
+      })
+  }
 }

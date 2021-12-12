@@ -1,5 +1,6 @@
 import {Post} from '../models/post.model';
 import {Comment} from '../models/comment.model';
+import {canTreatArrayAsAnd} from 'sequelize/types/lib/utils';
 
 
 export class PostService {
@@ -124,6 +125,41 @@ export class PostService {
                     });
         }
 
+        public async getMyPosts(userID: number) {
+            return Post.findAll({where: {userID: userID}})
+                .then(found => {
+                    console.log(found + 'hei?');
+                    if (found != null) {
+                        return Promise.resolve(found);
+                    } else {
+                        return Promise.reject('No Posts available');
+                    }
+                }).catch(() => Promise.reject('hei could not fetch posts'));
+        }
+
+    /*
+    // TODO MAKE IT WORK
+
+    public async counter(userID: number) {
+        return Post.findAll({where: {userID: userID}})
+            .then(found => {
+                console.log(found + 'hei?');
+                if (found != null) {
+                    let countLikes = 0;
+                    let countDislikes = 0;
+                    found.forEach(post => {
+                        countLikes += post.like;
+                        countDislikes += post.dislike;
+                    });
+                    const counts = [countLikes, countDislikes];
+
+                    return Promise.resolve(counts);
+                } else {
+                    return Promise.reject('No Posts available');
+                }
+            }).catch(() => Promise.reject('hei could not fetch posts'));
+    }
+*/
         private arrayToString (array: String[]): string {
             let stringArray = '';
 

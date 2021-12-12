@@ -40,6 +40,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import { CheckoutComponent } from './checkout/checkout.component';
 import { DetailedPostComponent } from './detailed-post/detailed-post.component';
 import { CommentComponent } from './comment/comment.component';
+import {CdkTableModule} from "@angular/cdk/table";
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { CommentComponent } from './comment/comment.component';
         MatSelectModule,
         FlexLayoutModule,
         MatGridListModule,
-        MatSidenavModule
+        MatSidenavModule,
+        CdkTableModule
     ],
   providers: [
     {
