@@ -33,7 +33,11 @@ productController.post('/',  upload.single('file'), (req: Request, res: Response
          .then(updated => res.json(updated))
          .catch(err => res.json(err));
  });
-
+productController.get('/:id', (req: Request, res: Response) => {
+    productService.getProduct(req.params.id)
+        .then(product => res.json(product))
+        .catch(err => res.json(err));
+});
  productController.get('/', (req: Request, res: Response) => {
      // productService.searchForCategorysProduct(req.body)
          // .then(updated => res.json(updated))

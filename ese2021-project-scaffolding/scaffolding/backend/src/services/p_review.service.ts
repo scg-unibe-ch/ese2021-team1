@@ -2,9 +2,10 @@ import {PReview} from '../models/p_review.model';
 
 export class PReviewService {
     public async CreatePReview(productID: number,
-                               body: {title: string, image: string, text: string, stars: number, pros: string, cons: string}) {
+                               body: {userId: number, title: string, image: string, text: string, stars: number, pros: string, cons: string}) {
         return PReview.create({
             p_reviewId: 0,
+            userId: body.userId,
             productId: productID,
             title: body.title,
             image: body.image,
@@ -46,7 +47,7 @@ export class PReviewService {
                 if (reviews) {
                     return Promise.resolve(reviews);
                 } else {
-                    return Promise.reject('No reviews avaiable');
+                    return Promise.reject('No reviews available');
                 }
             })
             .catch(() => Promise.reject('Could not fetch reviews'));

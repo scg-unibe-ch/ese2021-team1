@@ -119,4 +119,20 @@ export class ProductService {
             })
             .catch(() => Promise.reject('Cannot find products'));
     }
+
+    public async getProduct(id: string) {
+        return Product.findByPk(id)
+            .then(product => {
+                if (product != null) {
+                    return Promise.resolve(product);
+                } else {
+                    return Promise.reject('No product available.');
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                return Promise.reject('Could not fetch product.');
+            });
+    }
+
 }
