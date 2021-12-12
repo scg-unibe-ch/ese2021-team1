@@ -5,7 +5,7 @@ const p_reviewController: Router = express.Router();
 const previewService = new PReviewService();
 
 p_reviewController.post('/:id', (req: Request, res: Response) => {
-    previewService.CreatePReview(req.body)
+    previewService.CreatePReview(Number(req.params.id), req.body)
         .then(created => {
             console.log(created);
             res.send(created);

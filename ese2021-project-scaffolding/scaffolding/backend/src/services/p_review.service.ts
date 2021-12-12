@@ -1,11 +1,12 @@
 import {PReview} from '../models/p_review.model';
 
 export class PReviewService {
-    public async CreatePReview(body: {productID: number, userId: number, title: string, image: string, text: string, stars: number, pros: string, cons: string}) {
+    public async CreatePReview(productID: number,
+                               body: {userId: number, title: string, image: string, text: string, stars: number, pros: string, cons: string}) {
         return PReview.create({
             p_reviewId: 0,
             userId: body.userId,
-            productId: body.productID,
+            productId: productID,
             title: body.title,
             image: body.image,
             text: body.text,

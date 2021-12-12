@@ -4,7 +4,6 @@ import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {UserService} from "../services/user.service";
 import {PReview} from "../../../../backend/src/models/p_review.model";
-import {ReviewModel} from "../models/review.model";
 
 @Component({
   selector: 'app-detailed-product',
@@ -13,6 +12,7 @@ import {ReviewModel} from "../models/review.model";
 })
 export class DetailedProductComponent implements OnInit {
 
+  reviewText: string = "";
   title: string = "";
   image: string | null = "";
   text: string | null = "";
@@ -23,7 +23,7 @@ export class DetailedProductComponent implements OnInit {
   id: string | null = "";
   product: any;
 
-  reviews: ReviewModel[] = [];
+  reviews: PReview[] = [];
 
 
   constructor(
@@ -49,19 +49,20 @@ export class DetailedProductComponent implements OnInit {
   }
 
   reviewProduct() {
-    this.httpClient.post(environment.endpointURL + "review/" + this.product.id, {
+    this.httpClient.post(environment.endpointURL + "review/" + this.id, {
       productId: this.product.id,
       userId: this.userService.getUser()?.userId,
       title: this.title,
       image: this.image,
-      text: this.text,
+      text: this.reviewText,
       stars: this.stars,
       pros: this.pros,
       cons: this.cons
     }).subscribe(res =>{
       console.log(res)
-       // @ts-ignore
+      if (res instanceof PReview) {
         this.reviews.unshift(res);
+      }
     })
   }
 
