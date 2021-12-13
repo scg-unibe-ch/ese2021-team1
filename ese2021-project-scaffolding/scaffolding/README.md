@@ -34,7 +34,7 @@
 - [x] **_Optional_**: Fans can comment on posts.
 - [ ] **_Optional_**: User Profile Page shows their uploads and upvotes.
 - [x] **_Optional_**: Image Upload to Server/Backend.
-- [ ] Add feedback when reporting post.
+- [ ] Add feedback when reporting post. [Florian - WORK IN PROGRESS]
 - [ ] Better design for filter.
 - [ ] Show in profile page upvote / downvotes and posts
 
