@@ -15,7 +15,7 @@
   <!-- This fills the remaining space of the current row -->
   <span class="fill-remaining-space"></span>
     <button mat-button (click)="this.cartService.setShowCart()">
-      <mat-icon>shopping_basket</mat-icon>
+      <mat-icon *ngIf="loggedInState">shopping_basket</mat-icon>
     </button>
     <img *ngIf="showAdded" class="addedItem" src="assets/bluePoint.png">
     <button *ngIf="loggedInState" class="logoutButton" (click)="logoutUser()" routerLink="/">Logout</button>

@@ -234,3 +234,14 @@
 .category-selection {
   margin-right: 10px;
 }
+
+.morePosts {
+  width: 30%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  outline: none;
+  bottom: 50px;
+  border-radius: 15px;
+  padding: 5px;
+}
