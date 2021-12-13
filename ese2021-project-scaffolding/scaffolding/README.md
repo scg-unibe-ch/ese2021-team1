@@ -72,3 +72,4 @@
 - [x] Likes: If upvoted/downvoted then downvote/upvote, you get an error.
 - [x] On Backend start (start or ctr+S), database initializes empty tables and overwrites everything - check if table exists, if not then init tables.
 - [ ] errors for detail product (cannot read properties of undefined).
+- [ ] Like Dislike does not work properly. Dislike increases?
