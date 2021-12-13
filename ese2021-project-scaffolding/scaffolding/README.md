@@ -29,7 +29,7 @@
 - [x] Create post component: Title, Image, etc. Title MUST be set. Category must be set.
 - [x] CRUD for posts.
 - [x] Upvote and Downvote posts and ranking of post.
-- [ ] Loading posts can be infinite scrolling, pagination or Load More. [ARIS - WORK IN PROGRESS]
+- [x] Loading posts can be infinite scrolling, pagination or Load More.
 - [x] Create post categories (for post creation and wall display)
 - [x] **_Optional_**: Fans can comment on posts.
 - [ ] **_Optional_**: User Profile Page shows their uploads and upvotes.
@@ -51,7 +51,7 @@
 - [x] **_Optional_**: Search/Filter products on Store
 - [x] **_Optional_**: Shopping cart for fans to purchase multiple items at once/ display sum.
 - [ ] **_Optional_**: Product Review and Payment services using Stripe or PayPal.
-- [ ] save cart in backend.
+- [ ] ensure cart permanency on page refresh. [ARIS - WIP]
 - [ ] better design for filter [PAVLOS - WORK IN PROGRESS]
 - [x] display my orders in profile page (for user)
 - [x] display all orders (for admin)
