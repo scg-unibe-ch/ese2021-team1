@@ -43,6 +43,11 @@ productController.post('/',  upload.single('file'), (req: Request, res: Response
          .catch(err => res.json(err));
  });
 
+ productController.get('/:id', (req: Request, res: Response) => {
+     productService.getProduct(Number(req.params.id))
+         .then(got => res.json(got))
+         .catch(err => res.json(err));
+ });
 
 
 

@@ -106,15 +106,26 @@ export class ProductService {
             });
     }
 
-    public getAllProducts() {
+    public async getAllProducts() {
         return Product.findAll({ where: { deleted: false } })
             .then(product => {
                 if (product != null) {
                     return Promise.resolve(product);
                 } else {
-                    return Promise.reject(product);
+                    return Promise.reject('could not find products');
                 }
             })
-            .catch(() => Promise.reject('Cannot find products'));
+            .catch(() => Promise.reject('Cannot fetch products'));
+    }
+
+    public async getProduct(id: number) {
+        return Product.findByPk(id)
+            .then(found => {
+                if (found != null) {
+                    return Promise.resolve(found);
+                } else {
+                    return Promise.reject('could not find product');
+                }
+            }).catch(() => Promise.reject('Cannot fetch product'));
     }
 }

@@ -38,7 +38,7 @@ export class DetailedProductComponent implements OnInit {
   }
 
   getProduct() {
-    this.httpClient.get(environment.endpointURL + "product/" + this.id)
+    this.httpClient.get(environment.endpointURL + "product/" + this.product.id)
       .subscribe(res => {
         if(res != null) {
           console.log(res)
@@ -48,8 +48,8 @@ export class DetailedProductComponent implements OnInit {
   }
 
   reviewProduct() {
-    this.httpClient.post(environment.endpointURL + "review/" + this.id, {
-      productId: this.id,
+    this.httpClient.post(environment.endpointURL + "review/" + this.product.id + "/review", {
+      productId: this.product.id,
       userId: this.userService.getUser()?.userId,
       title: this.title,
       image: this.image,
@@ -65,7 +65,7 @@ export class DetailedProductComponent implements OnInit {
   }
 
   getReviews() {
-    this.httpClient.get(environment.endpointURL + "review/" + this.id)
+    this.httpClient.get(environment.endpointURL + "review/" + this.product.id)
       .subscribe(res=> {
         /*if(res != null) {
           Object.values(res).forEach(review => {

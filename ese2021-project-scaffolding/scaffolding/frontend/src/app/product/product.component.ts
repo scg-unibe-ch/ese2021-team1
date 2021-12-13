@@ -75,6 +75,7 @@ export class ProductComponent implements OnInit {
     this.deleteProductEmit.emit(this.product.id)
     this.httpClient.delete(environment.endpointURL + "product/" + this.product.id)
       .subscribe(res => {
+        console.log('DELETE REQUEST', res)
       })
   }
 
@@ -88,6 +89,7 @@ export class ProductComponent implements OnInit {
       price: this.product.price,
       discount: this.product.discount
     }).subscribe(res=> {
+      console.log(res)
     })
   }
 
