@@ -19,7 +19,7 @@ PReviewController.post('/:id', (req: Request, res: Response) => {
 });
 
 PReviewController.get( '/:id', (req: Request, res: Response) => {
-    previewService.getAllReviews(Number(req.params.id))
+    previewService.getAllReviews(req.body.id)
         .then(fetched => {
             res.send(fetched);
         }).catch(err => res.send(err));
