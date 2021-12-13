@@ -53,7 +53,7 @@
 - [ ] save cart in backend.
 - [ ] mark orders as shipped (for admin).
 - [ ] better design for filter
-- [ ] display my orders in profile page (for user)
+- [ ] display my orders in profile page (for user) [ARIS - WORK IN PROGRESS]
 - [ ] display all orders (for admin)
 - [ ] cancel orders in profile page (for user)
 - [ ] mark orders as shipped (for admin)
