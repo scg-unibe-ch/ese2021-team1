@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'user/:username', component: ProfilPageComponent},
   { path: 'checkout', component: CheckoutComponent},
   { path: 'post/:id', component: DetailedPostComponent},
-  {path: 'product/:id', component: DetailedProductComponent},
+  { path: 'store/product/:id', component: DetailedProductComponent},
   { path: '', component: WallComponent}
 ]
 

@@ -5,10 +5,10 @@
       <img *ngIf="!(this.author.image != null)" src="assets/default_profilePicture.png">
     </div>
     <div class="name">
-      <p id="name">{{author.userName}}:</p>
+      <p id="name">{{this.author.userName}}:</p>
     </div>
   </div>
   <div class="text">
-    <p>{{review.text}}</p>
+    <p>{{this.review.text}}</p>
   </div>
 </div>

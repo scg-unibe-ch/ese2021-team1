@@ -5,12 +5,12 @@
   <div class="reviewSection">
     <div class="create">
       <input *ngIf="this.userService.getLoggedIn()" [(ngModel)]="title" class="writeReview" placeholder="Write a review here!">
-      <!--
-      <input *ngIf="this.userService.getLoggedIn()" [(ngModel)]="reviewText" class="writeReview" placeholder="Write a review here!">
+
+      <input *ngIf="this.userService.getLoggedIn()" [(ngModel)]="text" class="writeReview" placeholder="Write a review here!">
       <input *ngIf="this.userService.getLoggedIn()" [(ngModel)]="stars" class="writeReview" placeholder="Write a review here!">
       <input *ngIf="this.userService.getLoggedIn()" [(ngModel)]="pros" class="writeReview" placeholder="Write a review here!">
       <input *ngIf="this.userService.getLoggedIn()" [(ngModel)]="cons" class="writeReview" placeholder="Write a review here!">
-      -->
+
       <button *ngIf="this.userService.getLoggedIn()" id="reviewButton" (click)="reviewProduct()">Post Review</button>
     </div>
     <div class="reviews">

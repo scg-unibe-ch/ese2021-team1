@@ -121,11 +121,6 @@ export class ProfilPageComponent implements OnInit {
     this.httpClient.get(environment.endpointURL + "post/myPosts/" + this.user.userId)
       .subscribe((res: any) => {
         this.posts = res;
-        if (typeof this.posts === "object") {
-          Object.values(this.posts).forEach(post => {
-            this.posts.push(post)
-          })
-        }
         this.posts.reverse();
         console.log(res);
       })

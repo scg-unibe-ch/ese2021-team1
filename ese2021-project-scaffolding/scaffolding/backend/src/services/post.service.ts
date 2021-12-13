@@ -128,7 +128,7 @@ export class PostService {
         public async getMyPosts(userID: number) {
             return Post.findAll({where: {userID: userID}})
                 .then(found => {
-                    console.log(found + 'hei?');
+                    console.log(found);
                     if (found != null) {
                         return Promise.resolve(found);
                     } else {

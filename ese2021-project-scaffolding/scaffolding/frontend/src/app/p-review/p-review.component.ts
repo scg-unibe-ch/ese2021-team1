@@ -4,10 +4,10 @@ import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-review',
-  templateUrl: './review.component.html',
-  styleUrls: ['./review.component.css']
+  templateUrl: './p-review.component.html',
+  styleUrls: ['./p-review.component.css']
 })
-export class ReviewComponent implements OnInit {
+export class PReviewComponent implements OnInit {
 
   @Input() review: any = {}
 

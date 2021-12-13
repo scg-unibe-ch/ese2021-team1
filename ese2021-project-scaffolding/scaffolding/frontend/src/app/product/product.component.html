@@ -23,14 +23,16 @@
     </button>
     <p class="category"> {{product.category}} </p>
     <img *ngIf="!product.image" class="image" src="assets/eth_pullover.jpg" alt="{{product.title}}">
-    <img *ngIf="product.image" class="image" src="http://localhost:3000/uploads/{{product.image}}" alt="{{product.title}}">
+    <img *ngIf="product.image" class="image" src="http://localhost:3000/uploads/{{product.image}}" alt="{{product.title}}" >
     <h1 *ngIf="!editable">{{product.title}}</h1>
     <input class="editableTitle"*ngIf="editable" [(ngModel)]="this.product.title" type="text">
     <p *ngIf="!editable" class="price">CHF {{product.price}}</p>
     <input class="editableText price" *ngIf="editable" [(ngModel)]="this.product.price" type="number">
     <p *ngIf="!editable"> {{product.description}}</p>
     <input class="editableText" *ngIf="editable" [(ngModel)]="this.product.description" type="text">
-
+    <p>
+    <button routerLink="product/{{product.id}}"></button>
+    </p>
     <p><button (click)="addToCart(product)">Add to Cart</button></p>
   </div>
 

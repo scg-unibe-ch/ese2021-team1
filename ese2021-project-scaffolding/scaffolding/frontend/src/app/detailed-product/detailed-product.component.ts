@@ -3,7 +3,6 @@ import {ActivatedRoute} from "@angular/router";
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {UserService} from "../services/user.service";
-import {PReview} from "../../../../backend/src/models/p_review.model";
 import {ReviewModel} from "../models/review.model";
 
 @Component({
@@ -60,8 +59,8 @@ export class DetailedProductComponent implements OnInit {
       cons: this.cons
     }).subscribe(res =>{
       console.log(res)
-       // @ts-ignore
-        this.reviews.unshift(res);
+      // @ts-ignore
+      this.reviews.unshift(res);
     })
   }
 
