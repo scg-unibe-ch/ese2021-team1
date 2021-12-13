@@ -129,10 +129,59 @@ p {
 
 .order {
   background-color: whitesmoke;
-  margin: 20px;
-}
-.order p {
-  font-size: 25px;
 }
 
+table.orders {
+  margin-top: 50px;
+  font-size: 15px;
+  width: 95%;
+  height: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.orders td, .orders th {
+  height: 50px !important;
+}
 
+.products {
+  width: 30%;
+}
+
+.pseudoWrap {
+  width: 100%;
+}
+
+#yourOrders {
+  margin-left: 30px;
+  width: fit-content;
+  border-bottom: 1px solid black;
+}
+
+#cancelButton, #shipButton {
+  padding: 10px;
+  color: white;
+  font-weight: bold;
+  border-radius: 15px;
+  border: none;
+}
+#cancelButton {
+  background-color: red;
+}
+#shipButton {
+  background-color: green;
+}
+
+.cancel {
+  background-color: white;
+}
+
+.pending {
+  background-color: orange;
+}
+.cancelled {
+  background-color: #ff726f;
+}
+.shipped {
+  background-color: green;
+}

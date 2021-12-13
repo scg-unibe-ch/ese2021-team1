@@ -31,8 +31,10 @@ export class CheckoutComponent implements OnInit {
 
   products : Product[] = []
   productIDs: String = ""
+  productTitles: string = ""
 
   payment: string = ""
+  subtotal: number = 0.0;
 
 
 
@@ -82,28 +84,32 @@ export class CheckoutComponent implements OnInit {
     }
   }
   calculateTotal() {
-    let subtotal = 0.0;
+    let subtotal = 0.0
     for(let product of this.products) {
       subtotal += parseFloat(String(product.price))
     }
-    return subtotal;
+    this.subtotal = subtotal
+    return this.subtotal;
   }
 
   createOrder() {
     let date: String = new Date().toDateString()
     for(let product of this.products) {
-      this.productIDs += String(product.id) + ","
+      this.productIDs += String(product.id) + ", "
+      this.productTitles += product.title + ", "
     }
     let payload = {
       userID: parseInt(String(this.userId)),
-      products: this.productIDs,
+      productIds: this.productIDs,
       paymentMethod: this.payment,
       homeAddress: this.homeAddress,
       streetNumber: this.streetNumber,
       zipCode: this.zipCode,
       city: this.city,
       processingStatus: "pending",
-      purchaseDate: date
+      purchaseDate: date,
+      products: this.productTitles,
+      subtotal: this.subtotal
     }
     this.showThanks = true;
     this.showFinish = false;

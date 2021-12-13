@@ -143,29 +143,28 @@
       </div>
     </div>
     <div *ngIf="showOrders" class="content mat-elevation-z8">
-      <div>
-        <table>
+      <div class="pseudoWrap">
+        <h3 id="yourOrders">Your Orders</h3>
+        <table class="orders">
           <tr>
-            <td>
-              products
-            </td>
-            <td>
-              purchase date
-            </td>
-            <td>
-              price
-            </td>
-            <td>
-              status
-            </td>
+            <th class="products">products</th>
+            <th>purchase date</th>
+            <th>price</th>
+            <th>status</th>
+          </tr>
+          <tr class="order" *ngFor="let order of this.orders">
+              <td class="products">{{order.products}}</td>
+              <td>{{order.purchaseDate}}</td>
+              <td>{{order.subtotal}} CHF</td>
+              <td [ngClass] ="{
+                'pending': order.processingStatus == 'pending',
+                'cancelled': order.processingStatus == 'cancelled',
+                'shipped': order.processingStatus == 'shipped'
+              }">{{order.processingStatus}}</td>
+              <td *ngIf="!isAdmin()" class="cancel"><button *ngIf="!(order.processingStatus == 'cancelled') && !(order.processingStatus == 'shipped')" id="cancelButton" (click)="cancelOrder(order);">Cancel</button></td>
+              <td *ngIf="isAdmin()" class="cancel"><button *ngIf="!(order.processingStatus == 'shipped') && !(order.processingStatus == 'cancelled')" id="shipButton" (click)="shipOrder(order);">Shipped</button></td>
           </tr>
         </table>
-          <div class="order" *ngFor="let order of this.orders">
-            <p>{{order.purchaseDate}}</p>
-            <p>{{order.processingStatus}}</p>
-            <p>{{order.products}}</p>
-            <button>Cancel</button>
-          </div>
       </div>
     </div>
     <div *ngIf="showPassword" class="content mat-elevation-z8">
@@ -174,7 +173,7 @@
         <input class="inputPassword" [(ngModel)]="newPassword" placeholder="New Password" type="password">
         <input class="inputPassword" [(ngModel)]="newPassword2" placeholder="Confirm new Password" type="password">
         <p id="feedback">{{this.passwordFeedback}}</p>
-        <button id="submitPasswordChange" (click)="changePassword()">Submit</button>
+        <button id="submitPasswordChange"(click)="changePassword()">Submit</button>
       </div>
     </div>
   </mat-sidenav-content>

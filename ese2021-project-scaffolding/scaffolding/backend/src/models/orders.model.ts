@@ -15,7 +15,7 @@ import {Optional, Model, Sequelize, DataTypes, INTEGER} from 'sequelize';
 export interface OrderAttributes {
     orderId: number;
     userId: number;
-    products: string; // product ids separated by comma
+    productIds: string; // product ids separated by comma
     paymentMethod: string;
     homeAddress: string;
     streetNumber: number;
@@ -23,13 +23,15 @@ export interface OrderAttributes {
     city: string;
     processingStatus: string;
     purchaseDate: string;
+    products: string;
+    subtotal: number;
 }
 
 
 export class Orders extends Model<OrderAttributes> implements OrderAttributes {
     orderId: number;
     userId: number;
-    products: string;
+    productIds: string;
     paymentMethod: string;
     homeAddress: string;
     streetNumber: number;
@@ -37,6 +39,8 @@ export class Orders extends Model<OrderAttributes> implements OrderAttributes {
     city: string;
     processingStatus: string;
     purchaseDate: string;
+    products: string;
+    subtotal: number;
 
     public static initialize(sequelize: Sequelize) {
         Orders.init({
@@ -49,7 +53,7 @@ export class Orders extends Model<OrderAttributes> implements OrderAttributes {
                     type: DataTypes.INTEGER,
                     allowNull: false
                 },
-                products: {
+                productIds: {
                     type: DataTypes.STRING,
                     allowNull: false
                 },
@@ -80,6 +84,14 @@ export class Orders extends Model<OrderAttributes> implements OrderAttributes {
                 },
                 purchaseDate: {
                     type: DataTypes.STRING,
+                    allowNull: false
+                },
+                products: {
+                    type: DataTypes.STRING,
+                    allowNull: false
+                },
+                subtotal: {
+                    type: DataTypes.FLOAT,
                     allowNull: false
                 }
             },

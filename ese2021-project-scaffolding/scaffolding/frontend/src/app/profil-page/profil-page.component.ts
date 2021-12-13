@@ -6,6 +6,8 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Order} from "../models/order.model";
 import {Post} from "../models/post.model"
+import {Observable} from "rxjs";
+import {Product} from "../models/product.model";
 @Component({
   selector: 'app-profil-page',
   templateUrl: './profil-page.component.html',
@@ -132,11 +134,19 @@ export class ProfilPageComponent implements OnInit {
   }
 
   private getMyOrders() {
-    this.httpClient.get(environment.endpointURL + "orders/" + this.user.userId)
-      .subscribe((res: any) => {
-        this.orders = res;
-        console.log(this.orders)
-      })
+    if(localStorage.getItem("admin") == "true") {
+      this.httpClient.get(environment.endpointURL + "orders")
+        .subscribe((res: any) => {
+          this.orders = res;
+          console.log(this.orders);
+        })
+    } else {
+      this.httpClient.get(environment.endpointURL + "orders/" + this.user.userId)
+        .subscribe((res: any) => {
+          this.orders = res;
+          console.log(this.orders)
+        })
+    }
   }
 
   changePassword() {
@@ -258,4 +268,34 @@ export class ProfilPageComponent implements OnInit {
         }
       })
   }
+
+  cancelOrder(order: Order) {
+    let result = confirm("Are you sure you want to cancel your order?")
+    if (result) {
+      order.processingStatus = "cancelled";
+      let processingStatus = "cancelled";
+      this.httpClient.put(environment.endpointURL + "orders/" + order.orderId, {
+        processingStatus: processingStatus
+      }).subscribe(res => {
+        console.log(res);
+      })
+    }
+  }
+  shipOrder(order: Order) {
+    order.processingStatus = "shipped";
+    let processingStatus = "shipped";
+    this.httpClient.put(environment.endpointURL + "orders/" + order.orderId, {
+      processingStatus: processingStatus
+    }).subscribe(res => {
+      console.log(res);
+    })
+  }
+
+
+
+  isAdmin() {
+    return localStorage.getItem("admin") == "true";
+  }
+
+
 }

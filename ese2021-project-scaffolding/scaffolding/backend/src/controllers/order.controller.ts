@@ -29,6 +29,12 @@ orderController.get('/:id', (req: Request, res: Response) => {
        .catch(err => res.json(err));
 });
 
+orderController.get('/', (req: Request, res: Response) => {
+    orderService.getAllOrders()
+        .then(orders => res.json(orders))
+        .catch(err => res.json(err));
+});
+
 
 
 orderController.put('/:id', (req: Request, res: Response) => {

@@ -9,9 +9,9 @@ export class OrderService {
 * @param Order
 */
 
-    public async createOrder(order: { userID: number, products: string, paymentMethod: string,
+    public async createOrder(order: { userID: number, productIds: string, paymentMethod: string,
         homeAddress: string, streetNumber: number, zipCode: number, city: string,
-        processingStatus: string, purchaseDate: string}) {
+        processingStatus: string, purchaseDate: string, products: string, subtotal: number}) {
             if (order.zipCode === null && order.city === null && order.streetNumber === null && order.homeAddress === null) {
                 User.findByPk(order.userID).then(found => {
                     if (found != null) {
@@ -30,14 +30,16 @@ export class OrderService {
             return Orders.create({
                 orderId: 0,
                 userId: order.userID,
-                products: order.products,
+                productIds: order.productIds,
                 city: order.city,
                 homeAddress: order.homeAddress,
                 paymentMethod: order.paymentMethod,
                 processingStatus: order.processingStatus,
                 streetNumber: order.streetNumber,
                 zipCode: order.zipCode,
-                purchaseDate: order.purchaseDate
+                purchaseDate: order.purchaseDate,
+                products: order.products,
+                subtotal: order.subtotal
             })
                 .then(inserted => {
                 return Promise.resolve(inserted);
@@ -50,11 +52,13 @@ export class OrderService {
         }*/
     }
 
-    public async updateOrder(orderId, order) {
+    public async updateOrder(orderId, body) {
         return Orders.findByPk(orderId)
             .then(found => {
                 if (found != null) {
-                    found.processingStatus = order.processingStatus;
+                    return found.update({processingStatus: body.processingStatus})
+                        .then(updated => Promise.resolve(updated))
+                        .catch(() => Promise.reject('update failed') );
                 } else {
                     return Promise.reject(' Order not found');
                 }
@@ -62,18 +66,16 @@ export class OrderService {
             .catch(() => Promise.reject('Couldnt update post'));
     }
 
-    // fetchs Order for admin to an user or an user for itself
-    public async getAllOrders(ids: {requestee: number, requested: number}) {
-        if (ids.requestee === ids.requested || this.isAdmin(ids.requestee)) {
-            Orders.findByPk(ids.requested)
+    // fetchs all orders
+    public async getAllOrders() {
+            return Orders.findAll()
                 .then(orders => {
-            if (orders) {
-                return Promise.resolve(orders);
-            } else {
-                return Promise.reject('orders not found');
-            }
-            }).catch((err) => Promise.reject(err));
-        }
+                    if (orders) {
+                        return Promise.resolve(orders);
+                    } else {
+                        return Promise.reject('orders not found');
+                    }
+                }).catch((err) => Promise.reject(err));
     }
     /**
     * @param user Id
@@ -134,6 +136,7 @@ export class OrderService {
                 } else {
                     return Promise.reject('User not found');
                 }
+
             })
             .catch( (err) => Promise.reject(err));
     }
