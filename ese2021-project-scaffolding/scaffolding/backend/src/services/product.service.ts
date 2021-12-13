@@ -6,8 +6,6 @@ export class ProductService {
         title: string, image: string, description: string, category: string,
         available: boolean, price: number, discount: number
     }, path: string) {
-        console.log(product);
-        console.log(path);
         let standardDiscount: number;
         if (product.discount === null) {
             standardDiscount = 1;

@@ -18,10 +18,8 @@ commentController.get('/3/:post', (req: Request, res: Response) => {
 });
 */
 commentController.get('/:id', (req: Request, res: Response) => {
-    console.log(req);
     commentService.getAllComments(Number(req.params.id))
         .then(updated => {
-            console.log(updated);
             res.send(updated);
         })
         .catch(err => res.send(err));

@@ -7,7 +7,6 @@ const previewService = new PReviewService();
 p_reviewController.post('/:id/review', (req: Request, res: Response) => {
     previewService.CreatePReview(Number(req.params.id), req.body)
         .then(created => {
-            console.log(created);
             res.send(created);
         }).catch(err => res.send(err));
 });

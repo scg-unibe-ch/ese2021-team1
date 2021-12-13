@@ -9,7 +9,6 @@ const orderController: Router = express.Router();
 const orderService = new OrderService();
 
 orderController.post('/', (req: Request, res: Response) => {
-    console.log(req.body);
     orderService.createOrder(req.body)
         .then(order => res.send(order))
         .catch(err => res.send(err));

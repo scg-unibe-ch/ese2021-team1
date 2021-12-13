@@ -111,3 +111,4 @@ export const server = express()
     .use('/uploads', express.static(__dirname + '/uploads'))
     // this is the message you get if you open http://localhost:3000/ when the server is running
     .get('/', (req, res) => res.send('<h1>Welcome to Jan and Alessios domain <span style="font-size:50px">&#128525;</span></h1>'));
+

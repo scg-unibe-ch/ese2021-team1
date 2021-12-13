@@ -31,11 +31,9 @@ export class UserService {
             image: null
         })
             .then(inserted => {
-                console.log('SUCCESS');
                 return Promise.resolve(inserted);
             })
             .catch(err => {
-                console.log(err.message);
                 return Promise.reject(err.message); // returns the detailed message that caused the error
             });
     }

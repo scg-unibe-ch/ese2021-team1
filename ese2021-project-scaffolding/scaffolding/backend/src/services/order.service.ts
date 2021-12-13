@@ -100,7 +100,6 @@ export class OrderService {
                             return Orders.findAll({where: {userId: user.userId}})
                                 .then(order => {
                                     if (order != null) {
-                                        console.log(order);
                                         return Promise.resolve(order);
                                     } else {
                                         return Promise.reject('Cant find order');
