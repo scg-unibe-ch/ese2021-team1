@@ -115,6 +115,7 @@ export class CheckoutComponent implements OnInit {
     this.showFinish = false;
     this.httpClient.post(environment.endpointURL + "orders", payload)
       .subscribe((res: any) => {
+        this.cartService.clearCart()
       })
   }
 

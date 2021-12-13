@@ -93,10 +93,13 @@ export class PostService {
     }
 
         // this service returns all posts from the database
-        public async getAllPosts() {
+        public async getAllPosts(infinityIndex: number) {
             return Post.findAll()
                 .then(posts => {
                     if (posts) {
+                        // get only the specified range of posts
+                        posts = posts.reverse();
+                        posts = posts.slice(infinityIndex - 2, infinityIndex);
                         return Promise.resolve(posts);
                     } else {
                         return Promise.reject('No posts available.');

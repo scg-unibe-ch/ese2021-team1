@@ -42,7 +42,7 @@ export class WallComponent implements OnInit {
   showFilter: boolean = false;
   feedback: string = "";
 
-
+  infinityIndex: number = 2; // used for infinite scrolling 0 - 2
 
   constructor(
     public httpClient: HttpClient,
@@ -61,16 +61,15 @@ export class WallComponent implements OnInit {
     return this.posts.length == 0;
   }
   getAllPosts(): void {
-    this.httpClient.get(environment.endpointURL + "post")
+    this.httpClient.get(environment.endpointURL + "post/" + this.infinityIndex)
       .subscribe(res => {
+        console.log(res)
         if (typeof res === "object") {
           Object.values(res).forEach(post => {
             this.posts.push(post)
             this.filteredPosts.push(post)
           })
         }
-        this.posts.reverse();
-        this.filteredPosts.reverse()//so newest post is at the top
       })
   }
 
@@ -199,5 +198,10 @@ export class WallComponent implements OnInit {
 
   resetFilter() {
     window.location.reload();
+  }
+
+  loadMorePosts() {
+    this.infinityIndex = this.infinityIndex + 2
+    this.getAllPosts()
   }
 }

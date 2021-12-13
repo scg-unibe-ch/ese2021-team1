@@ -23,6 +23,8 @@ import { Vote } from './models/vote.model';
 import { VoteController } from './controllers/vote.controller';
 import { Comment } from './models/comment.model';
 import { CommentController } from './controllers/comment.controller';
+import {PReview} from './models/p_review.model';
+import {ReviewController} from './controllers/p_review.controller';
 
 const sequelize: Sequelize = new Sequelize({
     dialect: 'sqlite',
@@ -44,6 +46,7 @@ Comment.initialize(sequelize);
 TodoItem.createAssociations();
 TodoList.createAssociations();
 ItemImage.createAssociations();
+PReview.initialize(sequelize);
 
 const options: cors.CorsOptions = {
     allowedHeaders: [
@@ -107,6 +110,7 @@ export const server = express()
     .use('/product', ProductController)
     .use('/orders', OrderController)
     .use('/vote', VoteController)
+    .use('/review', ReviewController)
     .options('*', cors(options))
     .use('/uploads', express.static(__dirname + '/uploads'))
     // this is the message you get if you open http://localhost:3000/ when the server is running

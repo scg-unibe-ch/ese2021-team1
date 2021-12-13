@@ -20,6 +20,11 @@ export class CartComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    const cart = localStorage.getItem("cart") 
+    if (cart) {
+      this.cartService.retrieveCart(JSON.parse(cart))
+      this.products = this.cartService.getProducts()
+    }
   }
 
   calculateTotal() {
@@ -33,13 +38,12 @@ export class CartComponent implements OnInit {
   clearCart() {
     this.products = this.cartService.clearCart()
   }
-
+ // we have to update the card service when a cart item is removed
+ // we have to check if localstorage contains cart items on init thrrough the service
+ // remove from localstorage on logout
+ // remove from localstorage on order
   removeProductFromCart(product: Product) {
-    for (let i = 0; i < this.products.length; i++) {
-      if (this.products[i] === product) {
-        this.products.splice(i, 1);
-      }
-    }
+    this.products = this.cartService.removeItem(product)
   }
 
 }
