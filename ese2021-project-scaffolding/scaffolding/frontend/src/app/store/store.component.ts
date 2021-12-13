@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import {Product} from "../models/product.model";
-import {environment} from "../../environments/environment";
-import {HttpClient} from "@angular/common/http";
-import {Post} from "../models/post.model";
+import { Product } from "../models/product.model";
+import { environment } from "../../environments/environment";
+import { HttpClient } from "@angular/common/http";
+import { Post } from "../models/post.model";
 
 @Component({
   selector: 'app-store',
   templateUrl: './store.component.html',
   styleUrls: ['./store.component.css']
 })
-  /** Functions for Posts
-  * @param products
-  * @param showNewProductForm
-  * @param createProductButtonText
-  */
+/** Functions for Posts
+* @param products
+* @param showNewProductForm
+* @param createProductButtonText
+*/
 export class StoreComponent implements OnInit {
 
   products: Product[] = []
@@ -28,32 +28,32 @@ export class StoreComponent implements OnInit {
     public httpClient: HttpClient
   ) { }
 
-  ngOnInit():void {
+  ngOnInit(): void {
     this.getAllProducts();
   }
 
   getAllProducts(): void {
-      this.httpClient.get(environment.endpointURL + "product")
-        .subscribe(res => {
-          if (typeof res === "object" && res != null) {
-            Object.values(res).forEach(product => {
-              this.products.push(product)
-              this.filteredProducts.push(product)
-            })
-          }
-          this.products.reverse();
-          this.filteredProducts.reverse();//so newest post is at the top
-        })
-    }
+    this.httpClient.get(environment.endpointURL + "product")
+      .subscribe(res => {
+        if (typeof res === "object" && res != null) {
+          Object.values(res).forEach(product => {
+            this.products.push(product)
+            this.filteredProducts.push(product)
+          })
+        }
+        this.products.reverse();
+        this.filteredProducts.reverse();//so newest post is at the top
+      })
+  }
 
-    addProductParent(product: any) {
-      this.products.unshift(product)
-      this.filteredProducts.unshift(product)
-    }
+  addProductParent(product: any) {
+    this.products.unshift(product)
+    this.filteredProducts.unshift(product)
+  }
 
-    getThisProduct(product: any) {
+  getThisProduct(product: any) {
     this.httpClient.get(environment.endpointURL + "product", product)
-    }
+  }
 
   canAddProduct() {
     return localStorage.getItem("admin") == "true"
@@ -85,28 +85,28 @@ export class StoreComponent implements OnInit {
     }
 
     filteredProducts = []
-    for(let product of this.filteredProducts) {
+    for (let product of this.filteredProducts) {
       filteredProducts.push(product)
     }
-    for(let product of this.filteredProducts) {
-      if(this.priceRange == "0-30") {
-        if(product.price > 30) {
+    for (let product of this.filteredProducts) {
+      if (this.priceRange == "0-30") {
+        if (product.price > 30) {
           filteredProducts.splice(filteredProducts.indexOf(product), 1);
         }
-      } else if(this.priceRange == "31-100") {
-        if(product.price < 31 || product.price > 100) {
+      } else if (this.priceRange == "31-100") {
+        if (product.price < 31 || product.price > 100) {
           filteredProducts.splice(filteredProducts.indexOf(product), 1);
         }
-      } else if(this.priceRange == "101-300") {
-        if(product.price < 101 || product.price > 300) {
+      } else if (this.priceRange == "101-300") {
+        if (product.price < 101 || product.price > 300) {
           filteredProducts.splice(filteredProducts.indexOf(product), 1);
         }
-      } else if(this.priceRange == "301-1000") {
-        if(product.price < 301 || product.price > 1000) {
+      } else if (this.priceRange == "301-1000") {
+        if (product.price < 301 || product.price > 1000) {
           filteredProducts.splice(filteredProducts.indexOf(product), 1);
         }
-      } else if(this.priceRange == "1000+") {
-        if(product.price < 1000) {
+      } else if (this.priceRange == "1000+") {
+        if (product.price < 1000) {
           filteredProducts.splice(filteredProducts.indexOf(product), 1);
         }
       }
@@ -120,9 +120,9 @@ export class StoreComponent implements OnInit {
 
   resetFilter() {
     // window.location.reload(); // this is wrong as this reloads the page
-     this.priceRange = ""
-     this.toFilterCategories = []
-     this.filteredProducts = this.products
-     this.feedback = ""
+    this.priceRange = ""
+    this.toFilterCategories = []
+    this.filteredProducts = this.products
+    this.feedback = ""
   }
 }
