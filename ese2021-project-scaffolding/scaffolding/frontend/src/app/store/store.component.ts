@@ -120,6 +120,9 @@ export class StoreComponent implements OnInit {
   }
 
   resetFilter() {
-    window.location.reload();
+    // window.location.reload(); // this is wrong as this reloads the page
+     this.priceRange = ""
+     this.toFilterCategories = []
+     this.filteredProducts = this.products
   }
 }
