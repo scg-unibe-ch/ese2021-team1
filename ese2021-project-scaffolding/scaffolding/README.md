@@ -34,7 +34,7 @@
 - [x] **_Optional_**: Fans can comment on posts.
 - [ ] **_Optional_**: User Profile Page shows their uploads and upvotes.
 - [x] **_Optional_**: Image Upload to Server/Backend.
-- [ ] Add feedback when reporting post.
+- [x] Add feedback when reporting post.
 - [ ] Better design for filter.
 - [ ] Show in profile page upvote / downvotes and posts
 
@@ -51,12 +51,11 @@
 - [x] **_Optional_**: Shopping cart for fans to purchase multiple items at once/ display sum.
 - [ ] **_Optional_**: Product Review and Payment services using Stripe or PayPal.
 - [ ] save cart in backend.
-- [ ] mark orders as shipped (for admin).
 - [ ] better design for filter
-- [ ] display my orders in profile page (for user) [ARIS - WORK IN PROGRESS]
-- [ ] display all orders (for admin)
-- [ ] cancel orders in profile page (for user)
-- [ ] mark orders as shipped (for admin)
+- [x] display my orders in profile page (for user)
+- [x] display all orders (for admin)
+- [x] cancel orders in profile page (for user)
+- [x] mark orders as shipped (for admin)
 
 ### Milestone 4: Finishing Touches 💎
 
