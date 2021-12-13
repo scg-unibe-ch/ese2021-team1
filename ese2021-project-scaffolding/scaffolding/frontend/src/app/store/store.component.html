@@ -1,6 +1,4 @@
-
-
-  <button *ngIf="canAddProduct()" class="createProductButton" (click)="togglePostForm()" [innerHtml]="createProductButtonText"></button>
+ <button *ngIf="canAddProduct()" class="createProductButton" (click)="togglePostForm()" [innerHtml]="createProductButtonText"></button>
   <app-add-product *ngIf="showNewProductForm" (addProductEmit)="addProductParent($event)"></app-add-product>
   <div class="filter">
     <mat-form-field appearance="fill" class="category-selection">

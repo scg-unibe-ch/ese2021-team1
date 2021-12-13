@@ -13,11 +13,13 @@ import {DetailedProductComponent} from "./detailed-product/detailed-product.comp
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'store/product/:id', component: DetailedProductComponent},
+  { path: 'user/:username/post/:id', redirectTo: 'post/:id', pathMatch: 'full'}, // redirects the path to the comment section
   { path: 'store', component: StoreComponent},
   { path: 'user/:username', component: ProfilPageComponent},
   { path: 'checkout', component: CheckoutComponent},
   { path: 'post/:id', component: DetailedPostComponent},
-  { path: 'store/product/:id', component: DetailedProductComponent},
+
   { path: '', component: WallComponent}
 ]
 

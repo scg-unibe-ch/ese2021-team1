@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.readLists();
+    //this.readLists();
     this.checkUserStatus();
   }
 

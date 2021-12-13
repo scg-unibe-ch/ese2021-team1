@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {UserService} from "../services/user.service";
 import {ReviewModel} from "../models/review.model";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-detailed-product',
@@ -22,7 +23,9 @@ export class DetailedProductComponent implements OnInit {
   id: string | null = "";
   product: any;
 
-  reviews: ReviewModel[] = [];
+  reviews: any;
+  
+  createReview = false;
 
 
   constructor(
@@ -38,17 +41,17 @@ export class DetailedProductComponent implements OnInit {
   }
 
   getProduct() {
-    this.httpClient.get(environment.endpointURL + "product/" + this.product.id)
+    this.httpClient.get(environment.endpointURL + "product/" + this.id)
       .subscribe(res => {
         if(res != null) {
-          console.log(res)
-          this.product = res
+          console.log(res);
+          this.product = res;
         }
       })
   }
 
   reviewProduct() {
-    this.httpClient.post(environment.endpointURL + "review/" + this.product.id + "/review", {
+    this.httpClient.post(environment.endpointURL + "review/" + this.id + "/review", {
       productId: this.product.id,
       userId: this.userService.getUser()?.userId,
       title: this.title,
@@ -58,21 +61,16 @@ export class DetailedProductComponent implements OnInit {
       pros: this.pros,
       cons: this.cons
     }).subscribe(res =>{
-      console.log(res)
+      console.log(res);
       // @ts-ignore
       this.reviews.unshift(res);
     })
   }
 
   getReviews() {
-    this.httpClient.get(environment.endpointURL + "review/" + this.product.id)
+    this.httpClient.get(environment.endpointURL + "review/" + this.id)
       .subscribe(res=> {
-        /*if(res != null) {
-          Object.values(res).forEach(review => {
-            this.reviews.push(review)
-          })
-        }*/
-        this.reviews.reverse()
+        this.reviews = res;
       })
   }
 

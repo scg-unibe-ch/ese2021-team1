@@ -1,0 +1,51 @@
+.product {
+  margin-top: 30px;
+}
+.Wrapper {
+  max-width: 2000px;
+  width: 80%;
+  margin: auto;
+}
+.review, .create {
+  border-radius: 20px;
+  border: none;
+  margin: auto;
+}
+
+.create {
+  width: 60%;
+}
+
+.reviews {
+  width: 60%;
+  max-height: 400px;
+  min-height: 100px;
+  background-color: white;
+  padding: 10px;
+  overflow: auto;
+}
+
+
+.createReview {
+  width: 70%;
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 15px;
+  border: none;
+}
+
+.reviews {
+  margin-right: auto;
+  margin-top: 20px;
+}
+
+#reviewButton {
+  padding: 10px;
+  border-radius: 15px;
+  background-color: #ff9307;
+  border: none;
+  font-weight: bold;
+  color: black;
+  margin-left: 15px;
+  float: right;
+}
