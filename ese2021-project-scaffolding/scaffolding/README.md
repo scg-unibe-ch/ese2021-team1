@@ -32,11 +32,10 @@
 - [ ] Loading posts can be infinite scrolling, pagination or Load More.
 - [x] Create post categories (for post creation and wall display)
 - [x] **_Optional_**: Fans can comment on posts.
-- [ ] **_Optional_**: User Profile Page shows their uploads and upvotes.
+- [ ] **_Optional_**: User Profile Page shows their uploads and upvotes. (working on it - Alessio)
 - [x] **_Optional_**: Image Upload to Server/Backend.
 - [ ] Add feedback when reporting post.
 - [ ] Better design for filter.
-- [ ] Show in profile page upvote / downvotes and posts
 
 ### Milestone 3: Fan-Shop 🛒
 
@@ -49,7 +48,7 @@
 - [x] Create Purchase Process: <br> - Add to Cart<br> - Checkout<br> - Payment<br>
 - [x] **_Optional_**: Search/Filter products on Store
 - [x] **_Optional_**: Shopping cart for fans to purchase multiple items at once/ display sum.
-- [ ] **_Optional_**: Product Review and Payment services using Stripe or PayPal.
+- [ ] **_Optional_**: Product Review and Payment services using Stripe or PayPal. (working on it - Alessio)
 - [ ] save cart in backend.
 - [ ] mark orders as shipped (for admin).
 - [ ] better design for filter
@@ -65,7 +64,8 @@
 - [x] Finish any not optional open tasks!
 - [ ] Work on Design, UI and aesthetics.
 - [ ] **_Optional_**: Admins can reset reporting counter or delete post based on reports.
-
+- [ ] Frontend-testing
+- [ ] Backend-testing
 ### BUGS 🐞
 
 - [x] Reset - does page reload the whole page.
