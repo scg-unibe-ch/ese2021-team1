@@ -211,28 +211,46 @@
   width: fit-content;
   border-radius: 10px;
 }
-
 .filter {
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 40px;
+  width: 70%;
+  margin: 40px auto;
   border-radius: 15px;
   padding: 10px;
   justify-items: center;
-  background-color: white;
+  items-position: center;
+  background-color: #3F3F3F;
+  padding: 20px;
 }
-.filter button {
-  padding: 10px;
-  background-color: lightcoral;
+.filter button{
+ text-align: center;
+position: center;
+  padding: 15px;
+  background-color: #FF7E00;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   float: right;
   margin: 10px;
+  height: 40px;
+  color: #fff;
+  letter-spacing: 0.8px;
+    text-transform: uppercase;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px 0px,
+    rgba(0, 0, 0, 0.4) 0px 0px 1px 0px;
 }
 
 .category-selection {
-  margin-right: 10px;
+  position: relative;
+  text-align: center;
+  margin-right: 13px;
+  background-color: rgb(246, 246, 246);
+  border-radius: 10px;
+  border: 0px;
+  margin:3px;
+  outline: none;
+  height: 45px;
+  text-decoration: none;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px 0px inset;
 }
 
 .morePosts {
