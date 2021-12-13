@@ -4,6 +4,7 @@ import { upload } from '../middlewares/fileFilter';
 import { PostService } from '../services/post.service';
 import {VoteService} from '../services/vote.service';
 import {NUMBER} from 'sequelize';
+
 /**
 * @param postController
 * @param postService
@@ -28,8 +29,8 @@ postController.post('/', upload.single('file'), (req: Request, res: Response) =>
 });
 
 // this route is hit by the frontend on startup to fetch all posts from the database
-postController.get('/', (req: Request, res: Response) => {
-    postService.getAllPosts()
+postController.get('/:postIndex', (req: Request, res: Response) => {
+    postService.getAllPosts(Number(req.params.postIndex))
         .then(posts => res.json(posts))
         .catch(err => res.json(err));
 });
