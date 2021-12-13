@@ -29,7 +29,7 @@
 - [x] Create post component: Title, Image, etc. Title MUST be set. Category must be set.
 - [x] CRUD for posts.
 - [x] Upvote and Downvote posts and ranking of post.
-- [ ] Loading posts can be infinite scrolling, pagination or Load More.
+- [ ] Loading posts can be infinite scrolling, pagination or Load More. [ARIS - WORK IN PROGRESS]
 - [x] Create post categories (for post creation and wall display)
 - [x] **_Optional_**: Fans can comment on posts.
 - [ ] **_Optional_**: User Profile Page shows their uploads and upvotes.
