@@ -63,7 +63,6 @@ export class WallComponent implements OnInit {
   getAllPosts(): void {
     this.httpClient.get(environment.endpointURL + "post/" + this.infinityIndex)
       .subscribe(res => {
-        console.log(res)
         if (typeof res === "object") {
           Object.values(res).forEach(post => {
             this.posts.push(post)
