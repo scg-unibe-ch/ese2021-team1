@@ -1,4 +1,4 @@
-## Team 1: ESE 2021 Project Requirements (Checklist & Bugs)
+,## Team 1: ESE 2021 Project Requirements (Checklist & Bugs)
 
 - For Tasks see: https://github.com/scg-unibe-ch/ese2021-team1/projects/1
 - Intra-Team communication: WhatsApp and Discord.
@@ -35,7 +35,7 @@
 - [x] **_Optional_**: User Profile Page shows their uploads and upvotes.
 - [x] **_Optional_**: Image Upload to Server/Backend.
 - [x] Add feedback when reporting post.
-- [ ] Better design for filter.
+- [ ] Better design for filter. (WORKING ON IT - FLORIAN)
 
 ### Milestone 3: Fan-Shop 🛒
 
