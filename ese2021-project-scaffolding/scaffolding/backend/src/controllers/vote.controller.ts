@@ -13,20 +13,18 @@ const voteService = new VoteService();
 voteController.post('/:id/up', (req: Request, res: Response) => {
     voteService.updateVote(Number(req.params.id), req.body)
         .then(updated => {
-            console.log(updated);
             res.send(updated);
         })
-        .catch(err => res.send(err));
+        .catch(err => res.send(err.message));
 });
 
 
 voteController.post('/:id/down', (req: Request, res: Response) => {
     voteService.updateVote(Number(req.params.id), req.body)
         .then(updated => {
-            console.log(updated);
             res.send(updated);
         })
-        .catch(err => res.send(err));
+        .catch(err => res.send(err.message));
 });
 
 export const VoteController: Router = voteController;

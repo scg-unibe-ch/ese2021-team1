@@ -87,14 +87,12 @@ export class PostComponent implements OnInit {
         userName: localStorage.getItem("userName"),
         vote: 1
       }).subscribe(res => {
-        console.log(res)
         if (res == null) {
           this.clickedUpvote = false;
-          console.log(this.clickedUpvote)
+          // console.log(this.clickedUpvote)
           this.post.like -= 1;
         } else {
           this.clickedUpvote = true;
-          console.log(this.clickedUpvote)
           this.post.like += 1;
         }
       });
@@ -107,11 +105,10 @@ export class PostComponent implements OnInit {
       }).subscribe(res => {
         if (res == null) {
           this.clickedDownvote = false;
-          console.log(this.clickedDownvote)
+          // console.log(this.clickedDownvote)
           this.post.dislike -= 1;
         } else {
           this.clickedDownvote = true;
-          console.log(this.clickedDownvote)
           this.post.dislike += 1;
         }
       });

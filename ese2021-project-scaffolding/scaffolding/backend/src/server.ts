@@ -59,7 +59,7 @@ const options: cors.CorsOptions = {
     preflightContinue: false,
 };
 
-sequelize.sync({ force: true }).then(async () => {
+sequelize.sync({ force: false }).then(async () => {
     const fs = require('fs');
     const dir = './build/uploads';
     if (!fs.existsSync(dir)) {
@@ -68,22 +68,25 @@ sequelize.sync({ force: true }).then(async () => {
     server.listen(port, async () => {
         const pass = 'Admin123!';
         const name = 'admin';
-        await User.create({
-            userId: null,
-            userName: name,
-            password: pass,
-            admin: true,
-            firstName: 'Admin',
-            lastName: 'Admin',
-            email: 'admin@gmail.com',
-            homeAddress: 'Irgendwostrasse',
-            streetNumber: 1,
-            zipCode: 1001,
-            city: 'Bern',
-            birthday: '12.12.1990',
-            phoneNumber: '0765840666',
-            image: null
-        });
+        const adminExists = await User.findOne({ where: { userName: name }});
+        if (!adminExists) {
+            await User.create({
+                userId: null,
+                userName: name,
+                password: pass,
+                admin: true,
+                firstName: 'Admin',
+                lastName: 'Admin',
+                email: 'admin@gmail.com',
+                homeAddress: 'Irgendwostrasse',
+                streetNumber: 1,
+                zipCode: 1001,
+                city: 'Bern',
+                birthday: '12.12.1990',
+                phoneNumber: '0765840666',
+                image: null
+            });
+        }
         server.emit('serverStarted');
         console.log(`server listening at http://localhost:${port}`);   // indicate that the server has started
     });
