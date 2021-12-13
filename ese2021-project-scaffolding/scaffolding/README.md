@@ -35,7 +35,7 @@
 - [ ] **_Optional_**: User Profile Page shows their uploads and upvotes.
 - [x] **_Optional_**: Image Upload to Server/Backend.
 - [x] Add feedback when reporting post.
-- [ ] Better design for filter.
+- [ ] Better design for filter. [PAVLOS - WORK IN PROGRESS]
 - [ ] Show in profile page upvote / downvotes and posts
 
 ### Milestone 3: Fan-Shop 🛒
@@ -51,7 +51,7 @@
 - [x] **_Optional_**: Shopping cart for fans to purchase multiple items at once/ display sum.
 - [ ] **_Optional_**: Product Review and Payment services using Stripe or PayPal.
 - [ ] save cart in backend.
-- [ ] better design for filter
+- [ ] better design for filter [PAVLOS - WORK IN PROGRESS]
 - [x] display my orders in profile page (for user)
 - [x] display all orders (for admin)
 - [x] cancel orders in profile page (for user)
@@ -62,7 +62,7 @@
 ##### ToDos 📝
 
 - [x] Finish any not optional open tasks!
-- [ ] Work on Design, UI and aesthetics.
+- [ ] Work on Design, UI and aesthetics. [PAVLOS - WORK IN PROGRESS]
 - [ ] **_Optional_**: Admins can reset reporting counter or delete post based on reports.
 
 ### BUGS 🐞
