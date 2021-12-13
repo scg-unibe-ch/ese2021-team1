@@ -48,8 +48,8 @@ export class DetailedProductComponent implements OnInit {
   }
 
   reviewProduct() {
-    this.httpClient.post(environment.endpointURL + "review/" + this.product.id, {
-      productId: this.product.id,
+    this.httpClient.post(environment.endpointURL + "review/" + this.id, {
+      productId: this.id,
       userId: this.userService.getUser()?.userId,
       title: this.title,
       image: this.image,
@@ -67,11 +67,11 @@ export class DetailedProductComponent implements OnInit {
   getReviews() {
     this.httpClient.get(environment.endpointURL + "review/" + this.id)
       .subscribe(res=> {
-        if(res != null) {
+        /*if(res != null) {
           Object.values(res).forEach(review => {
             this.reviews.push(review)
           })
-        }
+        }*/
         this.reviews.reverse()
       })
   }
