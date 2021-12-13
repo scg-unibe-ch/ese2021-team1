@@ -36,7 +36,8 @@
 - [x] **_Optional_**: Image Upload to Server/Backend.
 - [x] Add feedback when reporting post.
 - [ ] Better design for filter. [PAVLOS - WORK IN PROGRESS]
-- [ ] Show in profile page upvote / downvotes and posts
+- [x] Show in profile page upvote / downvotes and posts
+- [ ] Optimize design in profile page -> MyPosts [PAVLOS - WORK IN PROGRESS]
 
 ### Milestone 3: Fan-Shop 🛒
 
@@ -72,4 +73,4 @@
 - [x] Likes: If upvoted/downvoted then downvote/upvote, you get an error.
 - [x] On Backend start (start or ctr+S), database initializes empty tables and overwrites everything - check if table exists, if not then init tables.
 - [ ] errors for detail product (cannot read properties of undefined).
-- [ ] Like Dislike does not work properly. Dislike increases?
+- [ ] Like/Dislike does not work properly. Dislike increases?
