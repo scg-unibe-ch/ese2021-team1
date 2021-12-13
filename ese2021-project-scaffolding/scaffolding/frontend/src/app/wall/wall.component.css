@@ -222,7 +222,7 @@
   justify-items: center;
   background-color: white;
 }
-.filter button{
+.filter button {
   padding: 10px;
   background-color: lightcoral;
   border: none;
@@ -234,4 +234,3 @@
 .category-selection {
   margin-right: 10px;
 }
-

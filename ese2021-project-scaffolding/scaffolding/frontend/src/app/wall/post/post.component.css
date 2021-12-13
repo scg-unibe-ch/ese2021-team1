@@ -10,8 +10,10 @@
   border-radius: 20px;
   display: block;
   margin-bottom: 25px;
-  background: whitesmoke;
-  overflow: hidden;
+  background: rgb(255, 255, 255, 0.2);
+
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 
 button:disabled {
@@ -23,9 +25,13 @@ button:disabled {
   width: fit-content;
   height: 50px;
   top: 0px;
-  background-color: lightgrey;
+  background-color: rgb(245, 245, 245);
   border-radius: 20px;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  border-bottom: solid 5px #1eff00;
 }
 .username {
   position: relative;
@@ -48,24 +54,33 @@ button:disabled {
 
   transform: translate(0, -50%);
 }
-.report {
-  position: relative;
-  float: right;
-  width: fit-content;
-  margin-right: 40px;
-  z-index: 1;
+
+.tokenLogo {
+  position: absolute;
+  float: inline-end;
+  width: auto;
+  height: 50px;
+  z-index: 1999;
+  top: -35px;
+  right: -15;
+  filter: drop-shadow(7px 7px 7px #414141);
+  -webkit-filter: drop-shadow(7px 7px 7px #414141);
+  transform: rotate(8deg);
 }
 
 .ReportButton {
+  color: rgb(121, 121, 121);
+  transition: all 50ms ease-in-out;
+}
+.ReportButton:hover {
   background-color: transparent;
   border: none;
-  color: red;
+  color: tomato;
 }
 
 .ReportButton:disabled {
   color: grey;
 }
-
 
 .category {
   position: relative;
@@ -74,8 +89,9 @@ button:disabled {
   border-radius: 20px;
   margin-right: 10px;
   margin-top: 5px;
-
-
+  font-weight: bold;
+  color: rgb(209, 209, 209);
+  font-size: 90%;
 }
 
 .category-selection {
@@ -93,26 +109,32 @@ button:disabled {
   top: 50%;
   transform: translate(0, -50%);
   font-weight: normal;
-  color: rgb(179, 179, 179);
+  color: rgb(92, 92, 92);
+  margin-right: 15px;
 }
 
 .content {
   position: relative;
   top: 10px;
-  width: 100%;
-  background-color: #ff9307;
-  border-radius: 20px;
+  width: calc(100% + 20px);
+  left: -10px;
+  background-color: #3f3f3f;
+  color: rgb(219, 219, 219);
+  /* box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; */
 }
 
 .material {
+  color: #000000;
   position: relative;
   width: auto;
   height: calc(100% - 25px);
-  background-color: antiquewhite;
+  background: rgb(245, 245, 245);
+
   font-weight: normal;
   padding: 15px;
   display: block;
-  border-radius: 0px 0px 20px 20px;
+  border-top: 5px solid orange;
 }
 .contentTitle {
   height: auto;
@@ -155,18 +177,38 @@ button:disabled {
   background-color: rgb(95, 95, 95);
   color: rgb(255, 145, 56);
   font-weight: normal;
-/* font-size: normal;*/
+  /* font-size: normal;*/
 }
 
 .underPost {
-  margin-top: 20px;
-  margin-left: 10px;
+  position: relative;
+  width: 100%;
+  padding-top: 10px;
+  padding-left: 10px;
+  height: 35px;
+  position: relative;
+  width: fit-content;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  border-bottom: solid 5px #1eff00;
 }
 
-.upvoteButton, .downvoteButton, .commentButton {
+.upvoteButton,
+.downvoteButton,
+.commentButton,
+.ReportButton {
   height: 30px;
   border: none;
   background: none;
+  background-color: none;
+}
+.upvoteButton:hover {
+  color: green;
+}
+.downvoteButton:hover {
+  color: tomato;
 }
 
 .clickedUp {
@@ -174,17 +216,21 @@ button:disabled {
 }
 
 .clickedDown {
-  color: red;
+  color: tomato;
 }
 
 mat-icon {
   outline: 0;
 }
-.likesCount, .dislikesCount, .commentsCount, .reportedCount {
+.likesCount,
+.dislikesCount,
+.commentsCount,
+.reportedCount {
   float: left;
   font-size: 18px;
   position: relative;
-  bottom: 10px;
+  margin: 0;
+  bottom: -2px;
 }
 
 .reportedCount {
@@ -192,34 +238,37 @@ mat-icon {
   color: red;
 }
 
-
-
-.upvote, .downvote, .comment {
+.upvote,
+.downvote,
+.comment {
   float: left;
   margin-left: 5px;
   margin-right: 5px;
 }
 
-.downvote, .comment {
+.downvote,
+.comment {
   margin-left: 15px;
 }
 
 .verticalDots:after {
-  content: '\2807';
+  content: "\2807";
   font-size: 30px;
+  background-color: transparent;
 }
 
 .verticalDots {
-  background-color: transparent;
   border: none;
-  position: relative;
-  float: right;
-  outline: none;
-  margin-top: 5px;
+  position: absolute;
+  right: -5px;
+  height: auto;
+  width: 5px;
+  padding-top: 13px;
+  margin: 0;
+  background-color: transparent;
 }
 
-.verticalDots:checked{
-  background-color: transparent;
+.verticalDots:hover {
 }
 
 input {
@@ -237,7 +286,6 @@ input {
   display: block;
   margin-top: 15px;
   border-radius: 15px;
-
 }
 
 #saveChanges {
@@ -295,17 +343,24 @@ input {
 .popup .show {
   visibility: visible;
   -webkit-animation: fadeIn 1s;
-  animation: fadeIn 1s
+  animation: fadeIn 1s;
 }
 
 /* Add animation (fade in the popup) */
 @-webkit-keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity:1 ;}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
-
