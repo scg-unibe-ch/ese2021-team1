@@ -32,12 +32,10 @@
 - [ ] Loading posts can be infinite scrolling, pagination or Load More. [ARIS - WORK IN PROGRESS]
 - [x] Create post categories (for post creation and wall display)
 - [x] **_Optional_**: Fans can comment on posts.
-- [ ] **_Optional_**: User Profile Page shows their uploads and upvotes.
+- [ ] **_Optional_**: User Profile Page shows their uploads and upvotes. (working on it - Alessio)
 - [x] **_Optional_**: Image Upload to Server/Backend.
-- [x] Add feedback when reporting post.
-- [ ] Better design for filter. [PAVLOS - WORK IN PROGRESS]
-- [x] Show in profile page upvote / downvotes and posts
-- [ ] Optimize design in profile page -> MyPosts [PAVLOS - WORK IN PROGRESS]
+- [ ] Add feedback when reporting post.
+- [ ] Better design for filter.
 
 ### Milestone 3: Fan-Shop 🛒
 
@@ -50,22 +48,24 @@
 - [x] Create Purchase Process: <br> - Add to Cart<br> - Checkout<br> - Payment<br>
 - [x] **_Optional_**: Search/Filter products on Store
 - [x] **_Optional_**: Shopping cart for fans to purchase multiple items at once/ display sum.
-- [ ] **_Optional_**: Product Review and Payment services using Stripe or PayPal.
+- [ ] **_Optional_**: Product Review and Payment services using Stripe or PayPal. (working on it - Alessio)
 - [ ] save cart in backend.
-- [ ] better design for filter [PAVLOS - WORK IN PROGRESS]
-- [x] display my orders in profile page (for user)
-- [x] display all orders (for admin)
-- [x] cancel orders in profile page (for user)
-- [x] mark orders as shipped (for admin)
+- [ ] mark orders as shipped (for admin).
+- [ ] better design for filter
+- [ ] display my orders in profile page (for user) [ARIS - WORK IN PROGRESS]
+- [ ] display all orders (for admin)
+- [ ] cancel orders in profile page (for user)
+- [ ] mark orders as shipped (for admin)
 
 ### Milestone 4: Finishing Touches 💎
 
 ##### ToDos 📝
 
 - [x] Finish any not optional open tasks!
-- [ ] Work on Design, UI and aesthetics. [PAVLOS - WORK IN PROGRESS]
+- [ ] Work on Design, UI and aesthetics.
 - [ ] **_Optional_**: Admins can reset reporting counter or delete post based on reports.
-
+- [ ] Frontend-testing
+- [ ] Backend-testing
 ### BUGS 🐞
 
 - [x] Reset - does page reload the whole page.
@@ -73,4 +73,3 @@
 - [x] Likes: If upvoted/downvoted then downvote/upvote, you get an error.
 - [x] On Backend start (start or ctr+S), database initializes empty tables and overwrites everything - check if table exists, if not then init tables.
 - [ ] errors for detail product (cannot read properties of undefined).
-- [ ] Like/Dislike does not work properly. Dislike increases?

@@ -1,11 +1,10 @@
 import {PReview} from '../models/p_review.model';
 
 export class PReviewService {
-    public async CreatePReview(productID: number,
-                               body: {title: string, image: string, text: string, stars: number, pros: string, cons: string}) {
+    public async CreatePReview(body: {productID: number, title: string, image: string, text: string, stars: number, pros: string, cons: string}) {
         return PReview.create({
-            p_reviewId: 0,
-            productId: productID,
+            previewId: 0,
+            productId: body.productID,
             title: body.title,
             image: body.image,
             text: body.text,
@@ -21,11 +20,7 @@ export class PReviewService {
     }
 
     public async deletePReview(productID: number, body: {reviewid: number}) {
-        PReview.findOne({
-            where: {
-                p_reviewId: body.reviewid,
-                productId: productID
-            }})
+        PReview.findByPk(body.reviewid)
             .then(found => {
                 if (found != null) {
                     found.destroy()

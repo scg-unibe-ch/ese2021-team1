@@ -1,7 +1,7 @@
 import {Model, Sequelize, DataTypes, Optional} from 'sequelize';
 
 export interface PReviewProperties {
-    p_reviewId: number; // used for the database
+    previewId: number; // used for the database
     productId: number;
     title: string;
     image: string;
@@ -15,7 +15,7 @@ export interface PReviewProperties {
 export interface  PReviewCreationProperties extends Optional<PReviewProperties, 'text' | 'pros' | 'cons' | 'image'> {}
 
 export class PReview extends Model<PReviewProperties, PReviewCreationProperties> implements PReviewProperties {
-    p_reviewId: number; // used for the database
+    previewId!: number; // used for the database
     productId: number;
     title: string;
     image: string;
@@ -27,7 +27,7 @@ export class PReview extends Model<PReviewProperties, PReviewCreationProperties>
 
     public static initialize(sequelize: Sequelize) {
         PReview.init({
-                p_reviewId: {
+                previewId: {
                     type: DataTypes.INTEGER,
                     autoIncrement: true,
                     primaryKey: true,
