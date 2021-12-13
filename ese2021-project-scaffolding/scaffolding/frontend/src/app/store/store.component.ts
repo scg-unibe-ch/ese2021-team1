@@ -124,5 +124,6 @@ export class StoreComponent implements OnInit {
      this.priceRange = ""
      this.toFilterCategories = []
      this.filteredProducts = this.products
+     this.feedback = ""
   }
 }
