@@ -71,7 +71,6 @@ export class WallComponent implements OnInit {
         }
         this.posts.reverse();
         this.filteredPosts.reverse()//so newest post is at the top
-        console.log(this.posts)
       })
   }
 
@@ -85,7 +84,6 @@ export class WallComponent implements OnInit {
   }
 
   addPostParent(post: any) {
-    console.log(post)
     this.posts.unshift(post)
     this.filteredPosts.unshift(post)
     this.togglePostForm();
@@ -137,7 +135,6 @@ export class WallComponent implements OnInit {
     } else {
       this.feedback = "";
     }
-    console.log(this.filteredPosts)
     if(this.toSortMethod == "likes") {
       this.filteredPosts.sort(this.compareLikes)
     } else if(this.toSortMethod == "dislikes") {

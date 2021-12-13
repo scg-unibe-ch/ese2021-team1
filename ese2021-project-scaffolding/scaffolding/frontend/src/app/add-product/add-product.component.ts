@@ -39,7 +39,6 @@ export class AddProductComponent implements OnInit {
 
   createProduct() {
     const user = localStorage.getItem("userName")
-    console.log(this.newProduct)
     if (!user) {
       alert("Only signed in users can create products. This form should not be visible.")
       return
@@ -49,7 +48,6 @@ export class AddProductComponent implements OnInit {
     payload.append("file", this.selectedFile)
     this.httpClient.post(environment.endpointURL + "product", payload)
       .subscribe((res: any) => {
-        console.log(res)
         this.addProductEmit.emit(res)
       })
     this.newProduct = {

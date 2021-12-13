@@ -59,7 +59,6 @@ export class ProfilPageComponent implements OnInit {
     // this.counter()
     this.getMyOrders();
     this.getMyPosts();
-    console.log(this.user);
   }
 
 
@@ -109,8 +108,6 @@ export class ProfilPageComponent implements OnInit {
     private getOrders() {
       this.httpClient.get(environment.endpointURL + "orders/" + this.user.userId, this.user.userId)
         .subscribe((res: any) => {
-          console.log(this.user.userId)
-          console.log(res);
           this.orders = res;
         })
     }
@@ -129,7 +126,6 @@ export class ProfilPageComponent implements OnInit {
           })
         }
         this.posts.reverse();
-        console.log(res);
       })
   }
 
@@ -138,13 +134,11 @@ export class ProfilPageComponent implements OnInit {
       this.httpClient.get(environment.endpointURL + "orders")
         .subscribe((res: any) => {
           this.orders = res;
-          console.log(this.orders);
         })
     } else {
       this.httpClient.get(environment.endpointURL + "orders/" + this.user.userId)
         .subscribe((res: any) => {
           this.orders = res;
-          console.log(this.orders)
         })
     }
   }
@@ -155,7 +149,6 @@ export class ProfilPageComponent implements OnInit {
         userId: this.user.userId,
         password: this.newPassword
       }).subscribe((res: any) => {
-        console.log(res);
         this.passwordFeedback = "Change was successful."
       });
     } else {
@@ -185,7 +178,6 @@ export class ProfilPageComponent implements OnInit {
     payload.append("file", this.selectedFile)
     this.httpClient.patch(environment.endpointURL + "user/" + this.user.userId, payload).subscribe((res: any) => {
       if (res != null) {
-        console.log(res)
         this.userService.setUser(res)
         this.user = res
         this.user.username = res.userName;
@@ -213,7 +205,6 @@ export class ProfilPageComponent implements OnInit {
   }
 
   checkPassword(): boolean {
-    console.log("Hallo");
     // passwordReqs[min 8 char, capital & small letters, a number, a special char]
     this.passwordReqs[0] = this.newPassword.length >= 8;
     this.passwordReqs[1] = (/[a-z]/.test(this.newPassword)) && (/[A-Z]/.test(this.newPassword));
@@ -238,7 +229,6 @@ export class ProfilPageComponent implements OnInit {
     deletePost($event: Post) {
       this.httpClient.delete(environment.endpointURL + "post/" + this.post.id)
         .subscribe(res => {
-          console.log(res);
         })
     }
 
@@ -250,21 +240,17 @@ export class ProfilPageComponent implements OnInit {
         labels: this.post.labels,
         userName: this.post.username
       }).subscribe(res => {
-        console.log(res);
       })
     }*/
   public counter() {
     this.httpClient.get(environment.endpointURL + "post/" + this.user.userId + "/counter")
       .subscribe(res => {
-        console.log("hallo" + res);
 
         if (typeof res === "object") {
           Object.values(res).forEach(para => {
             this.count.push(para)
           })
           this.count.reverse();
-          console.log(this.count);
-
         }
       })
   }
@@ -277,7 +263,6 @@ export class ProfilPageComponent implements OnInit {
       this.httpClient.put(environment.endpointURL + "orders/" + order.orderId, {
         processingStatus: processingStatus
       }).subscribe(res => {
-        console.log(res);
       })
     }
   }
@@ -287,7 +272,6 @@ export class ProfilPageComponent implements OnInit {
     this.httpClient.put(environment.endpointURL + "orders/" + order.orderId, {
       processingStatus: processingStatus
     }).subscribe(res => {
-      console.log(res);
     })
   }
 

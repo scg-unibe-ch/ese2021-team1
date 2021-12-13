@@ -25,7 +25,6 @@ export class CommentComponent implements OnInit {
     this.httpClient.get(environment.endpointURL + "user/" + this.comment.userID)
       .subscribe(res=> {
         if(res != null) {
-          console.log(res)
           this.author = res
         }
       })

@@ -75,7 +75,6 @@ export class AddPostComponent implements OnInit {
             this.addPostEmit.emit(res)
           } else {
             // else it may be a error message that we can somehow show to the user
-            console.log(res) // log the error message
           }
         })
       this.newPost = {

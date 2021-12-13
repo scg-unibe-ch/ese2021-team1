@@ -62,7 +62,6 @@ export class LoginComponent {
 
   registerUser(): void {
     this.serverFeedback = '';
-    // console.log('Submitting Register Data:', this.userToRegister)
     this.httpClient.post(environment.endpointURL + "user/register", {
       userName: this.userToRegister.username,
       password: this.userToRegister.password,

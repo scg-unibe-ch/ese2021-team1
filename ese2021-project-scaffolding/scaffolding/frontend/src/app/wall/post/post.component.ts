@@ -63,7 +63,6 @@ export class PostComponent implements OnInit {
   ngOnInit(): void {
     this.countComments()
     this.findUser()
-    console.log(this.post)
     //this.post.category = this.post.category.replace(/[, ]+/g, " ").trim(); //very ugly to remove comma from category
   }
   reportPost() {
@@ -89,7 +88,6 @@ export class PostComponent implements OnInit {
       }).subscribe(res => {
         if (res == null) {
           this.clickedUpvote = false;
-          // console.log(this.clickedUpvote)
           this.post.like -= 1;
         } else {
           this.clickedUpvote = true;
@@ -105,7 +103,6 @@ export class PostComponent implements OnInit {
       }).subscribe(res => {
         if (res == null) {
           this.clickedDownvote = false;
-          // console.log(this.clickedDownvote)
           this.post.dislike -= 1;
         } else {
           this.clickedDownvote = true;
@@ -130,7 +127,6 @@ export class PostComponent implements OnInit {
       labels: this.post.labels,
       userName: this.post.username
     }).subscribe(res => {
-      console.log(res)
       // @ts-ignore
       this.update.emit([this.post, res])
     })
@@ -143,7 +139,6 @@ export class PostComponent implements OnInit {
     // DELETE IT IN THE BACK
     this.httpClient.delete(environment.endpointURL + "post/" + this.post.id)
     .subscribe(res => {
-      console.log('DELETE REQUEST', res)
       // this has to be developed further
       // remove the post from the list of posts that is located in the wall component
     });
@@ -208,7 +203,6 @@ export class PostComponent implements OnInit {
   findUser() {
     this.httpClient.get(environment.endpointURL + "user/" + this.post.userID)
       .subscribe(res => {
-        console.log(res)
         this.user = res;
       })
   }

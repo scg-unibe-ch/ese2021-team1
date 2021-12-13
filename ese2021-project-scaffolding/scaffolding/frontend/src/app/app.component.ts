@@ -92,7 +92,6 @@ export class AppComponent implements OnInit {
   * @return boolean (if everything is okay)
   */
   checkUserStatus() {
-    console.log(localStorage)
     // Get user data from local storage
     const userId = localStorage.getItem('userId')
     const userToken = localStorage.getItem('userToken');

@@ -38,7 +38,6 @@ export class DetailedPostComponent implements OnInit {
     this.httpClient.get(environment.endpointURL + "post/" + this.id)
       .subscribe(res => {
         if(res != null) {
-          console.log(res)
           this.post = res
         }
       })
@@ -50,7 +49,6 @@ export class DetailedPostComponent implements OnInit {
       text: this.commentText,
       userID: this.userService.getUser()?.userId
     }).subscribe(res =>{
-      console.log(res)
       // @ts-ignore
       this.comments.unshift(res);
     })

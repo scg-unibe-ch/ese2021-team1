@@ -94,13 +94,11 @@ export class RegisterComponent {
   }
 
   registerUser(): void {
-    console.log(this.userToRegister)
     this.serverFeedback = '';
     if (this.checkIsValid()) {
       // specific feedback on each input is shown based on formFeedback object
     } else {
 
-      console.log('Submitting Register Data:', this.userToRegister)
       this.httpClient.post(environment.endpointURL + "user/register", {
         userName: this.userToRegister.username,
         password: this.userToRegister.password,

@@ -43,7 +43,6 @@ export class StoreComponent implements OnInit {
           }
           this.products.reverse();
           this.filteredProducts.reverse();//so newest post is at the top
-          console.log(this.products)
         })
     }
 
