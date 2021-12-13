@@ -2,55 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50967749-99b9-4f4f-9875-ebde8942f35b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_10_2021_17_35__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_10_2021_17_35__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_10_2021_17_35_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_10_2021_17_35__Default_Changelist_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/controllers/admin.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/admin.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/controllers/order.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/order.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/controllers/post.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/post.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/controllers/product.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/product.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/controllers/secured.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/secured.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/controllers/todoitem.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/todoitem.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/controllers/todolist.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/todolist.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/controllers/user.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/user.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/controllers/vote.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/vote.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/middlewares/checkAdmin.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/middlewares/checkAdmin.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/middlewares/checkAuth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/middlewares/checkAuth.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/middlewares/fileFilter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/middlewares/fileFilter.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/models/itemImage.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/itemImage.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/models/multerRequest.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/multerRequest.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/models/orders.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/orders.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/models/post.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/post.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/models/product.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/product.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/models/todoitem.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/todoitem.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/models/todolist.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/todolist.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/models/user.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/user.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/models/vote.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/vote.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/services/item.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/item.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/services/order.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/order.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/services/post.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/post.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/services/product.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/product.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/user.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/services/vote.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/vote.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/add-product/add-product.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/add-product/add-product.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/cart/cart.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/cart/cart.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/login/login.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/models/order.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/models/order.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/models/post.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/models/post.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/models/product.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/models/product.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/models/todo-item.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/models/todo-item.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/models/todo-list.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/models/todo-list.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/models/user.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/models/user.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/navbar/navbar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/navbar/navbar.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/password-modal/password-modal.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/password-modal/password-modal.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/product/product.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/product/product.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/profil-page/profil-page.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/profil-page/profil-page.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/register/register.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/register/register.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/store/store.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/store/store.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/user/user.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/user/user.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/wall/post/post.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/wall/post/post.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/wall/wall.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/wall/wall.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +27,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
     <option name="SWAP_SIDES_IN_COMPARE_BRANCHES" value="true" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="ProjectId" id="1zMknn6LU9sZrKk2PiVmsfcwQcn" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -76,8 +42,10 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
