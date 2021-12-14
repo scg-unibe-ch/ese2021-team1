@@ -14,6 +14,23 @@
 
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  transition: all 60ms ease-in-out;
+}
+
+.postWrapper:hover {
+  background: rgb(255, 255, 255, 0.5);
+  border-bottom: double 2px transparent;
+  /* first gradient is for card background, second for border background */
+  background-image: linear-gradient(
+      rgb(255, 255, 255, 0.5),
+      rgba(112, 112, 112, 0.5)
+    ),
+    linear-gradient(to right, rgb(255, 0, 0), rgb(0, 255, 55));
+  background-clip: padding-box, border-box;
+  background-origin: border-box;
+  z-index: 999;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
 button:disabled {
@@ -211,8 +228,9 @@ button:disabled {
 .downvoteButton:hover {
   color: tomato;
 }
-.commentButton:hover{
-color: blue;}
+.commentButton:hover {
+  color: blue;
+}
 .clickedUp {
   color: green;
 }

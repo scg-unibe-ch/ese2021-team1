@@ -9,7 +9,7 @@
     "prestart": "npm run build",
     "dev": "nodemon",
     "start": "node .",
-    "test": "mocha -r ts-node/register src/**/*.spec.ts"
+    "test": "mocha --timeout 10000 -r ts-node/register src/**/*.spec.ts"
   },
   "dependencies": {
     "@types/chai-http": "^4.2.0",

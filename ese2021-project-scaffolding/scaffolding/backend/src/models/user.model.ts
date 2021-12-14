@@ -1,4 +1,4 @@
-import { TodoItem, TodoItemAttributes, TodoItemCreationAttributes } from './todoitem.model';
+
 import { Optional, Model, Sequelize, DataTypes } from 'sequelize';
 /**
 * @param firstName

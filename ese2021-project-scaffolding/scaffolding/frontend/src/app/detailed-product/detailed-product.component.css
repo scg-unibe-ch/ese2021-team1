@@ -5,9 +5,11 @@
   max-width: 2000px;
   width: 70%;
   margin: auto;
-
+  top: 100px;
+  position: relative;
 }
-.review, .create {
+.review,
+.create {
   border-radius: 20px;
   border: none;
   margin: auto;

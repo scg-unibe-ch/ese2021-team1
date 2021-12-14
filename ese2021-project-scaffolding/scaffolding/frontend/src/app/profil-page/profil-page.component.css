@@ -50,8 +50,8 @@ mat-sidenav {
 }
 
 .profilePicture img {
-  width: 250px;
-  height: 250px;
+  width: 150px;
+  height: auto;
   border-radius: 50%;
 }
 

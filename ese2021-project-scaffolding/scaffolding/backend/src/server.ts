@@ -1,19 +1,14 @@
 import express, { Application, Request, Response } from 'express';
 import morgan from 'morgan';
-import { TodoItemController } from './controllers/todoitem.controller';
-import { TodoListController } from './controllers/todolist.controller';
 import { UserController } from './controllers/user.controller';
 import { SecuredController } from './controllers/secured.controller';
 import { Sequelize } from 'sequelize';
-import { TodoList } from './models/todolist.model';
-import { TodoItem } from './models/todoitem.model';
 import { User } from './models/user.model';
 import { Post } from './models/post.model';
 
 
 import cors from 'cors';
 import { AdminController } from './controllers/admin.controller';
-import { ItemImage } from './models/itemImage.model';
 import { PostController } from './controllers/post.controller';
 import { Orders } from './models/orders.model';
 import { Product } from './models/product.model';
@@ -39,16 +34,10 @@ const port = process.env.PORT || 3000;
 
 Vote.initialize(sequelize);
 Post.initialize(sequelize); // create the new table! // step 1
-TodoItem.initialize(sequelize); // creates the tables if they dont exist
-TodoList.initialize(sequelize);
 User.initialize(sequelize);
-ItemImage.initialize(sequelize);
 Product.initialize(sequelize);
 Orders.initialize(sequelize);
 Comment.initialize(sequelize);
-TodoItem.createAssociations();
-TodoList.createAssociations();
-ItemImage.createAssociations();
 PReview.initialize(sequelize);
 
 const options: cors.CorsOptions = {
@@ -140,8 +129,6 @@ export const server = express()
     .use(express.json())                    // parses an incoming json to an object
     .use(morgan('tiny'))                    // logs incoming requests
     .use(morgan('dev'))
-    .use('/todoitem', TodoItemController)   // any request on this path is forwarded to the TodoItemController
-    .use('/todolist', TodoListController)
     .use('/user', UserController)
     .use('/secured', SecuredController)
     .use('/admin', AdminController)
