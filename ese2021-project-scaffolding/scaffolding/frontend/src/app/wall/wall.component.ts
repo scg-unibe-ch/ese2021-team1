@@ -67,6 +67,7 @@ export class WallComponent implements OnInit {
             this.posts.push(post)
             this.filteredPosts.push(post)
           })
+          this.filterPosts();
         }
       })
   }
