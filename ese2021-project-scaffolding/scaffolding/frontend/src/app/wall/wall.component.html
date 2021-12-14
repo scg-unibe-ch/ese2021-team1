@@ -29,10 +29,8 @@
   <p class="noPosts" *ngIf="isPostsEmpty()">There are currently no posts 😔</p>
   <!-- renders all posts -->
   <div *ngFor="let post of filteredPosts">
-    <app-post *ngIf="showFiltered(post)" [post] = "post" (deletePostEmit)="deletePostParent($event)" (update)="updatePosts($event)"></app-post>
+    <app-post [post] = "post" *ngIf="showFiltered(post)"  (deletePostEmit)="deletePostParent($event)" (update)="updatePosts($event)"></app-post>
   </div>
   <button class="morePosts" (click)="loadMorePosts()">Load more posts</button>
 </div>
-
-
 <router-outlet></router-outlet>

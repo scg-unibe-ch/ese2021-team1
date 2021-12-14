@@ -29,7 +29,6 @@ export class CartService {
   }
 
   retrieveCart(cart: Product[]) {
-    console.log(cart)
     this.products = cart
   }
 

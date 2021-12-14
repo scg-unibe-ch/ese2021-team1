@@ -25,7 +25,6 @@ export class PReviewComponent implements OnInit {
     this.httpClient.get(environment.endpointURL + "user/" + this.review.userID)
       .subscribe(res=> {
         if(res != null) {
-          console.log(res)
           this.author = res
         }
       })

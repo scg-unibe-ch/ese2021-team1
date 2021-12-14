@@ -126,10 +126,7 @@ export class ProfilPageComponent implements OnInit {
         for (let i in this.posts) {
           this.likeDislike[0] = this.likeDislike[0] + this.posts[i].like
           this.likeDislike[1] = this.likeDislike[1] + this.posts[i].dislike
-
-          console.log(this.posts[i])
         }
-        console.log(this.likeDislike)
       })
   }
 
