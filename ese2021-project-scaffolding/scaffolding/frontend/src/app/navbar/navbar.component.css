@@ -321,7 +321,6 @@
   color: rgb(206, 206, 206);
   font-weight: bold;
   font-size: 15px;
-  margin-left: 35px;
   transform: scale(1.2);
   transition: 30ms all ease-in-out;
   font-weight: normal;
@@ -338,7 +337,9 @@
 }
 
 #logo {
-  height: 40px;
+  width: auto;
+  max-width: 300px;
+  float: left;
   margin: 5px;
 }
 

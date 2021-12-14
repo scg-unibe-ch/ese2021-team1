@@ -78,7 +78,6 @@ mat-grid-list {
 }
 
 .filter {
-
   width: 70%;
   height: fit-content;
   margin: 40px auto;
@@ -88,10 +87,10 @@ mat-grid-list {
   background-color: #3f3f3f;
   padding: 18px;
 }
-.filter button{
+.filter button {
   text-align: center;
   padding: 12px;
-  background-color: #FF7E00;
+  background-color: #ff7e00;
   border: none;
   border-radius: 12px;
   float: right;
@@ -101,10 +100,10 @@ mat-grid-list {
   text-transform: uppercase;
   text-align: center;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px 0px,
-  rgba(0, 0, 0, 0.4) 0px 0px 1px 0px;
+    rgba(0, 0, 0, 0.4) 0px 0px 1px 0px;
 }
-.filter button:hover{
-background-color: #FF9818;
+.filter button:hover {
+  background-color: #ff9818;
 }
 
 .category-selection {
@@ -112,7 +111,8 @@ background-color: #FF9818;
   margin-right: 13px;
   border: 0px;
   outline: none;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px 0px inset;color: black;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px 0px inset;
+  color: black;
   background-color: white;
   font-weight: bold;
   font-size: 15px;
@@ -120,8 +120,8 @@ background-color: #FF9818;
   border: none;
   height: 55px;
 }
-.category-selection:hover{
-background-color: #E2E2E2;
+.category-selection:hover {
+  background-color: #e2e2e2;
 }
 
 .feedback {
@@ -148,4 +148,3 @@ background-color: #E2E2E2;
   transform: translate(-50%);
   top: 10%;
 }
-
