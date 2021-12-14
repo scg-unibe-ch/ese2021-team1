@@ -86,13 +86,12 @@ mat-grid-list {
   background-color: #3F3F3F;
   padding: 20px;
 }
-.filter button{
+.Filterbutt{
  text-align: center;
-position: center;
+ position: center;
   padding: 12px;
   background-color: #FF7E00;
   border: none;
-
   height: 40px;
   border-radius: 12px;
   float: right;
@@ -104,7 +103,6 @@ position: center;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px 0px,
     rgba(0, 0, 0, 0.4) 0px 0px 1px 0px;
 }
-
 
 .feedback {
   position: relative;

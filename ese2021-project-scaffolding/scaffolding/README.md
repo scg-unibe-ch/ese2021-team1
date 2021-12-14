@@ -32,10 +32,10 @@
 - [x] Loading posts can be infinite scrolling, pagination or Load More. [ARIS - WORK IN PROGRESS]
 - [x] Create post categories (for post creation and wall display)
 - [x] **_Optional_**: Fans can comment on posts.
-- [x] **_Optional_**: User Profile Page shows their uploads and upvotes.
+- [ ] **_Optional_**: User Profile Page shows their uploads and upvotes. (working on it - Alessio)
 - [x] **_Optional_**: Image Upload to Server/Backend.
 - [x] Add feedback when reporting post.
-- [ ] Better design for filter. (WORKING ON IT - FLORIAN)
+- [x] Better design for filter. 
 
 ### Milestone 3: Fan-Shop 🛒
 
@@ -48,9 +48,9 @@
 - [x] Create Purchase Process: <br> - Add to Cart<br> - Checkout<br> - Payment<br>
 - [x] **_Optional_**: Search/Filter products on Store
 - [x] **_Optional_**: Shopping cart for fans to purchase multiple items at once/ display sum.
-- [x] **_Optional_**: Product Review and Payment services using Stripe or PayPal.
+- [ ] **_Optional_**: Product Review and Payment services using Stripe or PayPal. (working on it - Alessio)
 - [x] save cart in backend.
-- [ ] better design for filter [Flo -Work in progress]
+- [ ] better design for filter 
 - [x] display my orders in profile page (for user) [ARIS - WORK IN PROGRESS]
 - [x] display all orders (for admin)
 - [x] cancel orders in profile page (for user)
@@ -72,10 +72,3 @@
 - [x] Likes: If upvoted/downvoted then downvote/upvote, you get an error.
 - [x] On Backend start (start or ctr+S), database initializes empty tables and overwrites everything - check if table exists, if not then init tables.
 - [ ] errors for detail product (cannot read properties of undefined).
-- [ ] like/dislike count doesnt show yet (in profil page)
-- [ ] review in detailed-product doesnt work (can't create and fetch)
-- [ ] profilepage mypost text/title is not displayed correctly
-- [ ] **_optional_** help button
-- [ ] **_optional_** 
-- [ ] only one order is displayed in the profilepage - orders
-- [ ] post in "detailed post" isnt displayed
