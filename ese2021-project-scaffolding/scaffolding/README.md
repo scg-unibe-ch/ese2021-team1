@@ -72,6 +72,7 @@
 - [x] Likes: If upvoted/downvoted then downvote/upvote, you get an error.
 - [x] On Backend start (start or ctr+S), database initializes empty tables and overwrites everything - check if table exists, if not then init tables.
 - [ ] errors for detail product (cannot read properties of undefined).
+- [ ] number of comments is not correct in post detailed view [yo boi aris working on it]
 - [ ] like/dislike count doesnt show yet (in profil page)
 - [ ] review in detailed-product doesnt work (can't create and fetch)
 - [ ] profilepage mypost text/title is not displayed correctly
