@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Product } from "../models/product.model";
 import { environment } from "../../environments/environment";
 import { HttpClient } from "@angular/common/http";
 

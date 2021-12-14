@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../services/user.service";
+import {User} from "../models/user.model";
 import {CartService} from "../services/cart.service";
 import {Product} from "../models/product.model";
 import {HttpClient} from "@angular/common/http";
@@ -123,6 +124,6 @@ export class CheckoutComponent implements OnInit {
   redirectToStore() {
     setTimeout(() => {
       this.router.navigate(['/store']);
-    }, 1500);
+    }, 3000);
   }
 }

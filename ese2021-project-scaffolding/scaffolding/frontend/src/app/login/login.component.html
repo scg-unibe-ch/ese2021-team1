@@ -1,3 +1,22 @@
+  <!-- <h3>Login</h3>
+
+  <div *ngIf="!loggedIn">
+    <form (ngSubmit)="loginUser()">
+    <mat-form-field>
+      <input matInput type="text" placeholder="User Name" name="name" [(ngModel)]="userToLogin.username" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="password" placeholder="Password" name="password" [(ngModel)]="userToLogin.password" required>
+    </mat-form-field>
+    <button mat-flat-button color="primary" type="submit">Login</button>
+    </form>
+  </div>
+
+  <div *ngIf="loggedIn">
+    <button mat-flat-button color="warn" (click)="logoutUser()">Logout</button>
+  </div> -->
+
+  <!-- ----------------------------------------------------------------------- -->
   <form *ngIf="showLoginModal" autocomplete="off" class="loginWrapper">
     <div class="loginHeader">Login</div>
     <input [(ngModel)]="userToLogin.username" class="inputField" type="text" name="text" id="username"
@@ -8,3 +27,26 @@
     <!-- <div *ngIf="loginFeedback[0]" class="feedback" [ngStyle]="{color: loginFeedback[2]}">{{loginFeedback[1]}}</div> -->
     <button (click)="loginUser()" class="registerButton">Login</button>
   </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- TEST THAT THIS STILL WORKS -->
+
+
+<!-- <h3>Secure Endpoints</h3>
+<button mat-flat-button color="primary" (click)="accessUserEndpoint()">User Endpoint</button>
+{{ endpointMsgUser }}
+<hr>
+<button mat-flat-button color="primary" (click)="accessAdminEndpoint()">Admin Endpoint</button>
+{{ endpointMsgAdmin }} -->

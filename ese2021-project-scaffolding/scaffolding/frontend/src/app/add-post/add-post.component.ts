@@ -4,6 +4,8 @@ import {HttpClient} from "@angular/common/http";
 import {UserService} from "../services/user.service";
 import {User} from "../models/user.model";
 import {Post} from "../models/post.model";
+import {WallComponent} from "../wall/wall.component";
+import {formatNumber} from "@angular/common";
 
 @Component({
   selector: 'app-add-post',
@@ -29,6 +31,7 @@ export class AddPostComponent implements OnInit {
     userID: 0
   }
   user: User | null = null;
+  auth: boolean = false;
   posts: Post[] = [];
 
 
@@ -103,6 +106,10 @@ export class AddPostComponent implements OnInit {
     else {
       return true
     }
+  }
+
+  updateButtonStatus(): boolean {
+    return this.newPost.title == '';
   }
 
   imageHandler(event: any) {
