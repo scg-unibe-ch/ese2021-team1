@@ -229,3 +229,19 @@ table.orders {
   position: relative;
   border-bottom: 1px solid gray;
 }
+
+#reportButton {
+  display: block;
+  position: absolute;
+  padding: 10px;
+  background-color: #ff9307;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  border: none;
+}
+.helpSection {
+  width: 100%;
+  overflow: hidden;
+  margin-left: 20px;
+}

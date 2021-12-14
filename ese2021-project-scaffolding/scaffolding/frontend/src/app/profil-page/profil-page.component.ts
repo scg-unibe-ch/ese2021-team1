@@ -285,5 +285,15 @@ export class ProfilPageComponent implements OnInit {
     return localStorage.getItem("admin") == "true";
   }
 
+  changePosition() {
+    let b = document.getElementById("reportButton");
+    let i = Math.floor(Math.random()*800)+10;
+    let j = Math.floor(Math.random()*300)+50;
+    if(b != null) {
+      b.style.left = i + "px";
+      b.style.top = j + "px";
+    }
+  }
+
 
 }
