@@ -59,27 +59,10 @@ postController.delete('/:id', (req: Request, res: Response) => {
         .then(deleted => res.send(deleted))
         .catch(err => res.send(err));
 });
-/*
-postController.search('/', (req: Request, res: Response) => {
-    postService.searchForCategorysPost(req.body)
-        .then(updated => res.send(updated))
-        .catch(err => res.send(err));
-});
-*/
-
 postController.put('/:id/report', (req: Request, res: Response) => {
     postService.reportPost(Number(req.params.id))
         .then(updated => res.send(updated))
         .catch(err => res.send(err));
 });
-/*
-// TODO: make it work
-postController.get('/:userId/counter', (req: Request, res: Response) => {
-   postService.counter(req.body.userID)
-       .then(counted => res.send(counted))
-       .catch(err => res.send(err));
-});
-*/
-
 // you have to export the controller to use it in the server
 export const PostController: Router = postController;

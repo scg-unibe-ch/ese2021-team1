@@ -1,11 +1,10 @@
-import express, { Application, Request, Response } from 'express';
+import express from 'express';
 import morgan from 'morgan';
 import { UserController } from './controllers/user.controller';
 import { SecuredController } from './controllers/secured.controller';
 import { Sequelize } from 'sequelize';
 import { User } from './models/user.model';
 import { Post } from './models/post.model';
-
 
 import cors from 'cors';
 import { AdminController } from './controllers/admin.controller';

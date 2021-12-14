@@ -21,8 +21,6 @@ export class VoteService {
             likeSub = true;
             break;
         }
-        /*default: {
-        }*/
     }
     return Vote.create({
         voteId: 0,

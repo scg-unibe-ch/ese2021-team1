@@ -17,20 +17,6 @@ export class CommentService {
                 return Promise.reject(err);
             });
     }
-/*
-    public get3Comments(postId: number) {
-        return Comment.findByPk(postId)
-            .then(found => {
-                if (found != null) {
-                    Comment.findAll({where: {found.commentID: {lte: 4}; }
-                    }).then(found2 => Promise.resolve(found2));
-                } else {
-                    return Promise.reject('No Comments found');
-                }
-            })
-            . catch (() => Promise.reject('Could not fetch Comments'));
-    }
-*/
     public getAllComments(postId: number) {
         return Comment.findAll({where: {postID: postId}})
             .then(found => {

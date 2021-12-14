@@ -10,13 +10,6 @@ commentController.post('/:id', (req: Request, res: Response) => {
         .then(updated => res.send(updated))
         .catch(err => res.send(err));
 });
-/*
-commentController.get('/3/:post', (req: Request, res: Response) => {
-    commentService.get3Comments(req.body.id)
-        .then(updated => res.send(updated))
-        .catch(err => res.send(err));
-});
-*/
 commentController.get('/:id', (req: Request, res: Response) => {
     commentService.getAllComments(Number(req.params.id))
         .then(updated => {

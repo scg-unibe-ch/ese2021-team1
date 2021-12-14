@@ -21,14 +21,6 @@
         <button *ngIf="this.userService.getLoggedIn()" id="reviewButton" (click)="reviewProduct()">Post Review</button>
     </div>
     <div class="underProduct">
-      <!-- <div class="stars">
-
-        <mat-icon>star</mat-icon>
-        <mat-icon>star</mat-icon>
-        <mat-icon>star</mat-icon>
-        <mat-icon>star</mat-icon>
-        <mat-icon>star</mat-icon>
-      </div> -->
       <div class="reviews"*ngFor="let review of reviews">
         <app-review [review]="review"></app-review>
       </div>

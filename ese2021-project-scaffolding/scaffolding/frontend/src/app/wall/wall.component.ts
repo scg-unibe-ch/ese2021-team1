@@ -138,7 +138,6 @@ export class WallComponent implements OnInit {
     return localStorage.getItem("admin") == "false" && this.userService.getLoggedIn()
   }
 
-
   resetFilter() {
     this.toFilterCategories = ["Bitcoin", "Cardano", "Polkadot", "Ethereum"]
     this.toSortMethod = "newest"
