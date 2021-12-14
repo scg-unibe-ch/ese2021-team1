@@ -26,7 +26,6 @@ export class WallComponent implements OnInit {
     userName: ""
   }
   posts: Post[] = [];
-  filteredPosts: Post[] = [];
 
   createPostFeedback = {
     title: '',
@@ -36,7 +35,7 @@ export class WallComponent implements OnInit {
   searchTitle: string = ""
   auth: boolean = false
   user: string | null = null
-  toFilterCategories: String[] = []
+  toFilterCategories: String[] = ["Bitcoin", "Cardano", "Polkadot", "Ethereum"]
   toSortMethod: String = ""
   showFilter: boolean = false;
   feedback: string = "";
@@ -65,24 +64,48 @@ export class WallComponent implements OnInit {
         if (typeof res === "object") {
           Object.values(res).forEach(post => {
             this.posts.push(post)
-            this.filteredPosts.push(post)
           })
         }
       })
+  }
+
+  sortPosts() {
+
+    // sort by DATE
+    
+    console.log()
+    switch (this.toSortMethod) {
+      case "Newest":
+        this.posts.sort((a, b) => (new Date(a.createdAt).getTime() < new Date(b.createdAt).getTime()) ? 1 : -1)
+        break;
+      case "Oldest":
+        this.posts.sort((a, b) => (a.createdAt < b.createdAt) ? 1 : -1)
+        break;
+
+      case "Likes":
+        break;
+      
+      case "Dislikes":
+
+        break;
+      
+      default:
+        break;
+    }
+    // sort by likes
+
   }
 
   deletePostParent(postId: any) {
     for (let i = 0; i < this.posts.length; i++) {
       if (this.posts[i].id == postId) {
         this.posts.splice(i, 1)
-        this.filteredPosts.splice(i, 1)
       }
     }
   }
 
   addPostParent(post: any) {
     this.posts.unshift(post)
-    this.filteredPosts.unshift(post)
     this.togglePostForm();
   }
 
@@ -106,7 +129,6 @@ export class WallComponent implements OnInit {
     for (let i = 0; i < this.posts.length; i++) {
       if (this.posts[i].id == event[0].id) {
         this.posts[i] = event[1]
-        this.filteredPosts[i] = event[1]
       }
     }
   }
@@ -115,91 +137,13 @@ export class WallComponent implements OnInit {
     return localStorage.getItem("admin") == "false" && this.userService.getLoggedIn()
   }
 
-  filterPosts() {
-    let filteredPosts: Post[] = []
-    if (this.toFilterCategories.length > 0) {
-      for (let post of this.posts) {
-        if (this.toFilterCategories.indexOf(post.category) > -1) {
-          filteredPosts.push(post)
-        }
-      }
-      this.filteredPosts = filteredPosts
-    } else {
-      this.filteredPosts = this.posts
-    }
-    if (this.filteredPosts.length == 0) {
-      this.feedback = "Your filter didn't find any posts."
-    } else {
-      this.feedback = "";
-    }
-    if(this.toSortMethod == "likes") {
-      this.filteredPosts.sort(this.compareLikes)
-    } else if(this.toSortMethod == "dislikes") {
-      this.filteredPosts.sort(this.compareDislikes)
-    } else if(this.toSortMethod == "newest") {
-      this.filteredPosts.sort(this.compareNewest)
-    } else if(this.toSortMethod == "oldest") {
-      this.filteredPosts.sort(this.compareOldest)
-    }
-  }
-
-
-  private compareNewest(a: Post, b: Post) {
-    let aCreated = new Date(a.createdAt).getTime();
-    let bCreated = new Date(b.createdAt).getTime();
-    if(aCreated < bCreated) {
-      return 1;
-    } if(aCreated > bCreated) {
-      return -1;
-    }
-    return 0;
-  }
-
-  private compareOldest(a: Post, b: Post) {
-    let aCreated = new Date(a.createdAt).getTime();
-    let bCreated = new Date(b.createdAt).getTime();
-    if(aCreated < bCreated) {
-      return -1;
-    } if(aCreated > bCreated) {
-      return 1;
-    }
-    return 0;
-  }
-
-  private compareLikes(a: Post, b: Post) {
-    if(a.like < b.like) {
-      return 1;
-    } if (a.like > b.like) {
-      return -1;
-    }
-    return 0;
-  }
-
-  private compareDislikes(a: Post, b: Post) {
-    if(a.dislike < b.dislike) {
-      return 1;
-    } if (a.dislike > b.dislike) {
-      return -1;
-    }
-    return 0;
-  }
-
-
-
-  showFiltered(post: any): boolean {
-    if(this.filteredPosts.indexOf(post) > -1) {
-      return true
-    } else {
-      return false
-    }
-  }
 
   resetFilter() {
-    window.location.reload();
+    this.toFilterCategories = ["Bitcoin", "Cardano", "Polkadot", "Ethereum"]
   }
 
   loadMorePosts() {
-    this.infinityIndex = this.infinityIndex + 2
+    this.infinityIndex = this.infinityIndex + 5
     this.getAllPosts()
   }
 }
