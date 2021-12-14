@@ -237,6 +237,9 @@
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px 0px,
     rgba(0, 0, 0, 0.4) 0px 0px 1px 0px;
 }
+.filter button:hover{
+background-color: #FF9818;
+}
 
 .category-selection {
   position: relative;
@@ -249,7 +252,10 @@
   font-size: 15px;
   border-radius: 10px;
   border: none;
-  height: 60px;
+  height: 55px;
+}
+.category-selection:hover{
+background-color: #E2E2E2;
 }
 
 .morePosts {
