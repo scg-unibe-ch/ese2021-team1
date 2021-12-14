@@ -43,7 +43,7 @@
   position: absolute;
   display: block; /* Hidden by default */
   width: 300px; /* Full width (cover the whole page) */
-  height: 500px; /* Full height (cover the whole page) */
+  height: 510px; /* Full height (cover the whole page) */
   background-color: black; /* Black background with opacity */
   opacity: 0.8;
   z-index: 0.5; /* Specify a stack order in case you're using a different order for other elements */
