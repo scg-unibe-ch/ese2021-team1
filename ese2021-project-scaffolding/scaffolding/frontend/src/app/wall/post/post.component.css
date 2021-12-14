@@ -291,10 +291,9 @@ input {
 }
 
 #saveChanges {
-  float: right;
-  position: relative;
-  bottom: 0px;
-  right: 0px;
+  position: absolute;
+  left: 80%;
+  bottom: 10px;
   border-radius: 15px;
   margin: 10px;
   padding: 10px;

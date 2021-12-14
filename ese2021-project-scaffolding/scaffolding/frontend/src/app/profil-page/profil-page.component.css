@@ -204,7 +204,8 @@ table.orders {
   width: 100%;
   position: relative;
   height: fit-content;
-  border-bottom: 1px solid gray;
+  margin-right: 30px;
+  margin-top: 15px;
 }
 .statItems {
   position: relative;
