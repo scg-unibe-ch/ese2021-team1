@@ -61,6 +61,7 @@ export class NavbarComponent implements OnInit {
     this.userService.setRegisterModalShow(!this.showRegisterModal)
   }
   logoutUser() {
+   this.cartService.setShowCart()
     this.cartService.clearCart()
     this.userService.setLoggedIn(false)
     // remove data from localStorage
