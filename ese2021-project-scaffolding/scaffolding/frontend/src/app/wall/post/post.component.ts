@@ -216,7 +216,7 @@ export class PostComponent implements OnInit {
   }
 
   getLastVote() {
-    this.httpClient.get(environment.endpointURL + "vote/" + this.post.id + "/" + this.user.userName)
+    this.httpClient.get(environment.endpointURL + "vote/" + this.post.id + "/" + localStorage.getItem("userName"))
       .subscribe(res => {
         if(res != null) {
           this.lastVote = res;
