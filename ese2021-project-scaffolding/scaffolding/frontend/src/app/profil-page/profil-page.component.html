@@ -189,7 +189,7 @@
     </div>
     <div *ngIf="showHelp" class="content mat-elevation-z8">
       <div class="helpSection">
-        <p>Please report any bugs to us so we can improve!</p>
+        <p>{{this.reportFeedback}}</p>
         <button (mouseover)="changePosition()" id="reportButton">Report</button>
       </div>
     </div>

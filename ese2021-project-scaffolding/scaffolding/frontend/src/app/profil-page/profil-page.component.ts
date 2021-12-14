@@ -41,7 +41,7 @@ export class ProfilPageComponent implements OnInit {
   showOrders: boolean = false;
   showHelp: boolean = false;
   editable: boolean = false;
-
+  reportFeedback: string = "Please report any bugs to us so we can improve!";
 
   selectedFile: any
 
@@ -292,6 +292,18 @@ export class ProfilPageComponent implements OnInit {
     if(b != null) {
       b.style.left = i + "px";
       b.style.top = j + "px";
+      let r = Math.floor(Math.random()*5);
+      if(r == 0) {
+        this.reportFeedback = "Huh, seems we don't have any bugs."
+      } else if (r == 1) {
+        this.reportFeedback  = "We appreciate your efforts."
+      } else if (r == 2) {
+        this.reportFeedback  = "Just click on the button. Shouldn't be so difficult."
+      } else if (r == 3) {
+        this.reportFeedback  = "Current bug reports: 0"
+      } else if (r == 4) {
+        this.reportFeedback = "Please report any bugs to us so we can improve!"
+      }
     }
   }
 
