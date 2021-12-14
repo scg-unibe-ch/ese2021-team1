@@ -99,7 +99,7 @@ export class PostService {
                     if (posts) {
                         // get only the specified range of posts
                         posts = posts.reverse();
-                        posts = posts.slice(infinityIndex - 2, infinityIndex);
+                        posts = posts.slice(infinityIndex - 5, infinityIndex);
                         return Promise.resolve(posts);
                     } else {
                         return Promise.reject('No posts available.');

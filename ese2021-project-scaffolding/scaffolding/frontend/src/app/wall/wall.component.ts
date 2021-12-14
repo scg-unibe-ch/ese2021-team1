@@ -42,7 +42,7 @@ export class WallComponent implements OnInit {
   showFilter: boolean = false;
   feedback: string = "";
 
-  infinityIndex: number = 2; // used for infinite scrolling 0 - 2
+  infinityIndex: number = 5; // used for infinite scrolling 0 - 5
 
   constructor(
     public httpClient: HttpClient,
