@@ -56,7 +56,7 @@ export class OrderService {
                         .then(updated => Promise.resolve(updated))
                         .catch(() => Promise.reject('update failed') );
                 } else {
-                    return Promise.reject(' Order not found');
+                    return Promise.reject('Order not found');
                 }
             })
             .catch(() => Promise.reject('Couldnt update post'));

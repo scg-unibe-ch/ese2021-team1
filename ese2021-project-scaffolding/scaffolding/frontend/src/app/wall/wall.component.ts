@@ -2,7 +2,6 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { OverlayModule} from "@angular/cdk/overlay";
 import {Post} from "../models/post.model";
 import {environment} from "../../environments/environment";
-import {TodoList} from "../models/todo-list.model";
 import {HttpClient} from "@angular/common/http";
 import { UserService } from '../services/user.service';
 import { User } from '../models/user.model';
