@@ -1,7 +1,7 @@
-mat-sidenav-container{
+mat-sidenav-container {
   width: 80%;
   max-width: 1500px;
-  height: 565px ;
+  height: 565px;
   margin: auto;
   overflow: hidden;
   background: none;
@@ -44,7 +44,7 @@ mat-sidenav {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.profilePicture{
+.profilePicture {
   margin: 20px;
 }
 
@@ -60,7 +60,15 @@ tr {
   bottom: 30px;
 }
 
-#username, #address, #email, #phonenumber, #zipcode, #city, #streetnumber, #birthday, #image {
+#username,
+#address,
+#email,
+#phonenumber,
+#zipcode,
+#city,
+#streetnumber,
+#birthday,
+#image {
   margin-left: 20px;
 }
 
@@ -83,7 +91,8 @@ p {
   font-size: 20px;
 }
 
-.editButton, .saveButton {
+.editButton,
+.saveButton {
   float: right;
   margin-top: 45px;
 }
@@ -117,7 +126,6 @@ p {
   justify-content: center;
   color: black;
   margin-top: 20px;
-
 }
 .password {
   margin-left: 25px;
@@ -140,7 +148,8 @@ table.orders {
   margin-right: auto;
   text-align: center;
 }
-.orders td, .orders th {
+.orders td,
+.orders th {
   height: 50px !important;
 }
 
@@ -158,7 +167,8 @@ table.orders {
   border-bottom: 1px solid black;
 }
 
-#cancelButton, #shipButton {
+#cancelButton,
+#shipButton {
   padding: 10px;
   color: white;
   font-weight: bold;
@@ -184,4 +194,34 @@ table.orders {
 }
 .shipped {
   background-color: green;
+}
+
+.stats {
+  width: 100%;
+  position: relative;
+  height: fit-content;
+  border-bottom: 1px solid gray;
+}
+.statItems {
+  position: relative;
+  margin: 0 auto;
+  padding: 0;
+  display: inline-block;
+}
+.likeDislikeChildLike {
+  position: relative;
+  margin: 0px;
+  float: left;
+  margin-left: 10px;
+}
+.likeDislikeChildDis {
+  position: relative;
+  margin: 0px;
+  float: left;
+  margin-left: 10px;
+}
+.myPosts {
+  width: 100%;
+  position: relative;
+  border-bottom: 1px solid gray;
 }

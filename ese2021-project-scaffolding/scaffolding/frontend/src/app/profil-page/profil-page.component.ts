@@ -30,6 +30,7 @@ export class ProfilPageComponent implements OnInit {
   orders: Order[] = []
   posts: Post[] = []
   count: number[] = []
+  likeDislike = [0,0,0];
   newPassword: string = "";
   newPassword2: string = "";
   passwordReqs: boolean[] = [false, false, false, false];
@@ -121,6 +122,14 @@ export class ProfilPageComponent implements OnInit {
       .subscribe((res: any) => {
         this.posts = res;
         this.posts.reverse();
+        this.likeDislike = [0,0,0]
+        for (let i in this.posts) {
+          this.likeDislike[0] = this.likeDislike[0] + this.posts[i].like
+          this.likeDislike[1] = this.likeDislike[1] + this.posts[i].dislike
+
+          console.log(this.posts[i])
+        }
+        console.log(this.likeDislike)
       })
   }
 

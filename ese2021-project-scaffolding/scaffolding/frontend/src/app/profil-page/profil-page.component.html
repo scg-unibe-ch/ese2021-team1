@@ -1,4 +1,4 @@
-<mat-sidenav-container>
+<mat-sidenav-container style="width: 100%;">
   <mat-sidenav class="mat-elevation-z8" mode="side" opened>
     <button mat-button class="menu-button" (click)="show('about')">
       <mat-icon>info</mat-icon>
@@ -12,9 +12,7 @@
       <mat-icon>shopping_cart</mat-icon>
       <span> Orders</span>
     </button>
-
     <mat-divider></mat-divider>
-
     <button mat-button class="menu-button">
       <mat-icon>help</mat-icon>
       <span> Help</span>
@@ -126,22 +124,35 @@
         </table>
       </div>
     </div>
-    <div *ngIf="showMyPosts" class="content mat-elevation-z8">
+    <div *ngIf="showMyPosts" class="content" style="display: block;">
       <p class="noPosts" *ngIf="isPostsEmpty()">You have currently no posts 😔</p>
-
-      <div *ngFor="let post of this.posts">
-
-        Total Post count: {{posts.length}}
-        Total Likes: {{count[1]}}
-        Total Dislikes: <!-- {{count.length}} -->
-
-        <app-post [post]="post">
-                  <!--(deletePostEmit)="deletePost($event)" (update)="updatePost($event)"
-                  -->
-        </app-post>
-
+      <div class="stats">
+        <div class="statItems">
+          <h5 class="likeDislikeChildLike">Statistics</h5><br>
+          <p class="likeDislikeChildLike">Posts:</p>
+          <p class="likeDislikeChildLike">{{posts.length}}</p>
+        </div><br>
+        <div class="statItems">
+          <p class="likeDislikeChildLike">Likes and Dislikes:</p>
+          <p class="likeDislikeChildLike">{{likeDislike[0]}}
+            <mat-icon style="color: green;">thumb_up </mat-icon>
+          </p>
+          <p class="likeDislikeChildDis">{{likeDislike[1]}}
+            <mat-icon style="color: tomato;">thumb_down</mat-icon>
+          </p>
+        </div>
       </div>
-    </div>
+      <div class="myPosts">
+          <h5 class="likeDislikeChildLike">My Posts</h5><br>
+
+        <div *ngFor="let post of this.posts">
+          <app-post [post]="post">
+                    <!--(deletePostEmit)="deletePost($event)" (update)="updatePost($event)"
+                    -->
+          </app-post>
+        </div>
+      </div>
+      </div>
     <div *ngIf="showOrders" class="content mat-elevation-z8">
       <div class="pseudoWrap">
         <h3 id="yourOrders">Your Orders</h3>
