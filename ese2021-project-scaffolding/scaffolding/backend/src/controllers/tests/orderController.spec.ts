@@ -21,7 +21,7 @@ before(done => {
 });
 
 describe('Order Controller', () => {
-   const port = '/order';
+   const port = '/orders';
    it('Create a order and returns it', async () => {
        const order = {
            userID: 1,
@@ -41,7 +41,7 @@ describe('Order Controller', () => {
        return chai.request(server).post(port)
            .send(order)
            .then(res => {
-               console.log(res.body);
+               chai.expect(res.body.subtotal).to.eql(10);
            });
    });
 });
