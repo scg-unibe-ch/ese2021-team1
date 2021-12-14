@@ -4,24 +4,32 @@
   </div>
   <div class="review">
     <div class="create">
-    <!--
-    <button *ngIf="createReview">
-    -->
         <input *ngIf="this.userService.getLoggedIn()" [(ngModel)]="title" class="createReview" placeholder="Write a title for a review here!">
-
         <input *ngIf="this.userService.getLoggedIn()" [(ngModel)]="text" class="createReview" placeholder="Write a text here!">
-        <input *ngIf="this.userService.getLoggedIn()" [(ngModel)]="stars" class="createReview" placeholder="How good is the product? (0-5)">
-        <input *ngIf="this.userService.getLoggedIn()" [(ngModel)]="pros" class="createReview" placeholder="What are the pros of the Product?">
-        <input *ngIf="this.userService.getLoggedIn()" [(ngModel)]="cons" class="createReview" placeholder="What are the cons of the Product?">
-
+        <div class="reviewStars">
+          <mat-icon class="clickStars"(click)="addStars(1)"[ngClass]= "{
+            'filled': this.stars != 0}" >star</mat-icon>
+          <mat-icon class="clickStars"(click)="addStars(2)"[ngClass]= "{
+            'filled': this.stars != 0 && this.stars != 1}" >star</mat-icon>
+          <mat-icon class="clickStars"(click)="addStars(3)"[ngClass]= "{
+            'filled': this.stars != 0 && this.stars != 1 && this.stars != 2}" >star</mat-icon>
+          <mat-icon class="clickStars"(click)="addStars(4)"[ngClass]= "{
+            'filled': this.stars == 4 || this.stars == 5}" >star</mat-icon>
+          <mat-icon class="clickStars"(click)="addStars(5)"[ngClass]= "{
+            'filled': this.stars == 5}" >star</mat-icon>
+        </div>
         <button *ngIf="this.userService.getLoggedIn()" id="reviewButton" (click)="reviewProduct()">Post Review</button>
-    <!--
-    </button>
-    <button *ngIf="!createReview"> Write a Review </button>
-    -->
     </div>
-    <div class="reviews">
-      <div *ngFor="let review of reviews">
+    <div class="underProduct">
+      <div class="stars">
+        <h1 id="averageStars">4.2</h1>
+        <mat-icon>star</mat-icon>
+        <mat-icon>star</mat-icon>
+        <mat-icon>star</mat-icon>
+        <mat-icon>star</mat-icon>
+        <mat-icon>star</mat-icon>
+      </div>
+      <div class="reviews"*ngFor="let review of reviews">
         <app-review [review]="review"></app-review>
       </div>
     </div>

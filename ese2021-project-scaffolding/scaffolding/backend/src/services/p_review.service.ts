@@ -3,7 +3,7 @@ import {PReview} from '../models/p_review.model';
 export class PReviewService {
     public async CreatePReview(body: {productID: number, title: string, image: string, text: string, stars: number, pros: string, cons: string}) {
         return PReview.create({
-            previewId: 0,
+            previewId: null,
             productId: body.productID,
             title: body.title,
             image: body.image,
@@ -33,10 +33,7 @@ export class PReviewService {
     }
 
     public async getAllReviews(productID: number) {
-        return PReview.findAll({
-            where: {
-                productId: productID
-            }})
+        return PReview.findAll({where: {productId: productID}})
             .then(reviews => {
                 if (reviews) {
                     return Promise.resolve(reviews);

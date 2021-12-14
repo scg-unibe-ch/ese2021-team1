@@ -16,15 +16,15 @@ export class DetailedProductComponent implements OnInit {
   title: string = "";
   image: string | null = "";
   text: string | null = "";
-  stars: number = 0;
+  stars: number = 1;
   pros: string | null = "";
   cons: string | null = "";
 
   id: string | null = "";
   product: any;
 
-  reviews: any;
-  
+  reviews: [] = [];
+
   createReview = false;
 
 
@@ -51,9 +51,10 @@ export class DetailedProductComponent implements OnInit {
   }
 
   reviewProduct() {
+    console.log(this.id)
     this.httpClient.post(environment.endpointURL + "review/" + this.id + "/review", {
-      productId: this.product.id,
-      userId: this.userService.getUser()?.userId,
+      productID: this.id,
+      userId: localStorage.getItem("userId"),
       title: this.title,
       image: this.image,
       text: this.text,
@@ -70,10 +71,15 @@ export class DetailedProductComponent implements OnInit {
   getReviews() {
     this.httpClient.get(environment.endpointURL + "review/" + this.id)
       .subscribe(res=> {
+        console.log(res);
+        // @ts-ignore
         this.reviews = res;
       })
   }
 
 
-
+  addStars(amount: number) {
+    console.log(amount)
+    this.stars = amount;
+  }
 }

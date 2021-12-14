@@ -3,8 +3,9 @@
 }
 .Wrapper {
   max-width: 2000px;
-  width: 80%;
+  width: 60%;
   margin: auto;
+
 }
 .review, .create {
   border-radius: 20px;
@@ -14,10 +15,13 @@
 
 .create {
   width: 60%;
+  height: fit-content;
+  background-color: white;
+  float: left;
 }
 
-.reviews {
-  width: 60%;
+.underProduct {
+  width: 100%;
   max-height: 400px;
   min-height: 100px;
   background-color: white;
@@ -25,6 +29,9 @@
   overflow: auto;
 }
 
+.reviews {
+  float: left;
+}
 
 .createReview {
   width: 70%;
@@ -35,8 +42,10 @@
 }
 
 .reviews {
+  width: 100%;
   margin-right: auto;
-  margin-top: 20px;
+  position: relative;
+  top: 30px;
 }
 
 #reviewButton {
@@ -46,6 +55,42 @@
   border: none;
   font-weight: bold;
   color: black;
-  margin-left: 15px;
-  float: right;
+  position: absolute;
+  margin-top: 15px;
+}
+
+app-product {
+  float: left;
+  margin-right: 30px;
+}
+
+.stars mat-icon {
+  transform: scale(2);
+  float: left;
+  margin: 10px 10px 20px;
+}
+
+.stars {
+  margin-bottom: 30px;
+}
+
+#averageStars {
+  float: left;
+  position: relative;
+  bottom: 15px;
+  margin-right: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.clickStars {
+  cursor: pointer;
+}
+
+.filled {
+  color: #eed202;
+}
+.reviewStars {
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
