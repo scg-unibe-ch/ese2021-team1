@@ -6,6 +6,7 @@ mat-sidenav-container {
   overflow: hidden;
   background: none;
   z-index: 0;
+  top: 100px;
 }
 
 mat-toolbar {
@@ -161,7 +162,8 @@ table.orders {
   width: 100%;
 }
 
-#yourOrders, #yourPosts {
+#yourOrders,
+#yourPosts {
   margin-left: 30px;
   width: fit-content;
   border-bottom: 1px solid black;

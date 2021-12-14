@@ -2,11 +2,14 @@
   margin-top: 30px;
 }
 .Wrapper {
+  position: relative;
   max-width: 2000px;
   width: 80%;
   margin: auto;
+  top: 100px;
 }
-.comments, .create {
+.comments,
+.create {
   border-radius: 20px;
   border: none;
   margin: auto;
@@ -24,7 +27,6 @@
   padding: 10px;
   overflow: auto;
 }
-
 
 .createComment {
   width: 70%;
