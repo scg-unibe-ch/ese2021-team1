@@ -4,10 +4,9 @@ import {Product} from '../models/product.model';
 
 
 export class OrderService {
-// TODO: testing for admin inside of creatingORDER
 /**
-* @param Order
-*/
+ * @param order
+ */
 
     public async createOrder(order: { userID: number, productIds: string, paymentMethod: string,
         homeAddress: string, streetNumber: number, zipCode: number, city: string,
@@ -47,9 +46,6 @@ export class OrderService {
                 .catch(err => {
                     return Promise.reject(err.message);
                 });
-/*        } else {
-            return Promise.reject('Admins aren\'t allowed to create orders!');
-        }*/
     }
 
     public async updateOrder(orderId, body) {
@@ -91,36 +87,6 @@ export class OrderService {
                     return Promise.reject('No Orders available');
                 }
             }).catch(() => Promise.reject('Could not fetch Orders'));
-    /**
-        User.findByPk(userID)
-            // @ts-ignore
-                .then(user => {
-                    if (user != null) {
-                        if (!user.admin) {
-                            return Orders.findAll({where: {userId: user.userId}})
-                                .then(order => {
-                                    if (order != null) {
-                                        return Promise.resolve(order);
-                                    } else {
-                                        return Promise.reject('Cant find order');
-                                    }
-                                })
-                                .catch(err => Promise.reject(err));
-
-                    } else if (user.admin) {{
-                        return Orders.findAll()
-                            .then(orders => {if (orders) {
-                                Promise.resolve(orders);
-                            } else {
-                                Promise.reject('orders not found');
-                            }
-                            })
-                            .catch( () => Promise.reject('orders not got'));
-                    }}} else {
-                        return  Promise.reject('User not found');
-                    }})
-                .catch( err => Promise.reject(err));
-     */
     }
     /**
     * @param Id

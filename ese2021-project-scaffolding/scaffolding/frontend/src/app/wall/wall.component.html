@@ -4,7 +4,7 @@
   <button *ngIf="showCreatePost()" class="createPostButton" (click)="togglePostForm()" [innerHtml]="createPostButtonText"></button>
   <app-add-post *ngIf="showNewPostForm" (addPostEmit)="addPostParent($event)"></app-add-post>
   <div class="filter">
-    <mat-form-field class="category-selection">
+    <mat-form-field appearance="fill" class="category-selection">
       <mat-label>Category</mat-label>
       <mat-select matNativeControl required [(value)]="toFilterCategories" [multiple]="true" (valueChange)="filterPosts()">
         <mat-option value="Bitcoin">Bitcoin</mat-option>
@@ -13,7 +13,7 @@
         <mat-option value="Polkadot">Polkadot</mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field class="category-selection">
+    <mat-form-field appearance="fill" class="category-selection">
       <mat-label>Sort By</mat-label>
       <mat-select matNativeControl required [(value)]="toSortMethod" (valueChange)="filterPosts()">
         <mat-option value="likes">Likes</mat-option>

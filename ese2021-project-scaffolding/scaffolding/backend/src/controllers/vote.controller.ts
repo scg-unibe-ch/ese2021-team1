@@ -27,4 +27,12 @@ voteController.post('/:id/down', (req: Request, res: Response) => {
         .catch(err => res.send(err.message));
 });
 
+voteController.get('/:id/:userName', (req: Request, res: Response) => {
+    voteService.getLastVote(Number(req.params.id), req.params.userName)
+        .then(found => {
+            res.send(found);
+        })
+        .catch(err => res.send(err.message));
+});
+
 export const VoteController: Router = voteController;

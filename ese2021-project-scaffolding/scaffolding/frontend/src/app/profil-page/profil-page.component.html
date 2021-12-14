@@ -18,7 +18,7 @@
     </button>
 
     <mat-divider></mat-divider>
-    <button mat-button class="menu-button">
+    <button mat-button class="menu-button" (click)="show('help')">
       <mat-icon>help</mat-icon>
       <span> Help</span>
     </button>
@@ -32,6 +32,22 @@
       <div class="profilePicture">
         <img *ngIf="this.user.image == 'null'" class="image" src="assets/default_profilePicture.png" />
         <img *ngIf="this.user.image != 'null'" class="image" src="http://localhost:3000/uploads/{{user.image}}" />
+        <div class="stats">
+          <div class="statItems">
+            <p class="likeDislikeChildLike">Number of posts:</p>
+            <p class="likeDislikeChildLike">{{posts.length}}</p>
+          </div><br>
+          <div class="statItems">
+            <p class="likeDislikeChildLike">Likes:</p>
+            <p class="likeDislikeChildLike">{{likeDislike[0]}}
+              <mat-icon style="color: green;">thumb_up </mat-icon>
+            </p><br>
+            <p class="likeDislikeChildDis">Dislikes:</p>
+            <p class="likeDislikeChildDis">{{likeDislike[1]}}
+              <mat-icon style="color: tomato;">thumb_down</mat-icon>
+            </p>
+          </div>
+        </div>
       </div>
       <div *ngIf="showAbout" class="Informations">
         <button class="editButton" (click)="editable = !editable">
@@ -125,26 +141,9 @@
       </div>
     </div>
     <div *ngIf="showMyPosts" class="content" style="display: block;">
-      <p class="noPosts" *ngIf="isPostsEmpty()">You have currently no posts 😔</p>
-      <div class="stats">
-        <div class="statItems">
-          <h5 class="likeDislikeChildLike">Statistics</h5><br>
-          <p class="likeDislikeChildLike">Posts:</p>
-          <p class="likeDislikeChildLike">{{posts.length}}</p>
-        </div><br>
-        <div class="statItems">
-          <p class="likeDislikeChildLike">Likes and Dislikes:</p>
-          <p class="likeDislikeChildLike">{{likeDislike[0]}}
-            <mat-icon style="color: green;">thumb_up </mat-icon>
-          </p>
-          <p class="likeDislikeChildDis">{{likeDislike[1]}}
-            <mat-icon style="color: tomato;">thumb_down</mat-icon>
-          </p>
-        </div>
-      </div>
       <div class="myPosts">
-          <h5 class="likeDislikeChildLike">My Posts</h5><br>
-
+          <h3 id="yourPosts">Your Posts</h3>
+          <p class="noPosts" *ngIf="isPostsEmpty()">You have currently no posts 😔</p>
         <div *ngFor="let post of this.posts">
           <app-post [post]="post">
                     <!--(deletePostEmit)="deletePost($event)" (update)="updatePost($event)"
@@ -185,6 +184,12 @@
         <input class="inputPassword" [(ngModel)]="newPassword2" placeholder="Confirm new Password" type="password">
         <p id="feedback">{{this.passwordFeedback}}</p>
         <button id="submitPasswordChange"(click)="changePassword()">Submit</button>
+      </div>
+    </div>
+    <div *ngIf="showHelp" class="content mat-elevation-z8">
+      <div class="helpSection">
+        <p>{{this.reportFeedback}}</p>
+        <button (mouseover)="changePosition()" id="reportButton">Report</button>
       </div>
     </div>
   </mat-sidenav-content>

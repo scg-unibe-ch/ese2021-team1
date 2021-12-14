@@ -204,7 +204,8 @@ table.orders {
   width: 100%;
   position: relative;
   height: fit-content;
-  border-bottom: 1px solid gray;
+  margin-right: 30px;
+  margin-top: 15px;
 }
 .statItems {
   position: relative;
@@ -227,5 +228,24 @@ table.orders {
 .myPosts {
   width: 100%;
   position: relative;
-  border-bottom: 1px solid gray;
+}
+
+#reportButton {
+  display: block;
+  position: absolute;
+  padding: 10px;
+  background-color: #ff9307;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  border: none;
+}
+.helpSection {
+  width: 100%;
+  overflow: hidden;
+  margin-left: 20px;
+}
+
+.noPosts {
+  margin-left: 30px;
 }

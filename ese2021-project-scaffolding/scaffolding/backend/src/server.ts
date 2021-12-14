@@ -26,9 +26,12 @@ import { CommentController } from './controllers/comment.controller';
 import {PReview} from './models/p_review.model';
 import {ReviewController} from './controllers/p_review.controller';
 
-const sequelize: Sequelize = new Sequelize({
+// enable if in testing mode
+export let testingMode = false;
+
+export const sequelize: Sequelize = new Sequelize({
     dialect: 'sqlite',
-    storage: 'db.sqlite',
+    storage: testingMode ? 'db_test.sqlite' : 'db.sqlite',
     logging: false // can be set to true for debugging
 });
 

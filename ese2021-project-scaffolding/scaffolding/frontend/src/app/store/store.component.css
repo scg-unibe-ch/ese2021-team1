@@ -4,7 +4,7 @@ p {
 
 mat-grid-list {
   margin-top: 15px;
-  width: 60%;
+  width: 100%;
   max-width: 1300px;
   margin-left: auto;
   margin-right: auto;
@@ -78,33 +78,51 @@ mat-grid-list {
 }
 
 .filter {
-  width: 50%;
+
+  width: 70%;
+  height: fit-content;
   margin: 40px auto;
   border-radius: 15px;
-  padding: 10px;
   justify-items: center;
-  background-color: #3F3F3F;
-  padding: 20px;
+  items-position: center;
+  background-color: #3f3f3f;
+  padding: 18px;
 }
 .filter button{
- text-align: center;
-position: center;
+  text-align: center;
   padding: 12px;
   background-color: #FF7E00;
   border: none;
-
-  height: 40px;
   border-radius: 12px;
   float: right;
   margin: 10px;
   color: #fff;
   letter-spacing: 0.8px;
-    text-transform: uppercase;
+  text-transform: uppercase;
   text-align: center;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px 0px,
-    rgba(0, 0, 0, 0.4) 0px 0px 1px 0px;
+  rgba(0, 0, 0, 0.4) 0px 0px 1px 0px;
+}
+.filter button:hover{
+background-color: #FF9818;
 }
 
+.category-selection {
+  position: relative;
+  margin-right: 13px;
+  border: 0px;
+  outline: none;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px 0px inset;color: black;
+  background-color: white;
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 10px;
+  border: none;
+  height: 55px;
+}
+.category-selection:hover{
+background-color: #E2E2E2;
+}
 
 .feedback {
   position: relative;
@@ -118,16 +136,16 @@ position: center;
   border-radius: 10px;
   font-size: 20px;
 }
-.category-selection {
-  position: relative;
-  text-align: center;
-  margin-right: 13px;
-  background-color: rgb(246, 246, 246);
-  border-radius: 10px;
-  border: 0px;
-  outline: none;
-  height: 60px;
-  text-decoration: none;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px 0px inset;
+
+.StoreWrapper {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  width: 60%;
+  height: auto;
+  bottom: 0px;
+  left: 50%;
+  transform: translate(-50%);
+  top: 10%;
 }
 

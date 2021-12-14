@@ -14,6 +14,11 @@ export class UserService {
         if (typeof password === 'string') {
             user.password = password;
         }
+        // user already exists (email, userName)
+        const userNameExists = await User.findOne({ where: { userName: user.userName }});
+        const emailExists = await User.findOne({ where: { email: user.email }});
+        if (userNameExists) { return Promise.reject('User name already exists.'); }
+        if (emailExists) { return Promise.reject('Email address already exists.'); }
         return User.create({
             userId: null,
             userName: user.userName,

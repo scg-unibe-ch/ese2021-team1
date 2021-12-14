@@ -90,4 +90,15 @@ export class VoteService {
             }
         }).catch(() => Promise.reject('failed to unsub'));
     }
+
+    public async getLastVote(postId: number, userName: string) {
+        return Vote.findOne({where: {userName: userName, postId: postId}})
+            .then(async found => {
+                if (found != null) {
+                    return Promise.resolve(found);
+                } else {
+                    return Promise.reject('Cant fetch votes');
+                }
+            }).catch(() => Promise.reject('failed to fetch votes'));
+    }
 }
