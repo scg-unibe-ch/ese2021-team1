@@ -4,7 +4,7 @@
   </div>
   <div class="review">
     <div class="create">
-        <input *ngIf="this.userService.getLoggedIn()" [(ngModel)]="title" class="createReview" placeholder="Write a title for a review here!">
+        <input *ngIf="this.userService.getLoggedIn()" [(ngModel)]="title" class="createReview title" placeholder="Write a title for a review here!">
         <input *ngIf="this.userService.getLoggedIn()" [(ngModel)]="text" class="createReview" placeholder="Write a text here!">
         <div class="reviewStars">
           <mat-icon class="clickStars"(click)="addStars(1)"[ngClass]= "{
@@ -21,14 +21,14 @@
         <button *ngIf="this.userService.getLoggedIn()" id="reviewButton" (click)="reviewProduct()">Post Review</button>
     </div>
     <div class="underProduct">
-      <div class="stars">
-        <h1 id="averageStars">4.2</h1>
+      <!-- <div class="stars">
+
         <mat-icon>star</mat-icon>
         <mat-icon>star</mat-icon>
         <mat-icon>star</mat-icon>
         <mat-icon>star</mat-icon>
         <mat-icon>star</mat-icon>
-      </div>
+      </div> -->
       <div class="reviews"*ngFor="let review of reviews">
         <app-review [review]="review"></app-review>
       </div>

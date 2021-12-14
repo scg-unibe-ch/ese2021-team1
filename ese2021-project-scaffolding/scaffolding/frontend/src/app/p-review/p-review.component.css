@@ -1,0 +1,22 @@
+.review {
+  width: 100%;
+  padding: 3px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  height: fit-content;
+}
+.written {
+  float: left;
+}
+#title {
+  font-weight: bold;
+  font-size: 20px;
+}
+.stars {
+  float: right;
+}
+
+.filled {
+  color: #eed202;
+}

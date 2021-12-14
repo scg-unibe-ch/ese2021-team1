@@ -8,9 +8,20 @@
       <p id="name">{{this.author.userName}}:</p>
     </div> -->
   </div>
-  <div class="text">
-    <p>{{this.review.title}}</p>
-    <p>{{this.review.text}}</p>
-
+  <div class="written">
+    <p id="title">{{this.review.title}}</p>
+    <p id="text">{{this.review.text}}</p>
+  </div>
+  <div class="stars">
+    <mat-icon [ngClass]= "{
+            'filled': this.review.stars != 0}" >star</mat-icon>
+    <mat-icon [ngClass]= "{
+            'filled': this.review.stars != 0 && this.review.stars != 1}" >star</mat-icon>
+    <mat-icon [ngClass]= "{
+            'filled': this.review.stars != 0 && this.review.stars != 1 && this.review.stars != 2}" >star</mat-icon>
+    <mat-icon [ngClass]= "{
+            'filled': this.review.stars == 4 || this.review.stars == 5}" >star</mat-icon>
+    <mat-icon [ngClass]= "{
+            'filled': this.review.stars == 5}" >star</mat-icon>
   </div>
 </div>
