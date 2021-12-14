@@ -74,4 +74,10 @@ userController.get('/:upvotes', (req: Request, res: Response) => {
         .catch(err => res.send(err));
 });
 
+userController.get('/view/:id', (req: Request, res: Response) => {
+    userService.getUserView(req.params.id)
+        .then(user => res.send(user))
+        .catch(err => res.send(err.message));
+});
+
 export const UserController: Router = userController;

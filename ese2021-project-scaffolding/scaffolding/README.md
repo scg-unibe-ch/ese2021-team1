@@ -72,9 +72,9 @@
 - [x] Likes: If upvoted/downvoted then downvote/upvote, you get an error.
 - [x] On Backend start (start or ctr+S), database initializes empty tables and overwrites everything - check if table exists, if not then init tables.
 - [ ] errors for detail product (cannot read properties of undefined).
-- [ ] like/dislike count doesnt show yet (in profil page)
+- [x] like/dislike count doesnt show yet (in profil page) [PAVLOS]
 - [ ] review in detailed-product doesnt work (can't create and fetch)
-- [ ] profilepage mypost text/title is not displayed correctly
+- [x] profilepage mypost text/title is not displayed correctly [PAVLOS]
 - [ ] **_optional_** help button
 - [ ] **_optional_** 
 - [ ] only one order is displayed in the profilepage - orders
