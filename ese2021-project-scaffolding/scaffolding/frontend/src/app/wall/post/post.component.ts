@@ -45,6 +45,7 @@ export class PostComponent implements OnInit {
   clickedComment: boolean = false;
   numberComments: number = 0;
   reportFeedback: string = "";
+  lastVote : any;
 
   postId: number = this.post.id;
   commentText: string = "";
@@ -204,6 +205,7 @@ export class PostComponent implements OnInit {
     this.httpClient.get(environment.endpointURL + "user/" + this.post.userID)
       .subscribe(res => {
         this.user = res;
+        this.getLastVote();
       })
   }
 
@@ -211,5 +213,19 @@ export class PostComponent implements OnInit {
     if(localStorage.getItem("admin") == "true") {
       return true
     } return false
+  }
+
+  getLastVote() {
+    this.httpClient.get(environment.endpointURL + "vote/" + this.post.id + "/" + this.user.userName)
+      .subscribe(res => {
+        if(res != null) {
+          this.lastVote = res;
+          if (this.lastVote.like) {
+            this.clickedUpvote = true;
+          } else if (this.lastVote.dislike) {
+            this.clickedDownvote = true;
+          }
+        }
+      })
   }
 }

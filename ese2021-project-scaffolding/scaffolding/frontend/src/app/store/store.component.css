@@ -2,21 +2,9 @@ p {
   font-size: 100px;
 }
 
-.StoreWrapper {
-  position: absolute;
-  padding: 0;
-  margin: 0;
-  width: 60%;
-  height: auto;
-  bottom: 0px;
-  left: 50%;
-  transform: translate(-50%);
-  top: 10%;
-}
-
 mat-grid-list {
   margin-top: 15px;
-  width: 100%;
+  width: 60%;
   max-width: 1300px;
   margin-left: auto;
   margin-right: auto;
@@ -25,7 +13,7 @@ mat-grid-list {
 .createProductButton {
   margin-top: 15px;
   position: relative;
-  width: 100%;
+  width: 85%;
   height: 60px;
   border-radius: 25px;
   left: 50%;
@@ -90,45 +78,30 @@ mat-grid-list {
 }
 
 .filter {
-  width: 70%;
-  height: fit-content;
+  width: 50%;
   margin: 40px auto;
   border-radius: 15px;
+  padding: 10px;
   justify-items: center;
-  items-position: center;
-  background-color: white;
-  padding: 10px;
+  background-color: #3F3F3F;
+  padding: 20px;
 }
-.filter button{
-  text-align: center;
-  padding: 10px;
+.Filterbutt{
+ text-align: center;
+ position: center;
+  padding: 12px;
   background-color: #FF7E00;
   border: none;
+  height: 40px;
   border-radius: 12px;
   float: right;
   margin: 10px;
   color: #fff;
   letter-spacing: 0.8px;
   text-transform: uppercase;
-  text-align: center;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px 0px,
-  rgba(0, 0, 0, 0.4) 0px 0px 1px 0px;
+    rgba(0, 0, 0, 0.4) 0px 0px 1px 0px;
 }
-
-.category-selection {
-  position: relative;
-  margin-right: 13px;
-  border: 0px;
-  outline: none;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px 0px inset;color: black;
-  background-color: white;
-  font-weight: bold;
-  font-size: 15px;
-  border-radius: 10px;
-  border: none;
-  height: 60px;
-}
-
 
 .feedback {
   position: relative;
@@ -142,3 +115,16 @@ mat-grid-list {
   border-radius: 10px;
   font-size: 20px;
 }
+.category-selection {
+  position: relative;
+  text-align: center;
+  margin-right: 13px;
+  background-color: rgb(246, 246, 246);
+  border-radius: 10px;
+  border: 0px;
+  outline: none;
+  height: 60px;
+  text-decoration: none;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px 0px inset;
+}
+
