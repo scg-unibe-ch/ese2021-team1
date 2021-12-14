@@ -27,7 +27,7 @@ import {PReview} from './models/p_review.model';
 import {ReviewController} from './controllers/p_review.controller';
 
 // enable if in testing mode
-export let testingMode = true;
+export let testingMode = false;
 
 export const sequelize: Sequelize = new Sequelize({
     dialect: 'sqlite',

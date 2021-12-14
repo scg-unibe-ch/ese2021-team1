@@ -68,7 +68,7 @@ describe('User Controller', () => {
                 chai.expect(res.body.email).to.eql('testUser@gmail.com');
             });
     });
-    it('User should be already in the system', async () => {
+    it('Existing Username should be already in the system', async () => {
         port = '/user/register';
         const userAdmin: UserAttributes = {
             firstName: 'Admin',
@@ -93,6 +93,41 @@ describe('User Controller', () => {
                 chai.expect(res.body).to.eql('User name already exists.');
             });
     });
+    it('Existing Email should alread be in the system', async () => {
+        port = '/user/register';
+        const userAdmin: UserAttributes = {
+            firstName: 'Admin',
+            lastName: 'Admin',
+            email: 'admin@gmail.com',
+            homeAddress: 'Irgendwostrasse',
+            streetNumber: 1,
+            zipCode: 1001,
+            city: 'Bern',
+            birthday: '12.12.1990',
+            phoneNumber: '0765840666',
+            userId: 9999,
+            userName: 'adminTwo',
+            password: 'Admin123!',
+            admin: true,
+            image: null
+        };
+        return chai.request(server).post(port)
+            .send(userAdmin)
+            .then(res => {
+                chai.expect(res.body).to.eql('Email address already exists.');
+            });
+    });
+    it('Returns a user from the databank', async () => {
+        port = '/user/1';
+        const id = {
+            id: 1
+        };
+        return chai.request(server).get('/user/1')
+            .send(id)
+            .then(res => {
+                chai.expect(res.body.userId).to.eql(1);
+            });
+    });
     it('Change the password', async () => {
         port = '/user/1';
 
@@ -104,6 +139,19 @@ describe('User Controller', () => {
             .send(password)
             .then(res => {
                 chai.expect(res.body.userId).to.eql(1);
+            });
+    });
+    // TODO: Test edit personal details
+    it('Fetch how many uploads a user has', async () => {
+        port = '/user/profile';
+        const user = {
+            id: 1
+        };
+        return chai.request(server).get('/user/profile')
+            .send(user)
+            .then(res => {
+                console.log(res.body);
+                chai.expect(res.body).to.eql(0);
             });
     });
 });
