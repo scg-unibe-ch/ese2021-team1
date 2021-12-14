@@ -9,6 +9,7 @@ import {CheckoutComponent} from "./checkout/checkout.component";
 import {PostComponent} from "./wall/post/post.component";
 import {DetailedPostComponent} from "./detailed-post/detailed-post.component";
 import {DetailedProductComponent} from "./detailed-product/detailed-product.component";
+import {PageNotFoundComponent} from "./navbar/PageNotFound/PageNotFound.component";
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -19,8 +20,8 @@ const routes: Routes = [
   { path: 'user/:username', component: ProfilPageComponent},
   { path: 'checkout', component: CheckoutComponent},
   { path: 'post/:id', component: DetailedPostComponent},
-
-  { path: '', component: WallComponent}
+  { path: '', component: WallComponent},
+  { path: '**', component: PageNotFoundComponent}
 ]
 
 @NgModule({
