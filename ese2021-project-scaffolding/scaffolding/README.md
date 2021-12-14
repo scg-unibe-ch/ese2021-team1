@@ -35,7 +35,7 @@
 - [x] **_Optional_**: User Profile Page shows their uploads and upvotes.
 - [x] **_Optional_**: Image Upload to Server/Backend.
 - [x] Add feedback when reporting post.
-- [ ] Better design for filter. (WORKING ON IT - FLORIAN)
+- [x] Better design for filter.
 
 ### Milestone 3: Fan-Shop 🛒
 
@@ -50,7 +50,7 @@
 - [x] **_Optional_**: Shopping cart for fans to purchase multiple items at once/ display sum.
 - [x] **_Optional_**: Product Review and Payment services using Stripe or PayPal.
 - [x] save cart in backend.
-- [ ] better design for filter [Flo -Work in progress]
+- [x] better design for filter
 - [x] display my orders in profile page (for user) [ARIS - WORK IN PROGRESS]
 - [x] display all orders (for admin)
 - [x] cancel orders in profile page (for user)
@@ -79,3 +79,4 @@
 - [ ] **_optional_** 
 - [ ] only one order is displayed in the profilepage - orders
 - [ ] post in "detailed post" isnt displayed
+- [ ] filtering in infinity wall shows only the posts displayed before the filter

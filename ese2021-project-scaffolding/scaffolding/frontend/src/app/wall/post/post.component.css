@@ -211,7 +211,8 @@ button:disabled {
 .downvoteButton:hover {
   color: tomato;
 }
-
+.commentButton:hover{
+color: blue;}
 .clickedUp {
   color: green;
 }
