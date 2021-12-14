@@ -35,7 +35,6 @@ describe('Order Controller', () => {
            purchaseDate: '14.12.2021',
            streetNumber: 1,
            subtotal: 10,
-           userId: 1,
            zipCode: 1111
        };
        return chai.request(server).post(port)
@@ -44,4 +43,28 @@ describe('Order Controller', () => {
                chai.expect(res.body.subtotal).to.eql(10);
            });
    });
+   it('Updates an Order and returns it', async () => {
+       const order = {
+           userID: 1,
+           city: 'TestCity',
+           homeAddress: 'TestHome',
+           orderId: 2,
+           paymentMethod: 'PayPal',
+           processingStatus: 'open',
+           productIds: '1',
+           products: '1',
+           purchaseDate: '14.12.2021',
+           streetNumber: 1,
+           subtotal: 10,
+           zipCode: 1111
+       };
+       chai.request(server).post(port).send(order);
+       const processingStatus = 'cancelled';
+       return chai.request(server).put(port + '/' + order.orderId)
+           .send({processingStatus: processingStatus})
+           .then(res => {
+               chai.expect(res.body.processingStatus).to.eql('cancelled');
+           });
+   });
+
 });
