@@ -10,12 +10,12 @@ import {environment} from "../../environments/environment";
 export class PReviewComponent implements OnInit {
 
   @Input() review: any = {}
-
   author: any;
 
   constructor(
     public httpClient: HttpClient,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.getUser()
@@ -23,8 +23,8 @@ export class PReviewComponent implements OnInit {
 
   getUser() {
     this.httpClient.get(environment.endpointURL + "user/" + this.review.userID)
-      .subscribe(res=> {
-        if(res != null) {
+      .subscribe(res => {
+        if (res != null) {
           this.author = res
         }
       })

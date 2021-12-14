@@ -98,6 +98,8 @@ export class CheckoutComponent implements OnInit {
       this.productIDs += String(product.id) + ", "
       this.productTitles += product.title + ", "
     }
+    this.productIDs = this.productIDs.slice(0, -2);
+    this.productTitles = this.productTitles.slice(0, -2);
     let payload = {
       userID: parseInt(String(this.userId)),
       productIds: this.productIDs,
