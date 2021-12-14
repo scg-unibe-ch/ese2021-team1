@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
 import { BehaviorSubject, Subject } from 'rxjs';
+import { Post } from '../models/post.model';
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +41,17 @@ export class UserService {
   }
    setRegisterModalShow(state: boolean) {
     this.showRegisterModalPrivate.next(state);
-   }
+  }
+
+  // For detailed view
+  private updateDetailedPagePrivate = new BehaviorSubject<{nComments: number }>({
+    nComments: 0
+  });
+  updateDetailedPage = this.updateDetailedPagePrivate.asObservable()
+  // Setter
+  updateDetailed(nComments: number) {
+    this.updateDetailedPagePrivate.next({nComments });
+  }
 
 
   /*******************************************************************************************************************

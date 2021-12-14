@@ -1,5 +1,5 @@
 <!-- the following is rendered for all users except the creator -->
-<div class="postWrapper" *ngIf="user !== post.userName">
+<div class="postWrapper" *ngIf="this.post && user !== post.userName">
   <div class="category" [ngSwitch]="post.category">{{post.category}}
     <img class="tokenLogo" *ngSwitchCase="'Bitcoin'" src="../../../assets/btcLogo.png" alt="BITCOIN" srcset="">
     <img class="tokenLogo" *ngSwitchCase="'Polkadot'" src="../../../assets/polkadotLogo.png" alt="POLKADOT" srcset="">
@@ -7,9 +7,9 @@
     <img class="tokenLogo" *ngSwitchCase="'Cardano'" src="../../../assets/cardanoLogo.png" alt="CARDANO" srcset="">
   </div>
     <div class="metadata">
-        <img *ngIf="this.user?.image == null" src="assets/default_profilePicture.png" class="usericon">
-        <img *ngIf="this.user?.image != null" src="http://localhost:3000/uploads/{{this.user?.image}}" class="usericon">
-        <div class="username">{{post.userName}}:</div>
+        <img *ngIf="!this.user?.image" src="assets/default_profilePicture.png" class="usericon">
+        <img *ngIf="this.user?.image" src="http://localhost:3000/uploads/{{this.user?.image}}" class="usericon">
+        <div class="username">{{this.user?.userName}}:</div>
         <div class="postdate">{{calculateTimePosted()}}</div>
     </div>
     <div class="content">

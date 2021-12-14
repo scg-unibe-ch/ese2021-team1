@@ -138,7 +138,7 @@ export class UserService {
     }
 
     // resets the password if entered the birthday correctly
-    public resetPassword(name: string, password: string, birthdayTest: string) {
+    public async resetPassword(name: string, password: string, birthdayTest: string) {
         const hashedPW = this.passwordGenerator(password);
         if (typeof hashedPW === 'string') {
             return User.findAll({ where: { userName: name } })
@@ -200,7 +200,7 @@ export class UserService {
             });
     }
 
-    public isAdmin(id: number) {
+    public async isAdmin(id: number) {
         return User.findByPk(id)
             .then(found => {
                 if (found != null) {
@@ -212,7 +212,7 @@ export class UserService {
             .catch(() => Promise.reject('Cant find user'));
     }
 
-    public getUploads(userId: number) {
+    public async getUploads(userId: number) {
         return User.findByPk(userId)
             .then(found => {
                 if (found != null) {
@@ -224,7 +224,7 @@ export class UserService {
             .catch(() => Promise.reject('Cant get uploads'));
     }
 
-    public getUpvotes(userId: number) {
+    public async getUpvotes(userId: number) {
         return User.findByPk(userId)
             .then(found => {
                 if (found != null) {
@@ -236,7 +236,7 @@ export class UserService {
             .catch(() => Promise.reject('Cant get Upvotes'));
     }
 
-    private countUploads(user: User) {
+    private async countUploads(user: User) {
         return Post.findAll({ where: { userName: user.userName } })
             .then(found => {
                 if (found != null) {
@@ -248,7 +248,7 @@ export class UserService {
             .catch(() => Promise.reject('Post not found'));
     }
 
-    private countUpvotes(user: User) {
+    private async countUpvotes(user: User) {
         let upvotes = 0;
         return Post.findAll({ where: { userName: user.userName } })
             .then(found => {
@@ -262,5 +262,16 @@ export class UserService {
                 }
             })
             .catch(() => Promise.reject('Cant count Upvotes'));
+    }
+
+    public async getUserView(userId: string | number) {
+        const found = await User.findOne({
+            where: {
+            userId: userId
+            }, attributes: ['userName', 'image']
+        });
+        console.log(found);
+        if (found) { return Promise.resolve(found); }
+        return Promise.reject('Could not fetch user view.');
     }
 }

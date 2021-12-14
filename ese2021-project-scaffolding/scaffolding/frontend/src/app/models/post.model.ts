@@ -14,7 +14,7 @@ export class Post {
   constructor(
     public title: string,
     public text: string,
-    public image: Blob,
+    public image: Blob | any,
     public category: string,
     public upvotes: number,
     public downvotes: number,

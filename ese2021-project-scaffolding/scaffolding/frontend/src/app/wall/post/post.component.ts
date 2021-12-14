@@ -5,7 +5,9 @@ import { Post } from '../../models/post.model';
 import { UserService } from 'src/app/services/user.service';
 import {MatIconModule} from '@angular/material/icon';
 import { User } from 'src/app/models/user.model';
-
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs'
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-post',
@@ -24,7 +26,7 @@ import { User } from 'src/app/models/user.model';
   */
 export class PostComponent implements OnInit {
 
-  @Input() post: any = {}
+  @Input() post: any = {} // PARENT POPULATES VIA PROP
 
   @Output()
   update = new EventEmitter<Post>();
@@ -33,7 +35,6 @@ export class PostComponent implements OnInit {
   deletePostEmit = new EventEmitter<Post>();
 
   auth: boolean = false
-  user: any = {}
   newTitle: string = ""
   newText: string = ""
   // image: Blob = Blob
@@ -45,6 +46,7 @@ export class PostComponent implements OnInit {
   clickedComment: boolean = false;
   numberComments: number = 0;
   reportFeedback: string = "";
+  user: any = {}
   lastVote : any;
 
   postId: number = this.post.id;
@@ -52,20 +54,41 @@ export class PostComponent implements OnInit {
 
   comments: Comment[] = [];
 
-
   constructor(
     public httpClient: HttpClient,
-    public userService: UserService
+    public userService: UserService,
+    private _activatedRoute: ActivatedRoute,
+    private route: ActivatedRoute
   ) {
     // Listen for changes
     userService.loggedIn$.subscribe(res => this.auth = res);
+    this._activatedRoute.paramMap.subscribe(params => {
+            this.ngOnInit(); 
+        });
   }
 
-  ngOnInit(): void {
-    this.countComments()
-    this.findUser()
+  async ngOnInit(): Promise<any> { // ugly af but a workaround for this shitty architecture
+    if (!this.post && this.route.snapshot.paramMap.get("id") !== null) {
+      this.httpClient.get(environment.endpointURL + "post/detail/" + this.route.snapshot.paramMap.get('id'))
+      .subscribe((res) => {
+        
+        if (res) {
+          this.userService.updateDetailedPage.subscribe((payload) => {
+            console.log(payload.nComments)
+            this.numberComments = payload.nComments
+            console.log(payload);
+          })
+          this.post = res
+          this.findUser()
+        }
+      })
+    } else {
+      this.countComments()
+      this.findUser()
+    }
     //this.post.category = this.post.category.replace(/[, ]+/g, " ").trim(); //very ugly to remove comma from category
   }
+
   reportPost() {
     this.httpClient.put(environment.endpointURL + "post/" + this.post.id + "/report", {})
       .subscribe(res => {
@@ -191,18 +214,20 @@ export class PostComponent implements OnInit {
   }
 
   countComments() {
+    if (!this.post || !this.post.id) return
     this.httpClient.get(environment.endpointURL + "comment/" + this.post.id)
-      .subscribe(res=> {
-        if(res != null) {
+      .subscribe(res => {
+        if (res != null) {
           Object.values(res).forEach(comment => {
             this.numberComments += 1
           })
         }
+
       });
   }
 
   findUser() {
-    this.httpClient.get(environment.endpointURL + "user/" + this.post.userID)
+    this.httpClient.get(environment.endpointURL + "user/view/" + this.post.userID)
       .subscribe(res => {
         this.user = res;
         this.getLastVote();

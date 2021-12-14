@@ -44,7 +44,6 @@ export class DetailedProductComponent implements OnInit {
     this.httpClient.get(environment.endpointURL + "product/" + this.id)
       .subscribe(res => {
         if(res != null) {
-          console.log(res);
           this.product = res;
         }
       })
@@ -62,7 +61,6 @@ export class DetailedProductComponent implements OnInit {
       pros: this.pros,
       cons: this.cons
     }).subscribe(res =>{
-      console.log(res);
       // @ts-ignore
       this.reviews.unshift(res);
     })

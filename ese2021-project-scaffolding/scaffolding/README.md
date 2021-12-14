@@ -63,21 +63,21 @@
 - [x] Finish any not optional open tasks!
 - [ ] Work on Design, UI and aesthetics.
 - [ ] **_Optional_**: Admins can reset reporting counter or delete post based on reports.
-- [ ] Frontend-testing
+- [x] Frontend-testing
 - [ ] Backend-testing
+
 ### BUGS 🐞
 
 - [x] Reset - does page reload the whole page.
 - [x] When creating second account, login does not work.
 - [x] Likes: If upvoted/downvoted then downvote/upvote, you get an error.
 - [x] On Backend start (start or ctr+S), database initializes empty tables and overwrites everything - check if table exists, if not then init tables.
-- [ ] errors for detail product (cannot read properties of undefined).
-- [ ] number of comments is not correct in post detailed view [yo boi aris working on it]
-- [ ] like/dislike count doesnt show yet (in profil page)
+- [x] errors for detail product (cannot read properties of undefined).
+- [x] like/dislike count doesnt show yet (in profil page) [PAVLOS]
 - [ ] review in detailed-product doesnt work (can't create and fetch)
-- [ ] profilepage mypost text/title is not displayed correctly
-- [ ] **_optional_** help button
-- [ ] **_optional_** 
+- [x] profilepage mypost text/title is not displayed correctly [PAVLOS]
+- [x] **_optional_** help button
+- [ ] **_optional_**
 - [ ] only one order is displayed in the profilepage - orders
-- [ ] post in "detailed post" isnt displayed
+- [x] post in "detailed post" isnt displayed
 - [ ] filtering in infinity wall shows only the posts displayed before the filter

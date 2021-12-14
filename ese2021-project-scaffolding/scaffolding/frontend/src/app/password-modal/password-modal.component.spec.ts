@@ -1,25 +1,20 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {PasswordModalComponent} from "./password-modal.component";
+import {TestBed} from "@angular/core/testing";
+import {HttpClientModule} from "@angular/common/http";
 
-import { PasswordModalComponent } from './password-modal.component';
-
-describe('PasswordModalComponent', () => {
-  let component: PasswordModalComponent;
-  let fixture: ComponentFixture<PasswordModalComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ PasswordModalComponent ]
-    })
-    .compileComponents();
-  });
+describe('Password Modal Components', () => {
+  let passwordModalComponent: PasswordModalComponent;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PasswordModalComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    TestBed.configureTestingModule({
+      imports: [HttpClientModule],
+      providers: [PasswordModalComponent]
+    });
+
+    passwordModalComponent = TestBed.get(PasswordModalComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should be created',() => {
+    expect(passwordModalComponent).toBeTruthy();
   });
 });

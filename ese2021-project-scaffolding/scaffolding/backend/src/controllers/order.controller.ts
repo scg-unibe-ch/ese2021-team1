@@ -15,13 +15,7 @@ orderController.post('/', (req: Request, res: Response) => {
 });
 
 
-// gets all the posts (only for admins)
-// orderController.get('/:id', (req: Request, res: Response) => {
-//     orderService.getAllOrders(req.body)
-//        .then(orders => res.json(orders))
-//        .catch(err => res.json(err));
-// });
-// get all the posts for the requested User
+// get all the orders for the requested User
 orderController.get('/:id', (req: Request, res: Response) => {
    orderService.getAllOrdersFrom(Number(req.params.id))
        .then(orders => res.json(orders))
