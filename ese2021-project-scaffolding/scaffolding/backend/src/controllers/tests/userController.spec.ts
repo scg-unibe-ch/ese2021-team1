@@ -4,7 +4,7 @@ import chaiHttp from 'chai-http';
 import 'mocha';
 import { before, describe } from 'mocha';
 import {User, UserAttributes} from '../../models/user.model';
-import bcrypt from 'bcrypt';
+
 
 
 chai.use(chaiHttp);
