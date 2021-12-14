@@ -72,6 +72,7 @@ export class AddPostComponent implements OnInit {
           // check if object is of type Post - should contain some property like title or text
           if (res.title) {
             // emit event
+            console.log(res)
             this.addPostEmit.emit(res)
           } else {
             // else it may be a error message that we can somehow show to the user

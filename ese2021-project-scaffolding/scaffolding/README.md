@@ -81,3 +81,4 @@
 - [ ] only one order is displayed in the profilepage - orders
 - [x] post in "detailed post" isnt displayed
 - [ ] filtering in infinity wall shows only the posts displayed before the filter
+- [ ] Successful Registration is behind other divs - push to front.

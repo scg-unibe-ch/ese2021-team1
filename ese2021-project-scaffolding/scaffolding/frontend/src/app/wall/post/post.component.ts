@@ -74,17 +74,17 @@ export class PostComponent implements OnInit {
         
         if (res) {
           this.userService.updateDetailedPage.subscribe((payload) => {
-            console.log(payload.nComments)
             this.numberComments = payload.nComments
-            console.log(payload);
           })
           this.post = res
           this.findUser()
+          this.getLastVote()
         }
       })
     } else {
       this.countComments()
       this.findUser()
+      this.getLastVote()
     }
     //this.post.category = this.post.category.replace(/[, ]+/g, " ").trim(); //very ugly to remove comma from category
   }
@@ -230,7 +230,6 @@ export class PostComponent implements OnInit {
     this.httpClient.get(environment.endpointURL + "user/view/" + this.post.userID)
       .subscribe(res => {
         this.user = res;
-        this.getLastVote();
       })
   }
 
