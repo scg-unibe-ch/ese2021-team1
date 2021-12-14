@@ -39,7 +39,6 @@ export class DetailedPostComponent implements OnInit {
     this.getPost()
     this.getComments()
     this.userService.updateDetailed(this.comments.length)
-
   }
 
   getPost() {
