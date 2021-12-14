@@ -141,6 +141,7 @@ export class WallComponent implements OnInit {
 
   resetFilter() {
     this.toFilterCategories = ["Bitcoin", "Cardano", "Polkadot", "Ethereum"]
+    this.toSortMethod = "newest"
   }
 
   loadMorePosts() {
