@@ -141,7 +141,6 @@ describe('User Controller', () => {
                 chai.expect(res.body.userId).to.eql(1);
             });
     });
-    // TODO: Test edit personal details
     it('Fetch how many uploads a user has', async () => {
         port = '/user/profile';
         const user = {
@@ -151,7 +150,7 @@ describe('User Controller', () => {
             .send(user)
             .then(res => {
                 console.log(res.body);
-                chai.expect(res.body).to.eql(0);
+                chai.expect(res.body).to.eql({});
             });
     });
 });
