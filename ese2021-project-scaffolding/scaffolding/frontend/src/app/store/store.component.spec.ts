@@ -1,25 +1,20 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {StoreComponent} from "./store.component";
+import {TestBed} from "@angular/core/testing";
+import {HttpClientModule} from "@angular/common/http";
 
-import { StoreComponent } from './store.component';
-
-describe('StoreComponent', () => {
-  let component: StoreComponent;
-  let fixture: ComponentFixture<StoreComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ StoreComponent ]
-    })
-    .compileComponents();
-  });
+describe('Store Component', () =>{
+  let storeComponent: StoreComponent;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StoreComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    TestBed.configureTestingModule({
+      imports: [HttpClientModule],
+      providers: [StoreComponent]
+    });
+
+    storeComponent = TestBed.get(StoreComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should be created',  () => {
+    expect(storeComponent).toBeTruthy();
   });
 });

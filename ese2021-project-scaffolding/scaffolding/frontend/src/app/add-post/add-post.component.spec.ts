@@ -1,25 +1,77 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {AddPostComponent} from "./add-post.component";
+import {TestBed} from "@angular/core/testing";
+import {HttpClientModule} from "@angular/common/http";
+import {of} from "rxjs";
 
-import { AddPostComponent } from './add-post.component';
-
-describe('AddPostComponent', () => {
-  let component: AddPostComponent;
-  let fixture: ComponentFixture<AddPostComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ AddPostComponent ]
-    })
-    .compileComponents();
-  });
+describe('Add Post Components', () => {
+  let addPostComponent: AddPostComponent;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddPostComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    TestBed.configureTestingModule({
+      imports: [HttpClientModule],
+      providers: [AddPostComponent]
+    });
+
+    addPostComponent = TestBed.get(AddPostComponent);
+  });
+  it('should be created', () => {
+    expect(addPostComponent).toBeTruthy();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  describe('checkValidPost', () => {
+    it('should check for missing title', () => {
+      addPostComponent.newPost = {
+        title: "",
+        content: "For the Test",
+        image: null,
+        labels: "Bitcoin",
+        userName: "Tester"
+      }
+      addPostComponent.checkValidPost();
+      expect(addPostComponent.createPostFeedback.title).toEqual("Please enter a title");
+      expect(addPostComponent.checkValidPost()).toBeFalsy();
+    });
+
+    it('should check for missing text or image', () => {
+      addPostComponent.category = "Bitcoin";
+      addPostComponent.newPost = {
+        title: "Test",
+        content: "",
+        image: null,
+        labels: "Bitcoin",
+        userName: "Tester"
+      }
+      addPostComponent.checkValidPost();
+      expect(addPostComponent.createPostFeedback.content).toEqual("Please enter a text or an image.");
+      expect(addPostComponent.checkValidPost()).toBeFalsy();
+    });
+
+    it('should check for missing category', () => {
+      addPostComponent.newPost = {
+        title: "Test",
+        content: "For the Test",
+        image: null,
+        labels: "Bitcoin",
+        userName: "Tester"
+      }
+      addPostComponent.checkValidPost();
+      expect(addPostComponent.createPostFeedback.content).toEqual("Please enter a category.");
+      expect(addPostComponent.checkValidPost()).toBeFalsy();
+    });
+
+
+
+    it('should check for Valid Post', () => {
+      addPostComponent.newPost = {
+        title: "Test",
+        content: "For the Test",
+        image: null,
+        labels: "Bitcoin",
+        userName: "Tester"
+      }
+      expect(addPostComponent.checkValidPost).toBeTruthy();
+    });
+
+
   });
 });
