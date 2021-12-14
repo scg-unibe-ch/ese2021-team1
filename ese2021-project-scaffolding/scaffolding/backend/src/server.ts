@@ -116,7 +116,7 @@ sequelize.sync({ force: false }).then(async () => {
             }
         };
 
-        for (let i = 0; i < 500; i++) {
+        for (let i = 0; i < 12; i++) {
             Post.create({
                 id: null,
                 userName: 'admin',
