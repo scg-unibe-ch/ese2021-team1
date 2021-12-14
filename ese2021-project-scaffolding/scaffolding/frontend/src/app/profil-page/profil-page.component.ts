@@ -300,7 +300,7 @@ export class ProfilPageComponent implements OnInit {
       } else if (r == 2) {
         this.reportFeedback  = "Just click on the button. Shouldn't be so difficult."
       } else if (r == 3) {
-        this.reportFeedback  = "Current bug reports: 0"
+        this.reportFeedback  = "Number of bug reports: 0. Yes, we are that good."
       } else if (r == 4) {
         this.reportFeedback = "Please report any bugs to us so we can improve!"
       }
