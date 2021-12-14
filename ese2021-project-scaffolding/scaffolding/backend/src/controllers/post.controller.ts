@@ -41,8 +41,8 @@ postController.get('/myPosts/:userId', (req: Request, res: Response) => {
         .catch(err => res.json(err));
 });
 
-postController.get('/:id', (req: Request, res: Response) => {
-    postService.getPost(req.params.id)
+postController.get('/detail/:id', (req: Request, res: Response) => {
+    postService.getPost(Number(req.params.id))
         .then(post => res.send(post))
         .catch(err => res.send(err));
 });

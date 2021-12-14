@@ -7,8 +7,8 @@
     <img class="tokenLogo" *ngSwitchCase="'Cardano'" src="../../../assets/cardanoLogo.png" alt="CARDANO" srcset="">
   </div>
     <div class="metadata">
-        <img *ngIf="user.image != null" src="http://localhost:3000/uploads/{{user.image}}" class="usericon">
-        <img *ngIf="user.image == null" src="assets/default_profilePicture.png" class="usericon">
+        <img *ngIf="this.user?.image == null" src="assets/default_profilePicture.png" class="usericon">
+        <img *ngIf="this.user?.image != null" src="http://localhost:3000/uploads/{{this.user?.image}}" class="usericon">
         <div class="username">{{post.userName}}:</div>
         <div class="postdate">{{calculateTimePosted()}}</div>
     </div>
@@ -24,7 +24,7 @@
           <span>Edit</span>
         </button>
       </mat-menu>
-      
+
       <div *ngIf="!editable" class="contentTitle">{{post.title}}</div>
       <input *ngIf="editable" class="contentTitle editableTitle"[(ngModel)]="post.title"/>
       <div *ngIf="!editable" class="material">{{post.text}}

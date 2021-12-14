@@ -18,6 +18,7 @@ export class DetailedPostComponent implements OnInit {
 
   id: string | null = "";
   post: any;
+  user: any;
 
   comments: Comment[] = [];
 
@@ -35,7 +36,7 @@ export class DetailedPostComponent implements OnInit {
   }
 
   getPost() {
-    this.httpClient.get(environment.endpointURL + "post/" + this.id)
+    this.httpClient.get(environment.endpointURL + "post/detail/" + this.id)
       .subscribe(res => {
         if(res != null) {
           this.post = res

@@ -109,10 +109,11 @@ export class PostService {
                     return Promise.reject('Could not fetch posts.');
                 });
         }
-        public async getPost(id: string) {
+        public async getPost(id: number) {
+        console.log('Hallo');
             return Post.findByPk(id)
                 .then(post => {
-                    if (post) {
+                    if (post != null) {
                         return Promise.resolve(post);
                     } else {
                         return Promise.reject('No post available.');

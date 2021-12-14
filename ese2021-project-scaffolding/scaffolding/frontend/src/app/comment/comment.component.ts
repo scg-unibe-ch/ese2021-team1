@@ -11,7 +11,7 @@ export class CommentComponent implements OnInit {
 
   @Input() comment: any = {}
 
-  author: any;
+  author: any = {}
 
   constructor(
     public httpClient: HttpClient,
