@@ -50,7 +50,6 @@ export class DetailedProductComponent implements OnInit {
   }
 
   reviewProduct() {
-    console.log(this.id)
     this.httpClient.post(environment.endpointURL + "review/" + this.id + "/review", {
       productID: this.id,
       userId: localStorage.getItem("userId"),
@@ -69,7 +68,6 @@ export class DetailedProductComponent implements OnInit {
   getReviews() {
     this.httpClient.get(environment.endpointURL + "review/" + this.id)
       .subscribe(res=> {
-        console.log(res);
         // @ts-ignore
         this.reviews = res;
       })
@@ -77,7 +75,6 @@ export class DetailedProductComponent implements OnInit {
 
 
   addStars(amount: number) {
-    console.log(amount)
     this.stars = amount;
   }
 }
