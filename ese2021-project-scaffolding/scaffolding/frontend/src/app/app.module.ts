@@ -39,9 +39,9 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { DetailedPostComponent } from './detailed-post/detailed-post.component';
 import { CommentComponent } from './comment/comment.component';
 import {CdkTableModule} from "@angular/cdk/table";
-import {DetailedProductComponent} from "./detailed-product/detailed-product.component";
+import { DetailedProductComponent} from "./detailed-product/detailed-product.component";
 import { PReviewComponent } from './p-review/p-review.component';
-
+import { PageNotFoundComponent } from './navbar/PageNotFound/PageNotFound.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,6 +64,7 @@ import { PReviewComponent } from './p-review/p-review.component';
     DetailedProductComponent,
     PReviewComponent,
     CommentComponent,
+    PageNotFoundComponent,
   ],
     imports: [
         BrowserModule,
