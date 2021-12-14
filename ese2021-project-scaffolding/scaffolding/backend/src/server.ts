@@ -23,6 +23,7 @@ import {ReviewController} from './controllers/p_review.controller';
 
 // enable if in testing mode
 export let testingMode = false;
+export let listener: any = null;
 
 export const sequelize: Sequelize = new Sequelize({
     dialect: 'sqlite',
@@ -68,7 +69,7 @@ sequelize.sync({ force: false }).then(async () => {
             console.log(error.message);
         }
     });
-    server.listen(port, async () => {
+    listener = server.listen(port, async () => {
         const pass = 'Admin123!';
         const name = 'admin';
         const adminExists = await User.findOne({ where: { userName: name }});
@@ -143,4 +144,3 @@ export const server = express()
     .use('/uploads', express.static(__dirname + '/uploads'))
     // this is the message you get if you open http://localhost:3000/ when the server is running
     .get('/', (req, res) => res.send('<h1>Welcome to Jan and Alessios domain <span style="font-size:50px">&#128525;</span></h1>'));
-

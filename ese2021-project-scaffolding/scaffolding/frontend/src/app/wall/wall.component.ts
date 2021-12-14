@@ -1,8 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { OverlayModule} from "@angular/cdk/overlay";
-import {Post} from "../models/post.model";
-import {environment} from "../../environments/environment";
-import {HttpClient} from "@angular/common/http";
+import { OverlayModule } from "@angular/cdk/overlay";
+import { Post } from "../models/post.model";
+import { environment } from "../../environments/environment";
+import { HttpClient } from "@angular/common/http";
 import { UserService } from '../services/user.service';
 import { User } from '../models/user.model';
 
@@ -11,10 +11,10 @@ import { User } from '../models/user.model';
   templateUrl: './wall.component.html',
   styleUrls: ['./wall.component.css']
 })
-  /**
-  * @param showNewPostForm
-  * @param createPostButtonText
-  */
+/**
+* @param showNewPostForm
+* @param createPostButtonText
+*/
 export class WallComponent implements OnInit {
 
   showNewPostForm: boolean = false;
@@ -36,7 +36,7 @@ export class WallComponent implements OnInit {
   auth: boolean = false
   user: string | null = null
   toFilterCategories: String[] = ["Bitcoin", "Cardano", "Polkadot", "Ethereum"]
-  toSortMethod: String = ""
+  toSortMethod: String = "newest"
   showFilter: boolean = false;
   feedback: string = "";
 
@@ -65,6 +65,7 @@ export class WallComponent implements OnInit {
           Object.values(res).forEach(post => {
             this.posts.push(post)
           })
+          this.sortPosts()
         }
       })
   }
@@ -72,23 +73,23 @@ export class WallComponent implements OnInit {
   sortPosts() {
 
     // sort by DATE
-    
-    console.log()
+
     switch (this.toSortMethod) {
-      case "Newest":
-        this.posts.sort((a, b) => (new Date(a.createdAt).getTime() < new Date(b.createdAt).getTime()) ? 1 : -1)
+      case "newest":
+        this.posts = this.posts.sort((a, b) => (new Date(a.createdAt).getTime() < new Date(b.createdAt).getTime()) ? 1 : -1)
         break;
-      case "Oldest":
-        this.posts.sort((a, b) => (a.createdAt < b.createdAt) ? 1 : -1)
+      case "oldest":
+        this.posts.sort((a, b) => (new Date(a.createdAt).getTime() > new Date(b.createdAt).getTime()) ? 1 : -1)
         break;
 
-      case "Likes":
+      case "likes":
+        this.posts.sort((a, b) => a.like < b.like ? 1 : -1)
         break;
-      
-      case "Dislikes":
 
+      case "dislikes":
+        this.posts.sort((a, b) => a.dislike < b.dislike ? 1 : -1)
         break;
-      
+
       default:
         break;
     }
@@ -111,20 +112,20 @@ export class WallComponent implements OnInit {
 
   currentDate(): string {
     let today = new Date();
-    let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    return date+' '+time;
+    return date + ' ' + time;
   }
 
   togglePostForm(): void {
     this.showNewPostForm = !this.showNewPostForm;
     (this.showNewPostForm) ? this.createPostButtonText = '⬆' : this.createPostButtonText = 'CREATE POST'
   }
-     /**
-     * @param post
-     * @param event
-     * @return post
-     */
+  /**
+  * @param post
+  * @param event
+  * @return post
+  */
   updatePosts(event: any): void {
     for (let i = 0; i < this.posts.length; i++) {
       if (this.posts[i].id == event[0].id) {
