@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Product} from "../models/product.model";
 import {CartService} from "../services/cart.service";
-import {formatNumber} from "@angular/common";
-
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -20,7 +18,7 @@ export class CartComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const cart = localStorage.getItem("cart") 
+    const cart = localStorage.getItem("cart")
     if (cart) {
       this.cartService.retrieveCart(JSON.parse(cart))
       this.products = this.cartService.getProducts()
@@ -38,10 +36,7 @@ export class CartComponent implements OnInit {
   clearCart() {
     this.products = this.cartService.clearCart()
   }
- // we have to update the card service when a cart item is removed
- // we have to check if localstorage contains cart items on init thrrough the service
- // remove from localstorage on logout
- // remove from localstorage on order
+
   removeProductFromCart(product: Product) {
     this.products = this.cartService.removeItem(product)
   }

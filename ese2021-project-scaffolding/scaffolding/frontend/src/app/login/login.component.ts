@@ -16,10 +16,7 @@ export class LoginComponent {
   // CHECK FEATURE START
   passwordInput: string = ''
   showPassReqs: boolean = false;
-  showEmptyFieldError: boolean = false;
-  // passwordReqs[min 8 char, capital & small letters, a number, a special char]
   passwordReqs: boolean[] = [false, false, false, false];
-  //[firstName, lastName, email, address, street number, city, zipcode, phoneNumber]
   isEmptyField: boolean[] = [true, true, true, true, true, true, true, true]
   isValidEmail: boolean = true;
   isValidBirthday: boolean = true;

@@ -3,8 +3,6 @@ import {ActivatedRoute} from "@angular/router";
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {UserService} from "../services/user.service";
-import {ReviewModel} from "../models/review.model";
-import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-detailed-product',
