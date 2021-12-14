@@ -228,7 +228,6 @@ table.orders {
 .myPosts {
   width: 100%;
   position: relative;
-  border-bottom: 1px solid gray;
 }
 
 #reportButton {
@@ -245,4 +244,8 @@ table.orders {
   width: 100%;
   overflow: hidden;
   margin-left: 20px;
+}
+
+.noPosts {
+  margin-left: 30px;
 }

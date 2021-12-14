@@ -141,9 +141,9 @@
       </div>
     </div>
     <div *ngIf="showMyPosts" class="content" style="display: block;">
-      <p class="noPosts" *ngIf="isPostsEmpty()">You have currently no posts 😔</p>
       <div class="myPosts">
           <h3 id="yourPosts">Your Posts</h3>
+          <p class="noPosts" *ngIf="isPostsEmpty()">You have currently no posts 😔</p>
         <div *ngFor="let post of this.posts">
           <app-post [post]="post">
                     <!--(deletePostEmit)="deletePost($event)" (update)="updatePost($event)"
